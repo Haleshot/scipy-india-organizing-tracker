@@ -1,0 +1,30 @@
+# Secrets: never commit
+.env
+
+# Local MCP client config: contains machine-specific absolute paths.
+# .claude/mcp.example.json is the committed template.
+.mcp.json
+*service_account*.json
+credentials*.json
+
+# CocoIndex local state
+*.db
+cocoindex.db*
+
+# Python
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Private volunteer data (fixtures under data/volunteers/ are fictional and
+# intentionally tracked; anything in private/ is not)
+private/
+
+# Review artefacts dropped in by external tools. Useful locally, not project files.
+CODEX_AUDIT.md
+CODEX_AUDIT_SCREENSHOTS/
+*_AUDIT.md
+
+.DS_Store
