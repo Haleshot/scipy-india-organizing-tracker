@@ -33,8 +33,8 @@ Website work needed before the next public announcement.
 
 Decisions
 
-The Volunteers workgroup will schedule a short intro call before assigning
-new applicants to a workgroup.
+(Volunteers) The Volunteers workgroup will schedule a short intro call before
+assigning new applicants to a workgroup.
 
 The 2026 website will reuse the existing site structure rather than start
 from a blank project.
@@ -84,7 +84,21 @@ name that matches nothing is dropped rather than invented, so an unregistered
 work area shows up as a gap rather than a wrong edge.
 
 `Topics` and `Decisions` take ordinary paragraphs. A blank line separates one
-from the next. Bullets work too if you prefer them.
+from the next, and a topic that is one line per item works too, as do bullets if
+you prefer them.
+
+A decision can name the workgroup it concerns by opening with it in brackets:
+
+```text
+Decisions
+
+(Website & Tech) The 2026 website will reuse the existing site structure.
+
+The organizing team meets every second Friday until the conference.
+```
+
+That prefix is what "what did we decide about the website" reads. Leave it off
+when a decision belongs to the whole team, as the second one here does.
 
 `Action items` is the part with structure. Each item opens with `Task:` and the
 lines after it belong to that item until the next `Task:` or a blank line.

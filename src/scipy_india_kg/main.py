@@ -61,6 +61,7 @@ from __future__ import annotations
 import asyncio
 import datetime
 import os
+import sys
 from collections.abc import AsyncIterator
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -261,6 +262,42 @@ async def process_note_file(
             )
         )
     return extractions
+
+
+def _warn_on_ambiguous_task_identity(meetings: list[MeetingExtraction]) -> None:
+    """Say something when two action items are being merged on their wording alone.
+
+    Within one workgroup, two items that read the same become one task. That is
+    usually right, because it is how a task carries across meetings. It is wrong
+    when the team genuinely wrote down two different pieces of work, and the
+    graph gives no sign either way: you get one task with two owners and one
+    status. An `ID:` on either line separates them.
+
+    A warning rather than an error, because the merge is correct far more often
+    than not, and refusing to build would be worse than saying so.
+    """
+    mentions: dict[str, list[tuple[datetime.date, str]]] = {}
+    for meeting in meetings:
+        for task in meeting.tasks:
+            if task.identity_basis == "explicit_id":
+                continue
+            mentions.setdefault(task.task_id, []).append((meeting.date, task.description))
+
+    for task_id, seen in mentions.items():
+        dates = {date for date, _ in seen}
+        # Several mentions on one date is two items written down together.
+        # Several mentions on different dates is a task carrying forward.
+        same_day = len(seen) - len(dates)
+        if same_day > 0:
+            description = seen[0][1]
+            # stderr rather than logging: the pipeline runs under CocoIndex's
+            # CLI, which owns log configuration, and this has to be seen.
+            print(
+                f"warning: {same_day + 1} action items in one meeting share the wording "
+                f"{description[:70]!r} and are being merged into one task ({task_id}). "
+                f"Give them an `ID:` in the notes if they are different work.",
+                file=sys.stderr,
+            )
 
 
 def _reject_duplicate_exports(meetings: list[MeetingExtraction]) -> None:
@@ -683,6 +720,7 @@ async def run_pipeline(
     all_meetings = [m for group in per_file for m in group]
     all_meetings.sort(key=lambda m: (m.date, m.meeting_id))
     _reject_duplicate_exports(all_meetings)
+    _warn_on_ambiguous_task_identity(all_meetings)
 
     # --- Volunteer applications
     applications = await volunteer_source(registry).applications()

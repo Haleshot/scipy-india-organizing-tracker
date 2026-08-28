@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-28T05:40:49+00:00",
+  "generated_at": "2026-08-28T06:09:32+00:00",
   "schema_version": 3,
   "profile": "public",
   "source": {
-    "built_at": "2026-08-28T05:40:40.029352Z",
+    "built_at": "2026-08-28T06:09:02.168116Z",
     "notes_source": "local",
     "extraction_mode": "markdown",
     "person_resolution": "exact"
@@ -14,7 +14,7 @@
     "people_withheld": 5,
     "tasks": 22,
     "open_tasks": 15,
-    "unassigned_open_tasks": 2,
+    "unassigned_open_tasks": 3,
     "decisions": 13,
     "workgroups": 10,
     "applications_by_status": {
@@ -121,136 +121,136 @@
       "id": 5,
       "date": "2026-03-06",
       "title": "Volunteers and reviews",
-      "summary": "First batch of volunteer applications; Review capacity for the CFP; Branding refresh for 2026",
+      "summary": "First batch of volunteer applications.; Review capacity for the CFP.; Branding refresh for 2026.",
       "topics": [
-        "First batch of volunteer applications",
-        "Review capacity for the CFP",
-        "Branding refresh for 2026"
+        "First batch of volunteer applications.",
+        "Review capacity for the CFP.",
+        "Branding refresh for 2026."
       ],
       "facilitator": "Priya Vasudevan",
       "attendees": [
-        "Rehan Mathew",
-        "Devika Nair",
-        "Priya Vasudevan",
-        "Meera Raghavan",
         "Kabir Anand",
+        "Meera Raghavan",
+        "Devika Nair",
+        "Rehan Mathew",
+        "Priya Vasudevan",
         "Sanjana Iyer"
       ],
       "workgroups": [
-        "website-tech",
-        "sponsorship",
-        "communications",
-        "design-branding",
         "program",
-        "volunteers"
+        "volunteers",
+        "design-branding",
+        "communications",
+        "website-tech",
+        "sponsorship"
       ]
     },
     {
       "id": 4,
       "date": "2026-02-20",
       "title": "CFP is live",
-      "summary": "First week of CFP submissions; Volunteer applications are open and coming in; Code of conduct draft",
+      "summary": "First week of CFP submissions.; Volunteer applications are open and coming in.; Code of conduct draft.",
       "topics": [
-        "First week of CFP submissions",
-        "Volunteer applications are open and coming in",
-        "Code of conduct draft"
+        "First week of CFP submissions.",
+        "Volunteer applications are open and coming in.",
+        "Code of conduct draft."
       ],
       "facilitator": "Meera Raghavan",
       "attendees": [
-        "Devika Nair",
-        "Arjun Pillai",
         "Priya Vasudevan",
         "Sanjana Iyer",
+        "Devika Nair",
         "Rehan Mathew",
+        "Arjun Pillai",
         "Meera Raghavan"
       ],
       "workgroups": [
-        "program",
-        "volunteers",
         "website-tech",
         "coc-inclusion",
+        "communications",
+        "program",
         "sponsorship",
-        "communications"
+        "volunteers"
       ]
     },
     {
       "id": 3,
       "date": "2026-02-06",
       "title": "Sponsorship and site",
-      "summary": "Sponsorship tiers and what each one includes; Static site versus the 2025 site template; Venue decision",
+      "summary": "Sponsorship tiers and what each one includes.; Static site versus the 2025 site template.; Venue decision.",
       "topics": [
-        "Sponsorship tiers and what each one includes",
-        "Static site versus the 2025 site template",
-        "Venue decision"
+        "Sponsorship tiers and what each one includes.",
+        "Static site versus the 2025 site template.",
+        "Venue decision."
       ],
       "facilitator": "Arjun Pillai",
       "attendees": [
         "Sanjana Iyer",
-        "Nikhil Bose",
-        "Rehan Mathew",
-        "Arjun Pillai",
         "Meera Raghavan",
-        "Farida Qureshi"
+        "Farida Qureshi",
+        "Arjun Pillai",
+        "Rehan Mathew",
+        "Nikhil Bose"
       ],
       "workgroups": [
-        "program",
-        "website-tech",
         "coc-inclusion",
-        "venue-logistics",
+        "communications",
         "sponsorship",
-        "communications"
+        "program",
+        "venue-logistics",
+        "website-tech"
       ]
     },
     {
       "id": 2,
       "date": "2026-01-23",
       "title": "CFP and venue shortlist",
-      "summary": "CFP timeline review; Venue shortlist and costs; Who owns social media this year",
+      "summary": "CFP timeline review.; Venue shortlist and costs.; Who owns social media this year.",
       "topics": [
-        "CFP timeline review",
-        "Venue shortlist and costs",
-        "Who owns social media this year"
+        "CFP timeline review.",
+        "Venue shortlist and costs.",
+        "Who owns social media this year."
       ],
       "facilitator": "Meera Raghavan",
       "attendees": [
-        "Nikhil Bose",
         "Meera Raghavan",
-        "Devika Nair",
-        "Sanjana Iyer",
         "Arjun Pillai",
-        "Farida Qureshi"
+        "Farida Qureshi",
+        "Nikhil Bose",
+        "Sanjana Iyer",
+        "Devika Nair"
       ],
       "workgroups": [
-        "communications",
-        "program",
-        "website-tech",
         "sponsorship",
+        "website-tech",
+        "program",
         "venue-logistics",
-        "finance"
+        "finance",
+        "communications"
       ]
     },
     {
       "id": 1,
       "date": "2026-01-09",
       "title": "Kickoff",
-      "summary": "Dates and format for SciPy India 2026; Whether to keep the workshop day; Rough budget envelope and ticket pricing",
+      "summary": "Dates and format for SciPy India 2026.; Whether to keep the workshop day.; Rough budget envelope and ticket pricing.",
       "topics": [
-        "Dates and format for SciPy India 2026",
-        "Whether to keep the workshop day",
-        "Rough budget envelope and ticket pricing"
+        "Dates and format for SciPy India 2026.",
+        "Whether to keep the workshop day.",
+        "Rough budget envelope and ticket pricing."
       ],
       "facilitator": "Meera Raghavan",
       "attendees": [
-        "Nikhil Bose",
-        "Arjun Pillai",
+        "Farida Qureshi",
         "Meera Raghavan",
+        "Arjun Pillai",
         "Devika Nair",
-        "Farida Qureshi"
+        "Nikhil Bose"
       ],
       "workgroups": [
-        "program",
-        "website-tech",
         "venue-logistics",
+        "website-tech",
+        "program",
         "finance"
       ]
     }
@@ -262,10 +262,10 @@
         "program"
       ],
       "meetings": [
-        4,
+        2,
         1,
         3,
-        2
+        4
       ],
       "tasks": [
         "program:write-the-review-rubric:92f4aec1bd"
@@ -277,15 +277,15 @@
         "program"
       ],
       "meetings": [
-        4,
-        2,
         5,
-        1
+        1,
+        2,
+        4
       ],
       "tasks": [
         "program:draft-the-cfp-timeline-a:16fb2eead7",
-        "program:recruit-four-more-cfp-re:2dda909839",
-        "program:send-the-reminder-email:8f4b536494"
+        "program:send-the-reminder-email:8f4b536494",
+        "program:recruit-four-more-cfp-re:2dda909839"
       ]
     },
     {
@@ -294,9 +294,9 @@
         "finance"
       ],
       "meetings": [
-        2,
         1,
-        3
+        3,
+        2
       ],
       "tasks": [
         "finance:open-a-tracking-spreadsh:b859064ba5"
@@ -305,14 +305,13 @@
     {
       "name": "Kabir Anand",
       "workgroups": [
-        "website-tech",
-        "design-branding"
+        "design-branding",
+        "website-tech"
       ],
       "meetings": [
         5
       ],
       "tasks": [
-        "website-tech:decide-on-the-ticketing:958f5d7cf8",
         "design-branding:refresh-the-badge-and-si:9c894048ca",
         "website-tech:port-the-2025-site-templ:b6c221ebbb"
       ]
@@ -321,11 +320,11 @@
       "name": "Meera Raghavan",
       "workgroups": [],
       "meetings": [
-        2,
-        4,
-        3,
         1,
-        5
+        3,
+        5,
+        2,
+        4
       ],
       "tasks": [
         "website-tech:set-up-the-shared-drive:f909458795"
@@ -348,8 +347,8 @@
     {
       "name": "Priya Vasudevan",
       "workgroups": [
-        "volunteers",
-        "coc-inclusion"
+        "coc-inclusion",
+        "volunteers"
       ],
       "meetings": [
         4,
@@ -364,18 +363,18 @@
     {
       "name": "Rehan Mathew",
       "workgroups": [
-        "sponsorship",
-        "finance"
+        "finance",
+        "sponsorship"
       ],
       "meetings": [
         5,
-        4,
-        3
+        3,
+        4
       ],
       "tasks": [
-        "sponsorship:sponsor-followup-platinu:8523d884b4",
         "sponsorship:reach-out-to-the-first-t:d0b052e609",
-        "sponsorship:draft-the-sponsorship-pr:4e3cfe0a9b"
+        "sponsorship:draft-the-sponsorship-pr:4e3cfe0a9b",
+        "sponsorship:sponsor-followup-platinu:8523d884b4"
       ]
     },
     {
@@ -390,8 +389,8 @@
         5
       ],
       "tasks": [
-        "communications:set-up-the-scipy-india-2:1243656ea5",
         "communications:publish-the-cfp-announce:d738f7643d",
+        "communications:set-up-the-scipy-india-2:1243656ea5",
         "communications:send-the-reminder-email:457fef418f"
       ]
     },
@@ -691,9 +690,7 @@
       "last_seen": "2026-01-23",
       "meeting_count": 1,
       "workgroup": "website-tech",
-      "owners": [
-        "Kabir Anand"
-      ],
+      "owners": [],
       "created_in": 2,
       "history": [
         {
@@ -704,17 +701,15 @@
       ]
     },
     {
-      "id": "sponsorship:sponsor-followup-platinu:8523d884b4",
-      "description": "Follow up with the sponsor leads",
+      "id": "sponsorship:sponsor-followup-communi:f596063641",
+      "description": "Follow up with the community-tier leads",
       "status": "open",
       "due": "",
       "first_seen": "2026-03-06",
       "last_seen": "2026-03-06",
       "meeting_count": 1,
       "workgroup": "sponsorship",
-      "owners": [
-        "Rehan Mathew"
-      ],
+      "owners": [],
       "created_in": 5,
       "history": [
         {
@@ -725,15 +720,17 @@
       ]
     },
     {
-      "id": "sponsorship:sponsor-followup-communi:f596063641",
-      "description": "Follow up with the sponsor leads",
+      "id": "sponsorship:sponsor-followup-platinu:8523d884b4",
+      "description": "Follow up with the platinum sponsor leads",
       "status": "open",
       "due": "",
       "first_seen": "2026-03-06",
       "last_seen": "2026-03-06",
       "meeting_count": 1,
       "workgroup": "sponsorship",
-      "owners": [],
+      "owners": [
+        "Rehan Mathew"
+      ],
       "created_in": 5,
       "history": [
         {
@@ -1242,13 +1239,13 @@
         "kind": "task"
       },
       {
-        "id": "task:sponsorship:sponsor-followup-platinu:8523d884b4",
-        "label": "Follow up with the sponsor leads",
+        "id": "task:sponsorship:sponsor-followup-communi:f596063641",
+        "label": "Follow up with the community-tier leads",
         "kind": "task"
       },
       {
-        "id": "task:sponsorship:sponsor-followup-communi:f596063641",
-        "label": "Follow up with the sponsor leads",
+        "id": "task:sponsorship:sponsor-followup-platinu:8523d884b4",
+        "label": "Follow up with the platinum sponsor leads",
         "kind": "task"
       },
       {
@@ -1365,17 +1362,12 @@
     "edges": [
       {
         "source": "meeting:5",
-        "target": "workgroup:website-tech",
+        "target": "workgroup:program",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:5",
-        "target": "workgroup:sponsorship",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:5",
-        "target": "workgroup:communications",
+        "target": "workgroup:volunteers",
         "kind": "DISCUSSED"
       },
       {
@@ -1385,22 +1377,17 @@
       },
       {
         "source": "meeting:5",
-        "target": "workgroup:program",
+        "target": "workgroup:communications",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:5",
-        "target": "workgroup:volunteers",
+        "target": "workgroup:website-tech",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:4",
-        "target": "workgroup:program",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:4",
-        "target": "workgroup:volunteers",
+        "source": "meeting:5",
+        "target": "workgroup:sponsorship",
         "kind": "DISCUSSED"
       },
       {
@@ -1411,6 +1398,16 @@
       {
         "source": "meeting:4",
         "target": "workgroup:coc-inclusion",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:4",
+        "target": "workgroup:communications",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:4",
+        "target": "workgroup:program",
         "kind": "DISCUSSED"
       },
       {
@@ -1420,22 +1417,27 @@
       },
       {
         "source": "meeting:4",
-        "target": "workgroup:communications",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:3",
-        "target": "workgroup:program",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:3",
-        "target": "workgroup:website-tech",
+        "target": "workgroup:volunteers",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:3",
         "target": "workgroup:coc-inclusion",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
+        "target": "workgroup:communications",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
+        "target": "workgroup:sponsorship",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
+        "target": "workgroup:program",
         "kind": "DISCUSSED"
       },
       {
@@ -1445,22 +1447,12 @@
       },
       {
         "source": "meeting:3",
+        "target": "workgroup:website-tech",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:2",
         "target": "workgroup:sponsorship",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:3",
-        "target": "workgroup:communications",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:2",
-        "target": "workgroup:communications",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:2",
-        "target": "workgroup:program",
         "kind": "DISCUSSED"
       },
       {
@@ -1470,7 +1462,7 @@
       },
       {
         "source": "meeting:2",
-        "target": "workgroup:sponsorship",
+        "target": "workgroup:program",
         "kind": "DISCUSSED"
       },
       {
@@ -1484,8 +1476,13 @@
         "kind": "DISCUSSED"
       },
       {
+        "source": "meeting:2",
+        "target": "workgroup:communications",
+        "kind": "DISCUSSED"
+      },
+      {
         "source": "meeting:1",
-        "target": "workgroup:program",
+        "target": "workgroup:venue-logistics",
         "kind": "DISCUSSED"
       },
       {
@@ -1495,7 +1492,7 @@
       },
       {
         "source": "meeting:1",
-        "target": "workgroup:venue-logistics",
+        "target": "workgroup:program",
         "kind": "DISCUSSED"
       },
       {
@@ -1510,7 +1507,7 @@
       },
       {
         "source": "person:Arjun Pillai",
-        "target": "meeting:4",
+        "target": "meeting:2",
         "kind": "ATTENDED"
       },
       {
@@ -1525,23 +1522,13 @@
       },
       {
         "source": "person:Arjun Pillai",
-        "target": "meeting:2",
+        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Devika Nair",
         "target": "workgroup:program",
         "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "meeting:4",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "meeting:2",
-        "kind": "ATTENDED"
       },
       {
         "source": "person:Devika Nair",
@@ -1554,14 +1541,19 @@
         "kind": "ATTENDED"
       },
       {
-        "source": "person:Farida Qureshi",
-        "target": "workgroup:finance",
-        "kind": "MEMBER_OF"
+        "source": "person:Devika Nair",
+        "target": "meeting:2",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Devika Nair",
+        "target": "meeting:4",
+        "kind": "ATTENDED"
       },
       {
         "source": "person:Farida Qureshi",
-        "target": "meeting:2",
-        "kind": "ATTENDED"
+        "target": "workgroup:finance",
+        "kind": "MEMBER_OF"
       },
       {
         "source": "person:Farida Qureshi",
@@ -1574,9 +1566,9 @@
         "kind": "ATTENDED"
       },
       {
-        "source": "person:Kabir Anand",
-        "target": "workgroup:website-tech",
-        "kind": "MEMBER_OF"
+        "source": "person:Farida Qureshi",
+        "target": "meeting:2",
+        "kind": "ATTENDED"
       },
       {
         "source": "person:Kabir Anand",
@@ -1585,6 +1577,26 @@
       },
       {
         "source": "person:Kabir Anand",
+        "target": "workgroup:website-tech",
+        "kind": "MEMBER_OF"
+      },
+      {
+        "source": "person:Kabir Anand",
+        "target": "meeting:5",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Meera Raghavan",
+        "target": "meeting:1",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Meera Raghavan",
+        "target": "meeting:3",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Meera Raghavan",
         "target": "meeting:5",
         "kind": "ATTENDED"
       },
@@ -1596,21 +1608,6 @@
       {
         "source": "person:Meera Raghavan",
         "target": "meeting:4",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Meera Raghavan",
-        "target": "meeting:3",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Meera Raghavan",
-        "target": "meeting:1",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Meera Raghavan",
-        "target": "meeting:5",
         "kind": "ATTENDED"
       },
       {
@@ -1635,12 +1632,12 @@
       },
       {
         "source": "person:Priya Vasudevan",
-        "target": "workgroup:volunteers",
+        "target": "workgroup:coc-inclusion",
         "kind": "MEMBER_OF"
       },
       {
         "source": "person:Priya Vasudevan",
-        "target": "workgroup:coc-inclusion",
+        "target": "workgroup:volunteers",
         "kind": "MEMBER_OF"
       },
       {
@@ -1652,11 +1649,6 @@
         "source": "person:Priya Vasudevan",
         "target": "meeting:5",
         "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Rehan Mathew",
-        "target": "workgroup:sponsorship",
-        "kind": "MEMBER_OF"
       },
       {
         "source": "person:Rehan Mathew",
@@ -1665,17 +1657,22 @@
       },
       {
         "source": "person:Rehan Mathew",
+        "target": "workgroup:sponsorship",
+        "kind": "MEMBER_OF"
+      },
+      {
+        "source": "person:Rehan Mathew",
         "target": "meeting:5",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Rehan Mathew",
-        "target": "meeting:4",
+        "target": "meeting:3",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Rehan Mathew",
-        "target": "meeting:3",
+        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
@@ -1929,13 +1926,18 @@
         "kind": "BELONGS_TO"
       },
       {
-        "source": "person:Kabir Anand",
-        "target": "task:website-tech:decide-on-the-ticketing:958f5d7cf8",
-        "kind": "ASSIGNED_TO"
-      },
-      {
         "source": "meeting:2",
         "target": "task:website-tech:decide-on-the-ticketing:958f5d7cf8",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "task:sponsorship:sponsor-followup-communi:f596063641",
+        "target": "workgroup:sponsorship",
+        "kind": "BELONGS_TO"
+      },
+      {
+        "source": "meeting:5",
+        "target": "task:sponsorship:sponsor-followup-communi:f596063641",
         "kind": "CREATED_ACTION"
       },
       {
@@ -1951,16 +1953,6 @@
       {
         "source": "meeting:5",
         "target": "task:sponsorship:sponsor-followup-platinu:8523d884b4",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:sponsorship:sponsor-followup-communi:f596063641",
-        "target": "workgroup:sponsorship",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "meeting:5",
-        "target": "task:sponsorship:sponsor-followup-communi:f596063641",
         "kind": "CREATED_ACTION"
       },
       {

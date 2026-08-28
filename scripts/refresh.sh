@@ -12,6 +12,7 @@
 #   ./scripts/refresh.sh --no-search  skip the search indexes
 #   ./scripts/refresh.sh --force      re-embed every node, not only changed ones
 #   ./scripts/refresh.sh --watch      re-run on every change to the notes
+#   ./scripts/refresh.sh --reset      empty the graph and rebuild it from scratch
 #
 # Everything here is incremental. CocoIndex re-extracts only the meeting
 # sections whose text changed, and the index builder re-embeds only the nodes
@@ -30,12 +31,14 @@ REPO="$PWD"
 CHECK=0
 FORCE=0
 WATCH=0
+RESET=0
 SEARCH=1
 for arg in "$@"; do
   case "$arg" in
     --check)      CHECK=1 ;;
     --force)      FORCE=1 ;;
     --watch)      WATCH=1 ;;
+    --reset)      RESET=1 ;;
     --no-search)  SEARCH=0 ;;
     -h|--help)    sed -n '3,20p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) echo "refresh: unknown option $arg" >&2; exit 2 ;;
@@ -198,6 +201,34 @@ run_once() {
 
     [ "$stale" = 0 ] || note "Run ./scripts/refresh.sh"
     return "$stale"
+  fi
+
+  if [ "$RESET" = 1 ]; then
+    # Deleting cocoindex.db on its own is not a reset. CocoIndex tracks what it
+    # declared, so a fresh state file means it no longer knows about the nodes
+    # and edges already in Neo4j and cannot remove them; you get a graph with
+    # orphaned edges that no longer match the notes. Both sides go together.
+    say "Resetting"
+    "$PY" - <<'RESET_EOF'
+import os
+from neo4j import GraphDatabase
+driver = GraphDatabase.driver(
+    os.environ.get("NEO4J_URI", "bolt://localhost:7687"),
+    auth=(os.environ.get("NEO4J_USER", "neo4j"), os.environ.get("NEO4J_PASSWORD", "scipyindia")),
+)
+with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
+    session.run("MATCH (n) DETACH DELETE n")
+    for row in session.run("SHOW CONSTRAINTS YIELD name RETURN name"):
+        session.run(f"DROP CONSTRAINT {row['name']} IF EXISTS")
+    for row in session.run(
+        "SHOW INDEXES YIELD name, type WHERE type IN ['FULLTEXT','VECTOR'] RETURN name"
+    ):
+        session.run(f"DROP INDEX {row['name']} IF EXISTS")
+driver.close()
+RESET_EOF
+    note "emptied the graph and dropped its indexes"
+    rm -rf "${COCOINDEX_DB:-./cocoindex.db}"
+    note "removed the CocoIndex state"
   fi
 
   local before after

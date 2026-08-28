@@ -110,8 +110,11 @@ def test_fixture_carries_a_same_description_collision(notes_text, registry):
 
 
 def test_fixture_carries_an_explicit_id_case(notes_text, registry):
+    """The demo gives these two distinguishable wording, because two identical
+    rows in the dashboard read as a bug. The IDs are what actually keep them
+    apart, and the pathological same-wording case lives in the tests above."""
     tasks = [t for m in sections(notes_text, registry) for t in m.tasks]
-    followups = [t for t in tasks if t.description == "Follow up with the sponsor leads"]
+    followups = [t for t in tasks if t.description.startswith("Follow up with the")]
     assert len(followups) == 2
     assert {t.explicit_id for t in followups} == {
         "sponsor-followup-platinum",

@@ -12,7 +12,7 @@ def test_split_finds_top_level_sections_only(notes_text):
     sections = split_meetings(notes_text)
     # `### Decisions` and friends stay inside their meeting.
     assert all("### Decisions" not in s.splitlines()[0] for s in sections)
-    assert sum(1 for s in sections if s.splitlines()[0].startswith("## 2026-")) == 5
+    assert sum(1 for s in sections if s.splitlines()[0].startswith("Meeting: 2026-")) == 5
 
 
 def test_sections_without_a_date_are_skipped(registry):

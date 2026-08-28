@@ -262,8 +262,7 @@ def test_a_wrapped_task_description_stays_one_task(registry):
     )
     task = extract_meeting_markdown(section, registry).tasks[0]
     assert task.description == (
-        "Draft the sponsor prospectus and circulate it to the "
-        "organizing list before the next call"
+        "Draft the sponsor prospectus and circulate it to the organizing list before the next call"
     )
     assert [o.name for o in task.owners] == ["Rehan Mathew"]
 

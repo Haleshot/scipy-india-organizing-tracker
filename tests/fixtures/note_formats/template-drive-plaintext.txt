@@ -14,8 +14,8 @@ Website work needed before the next public announcement.
 
 Decisions
 
-The Volunteers workgroup will schedule a short intro call before assigning
-new applicants to a workgroup.
+(Volunteers) The Volunteers workgroup will schedule a short intro call before
+assigning new applicants to a workgroup.
 
 The 2026 website will reuse the existing site structure rather than start
 from a blank project.
