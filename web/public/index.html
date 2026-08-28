@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SciPy India 2026 — Organizing Dashboard</title>
+<meta name="description" content="Meetings, action items, workgroups and volunteers for SciPy India 2026, from the meeting-notes knowledge graph." />
+<!-- Everything is relative to this file, so the site works at a GitHub Pages
+     project URL (/<repo>/) exactly as it does at /. No absolute paths. -->
+<link rel="stylesheet" href="./styles.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><text y=%2213%22 font-size=%2214%22>🐍</text></svg>" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <strong>SciPy India 2026</strong>
+      <span>Organizing dashboard</span>
+    </div>
+    <nav id="nav" aria-label="Sections">
+      <a href="#/overview">Overview</a>
+      <a href="#/meetings">Meetings</a>
+      <a href="#/tasks">Action items</a>
+      <a href="#/people">People</a>
+      <a href="#/workgroups">Workgroups</a>
+      <a href="#/explorer">Explorer</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap searchbar">
+  <label class="visually-hidden" for="search">Search</label>
+  <input id="search" type="search" placeholder="Search meetings, action items, people, workgroups and decisions" autocomplete="off" />
+  <span id="search-hint" class="muted"></span>
+</div>
+
+<main id="main" class="wrap" tabindex="-1">
+  <p id="loading" class="muted">Loading graph…</p>
+</main>
+
+<footer class="wrap footer">
+  <p id="freshness" class="muted">Loading…</p>
+  <p class="muted">
+    A sanitized export of the organizing knowledge graph: no email addresses, no
+    phone numbers, no raw application answers, and no names of people who
+    applied to volunteer and have not been assigned.
+    <a href="https://github.com/cocoindex-io/cocoindex/tree/main/examples/meeting_notes_graph_neo4j">Built on the CocoIndex meeting-notes example.</a>
+  </p>
+</footer>
+
+<script src="./vendor/cytoscape.min.js"></script>
+<script src="./app.js" type="module"></script>
+</body>
+</html>
