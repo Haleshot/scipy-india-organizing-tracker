@@ -224,3 +224,122 @@ def test_leftover_bold_markup_does_not_break_labels(registry):
 def test_a_meeting_without_an_iso_date_is_skipped(registry):
     section = "Meeting: 5 September | No ISO date\n\nTopics\n\nX."
     assert extract_meeting_markdown(section, registry) is None
+
+
+# --------------------------------------------------------------------------- #
+# Edge cases a real Google Doc produces
+#
+# The deterministic parser promises correctness for the documented template, not
+# for arbitrary prose. These are the deviations a person editing in Google Docs
+# will produce anyway, so the parser has to survive them.
+# --------------------------------------------------------------------------- #
+
+
+def test_google_docs_bullet_characters(registry):
+    """Docs turns list items into • or ● and an export keeps the glyph."""
+    section = (
+        "Meeting: 2026-11-01 | Bulleted export\n\n"
+        "Facilitator: Meera Raghavan\n\n"
+        "Topics\n\n"
+        "● First topic.\n"
+        "• Second topic.\n"
+        "▪ Third topic.\n"
+    )
+    meeting = extract_meeting_markdown(section, registry)
+    assert meeting.topics == ["First topic.", "Second topic.", "Third topic."]
+
+
+def test_a_wrapped_task_description_stays_one_task(registry):
+    """Docs wraps long lines. The continuation must join the description rather
+    than being dropped or read as a new item."""
+    section = (
+        "Meeting: 2026-11-01 | Wrapping\n\n"
+        "Action items\n\n"
+        "Task: Draft the sponsor prospectus and circulate it to the\n"
+        "organizing list before the next call\n"
+        "Owner: Rehan Mathew\n"
+        "Workgroup: Sponsorship\n"
+    )
+    task = extract_meeting_markdown(section, registry).tasks[0]
+    assert task.description == (
+        "Draft the sponsor prospectus and circulate it to the "
+        "organizing list before the next call"
+    )
+    assert [o.name for o in task.owners] == ["Rehan Mathew"]
+
+
+def test_an_abbreviation_does_not_split_a_decision(registry):
+    """`e.g.` ends in a full stop without ending the sentence."""
+    section = (
+        "Meeting: 2026-11-01 | Abbreviations\n\n"
+        "Decisions\n\n"
+        "We will accept short-form submissions, e.g.\n"
+        "lightning talks and posters, from the second week.\n"
+    )
+    decisions = extract_meeting_markdown(section, registry).decisions
+    assert len(decisions) == 1
+    assert decisions[0].statement.endswith("from the second week.")
+
+
+def test_a_url_does_not_split_a_topic(registry):
+    """A wrapped line ending in a domain looks like a sentence end but is not."""
+    section = (
+        "Meeting: 2026-11-01 | Links\n\n"
+        "Topics\n\n"
+        "Review the ticketing options listed at https://example.invalid\n"
+        "before the next call.\n"
+        "Second topic.\n"
+    )
+    topics = extract_meeting_markdown(section, registry).topics
+    assert topics == [
+        "Review the ticketing options listed at https://example.invalid before the next call.",
+        "Second topic.",
+    ]
+
+
+def test_a_decision_containing_a_colon_is_read_whole(registry):
+    section = (
+        "Meeting: 2026-11-01 | Colons\n\n"
+        "Decisions\n\n"
+        "Three sponsor tiers: platinum, gold and community.\n"
+    )
+    decisions = extract_meeting_markdown(section, registry).decisions
+    assert len(decisions) == 1
+    assert decisions[0].statement == "Three sponsor tiers: platinum, gold and community."
+
+
+def test_two_meetings_on_one_date_stay_separate(registry):
+    text = (
+        "Meeting: 2026-11-01 | Morning session\n\n"
+        "Facilitator: Meera Raghavan\n\n"
+        "Action items\n\n"
+        "Task: Book the room\n"
+        "Workgroup: Venue & Logistics\n\n"
+        "Meeting: 2026-11-01 | Afternoon session\n\n"
+        "Facilitator: Devika Nair\n\n"
+        "Action items\n\n"
+        "Task: Send the agenda\n"
+        "Workgroup: Program & CFP\n"
+    )
+    meetings = [
+        m for m in (extract_meeting_markdown(s, registry) for s in split_meetings(text)) if m
+    ]
+    assert len(meetings) == 2
+    assert [m.title for m in meetings] == ["Morning session", "Afternoon session"]
+    assert meetings[0].organizer.name == "Meera Raghavan"
+    assert meetings[1].organizer.name == "Devika Nair"
+
+
+def test_an_unknown_section_is_ignored_not_misread(registry):
+    """A heading the parser does not recognise must not have its contents read
+    as decisions or action items."""
+    section = (
+        "Meeting: 2026-11-01 | Unknown sections\n\n"
+        "Apologies\n\n"
+        "Kabir Anand could not make it and will catch up offline.\n\n"
+        "Decisions\n\n"
+        "The CFP closes on 5 April.\n"
+    )
+    meeting = extract_meeting_markdown(section, registry)
+    assert [d.statement for d in meeting.decisions] == ["The CFP closes on 5 April."]
+    assert meeting.tasks == []

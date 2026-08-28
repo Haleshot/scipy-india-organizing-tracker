@@ -79,8 +79,11 @@ def split_meetings(text: str) -> list[str]:
 # ---------------------------------------------------------------------------
 
 _ISO_DATE_RE = re.compile(r"\b(\d{4}-\d{2}-\d{2})\b")
-_BULLET_RE = re.compile(r"^\s*[-*+]\s+")
-_CHECKBOX_RE = re.compile(r"^\s*[-*+]\s*\[( |x|X)\]\s*")
+# Google Docs exports list items with the glyph it rendered, so a note that was
+# a tidy `-` list in Markdown arrives as ●, • or ▪. All of them mean "bullet".
+_BULLET_CHARS = r"-*+\u2022\u25cf\u25aa\u25e6\u2043\u00b7\u2219\u25a0\u25cb\u2010\u2013"
+_BULLET_RE = re.compile(rf"^\s*[{_BULLET_CHARS}]\s+")
+_CHECKBOX_RE = re.compile(rf"^\s*[{_BULLET_CHARS}]\s*\[( |x|X)\]\s*")
 _FIELD_RE = re.compile(r"\b(owners?|workgroup|status|due|id|key)\s*:\s*", re.IGNORECASE)
 _SUBHEADING_RE = re.compile(r"^#{3,}\s*(.+?)\s*$")
 # In plain text a section heading is just a short line on its own: "Topics",
@@ -204,6 +207,30 @@ def _parse_task_line(line: str, registry: WorkgroupRegistry) -> ExtractedTask | 
 # half. Trailing markup is allowed after the stop.
 _ENDS_SENTENCE_RE = re.compile(r"[.!?][\"'\)\]*_]*$")
 
+# Full stops that do not end a sentence. Without these, "e.g." and an initial
+# both look like the end of a decision and split it in two. Deliberately a short
+# fixed list rather than sentence segmentation: this parser reads a template,
+# and guessing at prose is the LLM extractor's job.
+_ABBREVIATIONS = frozenset(
+    """e.g. i.e. etc. vs. cf. approx. no. nos. fig. viz. al. dr. mr. mrs. ms. prof.
+    st. jan. feb. mar. apr. jun. jul. aug. sept. sep. oct. nov. dec.""".split()
+)
+_TRAILING_TOKEN_RE = re.compile(r"([\w.]+)[\"'\)\]*_]*$")
+
+
+def _ends_item(line: str) -> bool:
+    """Does this line finish the topic or decision being accumulated?"""
+    if not _ENDS_SENTENCE_RE.search(line):
+        return False
+    token = _TRAILING_TOKEN_RE.search(line)
+    if not token:
+        return True
+    word = token.group(1).lower()
+    if word in _ABBREVIATIONS:
+        return False
+    # A single initial, as in "reviewed by A." or a wrapped "J. Smith".
+    return not re.fullmatch(r"[a-z]\.", word)
+
 _HEADING_MARKUP_RE = re.compile(r"^\s*(?:#{1,3}\s*)?\*{0,2}\s*")
 _HEADING_LABEL_RE = re.compile(r"^(?:meetings?|date)\s*:\s*", re.IGNORECASE)
 
@@ -228,13 +255,18 @@ class _TaskBlock:
 
     def __init__(self, description: str) -> None:
         self.description = description.strip()
+        self.has_fields = False
         self.owners: list[str] = []
         self.workgroup: str | None = None
         self.status = "unknown"
         self.due = ""
         self.explicit_id: str | None = None
 
+    def extend_description(self, line: str) -> None:
+        self.description = f"{self.description} {line}".strip()
+
     def set(self, key: str, value: str, registry: WorkgroupRegistry) -> None:
+        self.has_fields = True
         key = key.lower()
         value = value.strip()
         if not value:
@@ -402,6 +434,11 @@ def extract_meeting_markdown(
                 field = _TASK_FIELD_RE.match(line)
                 if field:
                     open_task.set(field.group(1), field.group(2), registry)
+                elif not open_task.has_fields:
+                    # A long description wrapped onto the next line. Only before
+                    # the first field, so a stray line after `Due:` cannot be
+                    # appended to the description.
+                    open_task.extend_description(stripped)
                 continue
             # The one-line bullet form, still supported.
             task = _parse_task_line(line, registry)
@@ -417,7 +454,7 @@ def extract_meeting_markdown(
                     topics.append(topic)
             else:
                 paragraph.append(stripped)
-                if _ENDS_SENTENCE_RE.search(stripped):
+                if _ends_item(stripped):
                     flush_paragraph()
         elif section == "decisions":
             if _BULLET_RE.match(line):
@@ -427,7 +464,7 @@ def extract_meeting_markdown(
                     decisions.append(decision)
             else:
                 paragraph.append(stripped)
-                if _ENDS_SENTENCE_RE.search(stripped):
+                if _ends_item(stripped):
                     flush_paragraph()
         elif section == "moves" and _BULLET_RE.match(line):
             match = _JOINS_RE.match(_BULLET_RE.sub("", line).strip())
