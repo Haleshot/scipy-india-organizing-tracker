@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-28T17:44:55+00:00",
+  "generated_at": "2026-08-28T17:46:49+00:00",
   "schema_version": 3,
   "profile": "public",
   "source": {
-    "built_at": "2026-08-28T17:44:54.647108Z",
+    "built_at": "2026-08-28T17:46:48.269613Z",
     "notes_source": "local",
     "extraction_mode": "markdown",
     "person_resolution": "exact"
@@ -169,20 +169,20 @@
       ],
       "facilitator": "Priya Vasudevan",
       "attendees": [
+        "Devika Nair",
+        "Kabir Anand",
+        "Rehan Mathew",
         "Sanjana Iyer",
         "Priya Vasudevan",
-        "Devika Nair",
-        "Rehan Mathew",
-        "Meera Raghavan",
-        "Kabir Anand"
+        "Meera Raghavan"
       ],
       "workgroups": [
-        "design",
-        "social-media-communications",
-        "registration-help-desk",
-        "program-committee",
         "sponsoring",
-        "website"
+        "social-media-communications",
+        "design",
+        "website",
+        "registration-help-desk",
+        "program-committee"
       ]
     },
     {
@@ -198,19 +198,19 @@
       "facilitator": "Meera Raghavan",
       "attendees": [
         "Meera Raghavan",
-        "Sanjana Iyer",
+        "Devika Nair",
         "Rehan Mathew",
         "Arjun Pillai",
-        "Priya Vasudevan",
-        "Devika Nair"
+        "Sanjana Iyer",
+        "Priya Vasudevan"
       ],
       "workgroups": [
-        "program-committee",
-        "sponsoring",
-        "code-of-conduct",
         "registration-help-desk",
         "website",
-        "social-media-communications"
+        "social-media-communications",
+        "code-of-conduct",
+        "sponsoring",
+        "program-committee"
       ]
     },
     {
@@ -225,20 +225,20 @@
       ],
       "facilitator": "Arjun Pillai",
       "attendees": [
-        "Nikhil Bose",
-        "Meera Raghavan",
-        "Sanjana Iyer",
-        "Arjun Pillai",
+        "Farida Qureshi",
         "Rehan Mathew",
-        "Farida Qureshi"
+        "Nikhil Bose",
+        "Sanjana Iyer",
+        "Meera Raghavan",
+        "Arjun Pillai"
       ],
       "workgroups": [
-        "logistics",
-        "code-of-conduct",
         "social-media-communications",
         "program-committee",
+        "logistics",
         "website",
-        "sponsoring"
+        "sponsoring",
+        "code-of-conduct"
       ]
     },
     {
@@ -253,19 +253,19 @@
       ],
       "facilitator": "Meera Raghavan",
       "attendees": [
-        "Meera Raghavan",
-        "Sanjana Iyer",
-        "Farida Qureshi",
         "Arjun Pillai",
-        "Devika Nair",
-        "Nikhil Bose"
+        "Nikhil Bose",
+        "Farida Qureshi",
+        "Sanjana Iyer",
+        "Meera Raghavan",
+        "Devika Nair"
       ],
       "workgroups": [
         "social-media-communications",
-        "website",
-        "logistics",
         "sponsoring",
-        "program-committee"
+        "logistics",
+        "program-committee",
+        "website"
       ]
     },
     {
@@ -280,17 +280,17 @@
       ],
       "facilitator": "Meera Raghavan",
       "attendees": [
+        "Arjun Pillai",
         "Meera Raghavan",
-        "Farida Qureshi",
-        "Nikhil Bose",
         "Devika Nair",
-        "Arjun Pillai"
+        "Farida Qureshi",
+        "Nikhil Bose"
       ],
       "workgroups": [
-        "website",
+        "program-committee",
         "logistics",
-        "sponsoring",
-        "program-committee"
+        "website",
+        "sponsoring"
       ]
     }
   ],
@@ -301,10 +301,10 @@
         "program-committee"
       ],
       "meetings": [
-        4,
-        3,
         1,
-        2
+        2,
+        4,
+        3
       ],
       "tasks": [
         "program-committee:write-the-review-rubric:5d155cc23d"
@@ -317,9 +317,9 @@
       ],
       "meetings": [
         5,
+        4,
         1,
-        2,
-        4
+        2
       ],
       "tasks": [
         "program-committee:draft-the-cfp-timeline-a:9956438f71",
@@ -333,9 +333,9 @@
         "sponsoring"
       ],
       "meetings": [
+        3,
         1,
-        2,
-        3
+        2
       ],
       "tasks": [
         "sponsoring:open-a-tracking-spreadsh:a24eb4b8cf"
@@ -344,26 +344,26 @@
     {
       "name": "Kabir Anand",
       "workgroups": [
-        "design",
-        "website"
+        "website",
+        "design"
       ],
       "meetings": [
         5
       ],
       "tasks": [
-        "design:refresh-the-badge-and-si:2a00c6b656",
-        "website:port-the-2025-site-templ:f65d921900"
+        "website:port-the-2025-site-templ:f65d921900",
+        "design:refresh-the-badge-and-si:2a00c6b656"
       ]
     },
     {
       "name": "Meera Raghavan",
       "workgroups": [],
       "meetings": [
-        1,
         4,
-        2,
+        1,
         3,
-        5
+        5,
+        2
       ],
       "tasks": [
         "website:set-up-the-shared-drive:a5b53b7d6d"
@@ -375,9 +375,9 @@
         "logistics"
       ],
       "meetings": [
+        2,
         3,
-        1,
-        2
+        1
       ],
       "tasks": [
         "logistics:collect-quotes-from-thre:02f6549b14"
@@ -386,17 +386,17 @@
     {
       "name": "Priya Vasudevan",
       "workgroups": [
-        "code-of-conduct",
-        "registration-help-desk"
+        "registration-help-desk",
+        "code-of-conduct"
       ],
       "meetings": [
         5,
         4
       ],
       "tasks": [
-        "code-of-conduct:draft-the-code-of-conduc:7aa009bb9c",
+        "registration-help-desk:review-the-first-batch-o:55fbbf0897",
         "registration-help-desk:schedule-intro-calls-wit:5e31ba2862",
-        "registration-help-desk:review-the-first-batch-o:55fbbf0897"
+        "code-of-conduct:draft-the-code-of-conduc:7aa009bb9c"
       ]
     },
     {
@@ -405,9 +405,9 @@
         "sponsoring"
       ],
       "meetings": [
-        4,
         5,
-        3
+        3,
+        4
       ],
       "tasks": [
         "sponsoring:sponsor-followup-platinu:8523d884b4",
@@ -422,14 +422,14 @@
       ],
       "meetings": [
         5,
-        4,
         3,
-        2
+        2,
+        4
       ],
       "tasks": [
-        "social-media-communications:publish-the-cfp-announce:14b1ae25cd",
         "social-media-communications:set-up-the-scipy-india-2:232e4142f2",
-        "social-media-communications:send-the-reminder-email:34421e9c46"
+        "social-media-communications:send-the-reminder-email:34421e9c46",
+        "social-media-communications:publish-the-cfp-announce:14b1ae25cd"
       ]
     },
     {
@@ -1416,12 +1416,22 @@
     "edges": [
       {
         "source": "meeting:5",
+        "target": "workgroup:sponsoring",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:5",
+        "target": "workgroup:social-media-communications",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:5",
         "target": "workgroup:design",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:5",
-        "target": "workgroup:social-media-communications",
+        "target": "workgroup:website",
         "kind": "DISCUSSED"
       },
       {
@@ -1432,31 +1442,6 @@
       {
         "source": "meeting:5",
         "target": "workgroup:program-committee",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:5",
-        "target": "workgroup:sponsoring",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:5",
-        "target": "workgroup:website",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:4",
-        "target": "workgroup:program-committee",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:4",
-        "target": "workgroup:sponsoring",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:4",
-        "target": "workgroup:code-of-conduct",
         "kind": "DISCUSSED"
       },
       {
@@ -1475,8 +1460,43 @@
         "kind": "DISCUSSED"
       },
       {
+        "source": "meeting:4",
+        "target": "workgroup:code-of-conduct",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:4",
+        "target": "workgroup:sponsoring",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:4",
+        "target": "workgroup:program-committee",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
+        "target": "workgroup:social-media-communications",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
+        "target": "workgroup:program-committee",
+        "kind": "DISCUSSED"
+      },
+      {
         "source": "meeting:3",
         "target": "workgroup:logistics",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
+        "target": "workgroup:website",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
+        "target": "workgroup:sponsoring",
         "kind": "DISCUSSED"
       },
       {
@@ -1485,33 +1505,13 @@
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:3",
+        "source": "meeting:2",
         "target": "workgroup:social-media-communications",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:3",
-        "target": "workgroup:program-committee",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:3",
-        "target": "workgroup:website",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:3",
+        "source": "meeting:2",
         "target": "workgroup:sponsoring",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:2",
-        "target": "workgroup:social-media-communications",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:2",
-        "target": "workgroup:website",
         "kind": "DISCUSSED"
       },
       {
@@ -1521,17 +1521,17 @@
       },
       {
         "source": "meeting:2",
-        "target": "workgroup:sponsoring",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:2",
         "target": "workgroup:program-committee",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:1",
+        "source": "meeting:2",
         "target": "workgroup:website",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:1",
+        "target": "workgroup:program-committee",
         "kind": "DISCUSSED"
       },
       {
@@ -1541,12 +1541,12 @@
       },
       {
         "source": "meeting:1",
-        "target": "workgroup:sponsoring",
+        "target": "workgroup:website",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:1",
-        "target": "workgroup:program-committee",
+        "target": "workgroup:sponsoring",
         "kind": "DISCUSSED"
       },
       {
@@ -1556,22 +1556,22 @@
       },
       {
         "source": "person:Arjun Pillai",
-        "target": "meeting:4",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Arjun Pillai",
-        "target": "meeting:3",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Arjun Pillai",
         "target": "meeting:1",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Arjun Pillai",
         "target": "meeting:2",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Arjun Pillai",
+        "target": "meeting:4",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Arjun Pillai",
+        "target": "meeting:3",
         "kind": "ATTENDED"
       },
       {
@@ -1586,17 +1586,17 @@
       },
       {
         "source": "person:Devika Nair",
+        "target": "meeting:4",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Devika Nair",
         "target": "meeting:1",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Devika Nair",
         "target": "meeting:2",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
@@ -1606,6 +1606,11 @@
       },
       {
         "source": "person:Farida Qureshi",
+        "target": "meeting:3",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Farida Qureshi",
         "target": "meeting:1",
         "kind": "ATTENDED"
       },
@@ -1615,9 +1620,9 @@
         "kind": "ATTENDED"
       },
       {
-        "source": "person:Farida Qureshi",
-        "target": "meeting:3",
-        "kind": "ATTENDED"
+        "source": "person:Kabir Anand",
+        "target": "workgroup:website",
+        "kind": "MEMBER_OF"
       },
       {
         "source": "person:Kabir Anand",
@@ -1626,17 +1631,7 @@
       },
       {
         "source": "person:Kabir Anand",
-        "target": "workgroup:website",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Kabir Anand",
         "target": "meeting:5",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Meera Raghavan",
-        "target": "meeting:1",
         "kind": "ATTENDED"
       },
       {
@@ -1646,7 +1641,7 @@
       },
       {
         "source": "person:Meera Raghavan",
-        "target": "meeting:2",
+        "target": "meeting:1",
         "kind": "ATTENDED"
       },
       {
@@ -1660,9 +1655,19 @@
         "kind": "ATTENDED"
       },
       {
+        "source": "person:Meera Raghavan",
+        "target": "meeting:2",
+        "kind": "ATTENDED"
+      },
+      {
         "source": "person:Nikhil Bose",
         "target": "workgroup:logistics",
         "kind": "MEMBER_OF"
+      },
+      {
+        "source": "person:Nikhil Bose",
+        "target": "meeting:2",
+        "kind": "ATTENDED"
       },
       {
         "source": "person:Nikhil Bose",
@@ -1675,18 +1680,13 @@
         "kind": "ATTENDED"
       },
       {
-        "source": "person:Nikhil Bose",
-        "target": "meeting:2",
-        "kind": "ATTENDED"
-      },
-      {
         "source": "person:Priya Vasudevan",
-        "target": "workgroup:code-of-conduct",
+        "target": "workgroup:registration-help-desk",
         "kind": "MEMBER_OF"
       },
       {
         "source": "person:Priya Vasudevan",
-        "target": "workgroup:registration-help-desk",
+        "target": "workgroup:code-of-conduct",
         "kind": "MEMBER_OF"
       },
       {
@@ -1706,17 +1706,17 @@
       },
       {
         "source": "person:Rehan Mathew",
-        "target": "meeting:4",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Rehan Mathew",
         "target": "meeting:5",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Rehan Mathew",
         "target": "meeting:3",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Rehan Mathew",
+        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
@@ -1731,17 +1731,17 @@
       },
       {
         "source": "person:Sanjana Iyer",
-        "target": "meeting:4",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Sanjana Iyer",
         "target": "meeting:3",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Sanjana Iyer",
         "target": "meeting:2",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Sanjana Iyer",
+        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
