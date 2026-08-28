@@ -18,8 +18,9 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
-# Private volunteer data (fixtures under data/volunteers/ are fictional and
-# intentionally tracked; anything in private/ is not)
+# Private volunteer data. Fixtures under data/volunteers/ are fictional and
+# intentionally tracked; anything in private/ is not, including the organizer
+# snapshot written by `export_public_snapshot.py --profile organizer`.
 private/
 
 # Review artefacts dropped in by external tools. Useful locally, not project files.

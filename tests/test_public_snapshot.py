@@ -59,19 +59,24 @@ def test_declined_applicants_are_not_named():
     assert "Vikram" not in SNAPSHOT.read_text(encoding="utf-8")
 
 
-def test_person_records_only_carry_allowlisted_shape():
-    allowed = {
-        "name",
-        "workgroups",
-        "meetings",
-        "tasks",
-        "is_volunteer",
-        "availability",
-        "skills",
-        "interests",
-    }
+def test_the_committed_snapshot_is_the_public_profile():
+    """The organizer export carries volunteer availability and skills. Only the
+    public one is safe to deploy, so only the public one is committed."""
+    assert snapshot()["profile"] == "public"
+
+
+def test_public_people_carry_nothing_from_a_volunteer_application():
+    """A public reader learns what someone did in the open, not what they wrote
+    on a form. This is the whole difference between the two profiles."""
+    allowed = {"name", "workgroups", "meetings", "tasks"}
     for person in snapshot()["people"]:
-        assert set(person) <= allowed
+        assert set(person) <= allowed, f"{person['name']} carries {set(person) - allowed}"
+
+
+def test_no_application_derived_field_names_appear_at_all():
+    text = SNAPSHOT.read_text(encoding="utf-8")
+    for field in ("availability", "skills", "interests", "is_volunteer", "raw_response"):
+        assert f'"{field}"' not in text
 
 
 def test_audit_catches_a_leak():
@@ -133,3 +138,26 @@ def test_every_task_workgroup_is_a_known_slug():
     slugs = {w["slug"] for w in data["workgroups"]}
     for task in data["tasks"]:
         assert task["workgroup"] is None or task["workgroup"] in slugs
+
+
+def test_the_two_profiles_differ_only_by_application_fields():
+    """Both profiles are built from one allowlist; the profile decides how much
+    of it a person record keeps. If they ever diverge further than this, the
+    public profile has grown a field nobody reviewed."""
+    assert set(export.PROFILES) == {"public", "organizer"}
+    assert export.DEFAULT_PROFILE == "public"
+    assert set(export.APPLICATION_DERIVED) == {
+        "availability",
+        "skills",
+        "interests",
+        "is_volunteer",
+    }
+
+
+def test_the_organizer_export_lands_outside_the_deployable_directory():
+    """`web/public` is what GitHub Pages serves. The organizer snapshot must not
+    be able to end up there by default."""
+    assert "web" not in export.ORGANIZER_OUTPUT.parts
+    assert export.ORGANIZER_OUTPUT.parts[-2] == "private"
+    ignored = (REPO_ROOT / ".gitignore").read_text(encoding="utf-8")
+    assert "private/" in ignored

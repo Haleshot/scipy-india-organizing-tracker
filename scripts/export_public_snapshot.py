@@ -38,10 +38,32 @@ from neo4j import GraphDatabase
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_OUTPUT = REPO_ROOT / "web" / "public" / "data" / "graph.json"
+# Gitignored. Deliberately not under web/, so it cannot be deployed by accident.
+ORGANIZER_OUTPUT = REPO_ROOT / "private" / "organizer-graph.json"
 
 # ---------------------------------------------------------------------------
 # The allowlist. This is the whole privacy mechanism; keep it short and obvious.
 # ---------------------------------------------------------------------------
+
+# Two profiles, because "sanitized" means different things to a public web page
+# and to the organizing team.
+#
+#   public     goes to GitHub Pages. Nothing that originated in a volunteer
+#              application reaches it: no availability, no skills, no interests,
+#              and no names of people who applied but have not been assigned.
+#              A person appears only through work they did in the open.
+#   organizer  the same graph plus the application-derived fields, for a team
+#              that already has access to the applications themselves. It is
+#              gitignored and the Pages workflow refuses it.
+#
+# Fixture data makes the difference look harmless. Real applications are the
+# reason the default is `public`.
+PROFILES = ("public", "organizer")
+DEFAULT_PROFILE = "public"
+
+# Fields that exist only because somebody filled in a volunteer form. They are
+# the entire difference between the two profiles.
+APPLICATION_DERIVED = ("availability", "skills", "interests", "is_volunteer")
 
 PUBLIC_FIELDS: dict[str, tuple[str, ...]] = {
     "Workgroup": ("slug", "name", "description"),
@@ -53,8 +75,9 @@ PUBLIC_FIELDS: dict[str, tuple[str, ...]] = {
     # it is showing fixtures or the real Drive folder. Never a path, a folder id
     # or a credential; the pipeline does not put those on this node either.
     "GraphBuild": ("built_at", "notes_source", "extraction_mode", "person_resolution"),
-    # VolunteerApplication contributes aggregate counts and, for assigned
-    # volunteers only, availability. Never contact details, never raw answers.
+    # VolunteerApplication contributes aggregate counts always, and the
+    # application-derived fields only under the organizer profile. Never contact
+    # details, never raw answers, under either.
     "VolunteerApplication": ("status", "availability", "interests", "skills"),
 }
 
@@ -203,7 +226,9 @@ ORDER BY status
 """
 
 
-def build_snapshot(session, *, include_applicant_names: bool) -> dict[str, Any]:
+def build_snapshot(
+    session, *, profile: str = DEFAULT_PROFILE, include_applicant_names: bool = False
+) -> dict[str, Any]:
     def rows(query: str) -> list[dict[str, Any]]:
         return [_clean(record.data()) for record in session.run(query)]
 
@@ -218,13 +243,20 @@ def build_snapshot(session, *, include_applicant_names: bool) -> dict[str, Any]:
     pipeline = rows(Q_PIPELINE_NAMED if include_applicant_names else Q_PIPELINE)
     application_counts = rows(Q_APPLICATION_COUNTS)
 
-    volunteer_by_name = {v["name"]: v for v in volunteers}
-    for person in people:
-        detail = volunteer_by_name.get(person["name"])
-        person["is_volunteer"] = detail is not None
-        person["availability"] = detail["availability"] if detail else ""
-        person["skills"] = detail["skills"] if detail else []
-        person["interests"] = detail["interests"] if detail else []
+    if profile == "organizer":
+        volunteer_by_name = {v["name"]: v for v in volunteers}
+        for person in people:
+            detail = volunteer_by_name.get(person["name"])
+            person["is_volunteer"] = detail is not None
+            person["availability"] = detail["availability"] if detail else ""
+            person["skills"] = detail["skills"] if detail else []
+            person["interests"] = detail["interests"] if detail else []
+    else:
+        # A public reader learns that somebody ran a meeting and owns three
+        # action items. They do not learn when that person said they were free.
+        for person in people:
+            for field in APPLICATION_DERIVED:
+                person.pop(field, None)
 
     open_tasks = [t for t in tasks if t["status"] in OPEN_STATUSES]
     by_workgroup = {w["slug"]: {"open": 0, "total": 0, "people": 0} for w in workgroups}
@@ -257,7 +289,8 @@ def build_snapshot(session, *, include_applicant_names: bool) -> dict[str, Any]:
 
     return {
         "generated_at": datetime.datetime.now(datetime.UTC).isoformat(timespec="seconds"),
-        "schema_version": 2,
+        "schema_version": 3,
+        "profile": profile,
         "source": {
             "built_at": source.get("built_at", ""),
             "notes_source": source.get("notes_source", "unknown"),
@@ -344,7 +377,17 @@ def audit(payload: dict[str, Any]) -> list[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("-o", "--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument(
+        "--profile",
+        choices=PROFILES,
+        default=DEFAULT_PROFILE,
+        help=(
+            "public (default) excludes everything derived from volunteer applications "
+            "and is the only profile the Pages workflow accepts; organizer includes "
+            "availability, skills and interests and is gitignored."
+        ),
+    )
+    parser.add_argument("-o", "--output", type=Path, default=None)
     parser.add_argument(
         "--include-applicant-names",
         action="store_true",
@@ -354,6 +397,7 @@ def main() -> int:
     args = parser.parse_args()
 
     load_dotenv(REPO_ROOT / ".env")
+    output = args.output or (DEFAULT_OUTPUT if args.profile == "public" else ORGANIZER_OUTPUT)
     driver = GraphDatabase.driver(
         os.environ.get("NEO4J_URI", "bolt://localhost:7687"),
         auth=(
@@ -363,7 +407,11 @@ def main() -> int:
     )
     try:
         with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as session:
-            payload = build_snapshot(session, include_applicant_names=args.include_applicant_names)
+            payload = build_snapshot(
+                session,
+                profile=args.profile,
+                include_applicant_names=args.include_applicant_names,
+            )
     finally:
         driver.close()
 
@@ -375,23 +423,21 @@ def main() -> int:
     rendered = json.dumps(payload, indent=2, ensure_ascii=False, sort_keys=False) + "\n"
 
     if args.check:
-        if not args.output.is_file():
-            print(f"{args.output} does not exist", file=sys.stderr)
+        if not output.is_file():
+            print(f"{output} does not exist", file=sys.stderr)
             return 1
-        existing = args.output.read_text(encoding="utf-8")
+        existing = output.read_text(encoding="utf-8")
         # generated_at always differs; compare everything else.
         if _strip_timestamp(existing) != _strip_timestamp(rendered):
-            print(f"{args.output} is out of date", file=sys.stderr)
+            print(f"{output} is out of date", file=sys.stderr)
             return 1
-        print(f"{args.output} is up to date")
+        print(f"{output} is up to date")
         return 0
 
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(rendered, encoding="utf-8")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(rendered, encoding="utf-8")
     summary = payload["summary"]
-    where = (
-        args.output.relative_to(REPO_ROOT) if args.output.is_relative_to(REPO_ROOT) else args.output
-    )
+    where = output.relative_to(REPO_ROOT) if output.is_relative_to(REPO_ROOT) else output
     print(
         f"Wrote {where}: "
         f"{summary['meetings']} meetings, {summary['people_listed']} people "

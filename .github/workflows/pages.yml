@@ -42,11 +42,17 @@ jobs:
       - name: Snapshot privacy and shape checks
         # These do not need Neo4j: they read the committed snapshot.
         run: pytest tests/test_public_snapshot.py -q
-      - name: Snapshot exists and is non-trivial
+      - name: Snapshot is present, public, and non-trivial
         run: |
           python - <<'PY'
           import json, pathlib, sys
           data = json.loads(pathlib.Path("web/public/data/graph.json").read_text())
+          if data.get("profile") != "public":
+              sys.exit(
+                  f"snapshot profile is {data.get('profile')!r}, not 'public'. "
+                  "The organizer export carries volunteer availability and skills "
+                  "and must not be deployed."
+              )
           if not data["meetings"] or not data["workgroups"]:
               sys.exit("snapshot is empty; refusing to deploy")
           print(f"snapshot: {data['summary']}")

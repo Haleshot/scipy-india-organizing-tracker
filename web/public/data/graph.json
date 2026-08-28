@@ -1,8 +1,9 @@
 {
-  "generated_at": "2026-08-28T02:11:54+00:00",
-  "schema_version": 2,
+  "generated_at": "2026-08-28T05:31:42+00:00",
+  "schema_version": 3,
+  "profile": "public",
   "source": {
-    "built_at": "2026-08-28T02:11:54.211563Z",
+    "built_at": "2026-08-28T05:31:42.443914Z",
     "notes_source": "local",
     "extraction_mode": "markdown",
     "person_resolution": "exact"
@@ -268,11 +269,7 @@
       ],
       "tasks": [
         "program:write-the-review-rubric:92f4aec1bd"
-      ],
-      "is_volunteer": false,
-      "availability": "",
-      "skills": [],
-      "interests": []
+      ]
     },
     {
       "name": "Devika Nair",
@@ -289,11 +286,7 @@
         "program:draft-the-cfp-timeline-a:16fb2eead7",
         "program:send-the-reminder-email:8f4b536494",
         "program:recruit-four-more-cfp-re:2dda909839"
-      ],
-      "is_volunteer": false,
-      "availability": "",
-      "skills": [],
-      "interests": []
+      ]
     },
     {
       "name": "Farida Qureshi",
@@ -307,11 +300,7 @@
       ],
       "tasks": [
         "finance:open-a-tracking-spreadsh:b859064ba5"
-      ],
-      "is_volunteer": false,
-      "availability": "",
-      "skills": [],
-      "interests": []
+      ]
     },
     {
       "name": "Kabir Anand",
@@ -326,18 +315,6 @@
         "website-tech:decide-on-the-ticketing:958f5d7cf8",
         "website-tech:port-the-2025-site-templ:b6c221ebbb",
         "design-branding:refresh-the-badge-and-si:9c894048ca"
-      ],
-      "is_volunteer": true,
-      "availability": "weekends until November, full-time during conference week",
-      "skills": [
-        "Figma",
-        "Inkscape",
-        "HTML/CSS",
-        "Astro"
-      ],
-      "interests": [
-        "visual design",
-        "static site generators"
       ]
     },
     {
@@ -352,11 +329,7 @@
       ],
       "tasks": [
         "website-tech:set-up-the-shared-drive:f909458795"
-      ],
-      "is_volunteer": false,
-      "availability": "",
-      "skills": [],
-      "interests": []
+      ]
     },
     {
       "name": "Nikhil Bose",
@@ -370,11 +343,7 @@
       ],
       "tasks": [
         "venue-logistics:collect-quotes-from-thre:558429b48c"
-      ],
-      "is_volunteer": false,
-      "availability": "",
-      "skills": [],
-      "interests": []
+      ]
     },
     {
       "name": "Priya Vasudevan",
@@ -390,17 +359,6 @@
         "volunteers:review-the-first-batch-o:885b39a166",
         "coc-inclusion:draft-the-code-of-conduc:6f331d8a6e",
         "volunteers:schedule-intro-calls-wit:33110b8639"
-      ],
-      "is_volunteer": true,
-      "availability": "weekday evenings, all conference days",
-      "skills": [
-        "facilitation",
-        "policy writing",
-        "conflict resolution"
-      ],
-      "interests": [
-        "community building",
-        "first-time speaker support"
       ]
     },
     {
@@ -418,17 +376,6 @@
         "sponsorship:draft-the-sponsorship-pr:4e3cfe0a9b",
         "sponsorship:sponsor-followup-platinu:8523d884b4",
         "sponsorship:reach-out-to-the-first-t:d0b052e609"
-      ],
-      "is_volunteer": true,
-      "availability": "weekday mornings",
-      "skills": [
-        "B2B outreach",
-        "spreadsheets",
-        "invoicing"
-      ],
-      "interests": [
-        "partnerships",
-        "budgeting"
       ]
     },
     {
@@ -446,17 +393,6 @@
         "communications:publish-the-cfp-announce:d738f7643d",
         "communications:send-the-reminder-email:457fef418f",
         "communications:set-up-the-scipy-india-2:1243656ea5"
-      ],
-      "is_volunteer": true,
-      "availability": "2-3 hours a week",
-      "skills": [
-        "copywriting",
-        "Canva",
-        "Mastodon and Bluesky scheduling"
-      ],
-      "interests": [
-        "social media",
-        "newsletters"
       ]
     },
     {
@@ -467,17 +403,6 @@
       "meetings": [],
       "tasks": [
         "website-tech:find-someone-to-own-av-a:82a37e2c34"
-      ],
-      "is_volunteer": true,
-      "availability": "conference days only",
-      "skills": [
-        "OBS",
-        "video editing",
-        "Python"
-      ],
-      "interests": [
-        "AV and streaming",
-        "recordings"
       ]
     }
   ],

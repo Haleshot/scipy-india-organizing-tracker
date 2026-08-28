@@ -371,14 +371,16 @@ let peopleFilter = '';
 function personDetail(person) {
   const owned = DATA.tasks.filter((t) => t.owners.includes(person.name));
   const open = owned.filter(isOpen);
+  // Availability and skills come from a volunteer application, so the public
+  // snapshot does not carry them. The organizer profile does.
   return el('li', { id: `person-${cssId(person.name)}` },
     el('h3', {}, person.name, person.is_volunteer && el('span', { class: 'meta', text: '  volunteer' })),
     fields(
       ['Workgroups', person.workgroups.length ? joinNodes(person.workgroups, wgLink) : 'none yet'],
       ['Meetings', String(person.meetings.length)],
       ['Action items', `${open.length} open of ${owned.length}`],
-      ['Available', person.availability],
-      ['Skills', person.skills.join(', ')]),
+      ['Available', person.availability ?? ''],
+      ['Skills', (person.skills ?? []).join(', ')]),
     open.length ? el('details', {},
       el('summary', { text: 'Open action items' }),
       el('ul', { class: 'records sub' }, open.map(taskItem))) : null);
@@ -392,14 +394,18 @@ function viewPeople(params) {
       'Everyone here has a role in the graph: they ran or attended a meeting, own an action item, or sit on a workgroup. ',
       withheld
         ? `${plural(withheld, 'other person', 'other people')} applied to volunteer and ${withheld === 1 ? 'is' : 'are'} counted per workgroup rather than named.`
-        : 'Nobody is withheld from this view.'),
+        : 'Nobody is withheld from this view.',
+      DATA.profile === 'organizer'
+        ? ' This is the organizer export, so it also carries availability and skills.'
+        : ''),
     filtered({
       placeholder: 'Filter by name, workgroup or skill',
       query: () => peopleFilter,
       onQuery: (value) => { peopleFilter = value; },
       render: () => {
         const list = DATA.people.filter((p) => matchesText(peopleFilter, p.name,
-          p.workgroups.map(wgName).join(' '), p.skills.join(' '), p.interests.join(' ')));
+          p.workgroups.map(wgName).join(' '), (p.skills ?? []).join(' '),
+          (p.interests ?? []).join(' ')));
         return {
           nodes: list.length
             ? el('ul', { class: 'records' }, list.map(personDetail))
@@ -470,7 +476,8 @@ function globalSearch(query) {
   return {
     meetings: DATA.meetings.filter((m) => hit(m.title, m.summary, m.topics.join(' '), m.facilitator, m.attendees.join(' '))),
     tasks: DATA.tasks.filter((t) => hit(t.description, t.owners.join(' '), t.workgroup && wgName(t.workgroup), t.due)),
-    people: DATA.people.filter((p) => hit(p.name, p.workgroups.map(wgName).join(' '), p.skills.join(' '), p.interests.join(' '))),
+    people: DATA.people.filter((p) => hit(p.name, p.workgroups.map(wgName).join(' '),
+      (p.skills ?? []).join(' '), (p.interests ?? []).join(' '))),
     workgroups: DATA.workgroups.filter((w) => hit(w.name, w.description, w.slug)),
     decisions: DATA.decisions.filter((d) => hit(d.statement, d.workgroup && wgName(d.workgroup))),
   };
@@ -805,7 +812,7 @@ function nodeDetails(node, cy, details, container) {
         block('Open work', owned.filter(isOpen).map((t) =>
           el('span', {}, t.description, ' ', statusMark(t.status))), 'nothing open'),
         block('Meetings', person.meetings.slice(0, 8).map((id) => meetingLink(id))),
-        person.skills.length ? block('Skills', [person.skills.join(', ')]) : null,
+        person.skills?.length ? block('Skills', [person.skills.join(', ')]) : null,
         person.availability ? block('Available', [person.availability]) : null);
       return panel;
     }
