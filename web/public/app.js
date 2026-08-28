@@ -538,7 +538,9 @@ const KIND_COLORS = {
 };
 
 const explorerState = {
-  kinds: new Set(['person', 'workgroup', 'meeting']),
+  // Workgroups and people first. Meetings, tasks and decisions are what make
+  // the whole-graph view unreadable, and they are one toggle away.
+  kinds: new Set(['person', 'workgroup']),
   focus: null,   // node id the neighbourhood is drawn around
   hops: 1,
   query: '',
@@ -569,6 +571,14 @@ function viewExplorer(params) {
     oninput: (event) => { explorerState.query = event.target.value; renderPicker(picker, container, details); },
   });
 
+  const stage = el('div', { class: 'stage' }, container);
+
+  const fullscreenButton = el('button', {
+    type: 'button',
+    title: 'Fill the window with the graph',
+    onclick: () => toggleFullscreen(stage, fullscreenButton),
+  }, 'Fullscreen');
+
   const controls = el('div', { class: 'controls' },
     searchField,
     el('div', { class: 'segmented' },
@@ -578,6 +588,7 @@ function viewExplorer(params) {
           if (cyInstance && !cyInstance.destroyed()) { cyInstance.fit(undefined, 30); cyInstance.center(); }
         },
       }, 'Fit'),
+      fullscreenButton,
       el('button', {
         type: 'button',
         onclick: () => {
@@ -613,7 +624,7 @@ function viewExplorer(params) {
     controls,
     display,
     picker,
-    el('div', { class: 'explorer' }, el('div', {}, container), details));
+    el('div', { class: 'explorer' }, stage, details));
 
   renderPicker(picker, container, details, { skipMount: true });
   queueMicrotask(() => mountCytoscape(container, details));
@@ -705,7 +716,7 @@ function mountCytoscape(container, details) {
         label: (n) => (alwaysLabelled.has(n.data('kind')) || n.hasClass('named')
           ? truncate(n.data('label'), 26) : ''),
         'font-size': 9, color: ink,
-        'text-valign': 'bottom', 'text-margin-y': 4, 'text-wrap': 'wrap', 'text-max-width': '90px',
+        'text-valign': 'bottom', 'text-margin-y': 5, 'text-wrap': 'wrap', 'text-max-width': '78px',
         'text-background-color': paper, 'text-background-opacity': 0.7, 'text-background-padding': 1,
         width: 12, height: 12,
       } },
@@ -737,12 +748,26 @@ function mountCytoscape(container, details) {
     // callback; a destroyed instance throws on every method.
     if (cy.destroyed() || !container.isConnected) return;
     cy.resize();
+    const dense = nodes.length > 24;
     cy.layout({
-      name: 'cose', animate: false, padding: 30, fit: true,
-      nodeRepulsion: 12000, idealEdgeLength: 90, nodeOverlap: 16, gravity: 70, numIter: 1200,
+      name: 'cose',
+      animate: false,
+      padding: 32,
+      fit: true,
+      // A dozen nodes want space to breathe; sixty want to be pulled together
+      // enough to fit the box without shrinking the labels to nothing.
+      nodeRepulsion: dense ? 26000 : 11000,
+      idealEdgeLength: dense ? 150 : 85,
+      nodeOverlap: dense ? 36 : 18,
+      gravity: dense ? 28 : 70,
+      numIter: 1500,
+      randomize: false,
+      // Lay out around the labels, not the dots. Without this the circles are
+      // nicely spaced and the words on top of them collide.
+      nodeDimensionsIncludeLabels: true,
       stop: () => {
         if (cy.destroyed()) return;
-        cy.fit(undefined, 30);
+        cy.fit(undefined, 32);
         cy.center();
       },
     }).run();
@@ -913,6 +938,65 @@ function nodeDetails(node, cy, details, container) {
   if (!grouped.size) add(panel, emptyNote('Nothing connected in the current view.'));
   return panel;
 }
+
+/**
+ * Fullscreen for the graph pane. The Fullscreen API where it exists, and a
+ * fixed-position class everywhere else, so this works in an iframe and on
+ * browsers that refuse the request.
+ */
+function toggleFullscreen(stage, button) {
+  const leaving = document.fullscreenElement === stage || stage.classList.contains('filled');
+
+  const settle = () => {
+    button.textContent = leaving ? 'Fullscreen' : 'Exit fullscreen';
+    // Cytoscape measures its container once; it has to be told the box moved.
+    requestAnimationFrame(() => {
+      if (cyInstance && !cyInstance.destroyed()) {
+        cyInstance.resize();
+        cyInstance.fit(undefined, 30);
+        cyInstance.center();
+      }
+    });
+  };
+
+  if (leaving) {
+    stage.classList.remove('filled');
+    if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+    settle();
+    return;
+  }
+
+  if (stage.requestFullscreen) {
+    stage.requestFullscreen().then(settle, () => {
+      stage.classList.add('filled');
+      settle();
+    });
+  } else {
+    stage.classList.add('filled');
+    settle();
+  }
+}
+
+document.addEventListener('fullscreenchange', () => {
+  if (document.fullscreenElement) return;
+  for (const stage of document.querySelectorAll('.stage')) stage.classList.remove('filled');
+  for (const button of document.querySelectorAll('.stage-controls button')) {
+    if (button.textContent === 'Exit fullscreen') button.textContent = 'Fullscreen';
+  }
+  if (cyInstance && !cyInstance.destroyed()) requestAnimationFrame(() => cyInstance.resize());
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape') return;
+  const filled = document.querySelector('.stage.filled');
+  if (filled) {
+    filled.classList.remove('filled');
+    for (const button of document.querySelectorAll('.stage-controls button')) {
+      if (button.textContent === 'Exit fullscreen') button.textContent = 'Fullscreen';
+    }
+    if (cyInstance && !cyInstance.destroyed()) requestAnimationFrame(() => cyInstance.resize());
+  }
+});
 
 const truncate = (text, n) => (text.length > n ? `${text.slice(0, n - 1)}…` : text);
 const cssId = (value) => value.replace(/[^\w-]/g, '_');

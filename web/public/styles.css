@@ -250,8 +250,19 @@ tbody tr:hover { background: var(--paper-sunk); }
 /* min-width:0 on the grid child, or the canvas refuses to shrink and the page
    scrolls sideways on a phone. */
 .explorer > * { min-width: 0; }
+.stage { position: relative; }
 #cy { height: 540px; max-width: 100%; border: 1px solid var(--rule); background: var(--paper-sunk); }
 @media (max-width: 620px) { #cy { height: 380px; } }
+
+/* Fullscreen. The API path styles :fullscreen; the fallback fixes the pane over
+   the page for browsers and iframes that refuse the request. */
+.stage:fullscreen { background: var(--paper); padding: 16px; }
+.stage:fullscreen #cy { height: 100%; border: 0; }
+.stage.filled {
+  position: fixed; inset: 0; z-index: 40;
+  background: var(--paper); padding: 16px;
+}
+.stage.filled #cy { height: 100%; border: 0; }
 .legend { display: flex; flex-wrap: wrap; gap: 14px; }
 .legend span { font-size: 12px; color: var(--ink-faint); display: inline-flex; align-items: center; gap: 6px; }
 .legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
