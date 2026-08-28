@@ -8,7 +8,7 @@
 # remember which is which.
 #
 #   ./scripts/refresh.sh              refresh everything
-#   ./scripts/refresh.sh --check      report what is stale, change nothing
+#   ./scripts/refresh.sh --check      report what is stale, write nothing
 #   ./scripts/refresh.sh --no-search  skip the search indexes
 #   ./scripts/refresh.sh --force      re-embed every node, not only changed ones
 #   ./scripts/refresh.sh --watch      re-run on every change to the notes
@@ -16,6 +16,11 @@
 # Everything here is incremental. CocoIndex re-extracts only the meeting
 # sections whose text changed, and the index builder re-embeds only the nodes
 # whose indexed text changed, so a refresh after one edited meeting is quick.
+#
+# The contract: exit 0 means the graph, the search indexes and the snapshot all
+# succeeded. Any other exit code names the stage that failed. Output is filtered
+# for readability, which is why every stage captures its own exit status rather
+# than the status of the pipe it was filtered through.
 
 set -euo pipefail
 
@@ -60,7 +65,9 @@ if [ -f "$REPO/.env" ]; then
       ''|'#'*) continue ;;
       *=*) key=${line%%=*}; value=${line#*=}
            case "$key" in *[!A-Za-z0-9_]*) continue ;; esac
-           export "$key=$value" ;;
+           # Anything already in the environment wins, so a one-off
+           # `SEARCH_EMBEDDING_MODEL=... ./scripts/refresh.sh` behaves as expected.
+           [ -n "${!key:-}" ] || export "$key=$value" ;;
     esac
   done < "$REPO/.env"
 fi
@@ -70,6 +77,36 @@ SNAPSHOT="web/public/data/graph.json"
 
 say()  { printf '\n\033[1m%s\033[0m\n' "$*"; }
 note() { printf '  %s\n' "$*"; }
+fail() { printf '\n\033[1;31m%s failed.\033[0m %s\n' "$1" "${2:-}" >&2; }
+
+# Run a stage, show its interesting lines, and keep its real exit status.
+# Piping straight into grep reports grep's status instead, and a trailing
+# `|| true` reports success for a stage that never ran.
+STAGE_LOG="$(mktemp -t scipy-refresh)"
+trap 'rm -f "$STAGE_LOG"' EXIT
+
+# Markers CocoIndex prints when a component fails. It reports them and then
+# exits 0, so a stage that only checked the exit status would call a broken
+# update a success and carry on to export a stale snapshot.
+COCO_ERROR_MARKER='⚠️ errors|component build failed|Traceback \(most recent call last\)'
+
+stage() {
+  local name="$1" filter="$2" status=0
+  shift 2
+  "$@" >"$STAGE_LOG" 2>&1 || status=$?
+  if [ "$status" = 0 ] && ! grep -qE "$COCO_ERROR_MARKER" "$STAGE_LOG"; then
+    grep -E "$filter" "$STAGE_LOG" | sed 's/^/  /' || true
+    return 0
+  fi
+  if [ "$status" = 0 ]; then
+    fail "$name" "Reported an error while exiting 0. Last lines:"
+    status=1
+  else
+    fail "$name" "Exit status $status. Last lines:"
+  fi
+  tail -n 20 "$STAGE_LOG" | sed 's/^/    /' >&2
+  return "$status"
+}
 
 # --------------------------------------------------------------------------- #
 
@@ -139,24 +176,35 @@ run_once() {
     -exec sh -c 'printf "  %s  (modified %s)\n" "$1" "$(date -r "$1" "+%Y-%m-%d %H:%M")"' _ {} \;
 
   if [ "$CHECK" = 1 ]; then
-    say "Checking (nothing will be written)"
-    "$COCOINDEX" -d src update scipy_india_kg.main >/dev/null 2>&1 || true
+    # Genuinely read-only. It does not run the pipeline, because running the
+    # pipeline is what a refresh is, and a flag that says nothing is written
+    # has to mean it.
+    say "Checking (nothing is written)"
+    local stale=0 status=0
+
+    "$PY" scripts/graph_status.py 2>&1 | sed 's/^/  /' || true
+    "$PY" scripts/graph_status.py >/dev/null 2>&1 || status=$?
+    [ "$status" = 2 ] && { fail "Graph check" "Neo4j is not reachable."; return 1; }
+    [ "$status" = 0 ] || stale=1
+
     "$PY" scripts/build_search_indexes.py --status 2>/dev/null | sed 's/^/  /'
+
     if "$PY" scripts/export_public_snapshot.py --check >/dev/null 2>&1; then
       note "$SNAPSHOT is up to date"
     else
-      note "$SNAPSHOT is STALE. Run ./scripts/refresh.sh"
-      return 1
+      note "$SNAPSHOT is stale"
+      stale=1
     fi
-    return 0
+
+    [ "$stale" = 0 ] || note "Run ./scripts/refresh.sh"
+    return "$stale"
   fi
 
   local before after
   before="$(graph_counts)"
 
   say "1/3  Graph"
-  "$COCOINDEX" -d src update scipy_india_kg.main 2>&1 \
-    | grep -E '^(✅|❌|⚠️)' | sed 's/^/  /' || true
+  stage "Graph update" '^(✅|❌|⚠️)' "$COCOINDEX" -d src update scipy_india_kg.main || return 1
 
   after="$(graph_counts)"
   describe_change "$before" "$after"
@@ -171,8 +219,8 @@ run_once() {
       flags=""
     fi
     # shellcheck disable=SC2086
-    "$PY" scripts/build_search_indexes.py $flags 2>/dev/null \
-      | grep -E 'full-text|vector|current|Embedded|Every' | sed 's/^/  /' || true
+    stage "Search indexes" 'full-text|vector|current|Embedded|Every|dimension' \
+      "$PY" scripts/build_search_indexes.py $flags || return 1
   else
     say "2/3  Search indexes (skipped)"
   fi
@@ -185,7 +233,7 @@ run_once() {
   if "$PY" -m pytest tests/test_public_snapshot.py -q >/dev/null 2>&1; then
     note "privacy checks passed"
   else
-    echo "  PRIVACY CHECKS FAILED on the snapshot just written." >&2
+    fail "Privacy checks" "The snapshot just written did not pass them."
     echo "  Run: pytest tests/test_public_snapshot.py -q" >&2
     return 1
   fi
@@ -212,9 +260,10 @@ command -v fswatch >/dev/null 2>&1 || {
 }
 echo "Watching $NOTES_DIR. Every change refreshes the graph, search and snapshot."
 echo "Ctrl-C to stop."
-run_once || true
+# A failed cycle must not kill the watcher, but it has to be visible.
+run_once || fail "Refresh" "Fix it and save the notes again."
 fswatch -o "$NOTES_DIR" | while read -r _; do
   echo
   echo "--- change detected $(date '+%H:%M:%S') ---"
-  run_once || true
+  run_once || fail "Refresh" "Fix it and save the notes again."
 done
