@@ -128,7 +128,7 @@ Sanjana Iyer joins Social Media & Communications
 Arjun Pillai joins Program Committee
 
 
-Meeting: 2026-02-06 | Sponsoring and site
+Meeting: 2026-02-06 | Sponsorship and site
 
 Facilitator: Arjun Pillai
 Attendees: Arjun Pillai, Meera Raghavan, Sanjana Iyer, Farida Qureshi, Rehan Mathew, Nikhil Bose
@@ -136,7 +136,7 @@ Workgroups: Sponsoring, Website, Social Media & Communications, Logistics, Progr
 
 Topics
 
-Sponsoring tiers and what each one includes.
+Sponsorship tiers and what each one includes.
 Static site versus the 2025 site template.
 Venue decision.
 
@@ -267,7 +267,7 @@ Priya Vasudevan joins Registration & Help Desk
 Priya Vasudevan joins Code of Conduct
 
 
-Meeting: 2026-03-06 | Registration & Help Desk and reviews
+Meeting: 2026-03-06 | Volunteers and reviews
 
 Facilitator: Priya Vasudevan
 Attendees: Priya Vasudevan, Meera Raghavan, Devika Nair, Sanjana Iyer, Rehan Mathew, Kabir Anand
@@ -281,7 +281,7 @@ Branding refresh for 2026.
 
 Decisions
 
-(Registration & Help Desk) Applicants are assigned to a workgroup only after a short call with that workgroup's lead.
+(Registration & Help Desk) Applicants are assigned to a role only after a short call with that role's lead.
 
 (Design) The 2026 identity keeps the SciPy India mark and changes only the accent colour.
 

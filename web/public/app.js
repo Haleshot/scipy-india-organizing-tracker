@@ -97,12 +97,14 @@ const meetingLink = (id, label) => {
 const joinNodes = (items, render, separator = ', ') =>
   items.flatMap((item, i) => (i ? [separator, render(item)] : [render(item)]));
 
-/** One number in the at-a-glance line, linked to the list it counts. */
-function tally(value, what, href, attention = false) {
-  const number = el('span', { class: attention && value > 0 ? 'n attention' : 'n', text: String(value) });
-  return el('li', {},
-    href ? el('a', { class: 'link', href }, number) : number,
-    el('span', { class: 'what', text: what }));
+/** One figure in the at-a-glance line: label above, number below, no box. */
+function tally(label, value, href, attention = false) {
+  const number = href
+    ? el('a', { class: 'link', href }, String(value))
+    : document.createTextNode(String(value));
+  return el('div', { class: attention && value > 0 ? 'attention' : null },
+    el('dt', { text: label }),
+    el('dd', {}, number));
 }
 
 /* Human-readable timestamps. The viewer's locale and timezone, because the
@@ -121,15 +123,15 @@ function formatTimestamp(iso) {
 }
 
 const SOURCE_LABELS = {
-  local: 'local fixture notes',
+  local: 'fixture notes',
   google_drive: 'Google Drive',
-  unknown: 'an unrecorded source',
+  unknown: 'unrecorded source',
 };
 
 const EXTRACTOR_LABELS = {
-  markdown: 'the deterministic Markdown extractor',
+  markdown: 'parsed, not inferred',
   llm: 'LLM extraction',
-  unknown: 'an unrecorded extractor',
+  unknown: 'unrecorded extractor',
 };
 
 /* ---------------------------------------------------------- shared pieces */
@@ -183,19 +185,27 @@ function viewOverview() {
   const unassigned = openTasks.filter((t) => t.owners.length === 0);
   const latest = DATA.meetings[0];
   const waiting = DATA.workgroups.reduce((total, w) => total + w.awaiting_assignment, 0);
+  const signups = DATA.workgroups.reduce((total, w) => total + (w.signups ?? 0), 0);
+
+  // A status memo opens with a sentence, not a row of tiles.
+  const sentence = unassigned.length
+    ? `${plural(s.open_tasks, 'action item')} still open, and ${unassigned.length} of them have nobody on them.`
+    : `${plural(s.open_tasks, 'action item')} still open, all of them owned.`;
 
   const frag = el('div', {},
     el('h1', { text: 'Where things stand' }),
+    el('p', { class: 'lead', text: sentence }),
     el('p', { class: 'lede' },
-      `${plural(s.meetings, 'meeting')} recorded so far. `,
+      `${plural(s.meetings, 'meeting')} recorded. `,
       s.people_withheld
-        ? `${plural(s.people_listed, 'person', 'people')} are named here; ${s.people_withheld} more applied to volunteer and are counted rather than named.`
-        : `${plural(s.people_listed, 'person', 'people')} are named here.`),
-    el('ul', { class: 'tally' },
-      tally(s.open_tasks, 'action items still open', '#/tasks'),
-      tally(s.unassigned_open_tasks, 'of those have nobody on them', '#/tasks?filter=unassigned', true),
-      tally(waiting, 'volunteers waiting on a workgroup', '#/workgroups'),
-      tally(s.decisions, 'decisions recorded', '#/search?q=')),
+        ? `${plural(s.people_listed, 'person', 'people')} named here; ${s.people_withheld} more applied to volunteer and are counted rather than named.`
+        : `${plural(s.people_listed, 'person', 'people')} named here.`),
+    el('dl', { class: 'tally' },
+      tally('Open', s.open_tasks, '#/tasks'),
+      tally('Unowned', s.unassigned_open_tasks, '#/tasks?filter=unassigned', true),
+      tally('Volunteers waiting', waiting, '#/workgroups'),
+      tally('Role sign-ups', signups, '#/workgroups'),
+      tally('Decisions', s.decisions, null)),
   );
 
   if (latest) {
@@ -215,16 +225,16 @@ function viewOverview() {
       decisions.length
         ? el('ul', { class: 'records' }, decisions.map((d) => el('li', {},
             el('div', { class: 'row' },
-              el('span', { class: 'gutter muted', text: 'decided' }),
+              el('span', { class: 'gutter meta', text: 'decided' }),
               el('div', { class: 'body' },
                 el('div', { class: 'title', text: d.statement }),
-                d.workgroup && el('div', { class: 'meta' }, wgLink(d.workgroup))))))) 
+                d.workgroup && el('div', { class: 'meta' }, wgLink(d.workgroup)))))))
         : emptyNote('No decisions recorded in that meeting.'),
     );
   }
 
   frag.append(
-    el('h2', { text: 'Open work by workgroup' }),
+    el('h2', { text: 'Open work by volunteer role' }),
     workgroupTable(),
     el('h2', { text: 'Nobody assigned' }),
     unassigned.length
@@ -240,19 +250,29 @@ function workgroupTable() {
   return el('div', { class: 'table-scroll' },
     el('table', {},
       el('thead', {}, el('tr', {},
-        el('th', { text: 'Workgroup' }),
+        el('th', { text: 'Role' }),
         el('th', { class: 'num', text: 'Open' }),
         el('th', { class: 'num', text: 'Done' }),
-        el('th', { class: 'num', text: 'People' }),
-        el('th', { class: 'num', title: 'Volunteers who asked for this workgroup and have not been assigned to it' },
-          'Waiting'))),
+        el('th', { class: 'num', text: 'On it' }),
+        el('th', { class: 'num', title: 'Volunteers who asked for this role and have not been assigned to it' },
+          'Waiting'),
+        el('th', { class: 'num', title: 'People who picked this role on the sign-up form' },
+          'Sign-ups'))),
       el('tbody', {}, DATA.workgroups.map((w) => {
         const done = DATA.tasks.filter((t) => t.workgroup === w.slug && t.status === 'done').length;
         const cell = (n) => el('td', { class: n ? 'num' : 'num zero', text: String(n) });
         return el('tr', {},
           el('td', {}, wgLink(w.slug)),
-          cell(w.open_tasks), cell(done), cell(w.member_count), cell(w.awaiting_assignment));
-      }))));
+          cell(w.open_tasks), cell(done), cell(w.member_count),
+          cell(w.awaiting_assignment), cell(w.signups ?? 0));
+      })),
+      el('tfoot', {}, el('tr', {},
+        el('td', { text: 'Total' }),
+        el('td', { class: 'num', text: String(DATA.workgroups.reduce((t, w) => t + w.open_tasks, 0)) }),
+        el('td', { class: 'num', text: String(DATA.tasks.filter((t) => t.status === 'done').length) }),
+        el('td', { class: 'num', text: String(DATA.workgroups.reduce((t, w) => t + w.member_count, 0)) }),
+        el('td', { class: 'num', text: String(DATA.workgroups.reduce((t, w) => t + w.awaiting_assignment, 0)) }),
+        el('td', { class: 'num', text: String(DATA.workgroups.reduce((t, w) => t + (w.signups ?? 0), 0)) })))));
 }
 
 /* --------------------------------------------------------------- meetings */
@@ -433,9 +453,10 @@ function workgroupDetail(workgroup) {
       ['Members', people.length
         ? joinNodes(people, (p) => personLink(p.name))
         : el('span', { class: 'unowned', text: 'nobody assigned yet' })],
+      ['Sign-ups', workgroup.signups ? `${workgroup.signups} on the form` : ''],
       ['Action items', `${open.length} open of ${tasks.length}`],
       ['Waiting', workgroup.awaiting_assignment > 0
-        ? `${workgroup.awaiting_assignment} ${workgroup.awaiting_assignment === 1 ? 'volunteer asked' : 'volunteers asked'} for this workgroup and ${workgroup.awaiting_assignment === 1 ? 'has' : 'have'} not been assigned to it`
+        ? `${plural(workgroup.awaiting_assignment, 'volunteer')} asked for this role and ${workgroup.awaiting_assignment === 1 ? 'has' : 'have'} not been assigned to it`
         : '']),
     open.length ? el('details', {},
       el('summary', { text: 'Open action items' }),
@@ -449,10 +470,12 @@ function workgroupDetail(workgroup) {
 
 function viewWorkgroups(params) {
   return el('div', {},
-    el('h1', { text: 'Workgroups' }),
-    el('p', { class: 'lede', text: 'Defined in config/workgroups.yaml. Add or rename them there.' }),
+    el('h1', { text: 'Volunteer roles' }),
+    el('p', { class: 'lede' },
+      'These are the roles on the volunteer sign-up form. Sign-ups are how many people picked each one; ',
+      'nothing else from that form is published here.'),
     filtered({
-      placeholder: 'Filter workgroups',
+      placeholder: 'Filter roles',
       query: () => workgroupFilter,
       onQuery: (value) => { workgroupFilter = value; },
       render: () => {
@@ -460,8 +483,8 @@ function viewWorkgroups(params) {
         return {
           nodes: list.length
             ? el('ul', { class: 'records' }, list.map(workgroupDetail))
-            : emptyNote('No workgroup matches.'),
-          shown: list.length, total: DATA.workgroups.length, noun: 'workgroup',
+            : emptyNote('No role matches.'),
+          shown: list.length, total: DATA.workgroups.length, noun: 'role',
         };
       },
     }),
@@ -882,9 +905,10 @@ function nodeDetails(node, cy, details, container) {
           ? block('Waiting', [`${plural(workgroup.awaiting_assignment, 'volunteer')} asked and not yet assigned`])
           : null,
         block('Open work', open.map((t) => el('span', {},
-          t.description, ' ', statusMark(t.status),
-          t.owners.length ? el('span', { class: 'meta', text: ` ${t.owners.join(', ')}` })
-            : el('span', { class: 'unowned', text: '  nobody assigned' }))), 'nothing open'),
+          t.description, ' ', statusMark(t.status), ' ',
+          t.owners.length
+            ? el('span', { class: 'meta', text: t.owners.join(', ') })
+            : el('span', { class: 'unowned', text: 'nobody assigned' }))), 'nothing open'),
         block('Recent decisions', decisions.slice(0, 4).map((d) => d.statement)),
         block('Discussed in', meetings.slice(0, 6).map((m) => meetingLink(m.id, m.date))));
       return panel;
@@ -1072,12 +1096,9 @@ fetch(DATA_URL)
     DATA = data;
     const source = data.source ?? {};
     document.getElementById('freshness').replaceChildren(
-      el('span', {}, 'Data refreshed ', el('strong', { text: formatTimestamp(data.generated_at) }), '.'),
-      el('span', {}, ' Built from ',
-        el('strong', { text: SOURCE_LABELS[source.notes_source] ?? source.notes_source ?? 'an unrecorded source' }),
-        ' using ',
-        el('strong', { text: EXTRACTOR_LABELS[source.extraction_mode] ?? source.extraction_mode ?? 'an unrecorded extractor' }),
-        '.'));
+      el('span', { text: `Refreshed ${formatTimestamp(data.generated_at)}` }),
+      el('span', { text: SOURCE_LABELS[source.notes_source] ?? source.notes_source ?? 'unrecorded source' }),
+      el('span', { text: EXTRACTOR_LABELS[source.extraction_mode] ?? source.extraction_mode ?? 'unrecorded extractor' }));
     render();
   })
   .catch((error) => {

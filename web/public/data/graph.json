@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-28T17:13:25+00:00",
+  "generated_at": "2026-08-28T17:42:46+00:00",
   "schema_version": 3,
   "profile": "public",
   "source": {
-    "built_at": "2026-08-28T17:13:24.643385Z",
+    "built_at": "2026-08-28T17:42:46.048956Z",
     "notes_source": "local",
     "extraction_mode": "markdown",
     "person_resolution": "exact"
@@ -160,7 +160,7 @@
     {
       "id": 5,
       "date": "2026-03-06",
-      "title": "Registration & Help Desk and reviews",
+      "title": "Volunteers and reviews",
       "summary": "First batch of volunteer applications.; Review capacity for the CFP.; Branding refresh for 2026.",
       "topics": [
         "First batch of volunteer applications.",
@@ -169,20 +169,20 @@
       ],
       "facilitator": "Priya Vasudevan",
       "attendees": [
-        "Kabir Anand",
-        "Priya Vasudevan",
-        "Sanjana Iyer",
         "Rehan Mathew",
+        "Sanjana Iyer",
         "Meera Raghavan",
+        "Priya Vasudevan",
+        "Kabir Anand",
         "Devika Nair"
       ],
       "workgroups": [
-        "program-committee",
-        "sponsoring",
-        "website",
         "design",
+        "website",
+        "registration-help-desk",
         "social-media-communications",
-        "registration-help-desk"
+        "sponsoring",
+        "program-committee"
       ]
     },
     {
@@ -197,47 +197,47 @@
       ],
       "facilitator": "Meera Raghavan",
       "attendees": [
-        "Meera Raghavan",
-        "Devika Nair",
-        "Priya Vasudevan",
-        "Arjun Pillai",
         "Rehan Mathew",
-        "Sanjana Iyer"
+        "Priya Vasudevan",
+        "Sanjana Iyer",
+        "Devika Nair",
+        "Arjun Pillai",
+        "Meera Raghavan"
       ],
       "workgroups": [
-        "program-committee",
-        "registration-help-desk",
         "social-media-communications",
         "code-of-conduct",
+        "registration-help-desk",
         "website",
-        "sponsoring"
+        "sponsoring",
+        "program-committee"
       ]
     },
     {
       "id": 3,
       "date": "2026-02-06",
-      "title": "Sponsoring and site",
-      "summary": "Sponsoring tiers and what each one includes.; Static site versus the 2025 site template.; Venue decision.",
+      "title": "Sponsorship and site",
+      "summary": "Sponsorship tiers and what each one includes.; Static site versus the 2025 site template.; Venue decision.",
       "topics": [
-        "Sponsoring tiers and what each one includes.",
+        "Sponsorship tiers and what each one includes.",
         "Static site versus the 2025 site template.",
         "Venue decision."
       ],
       "facilitator": "Arjun Pillai",
       "attendees": [
-        "Rehan Mathew",
         "Nikhil Bose",
-        "Meera Raghavan",
-        "Arjun Pillai",
         "Sanjana Iyer",
-        "Farida Qureshi"
+        "Rehan Mathew",
+        "Meera Raghavan",
+        "Farida Qureshi",
+        "Arjun Pillai"
       ],
       "workgroups": [
+        "website",
+        "social-media-communications",
         "program-committee",
         "logistics",
-        "social-media-communications",
         "sponsoring",
-        "website",
         "code-of-conduct"
       ]
     },
@@ -253,18 +253,18 @@
       ],
       "facilitator": "Meera Raghavan",
       "attendees": [
-        "Meera Raghavan",
+        "Arjun Pillai",
         "Devika Nair",
-        "Nikhil Bose",
-        "Farida Qureshi",
         "Sanjana Iyer",
-        "Arjun Pillai"
+        "Nikhil Bose",
+        "Meera Raghavan",
+        "Farida Qureshi"
       ],
       "workgroups": [
+        "program-committee",
+        "social-media-communications",
         "website",
         "sponsoring",
-        "social-media-communications",
-        "program-committee",
         "logistics"
       ]
     },
@@ -280,17 +280,17 @@
       ],
       "facilitator": "Meera Raghavan",
       "attendees": [
-        "Nikhil Bose",
+        "Farida Qureshi",
         "Meera Raghavan",
-        "Devika Nair",
+        "Nikhil Bose",
         "Arjun Pillai",
-        "Farida Qureshi"
+        "Devika Nair"
       ],
       "workgroups": [
         "logistics",
-        "sponsoring",
         "website",
-        "program-committee"
+        "program-committee",
+        "sponsoring"
       ]
     }
   ],
@@ -301,10 +301,10 @@
         "program-committee"
       ],
       "meetings": [
-        1,
-        3,
+        2,
         4,
-        2
+        1,
+        3
       ],
       "tasks": [
         "program-committee:write-the-review-rubric:5d155cc23d"
@@ -316,15 +316,15 @@
         "program-committee"
       ],
       "meetings": [
-        4,
         2,
+        4,
         1,
         5
       ],
       "tasks": [
+        "program-committee:draft-the-cfp-timeline-a:9956438f71",
         "program-committee:send-the-reminder-email:a47f0670fd",
-        "program-committee:recruit-four-more-cfp-re:9275d44e47",
-        "program-committee:draft-the-cfp-timeline-a:9956438f71"
+        "program-committee:recruit-four-more-cfp-re:9275d44e47"
       ]
     },
     {
@@ -333,9 +333,9 @@
         "sponsoring"
       ],
       "meetings": [
-        2,
+        1,
         3,
-        1
+        2
       ],
       "tasks": [
         "sponsoring:open-a-tracking-spreadsh:a24eb4b8cf"
@@ -344,8 +344,8 @@
     {
       "name": "Kabir Anand",
       "workgroups": [
-        "website",
-        "design"
+        "design",
+        "website"
       ],
       "meetings": [
         5
@@ -359,11 +359,11 @@
       "name": "Meera Raghavan",
       "workgroups": [],
       "meetings": [
-        4,
-        2,
         1,
         5,
-        3
+        3,
+        4,
+        2
       ],
       "tasks": [
         "website:set-up-the-shared-drive:a5b53b7d6d"
@@ -375,9 +375,9 @@
         "logistics"
       ],
       "meetings": [
-        2,
+        3,
         1,
-        3
+        2
       ],
       "tasks": [
         "logistics:collect-quotes-from-thre:02f6549b14"
@@ -390,13 +390,13 @@
         "code-of-conduct"
       ],
       "meetings": [
-        5,
-        4
+        4,
+        5
       ],
       "tasks": [
+        "registration-help-desk:review-the-first-batch-o:55fbbf0897",
         "registration-help-desk:schedule-intro-calls-wit:5e31ba2862",
-        "code-of-conduct:draft-the-code-of-conduc:7aa009bb9c",
-        "registration-help-desk:review-the-first-batch-o:55fbbf0897"
+        "code-of-conduct:draft-the-code-of-conduc:7aa009bb9c"
       ]
     },
     {
@@ -405,14 +405,14 @@
         "sponsoring"
       ],
       "meetings": [
-        3,
+        4,
         5,
-        4
+        3
       ],
       "tasks": [
+        "sponsoring:sponsor-followup-platinu:8523d884b4",
         "sponsoring:draft-the-sponsorship-pr:315d9505bf",
-        "sponsoring:reach-out-to-the-first-t:acab628424",
-        "sponsoring:sponsor-followup-platinu:8523d884b4"
+        "sponsoring:reach-out-to-the-first-t:acab628424"
       ]
     },
     {
@@ -421,22 +421,22 @@
         "social-media-communications"
       ],
       "meetings": [
-        5,
         2,
-        3,
-        4
+        4,
+        5,
+        3
       ],
       "tasks": [
+        "social-media-communications:set-up-the-scipy-india-2:232e4142f2",
         "social-media-communications:send-the-reminder-email:34421e9c46",
-        "social-media-communications:publish-the-cfp-announce:14b1ae25cd",
-        "social-media-communications:set-up-the-scipy-india-2:232e4142f2"
+        "social-media-communications:publish-the-cfp-announce:14b1ae25cd"
       ]
     },
     {
       "name": "Tanmay Bhatt",
       "workgroups": [
-        "av-tech-support",
-        "website"
+        "website",
+        "av-tech-support"
       ],
       "meetings": [],
       "tasks": [
@@ -885,16 +885,16 @@
       ]
     },
     {
-      "id": "program-committee:send-the-reminder-email:a47f0670fd",
+      "id": "social-media-communications:send-the-reminder-email:34421e9c46",
       "description": "Send the reminder email",
       "status": "open",
       "due": "13 Mar",
       "first_seen": "2026-03-06",
       "last_seen": "2026-03-06",
       "meeting_count": 1,
-      "workgroup": "program-committee",
+      "workgroup": "social-media-communications",
       "owners": [
-        "Devika Nair"
+        "Sanjana Iyer"
       ],
       "created_in": 5,
       "history": [
@@ -906,16 +906,16 @@
       ]
     },
     {
-      "id": "social-media-communications:send-the-reminder-email:34421e9c46",
+      "id": "program-committee:send-the-reminder-email:a47f0670fd",
       "description": "Send the reminder email",
       "status": "open",
       "due": "13 Mar",
       "first_seen": "2026-03-06",
       "last_seen": "2026-03-06",
       "meeting_count": 1,
-      "workgroup": "social-media-communications",
+      "workgroup": "program-committee",
       "owners": [
-        "Sanjana Iyer"
+        "Devika Nair"
       ],
       "created_in": 5,
       "history": [
@@ -969,7 +969,7 @@
   ],
   "decisions": [
     {
-      "statement": "Applicants are assigned to a workgroup only after a short call with that workgroup's lead.",
+      "statement": "Applicants are assigned to a role only after a short call with that role's lead.",
       "workgroup": "registration-help-desk",
       "meetings": [
         5
@@ -1164,7 +1164,7 @@
       },
       {
         "id": "meeting:5",
-        "label": "2026-03-06 Registration & Help Desk and reviews",
+        "label": "2026-03-06 Volunteers and reviews",
         "kind": "meeting"
       },
       {
@@ -1174,7 +1174,7 @@
       },
       {
         "id": "meeting:3",
-        "label": "2026-02-06 Sponsoring and site",
+        "label": "2026-02-06 Sponsorship and site",
         "kind": "meeting"
       },
       {
@@ -1328,12 +1328,12 @@
         "kind": "task"
       },
       {
-        "id": "task:program-committee:send-the-reminder-email:a47f0670fd",
+        "id": "task:social-media-communications:send-the-reminder-email:34421e9c46",
         "label": "Send the reminder email",
         "kind": "task"
       },
       {
-        "id": "task:social-media-communications:send-the-reminder-email:34421e9c46",
+        "id": "task:program-committee:send-the-reminder-email:a47f0670fd",
         "label": "Send the reminder email",
         "kind": "task"
       },
@@ -1348,8 +1348,8 @@
         "kind": "task"
       },
       {
-        "id": "decision:Applicants are assigned to a workgroup only after a short call with that workgroup's lead.",
-        "label": "Applicants are assigned to a workgroup only after a short call with that workgroup's lead.",
+        "id": "decision:Applicants are assigned to a role only after a short call with that role's lead.",
+        "label": "Applicants are assigned to a role only after a short call with that role's lead.",
         "kind": "decision"
       },
       {
@@ -1416,27 +1416,12 @@
     "edges": [
       {
         "source": "meeting:5",
-        "target": "workgroup:program-committee",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:5",
-        "target": "workgroup:sponsoring",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:5",
-        "target": "workgroup:website",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:5",
         "target": "workgroup:design",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:5",
-        "target": "workgroup:social-media-communications",
+        "target": "workgroup:website",
         "kind": "DISCUSSED"
       },
       {
@@ -1445,8 +1430,28 @@
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:4",
+        "source": "meeting:5",
+        "target": "workgroup:social-media-communications",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:5",
+        "target": "workgroup:sponsoring",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:5",
         "target": "workgroup:program-committee",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:4",
+        "target": "workgroup:social-media-communications",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:4",
+        "target": "workgroup:code-of-conduct",
         "kind": "DISCUSSED"
       },
       {
@@ -1456,22 +1461,27 @@
       },
       {
         "source": "meeting:4",
-        "target": "workgroup:social-media-communications",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:4",
-        "target": "workgroup:code-of-conduct",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:4",
         "target": "workgroup:website",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:4",
         "target": "workgroup:sponsoring",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:4",
+        "target": "workgroup:program-committee",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
+        "target": "workgroup:website",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
+        "target": "workgroup:social-media-communications",
         "kind": "DISCUSSED"
       },
       {
@@ -1486,17 +1496,7 @@
       },
       {
         "source": "meeting:3",
-        "target": "workgroup:social-media-communications",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:3",
         "target": "workgroup:sponsoring",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:3",
-        "target": "workgroup:website",
         "kind": "DISCUSSED"
       },
       {
@@ -1506,12 +1506,7 @@
       },
       {
         "source": "meeting:2",
-        "target": "workgroup:website",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:2",
-        "target": "workgroup:sponsoring",
+        "target": "workgroup:program-committee",
         "kind": "DISCUSSED"
       },
       {
@@ -1521,7 +1516,12 @@
       },
       {
         "source": "meeting:2",
-        "target": "workgroup:program-committee",
+        "target": "workgroup:website",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:2",
+        "target": "workgroup:sponsoring",
         "kind": "DISCUSSED"
       },
       {
@@ -1536,23 +1536,33 @@
       },
       {
         "source": "meeting:1",
-        "target": "workgroup:sponsoring",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:1",
         "target": "workgroup:website",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:1",
         "target": "workgroup:program-committee",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:1",
+        "target": "workgroup:sponsoring",
         "kind": "DISCUSSED"
       },
       {
         "source": "person:Arjun Pillai",
         "target": "workgroup:program-committee",
         "kind": "MEMBER_OF"
+      },
+      {
+        "source": "person:Arjun Pillai",
+        "target": "meeting:2",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Arjun Pillai",
+        "target": "meeting:4",
+        "kind": "ATTENDED"
       },
       {
         "source": "person:Arjun Pillai",
@@ -1565,28 +1575,18 @@
         "kind": "ATTENDED"
       },
       {
-        "source": "person:Arjun Pillai",
-        "target": "meeting:4",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Arjun Pillai",
-        "target": "meeting:2",
-        "kind": "ATTENDED"
-      },
-      {
         "source": "person:Devika Nair",
         "target": "workgroup:program-committee",
         "kind": "MEMBER_OF"
       },
       {
         "source": "person:Devika Nair",
-        "target": "meeting:4",
+        "target": "meeting:2",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Devika Nair",
-        "target": "meeting:2",
+        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
@@ -1606,7 +1606,7 @@
       },
       {
         "source": "person:Farida Qureshi",
-        "target": "meeting:2",
+        "target": "meeting:1",
         "kind": "ATTENDED"
       },
       {
@@ -1616,13 +1616,8 @@
       },
       {
         "source": "person:Farida Qureshi",
-        "target": "meeting:1",
+        "target": "meeting:2",
         "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Kabir Anand",
-        "target": "workgroup:website",
-        "kind": "MEMBER_OF"
       },
       {
         "source": "person:Kabir Anand",
@@ -1631,7 +1626,27 @@
       },
       {
         "source": "person:Kabir Anand",
+        "target": "workgroup:website",
+        "kind": "MEMBER_OF"
+      },
+      {
+        "source": "person:Kabir Anand",
         "target": "meeting:5",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Meera Raghavan",
+        "target": "meeting:1",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Meera Raghavan",
+        "target": "meeting:5",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Meera Raghavan",
+        "target": "meeting:3",
         "kind": "ATTENDED"
       },
       {
@@ -1645,28 +1660,13 @@
         "kind": "ATTENDED"
       },
       {
-        "source": "person:Meera Raghavan",
-        "target": "meeting:1",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Meera Raghavan",
-        "target": "meeting:5",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Meera Raghavan",
-        "target": "meeting:3",
-        "kind": "ATTENDED"
-      },
-      {
         "source": "person:Nikhil Bose",
         "target": "workgroup:logistics",
         "kind": "MEMBER_OF"
       },
       {
         "source": "person:Nikhil Bose",
-        "target": "meeting:2",
+        "target": "meeting:3",
         "kind": "ATTENDED"
       },
       {
@@ -1676,7 +1676,7 @@
       },
       {
         "source": "person:Nikhil Bose",
-        "target": "meeting:3",
+        "target": "meeting:2",
         "kind": "ATTENDED"
       },
       {
@@ -1691,12 +1691,12 @@
       },
       {
         "source": "person:Priya Vasudevan",
-        "target": "meeting:5",
+        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Priya Vasudevan",
-        "target": "meeting:4",
+        "target": "meeting:5",
         "kind": "ATTENDED"
       },
       {
@@ -1706,7 +1706,7 @@
       },
       {
         "source": "person:Rehan Mathew",
-        "target": "meeting:3",
+        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
@@ -1716,7 +1716,7 @@
       },
       {
         "source": "person:Rehan Mathew",
-        "target": "meeting:4",
+        "target": "meeting:3",
         "kind": "ATTENDED"
       },
       {
@@ -1726,12 +1726,17 @@
       },
       {
         "source": "person:Sanjana Iyer",
-        "target": "meeting:5",
+        "target": "meeting:2",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Sanjana Iyer",
-        "target": "meeting:2",
+        "target": "meeting:4",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Sanjana Iyer",
+        "target": "meeting:5",
         "kind": "ATTENDED"
       },
       {
@@ -1740,18 +1745,13 @@
         "kind": "ATTENDED"
       },
       {
-        "source": "person:Sanjana Iyer",
-        "target": "meeting:4",
-        "kind": "ATTENDED"
+        "source": "person:Tanmay Bhatt",
+        "target": "workgroup:website",
+        "kind": "MEMBER_OF"
       },
       {
         "source": "person:Tanmay Bhatt",
         "target": "workgroup:av-tech-support",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Tanmay Bhatt",
-        "target": "workgroup:website",
         "kind": "MEMBER_OF"
       },
       {
@@ -2080,21 +2080,6 @@
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "task:program-committee:send-the-reminder-email:a47f0670fd",
-        "target": "workgroup:program-committee",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "task:program-committee:send-the-reminder-email:a47f0670fd",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:5",
-        "target": "task:program-committee:send-the-reminder-email:a47f0670fd",
-        "kind": "CREATED_ACTION"
-      },
-      {
         "source": "task:social-media-communications:send-the-reminder-email:34421e9c46",
         "target": "workgroup:social-media-communications",
         "kind": "BELONGS_TO"
@@ -2107,6 +2092,21 @@
       {
         "source": "meeting:5",
         "target": "task:social-media-communications:send-the-reminder-email:34421e9c46",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "task:program-committee:send-the-reminder-email:a47f0670fd",
+        "target": "workgroup:program-committee",
+        "kind": "BELONGS_TO"
+      },
+      {
+        "source": "person:Devika Nair",
+        "target": "task:program-committee:send-the-reminder-email:a47f0670fd",
+        "kind": "ASSIGNED_TO"
+      },
+      {
+        "source": "meeting:5",
+        "target": "task:program-committee:send-the-reminder-email:a47f0670fd",
         "kind": "CREATED_ACTION"
       },
       {
@@ -2135,13 +2135,13 @@
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "decision:Applicants are assigned to a workgroup only after a short call with that workgroup's lead.",
+        "source": "decision:Applicants are assigned to a role only after a short call with that role's lead.",
         "target": "workgroup:registration-help-desk",
         "kind": "CONCERNS"
       },
       {
         "source": "meeting:5",
-        "target": "decision:Applicants are assigned to a workgroup only after a short call with that workgroup's lead.",
+        "target": "decision:Applicants are assigned to a role only after a short call with that role's lead.",
         "kind": "DECIDED"
       },
       {
