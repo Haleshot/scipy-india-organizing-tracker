@@ -1,12 +1,13 @@
 # SciPy India meeting-notes knowledge graph
 
-Meeting notes are a graph pretending to be a document. Every dated section
-records who ran the meeting, who turned up, what got decided, what has to happen
-next and who owns it. Kept as prose in a Google Doc, you can full-text search it
-and not much else. Six weeks in, nobody can tell you what is still open.
+This turns the SciPy India organizing notes into a small Neo4j graph. The
+meetings stay where they are, in one Google Doc that people write during a call,
+and the graph keeps track of the decisions, the action items and who owns them,
+the workgroups, and the volunteers attached to each. That makes questions like
+"what is still open?" or "what did we decide about the venue?" answerable
+without rereading months of notes.
 
-This reads that document and builds a graph out of it, then hands the graph to
-two readers that never talk to each other:
+The graph has two readers, and they never talk to each other:
 
 ```
 meeting notes → CocoIndex → Neo4j ─┬─→ read-only MCP server → your local agent
@@ -187,178 +188,47 @@ a few seconds, so throwing the container away costs nothing.
 
 ## The graph
 
-Six node labels and ten relationship types, plus a singleton that records how
-the graph was built.
+Six node labels and ten relationship types: `Meeting`, `Person`, `Task`,
+`Workgroup`, `Decision` and `VolunteerApplication`, plus a singleton recording
+how the graph was built. Workgroups come from
+[config/workgroups.yaml](config/workgroups.yaml) and nowhere else, which is also
+where the aliases live that let "Design", "design & branding" and "Creatives"
+land on one workgroup.
 
-```mermaid
-graph LR
-    P[Person] -->|ATTENDED| M[Meeting]
-    M -->|DECIDED| D[Decision]
-    D -->|CONCERNS| W[Workgroup]
-    M -->|CREATED_ACTION| T[Task]
-    M -->|TOUCHED_ACTION| T
-    P -->|ASSIGNED_TO| T
-    T -->|BELONGS_TO| W
-    M -->|DISCUSSED| W
-    P -->|MEMBER_OF| W
-    P -->|INTERESTED_IN| W
-    P -->|SUBMITTED| A[VolunteerApplication]
-```
+Two departures from the upstream CocoIndex example are worth knowing about.
+`DECIDED` points at a decision rather than a task, and an action item gets
+`CREATED_ACTION` for the meeting that first recorded it plus `TOUCHED_ACTION`
+for every meeting that mentioned it, carrying the status it held at the time.
+And a task is keyed by a scoped id rather than its description, so two
+workgroups can both write "Send the reminder email" without becoming one task
+with two owners.
 
-| Node | Key | Properties |
-| --- | --- | --- |
-| `Meeting` | `id` | `note_file`, `date`, `title`, `summary`, `topics`, `section_index`, `source_ref`, `extraction_mode` |
-| `Person` | `name` | canonical name after entity resolution |
-| `Task` | `id` | `description`, `status`, `due`, `note_file`, `identity_basis`, `first_seen`, `last_seen`, `meeting_count`, `extraction_mode` |
-| `Workgroup` | `slug` | `name`, `description` |
-| `Decision` | `statement` | `note_file`, `first_seen`, `extraction_mode` |
-| `VolunteerApplication` | `application_id` | `display_name`, `status`, `availability`, `interests`, `skills`, `submitted_on`, and the private `contact_email`, `contact_phone`, `raw_response` |
-| `GraphBuild` | `id` | `built_at`, `pipeline_version`, `notes_source`, `volunteer_source`, `extraction_mode`, `person_resolution` |
-
-Workgroups come from [config/workgroups.yaml](config/workgroups.yaml) and
-nowhere else. That file also holds the aliases that let "Design", "design &
-branding" and "Creatives" all land on one workgroup. A name that matches nothing
-is dropped rather than invented, so an unregistered work area shows up as a gap
-instead of a wrong edge.
-
-### Decisions and action items are different things
-
-The upstream example has no `Decision` node, so it spends `DECIDED` on the
-meeting-to-task edge: there, a task *is* the thing that got decided. Once
-decisions became their own nodes here that name stopped being true, so `DECIDED`
-now points at the decision and action items get two edges of their own.
-`CREATED_ACTION` marks the one meeting that first recorded an item.
-`TOUCHED_ACTION` marks every meeting that mentioned it, carrying the status it
-held at that point.
-
-"Which meeting created this" and "how many meetings has this dragged through"
-are now separate questions with separate answers, and the whole `open → blocked
-→ in_progress` history lives in the graph rather than only in the prose. If you
-know the upstream example, read `CREATED_ACTION` where you expect `DECIDED`.
-
-### Task identity
-
-Upstream keys a task by its description, and this project leaned on that: an
-item repeated in a later meeting is the same item, which is how status moves
-along. That recurrence is worth keeping. Description-only identity is not. Two
-workgroups will eventually both write "Send the reminder email", and a
-description-keyed graph merges them into one task with one status and two
-unrelated owners without anything looking broken.
-
-[src/scipy_india_kg/task_identity.py](src/scipy_india_kg/task_identity.py)
-resolves a scoped key instead: an explicit `ID:` from the notes if there is one,
-otherwise the workgroup plus the normalised description, otherwise the
-description alone. Every key is also scoped to the source document so last
-year's notes and this year's never merge. Normalisation folds case, whitespace
-and trailing punctuation and nothing cleverer, because near-duplicate wording
-staying two tasks is the safe direction to be wrong in. Which rule fired is
-stored on the node as `identity_basis`.
-
-### Provenance
-
-Before trusting anything an LLM extracted you want to be able to ask why the
-graph believes it, so every derived fact carries its source. `Meeting.source_ref`
-points at `<note file>#section-<n>`. Meetings, tasks and decisions all record
-which extractor produced them. `TOUCHED_ACTION` edges give a task's whole
-appearance history with the status at each point, `ASSIGNED_TO.first_meeting_id`
-credits the meeting that first named an owner, and `MEMBER_OF.source`
-distinguishes a membership the team recorded in a meeting from one inferred from
-a form field.
-
-`./scripts/query get-task-history "Port the 2025 site"` prints all of it. Raw
-source text is deliberately not copied into the graph, and none of this
-provenance reaches the public snapshot beyond the build-mode names in the
-dashboard footer.
+[docs/graph-model.md](docs/graph-model.md) has the full schema, the identity
+rules and the provenance fields.
 
 ## Asking the graph questions
 
-`./scripts/query` is the CLI and `src/scipy_india_kg/mcp/` is the MCP server.
-Both call the same `OrganizerGraph`, which is the only thing in the project that
-holds retrieval Cypher, so a tool and its CLI twin cannot answer differently.
+`./scripts/query` is a CLI over the graph, and `src/scipy_india_kg/mcp/` is a
+read-only MCP server offering the same eleven tools, so a local agent can answer
+"what is still open in Website & Tech" from the graph rather than by grepping
+the notes file.
 
 ```bash
-./scripts/query describe-graph
 ./scripts/query list-unassigned-tasks
 ./scripts/query get-workgroup-context "Website & Tech"
-./scripts/query search "code of conduct" --json
+python scripts/print_mcp_config.py --write   # then restart Claude Code here
 ```
 
-The eleven tools, which are also the eleven CLI subcommands:
-
-| Tool | Arguments | Answers |
-| --- | --- | --- |
-| `describe_graph` | | what this data is, where it came from, what search is available |
-| `list_recent_meetings` | `limit=5` | the last few meetings |
-| `get_meeting_context` | `meeting_id=None`, `date=None` | one meeting: attendees, decisions, action items with status transitions |
-| `list_open_tasks` | `workgroup=None`, `owner=None`, `limit=50` | what is still open |
-| `list_unassigned_tasks` | `workgroup=None`, `limit=50` | open work with no owner |
-| `get_task_history` | `task`, `limit=3` | origin, source reference and status history for one item |
-| `get_person_context` | `name` | one person: workgroups, open work, meetings, volunteer profile |
-| `get_workgroup_context` | `workgroup`, `recent_meetings=3` | where a workgroup stands, in one call |
-| `list_recent_decisions` | `workgroup=None`, `limit=10` | decisions, newest first, with their meetings |
-| `find_interested_unassigned_volunteers` | `workgroup=None` | who asked for a workgroup and is still waiting |
-| `search_organizing_graph` | `query`, `limit=10`, `kinds=None` | open-ended text search |
-
-Everything is read-only, and not merely by convention: queries run under
-`RoutingControl.READ`, so Neo4j rejects a write rather than trusting the caller.
-There is no arbitrary-Cypher tool and no write tool of any kind.
+Both call the same `OrganizerGraph`, which is the only thing in the project
+holding retrieval Cypher, so a tool and its CLI twin cannot answer differently.
+Everything is read-only and Neo4j enforces it: queries run under
+`RoutingControl.READ`, there is no arbitrary-Cypher tool, and
 [tests/test_graph_readonly.py](tests/test_graph_readonly.py) proves it by
-attempting one.
+attempting a write.
 
-### Connecting Claude Code or Claude Desktop
-
-```bash
-python scripts/print_mcp_config.py --write
-```
-
-That writes `.mcp.json` in the project root with your absolute paths filled in;
-restart Claude Code in this directory and it picks it up. For Claude Desktop,
-run the same script without `--write` and merge the `mcpServers` block into
-`claude_desktop_config.json`, which lives in `~/Library/Application
-Support/Claude/` on macOS and `%APPDATA%/Claude/` on Windows.
-
-No credentials go in that file. The server reads `.env` from the project
-directory it is launched in, which is where it already lives. `PYTHONPATH` is
-set explicitly rather than relying on `pip install -e .`, because a `.pth` file
-is a fragile thing to make a background process depend on.
-
-Then you can ask things like "what open action items still have no owner", "what
-did we decide about the website in the last three meetings", or "give me the
-current context for Website & Tech". The last one is a single
-`get_workgroup_context` call. "What changed between the two most recent
-meetings" works because `get_meeting_context` returns each item with the status
-it held at that meeting and at the previous meeting that touched it, so the diff
-is a comparison rather than a replay.
-
-### Search
-
-```bash
-python scripts/build_search_indexes.py               # full text, no models
-python scripts/build_search_indexes.py --embeddings  # adds vectors, for hybrid
-python scripts/build_search_indexes.py --status
-```
-
-Full-text costs nothing. `--embeddings` adds a vector index per label using a
-local sentence-transformers model, so it needs a one-time model download and no
-API key. Set `SEARCH_EMBEDDING_MODEL` to that model in `.env` and the server
-upgrades itself to hybrid retrieval; leave it empty and it stays on full text.
-A LiteLLM `provider/model` string works too if you would rather use a hosted
-provider.
-
-The strategy is chosen for the whole search rather than per label, because
-ranking a cosine score for one label against a Lucene score for another produces
-numbers that cannot be compared. `search_organizing_graph` is registered only
-when an index exists that can serve it, so an agent is never handed a tool that
-returns nothing.
-
-Changing the embedding model re-embeds everything, because the model name is
-part of the hash that decides what is current. If the new model produces vectors
-of a different width the builder stops and tells you to add `--recreate`, since
-Neo4j keeps an existing vector index rather than widening it and search would
-otherwise go quiet instead of failing.
-
-Volunteer application text is indexed by neither. Somebody's free-text answer
-about themselves is not something to make semantically searchable by default.
+[docs/mcp-and-cli.md](docs/mcp-and-cli.md) has the tool list with signatures,
+the client configuration, how search picks between full text and hybrid
+retrieval, and which NeoCarta patterns the retrieval layer borrowed.
 
 ## Live mode
 
@@ -557,6 +427,19 @@ same document are in `data/meeting_notes/`. Delete the older one, or set
 
 **Search returns nothing and `describe-graph` says `unavailable`.** No index has
 been built. `python scripts/build_search_indexes.py`.
+
+**Neo4j Browser will not accept the password.** It is `neo4j` / `scipyindia`,
+from `NEO4J_PASSWORD` in `.env`, and the connect URL is `bolt://localhost:7687`.
+The catch is that Neo4j only applies `NEO4J_AUTH` when it initialises an empty
+data volume, so changing `NEO4J_PASSWORD` after the volume exists does nothing.
+To change it for real, `docker compose down -v` and bring it back up. The graph
+rebuilds from the notes in a few seconds.
+
+**The graph disagrees with the notes and a refresh will not fix it.** Deleting
+`cocoindex.db` on its own is not a reset. CocoIndex tracks what it declared, so
+a fresh state file leaves it unable to remove nodes and edges it no longer
+knows about, and you get orphans. Use `./scripts/refresh.sh --reset`, which
+empties Neo4j and the state together before rebuilding.
 
 ## Limitations
 
