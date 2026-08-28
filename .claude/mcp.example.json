@@ -1,0 +1,30 @@
+{
+  "//": [
+    "Copy this to .mcp.json (gitignored) and replace ABSOLUTE_REPO_PATH with the",
+    "full path to this checkout. Nothing here is a secret: the Neo4j password",
+    "comes from your .env, which is not committed.",
+    "",
+    "Claude Code picks up .mcp.json from the project root automatically.",
+    "For Claude Desktop, paste the contents of \"mcpServers\" into",
+    "~/Library/Application Support/Claude/claude_desktop_config.json (macOS) or",
+    "%APPDATA%/Claude/claude_desktop_config.json (Windows).",
+    "",
+    "PYTHONPATH is set explicitly rather than relying on `pip install -e .`, so",
+    "the server starts whether or not the editable install is in effect.",
+    "The server is read-only: it cannot change the graph."
+  ],
+  "mcpServers": {
+    "scipy-india-organizing": {
+      "command": "ABSOLUTE_REPO_PATH/.venv/bin/python",
+      "args": ["-m", "scipy_india_kg.mcp"],
+      "cwd": "ABSOLUTE_REPO_PATH",
+      "env": {
+        "PYTHONPATH": "ABSOLUTE_REPO_PATH/src",
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_USER": "neo4j",
+        "NEO4J_DATABASE": "neo4j",
+        "TOKENIZERS_PARALLELISM": "false"
+      }
+    }
+  }
+}
