@@ -1,0 +1,35 @@
+# Neo4j for local development. `docker compose up -d --wait` blocks until the
+# health check below passes, so the pipeline never races a database that is
+# still booting.
+#
+# There is deliberately no `container_name`. A fixed global name collides with
+# any container that already holds it, including one left behind by an older
+# checkout or a stray `docker run`, and the error tells you to go hunting for a
+# container ID. Letting Compose name the container means `docker compose down`
+# always cleans up the thing `docker compose up` created.
+
+name: scipy-india-kg
+
+services:
+  neo4j:
+    image: neo4j:5.26-community
+    ports:
+      - "7474:7474"   # Neo4j Browser
+      - "7687:7687"   # Bolt
+    environment:
+      # Matches NEO4J_PASSWORD in .env.example. Change both together.
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD:-scipyindia}
+      NEO4J_server_memory_heap_max__size: 1G
+    volumes:
+      - neo4j-data:/data
+    healthcheck:
+      # Bolt is what the pipeline actually connects on, and it comes up after
+      # HTTP does. Checking the HTTP port alone reports healthy too early.
+      test: ["CMD-SHELL", "wget -qO- http://localhost:7474 >/dev/null 2>&1 && cypher-shell -u neo4j -p $${NEO4J_PASSWORD:-scipyindia} 'RETURN 1' >/dev/null 2>&1"]
+      interval: 5s
+      timeout: 10s
+      retries: 24
+      start_period: 10s
+
+volumes:
+  neo4j-data:
