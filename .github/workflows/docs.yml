@@ -1,0 +1,49 @@
+name: Build the docs
+
+# The docs site and the dashboard are separate deployments. This one only
+# proves the Zensical build is clean on every push; publishing it is a decision
+# for later, and doing it here would fight the Pages workflow for the same
+# environment.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "zensical.toml"
+      - ".github/workflows/docs.yml"
+  pull_request:
+    paths:
+      - "docs/**"
+      - "zensical.toml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install zensical
+      - run: zensical build
+      - name: The nav must not point at pages that do not exist
+        run: |
+          python - <<'PY'
+          import pathlib, re, sys, tomllib
+          config = tomllib.loads(pathlib.Path("zensical.toml").read_text())
+          missing = [
+              target
+              for entry in config["project"]["nav"]
+              for target in entry.values()
+              if not (pathlib.Path("docs") / target).is_file()
+          ]
+          if missing:
+              sys.exit(f"nav points at missing pages: {missing}")
+          print(f"{len(config['project']['nav'])} nav entries, all present")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: docs-site
+          path: site/
+          retention-days: 7
