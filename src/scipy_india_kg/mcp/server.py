@@ -10,9 +10,14 @@ Three things are borrowed from NeoCarta and worth naming:
 * **Capability-gated registration.** The database is probed at startup and the
   search tool is registered only when an index exists that can serve it. An
   agent is never handed a tool that cannot work.
-* **Read-only by construction.** Queries run under ``RoutingControl.READ``, so
-  a write is refused by Neo4j rather than by a code review. There is no
-  arbitrary-Cypher tool and no write tool of any kind.
+* **Read-only at the application layer.** Queries run under
+  ``RoutingControl.READ``, so Neo4j refuses a write in these transactions rather
+  than trusting the caller, and there is no arbitrary-Cypher tool and no write
+  tool of any kind. Worth being precise about the limit: this server connects
+  with the same Neo4j account the pipeline writes with, so the *credential* is
+  not read-only. For a stdio server on the organizer's own laptop that is the
+  same trust boundary as the shell it was launched from. Anything that exposes
+  this beyond one machine should give it a read-only Neo4j role first.
 * **A build-metadata probe.** The pipeline writes a ``GraphBuild`` node, and
   ``describe_graph`` reports it, so the agent can tell fixture data from the
   real Drive folder before it answers a question about the conference.

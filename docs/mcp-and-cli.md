@@ -36,6 +36,12 @@ There is no arbitrary-Cypher tool and no write tool of any kind.
 [tests/test_graph_readonly.py](tests/test_graph_readonly.py) proves it by
 attempting one.
 
+Where that guarantee stops: the server connects with the same Neo4j account the
+pipeline writes with, so the credential itself is not read-only. Running over
+stdio on your own laptop, that is the same trust boundary as the terminal you
+started it from. If this ever gets exposed beyond one machine, give it a
+read-only Neo4j role before anything else.
+
 ### Connecting Claude Code or Claude Desktop
 
 ```bash
