@@ -185,7 +185,15 @@ h3 { font-size: 16px; margin: 0 0 2px; font-weight: 600; }
   display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
   margin: 14px 0 6px; padding-bottom: 10px; border-bottom: 1px solid var(--rule);
 }
-.segmented { display: flex; }
+.segmented { display: flex; min-width: 0; }
+/* Narrow screens wrap it rather than pushing the page sideways. Wrapped buttons
+   get their own corners back, since a joined row that breaks looks broken. */
+@media (max-width: 620px) {
+  .segmented { flex-wrap: wrap; gap: 6px; }
+  .segmented button { border-right-width: 1px; border-radius: 3px; }
+}
+.segmented.wrap { flex-wrap: wrap; gap: 6px; }
+.segmented.wrap button { border-right-width: 1px; border-radius: 3px; }
 .segmented button {
   font: inherit; font-size: 13.5px; padding: 3px 11px; cursor: pointer;
   border: 1px solid var(--rule-strong); border-right-width: 0;
@@ -234,10 +242,17 @@ tbody tr:hover { background: var(--paper-sunk); }
 /* ---------- explorer ---------- */
 
 /* The two places a panel is honest: a canvas and the record beside it. */
-.explorer { display: grid; gap: 20px; grid-template-columns: minmax(0, 1.9fr) minmax(250px, 1fr); margin-top: 14px; }
-@media (max-width: 800px) { .explorer { grid-template-columns: 1fr; } }
-#cy { height: 540px; border: 1px solid var(--rule); background: var(--paper-sunk); }
-.legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; }
+.explorer {
+  display: grid; gap: 20px; margin-top: 14px;
+  grid-template-columns: minmax(0, 1.9fr) minmax(250px, 1fr);
+}
+@media (max-width: 800px) { .explorer { grid-template-columns: minmax(0, 1fr); } }
+/* min-width:0 on the grid child, or the canvas refuses to shrink and the page
+   scrolls sideways on a phone. */
+.explorer > * { min-width: 0; }
+#cy { height: 540px; max-width: 100%; border: 1px solid var(--rule); background: var(--paper-sunk); }
+@media (max-width: 620px) { #cy { height: 380px; } }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; }
 .legend span { font-size: 12px; color: var(--ink-faint); display: inline-flex; align-items: center; gap: 6px; }
 .legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 
@@ -251,7 +266,14 @@ tbody tr:hover { background: var(--paper-sunk); }
 }
 .detail ul { list-style: none; margin: 0; padding: 0; font-size: 14px; }
 .detail li { padding: 2px 0; }
-.picker { margin: 10px 0 0; }
+.picker:not(:empty) { margin: 12px 0 0; }
+.picker-label, .detail .picker-label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--ink-faint); margin-bottom: 5px;
+}
+details.display { margin: 2px 0 0; }
+details.display > summary { font-size: 13px; }
+details.display .controls { border-bottom: 0; margin-top: 6px; padding-bottom: 0; gap: 12px; }
 
 .empty { color: var(--ink-faint); font-style: italic; padding: 14px 0; }
 section + section { margin-top: 0; }

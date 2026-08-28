@@ -550,9 +550,10 @@ function viewExplorer(params) {
   if (params.get('focus')) explorerState.focus = params.get('focus');
   const container = el('div', { id: 'cy' });
   const details = el('aside', { class: 'detail' });
+  const picker = el('div', { class: 'picker' });
 
-  // Built once and never replaced, so a toggle does not move the next control
-  // out from under the pointer.
+  // The controls people reach for stay in the bar. The ones they set once live
+  // under Display, so a narrow screen is not a wall of buttons.
   const hopsButton = el('button', {
     type: 'button', title: 'How far from the focused node to draw',
     onclick: () => {
@@ -562,23 +563,14 @@ function viewExplorer(params) {
     },
   }, `${explorerState.hops} hop${explorerState.hops > 1 ? 's' : ''}`);
 
+  const searchField = el('input', {
+    type: 'search', class: 'filter-field', placeholder: 'Find a person or workgroup',
+    value: explorerState.query,
+    oninput: (event) => { explorerState.query = event.target.value; renderPicker(picker, container, details); },
+  });
+
   const controls = el('div', { class: 'controls' },
-    el('input', {
-      type: 'search', class: 'filter-field', placeholder: 'Find a person or workgroup to focus on',
-      value: explorerState.query,
-      oninput: (event) => { explorerState.query = event.target.value; renderPicker(picker, container, details); },
-    }),
-    el('div', { class: 'segmented' },
-      Object.keys(KIND_COLORS).map((kind) =>
-        el('button', {
-          type: 'button', 'aria-pressed': String(explorerState.kinds.has(kind)),
-          onclick: (event) => {
-            const on = explorerState.kinds.has(kind);
-            on ? explorerState.kinds.delete(kind) : explorerState.kinds.add(kind);
-            event.currentTarget.setAttribute('aria-pressed', String(!on));
-            mountCytoscape(container, details);
-          },
-        }, kind))),
+    searchField,
     el('div', { class: 'segmented' },
       el('button', {
         type: 'button',
@@ -586,28 +578,42 @@ function viewExplorer(params) {
           if (cyInstance && !cyInstance.destroyed()) { cyInstance.fit(undefined, 30); cyInstance.center(); }
         },
       }, 'Fit'),
-      hopsButton,
       el('button', {
         type: 'button',
         onclick: () => {
           explorerState.focus = null;
           explorerState.query = '';
-          controls.querySelector('.filter-field').value = '';
+          searchField.value = '';
           picker.replaceChildren();
           mountCytoscape(container, details);
         },
       }, 'Whole graph')));
 
-  const picker = el('div', { class: 'picker' });
+  const display = el('details', { class: 'display' },
+    el('summary', { text: 'Display' }),
+    el('div', { class: 'controls' },
+      el('div', { class: 'segmented' },
+        Object.keys(KIND_COLORS).map((kind) =>
+          el('button', {
+            type: 'button', 'aria-pressed': String(explorerState.kinds.has(kind)),
+            onclick: (event) => {
+              const on = explorerState.kinds.has(kind);
+              on ? explorerState.kinds.delete(kind) : explorerState.kinds.add(kind);
+              event.currentTarget.setAttribute('aria-pressed', String(!on));
+              mountCytoscape(container, details);
+            },
+          }, kind))),
+      el('div', { class: 'segmented' }, hopsButton),
+      el('div', { class: 'legend' }, Object.entries(KIND_COLORS).map(([kind, color]) =>
+        el('span', {}, el('i', { style: `background:${color}` }), kind)))));
 
   const frag = el('div', {},
     el('h1', { text: 'Explorer' }),
-    el('p', { class: 'lede', text: 'Pick a person or workgroup to see what it connects to. The whole graph is available, but the neighbourhood of one thing is usually what you came for. Detail goes in the panel on the right so the drawing can stay readable.' }),
+    el('p', { class: 'lede', text: 'Pick a person or workgroup to see what it connects to. The whole graph is available, but the neighbourhood of one thing is usually what you came for. Detail goes in the panel beside it so the drawing can stay readable.' }),
     controls,
+    display,
     picker,
-    el('div', { class: 'explorer' }, el('div', {}, container,
-      el('div', { class: 'legend' }, Object.entries(KIND_COLORS).map(([kind, color]) =>
-        el('span', {}, el('i', { style: `background:${color}` }), kind)))), details));
+    el('div', { class: 'explorer' }, el('div', {}, container), details));
 
   renderPicker(picker, container, details, { skipMount: true });
   queueMicrotask(() => mountCytoscape(container, details));
@@ -625,12 +631,16 @@ function renderPicker(picker, container, details, { skipMount = false } = {}) {
     .filter((node) => node.label.toLowerCase().includes(query))
     .slice(0, 12);
   picker.replaceChildren(
+    el('div', { class: 'picker-label', text: 'Search results' }),
     matches.length
-      ? el('div', { class: 'segmented' }, matches.slice(0, 6).map((node) =>
+      ? el('div', { class: 'segmented wrap' }, matches.slice(0, 6).map((node) =>
           el('button', {
             type: 'button', 'aria-pressed': String(explorerState.focus === node.id),
-            onclick: () => { explorerState.focus = node.id; mountCytoscape(container, details); },
-          }, truncate(node.label, 34))))
+            onclick: () => {
+              explorerState.focus = node.id;
+              mountCytoscape(container, details);
+            },
+          }, truncate(node.label, 30))))
       : emptyNote('No node matches.'));
 }
 
@@ -672,9 +682,11 @@ function mountCytoscape(container, details) {
 
   const ink = getComputedStyle(document.body).color;
   const paper = getComputedStyle(document.body).backgroundColor;
-  // Labels only on the shapes worth naming at a glance, unless the view is
-  // small enough that everything can be labelled without turning into soup.
-  const labelEverything = nodes.length <= 30;
+  // Meetings, tasks and decisions are coloured dots until you select one. Their
+  // text is long, it overlaps, and the panel beside the graph is a better place
+  // to read it. People and workgroups keep their labels because those are what
+  // you navigate by.
+  const alwaysLabelled = new Set(['person', 'workgroup']);
 
   // Tear the previous instance down first. Without this the old one keeps its
   // handlers and its pending layout callback, which then fires against a
@@ -690,7 +702,7 @@ function mountCytoscape(container, details) {
     style: [
       { selector: 'node', style: {
         'background-color': (n) => KIND_COLORS[n.data('kind')] ?? '#888',
-        label: (n) => (labelEverything || ['workgroup', 'person'].includes(n.data('kind'))
+        label: (n) => (alwaysLabelled.has(n.data('kind')) || n.hasClass('named')
           ? truncate(n.data('label'), 26) : ''),
         'font-size': 9, color: ink,
         'text-valign': 'bottom', 'text-margin-y': 4, 'text-wrap': 'wrap', 'text-max-width': '90px',
@@ -700,6 +712,7 @@ function mountCytoscape(container, details) {
       { selector: 'node[kind="workgroup"]', style: { width: 26, height: 26, 'font-size': 10, 'font-weight': 600, 'text-max-width': '120px', 'z-index': 10 } },
       { selector: 'node[kind="person"]', style: { width: 18, height: 18, 'z-index': 9 } },
       { selector: 'node.focus', style: { 'border-width': 4, 'border-color': '#f59e0b', 'z-index': 20 } },
+      { selector: 'node.named', style: { 'z-index': 30 } },
       { selector: 'edge', style: {
         width: 1, 'line-color': '#9aa2ad', 'target-arrow-color': '#9aa2ad',
         'target-arrow-shape': 'triangle', 'curve-style': 'bezier', 'arrow-scale': 0.6, opacity: 0.4,
@@ -735,17 +748,28 @@ function mountCytoscape(container, details) {
     }).run();
   });
 
-  cy.on('tap', 'node', (event) => selectNode(cy, event.target, details, container));
+  // Name a node while it is selected or hovered, and only then.
+  cy.on('tap', 'node', (event) => {
+    cy.nodes().removeClass('named');
+    event.target.addClass('named');
+    selectNode(cy, event.target, details, container);
+  });
+  cy.on('mouseover', 'node', (event) => event.target.addClass('named'));
+  cy.on('mouseout', 'node', (event) => {
+    if (!event.target.hasClass('highlight') && !event.target.hasClass('focus')) {
+      event.target.removeClass('named');
+    }
+  });
   cy.on('tap', (event) => {
     if (event.target === cy) {
-      cy.elements().removeClass('faded').removeClass('highlight');
+      cy.elements().removeClass('faded').removeClass('highlight').removeClass('named');
       showPanelPlaceholder(details);
     }
   });
 
   if (explorerState.focus && cy.$id(explorerState.focus).length) {
     const node = cy.$id(explorerState.focus);
-    node.addClass('focus');
+    node.addClass('focus').addClass('named');
     selectNode(cy, node, details, container, { dim: false });
   } else {
     showPanelPlaceholder(details);
@@ -787,6 +811,7 @@ function nodeDetails(node, cy, details, container) {
   const [kind, ...rest] = node.id().split(':');
   const key = rest.join(':');
   const panel = el('div', {},
+    el('div', { class: 'picker-label', text: 'Selected' }),
     el('h3', { text: node.data('label') }),
     el('div', { class: 'kind', text: kind }),
     el('div', { class: 'controls' }, el('div', { class: 'segmented' },
