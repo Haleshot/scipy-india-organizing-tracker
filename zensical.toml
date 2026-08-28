@@ -1,0 +1,98 @@
+# Zensical builds docs/ into a static site. The dashboard under web/public is a
+# separate thing with its own deployment; these two do not share assets.
+#
+#   zensical serve    preview at http://localhost:8000
+#   zensical build    writes site/
+
+[project]
+site_name = "SciPy India organizing graph"
+site_description = "Turning the SciPy India meeting notes into a graph the organizing team can query."
+site_url = "https://scipy-india.github.io/meeting-notes-graph/"
+site_author = "SciPy India organizers"
+copyright = "SciPy India"
+
+repo_url = "https://github.com/scipy-india/meeting-notes-graph"
+repo_name = "scipy-india/meeting-notes-graph"
+edit_uri = "edit/main/docs/"
+
+nav = [
+  { "Home" = "index.md" },
+  { "Get started" = "get-started.md" },
+  { "Weekly workflow" = "workflow.md" },
+  { "Writing meeting notes" = "meeting-notes-template.md" },
+  { "Volunteer roles" = "volunteer-roles.md" },
+  { "The graph model" = "graph-model.md" },
+  { "Querying it: MCP and CLI" = "mcp-and-cli.md" },
+  { "Privacy boundary" = "privacy.md" },
+  { "Deploying" = "deploying.md" },
+  { "Troubleshooting" = "troubleshooting.md" },
+]
+
+extra_css = ["assets/scipy.css"]
+
+[project.theme]
+language = "en"
+logo = "assets/scipy-india-logo.svg"
+favicon = "assets/scipy-india-logo.svg"
+features = [
+  "content.code.copy",
+  "navigation.instant",
+  "navigation.instant.prefetch",
+  "navigation.sections",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+  "toc.follow",
+]
+
+# One accent, taken from the SciPy logo, in both schemes. No second colour and
+# no gradient: this is documentation, and the link colour is the only thing that
+# needs to stand out.
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+[project.theme.font]
+text = "Inter"
+code = "JetBrains Mono"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/scipy-india"
+
+[[project.extra.social]]
+icon = "fontawesome/solid/globe"
+link = "https://scipy.in/2026"
+
+[project.markdown_extensions]
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+md_in_html = {}
+tables = {}
+toc.permalink = true
+pymdownx.details = {}
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.keys = {}
+pymdownx.magiclink = {}
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+pymdownx.tabbed.alternate_style = true
+pymdownx.tasklist.custom_checkbox = true

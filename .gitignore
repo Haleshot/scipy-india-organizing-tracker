@@ -11,6 +11,9 @@ credentials*.json
 *.db
 cocoindex.db*
 
+# Zensical build output. `zensical build` regenerates it from docs/.
+site/
+
 # Python
 .venv/
 __pycache__/

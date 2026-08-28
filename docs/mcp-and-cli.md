@@ -33,7 +33,7 @@ The eleven tools, which are also the eleven CLI subcommands:
 Everything is read-only, and not merely by convention: queries run under
 `RoutingControl.READ`, so Neo4j rejects a write rather than trusting the caller.
 There is no arbitrary-Cypher tool and no write tool of any kind.
-[tests/test_graph_readonly.py](tests/test_graph_readonly.py) proves it by
+[tests/test_graph_readonly.py](../tests/test_graph_readonly.py) proves it by
 attempting one.
 
 Where that guarantee stops: the server connects with the same Neo4j account the

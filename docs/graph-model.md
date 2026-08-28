@@ -31,7 +31,7 @@ graph LR
 | `VolunteerApplication` | `application_id` | `display_name`, `status`, `availability`, `interests`, `skills`, `submitted_on`, and the private `contact_email`, `contact_phone`, `raw_response` |
 | `GraphBuild` | `id` | `built_at`, `pipeline_version`, `notes_source`, `volunteer_source`, `extraction_mode`, `person_resolution` |
 
-Workgroups come from [config/workgroups.yaml](config/workgroups.yaml) and
+Workgroups come from [config/workgroups.yaml](../config/workgroups.yaml) and
 nowhere else. That file also holds the aliases that let "Design", "design &
 branding" and "Creatives" all land on one workgroup. A name that matches nothing
 is dropped rather than invented, so an unregistered work area shows up as a gap
@@ -61,7 +61,7 @@ workgroups will eventually both write "Send the reminder email", and a
 description-keyed graph merges them into one task with one status and two
 unrelated owners without anything looking broken.
 
-[src/scipy_india_kg/task_identity.py](src/scipy_india_kg/task_identity.py)
+[src/scipy_india_kg/task_identity.py](../src/scipy_india_kg/task_identity.py)
 resolves a scoped key instead: an explicit `ID:` from the notes if there is one,
 otherwise the workgroup plus the normalised description, otherwise the
 description alone. Every key is also scoped to the source document so last

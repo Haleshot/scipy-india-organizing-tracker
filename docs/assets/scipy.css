@@ -1,0 +1,24 @@
+/* The one accent, #0054a6, lifted from the SciPy logo. Nothing else is tinted.
+   No gradients, no second hue, no glow. */
+:root {
+  --md-primary-fg-color: #0054a6;
+  --md-primary-fg-color--light: #1e6cbd;
+  --md-primary-fg-color--dark: #003f7d;
+  --md-accent-fg-color: #0054a6;
+  --md-typeset-a-color: #0054a6;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #4d9ae8;
+  --md-accent-fg-color: #4d9ae8;
+  --md-typeset-a-color: #7fb0f0;
+  --md-default-bg-color: #14181e;   /* matches scipy.in/2026 */
+}
+
+/* The logo is a square mark on a light ground, so give it room rather than
+   letting the header crop it. */
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg { height: 1.6rem; width: auto; }
+
+/* Tables carry most of the reference material here. Align the numbers. */
+.md-typeset table:not([class]) td:nth-child(n+2):not(:has(a)) { font-variant-numeric: tabular-nums; }
