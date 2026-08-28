@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# The organizer query CLI, without depending on the editable install.
+#
+#   ./scripts/query list-unassigned-tasks
+#   ./scripts/query get-workgroup-context "Website & Tech"
+#   ./scripts/query search "code of conduct" --json
+#
+# Identical to `python -m scipy_india_kg.query`; it just sets PYTHONPATH first.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+REPO="$PWD"
+PY="$REPO/.venv/bin/python"
+[ -x "$PY" ] || PY="$(command -v python3)"
+export PYTHONPATH="$REPO/src${PYTHONPATH:+:$PYTHONPATH}"
+export TOKENIZERS_PARALLELISM="${TOKENIZERS_PARALLELISM:-false}"
+exec "$PY" -m scipy_india_kg.query "$@"
