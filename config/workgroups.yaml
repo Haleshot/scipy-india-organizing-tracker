@@ -1,0 +1,63 @@
+# SciPy India workgroups.
+#
+# This file is the registry. Nothing in the code hardcodes a workgroup —
+# add, rename or remove entries here and re-run the pipeline.
+#
+#   slug        stable id, used as the Neo4j primary key. Don't change it
+#               casually; changing it creates a new node.
+#   name        display name, shown in the dashboard.
+#   description one line, shown in the dashboard.
+#   aliases     other spellings that appear in meeting notes or volunteer
+#               form responses. Matching is case- and punctuation-insensitive,
+#               so you only need genuinely different wording here.
+
+workgroups:
+  - slug: program
+    name: Program & CFP
+    description: Call for proposals, review, schedule, speaker communication.
+    aliases: [cfp, program committee, talks, schedule, reviews]
+
+  - slug: sponsorship
+    name: Sponsorship
+    description: Sponsor prospectus, outreach, invoicing, sponsor deliverables.
+    aliases: [sponsors, sponsor outreach, partnerships]
+
+  - slug: venue-logistics
+    name: Venue & Logistics
+    description: Venue, seating, food, travel, accommodation, on-ground operations.
+    aliases: [venue, logistics, ops, on-ground, food, hospitality]
+
+  - slug: design-branding
+    name: Design & Branding
+    description: Logo, badges, signage, merchandise, slide templates, print.
+    aliases: [design, branding, creatives, print]
+
+  - slug: communications
+    name: Communications
+    description: Social media, newsletters, blog, press, community partners.
+    aliases: [comms, social media, marketing, outreach, publicity]
+
+  - slug: website-tech
+    name: Website & Tech
+    description: Conference website, ticketing integration, AV, streaming, recordings.
+    aliases: [website, web, tech, infra, av, streaming]
+
+  - slug: community-partners
+    name: Community Partners
+    description: Partner meetups and user groups, their booth slots and shoutouts.
+    aliases: [community partner, partner meetups, user groups]
+
+  - slug: volunteers
+    name: Volunteers
+    description: Volunteer recruitment, onboarding, rosters, day-of coordination.
+    aliases: [volunteer coordination, volunteering, on-ground volunteers]
+
+  - slug: finance
+    name: Finance
+    description: Budget, ticketing revenue, reimbursements, vendor payments.
+    aliases: [budget, accounts, payments, treasury]
+
+  - slug: coc-inclusion
+    name: Code of Conduct & Inclusion
+    description: Code of conduct, incident response, accessibility, diversity grants.
+    aliases: [coc, code of conduct, inclusion, diversity, accessibility]
