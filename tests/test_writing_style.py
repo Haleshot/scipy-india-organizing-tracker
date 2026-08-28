@@ -32,10 +32,37 @@ ALLOWED = (
 PROSE_SUFFIXES = (".md", ".py", ".js", ".css", ".html", ".yaml", ".yml", ".sh", ".cypher", ".txt")
 
 
+SKIP_DIRS = {
+    ".git",
+    ".venv",
+    "venv",
+    "node_modules",
+    "__pycache__",
+    ".pytest_cache",
+    ".ruff_cache",
+    "cocoindex.db",
+    "private",
+    "vendor",
+}
+# Mirrors .gitignore. Review artefacts other tools drop in are not ours to lint.
+SKIP_GLOBS = ("*_AUDIT.md", "*_SCREENSHOTS/*")
+
+
 def tracked_files() -> list[Path]:
-    listing = subprocess.run(
-        ["git", "ls-files"], cwd=REPO_ROOT, capture_output=True, text=True, check=True
-    )
+    """Prefer git, fall back to walking. A source tarball or a copied tree is
+    not a git checkout, and this check should still run there."""
+    try:
+        listing = subprocess.run(
+            ["git", "ls-files"], cwd=REPO_ROOT, capture_output=True, text=True, check=True
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return [
+            path
+            for path in REPO_ROOT.rglob("*")
+            if path.is_file()
+            and not SKIP_DIRS & set(path.relative_to(REPO_ROOT).parts)
+            and not any(path.match(pattern) for pattern in SKIP_GLOBS)
+        ]
     return [REPO_ROOT / name for name in listing.stdout.split()]
 
 
@@ -72,18 +99,41 @@ def test_markdown_headings_are_sentence_case():
     """Title Case In Headings is a house-style tell. Proper nouns and code are
     exempt, so the check is for two or more capitalised ordinary words."""
     known = {
-        "SciPy", "India", "CocoIndex", "Neo4j", "Google", "Docs", "Doc", "Drive",
-        "Claude", "Code", "Desktop", "GitHub", "Pages", "Cypher", "MCP", "CLI",
-        "LLM", "Markdown", "NeoCarta", "Actions", "Python", "Docker", "Compose",
-        "ID", "IDs", "JSON", "YAML", "API", "The", "A", "An",
+        "SciPy",
+        "India",
+        "CocoIndex",
+        "Neo4j",
+        "Google",
+        "Docs",
+        "Doc",
+        "Drive",
+        "Claude",
+        "Code",
+        "Desktop",
+        "GitHub",
+        "Pages",
+        "Cypher",
+        "MCP",
+        "CLI",
+        "LLM",
+        "Markdown",
+        "NeoCarta",
+        "Actions",
+        "Python",
+        "Docker",
+        "Compose",
+        "ID",
+        "IDs",
+        "JSON",
+        "YAML",
+        "API",
+        "The",
+        "A",
+        "An",
     }
     # Workgroup names are proper nouns in this project, and they turn up in
     # meeting titles.
-    known |= {
-        word
-        for name in _workgroup_names()
-        for word in name.replace("&", " ").split()
-    }
+    known |= {word for name in _workgroup_names() for word in name.replace("&", " ").split()}
     offenders = []
     for path in prose_files():
         if path.suffix != ".md":

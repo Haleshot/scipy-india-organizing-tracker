@@ -231,6 +231,7 @@ def _ends_item(line: str) -> bool:
     # A single initial, as in "reviewed by A." or a wrapped "J. Smith".
     return not re.fullmatch(r"[a-z]\.", word)
 
+
 _HEADING_MARKUP_RE = re.compile(r"^\s*(?:#{1,3}\s*)?\*{0,2}\s*")
 _HEADING_LABEL_RE = re.compile(r"^(?:meetings?|date)\s*:\s*", re.IGNORECASE)
 
