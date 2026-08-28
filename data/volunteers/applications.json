@@ -13,13 +13,26 @@
     {
       "application_id": "APP-2026-001",
       "name": "Priya Vasudevan",
-      "preferred_workgroups": ["volunteers", "coc-inclusion"],
-      "interests": ["community building", "first-time speaker support"],
-      "skills": ["facilitation", "policy writing", "conflict resolution"],
+      "preferred_workgroups": [
+        "registration-help-desk",
+        "code-of-conduct"
+      ],
+      "interests": [
+        "community building",
+        "first-time speaker support"
+      ],
+      "skills": [
+        "facilitation",
+        "policy writing",
+        "conflict resolution"
+      ],
       "availability": "weekday evenings, all conference days",
       "status": "assigned",
       "submitted_on": "2026-02-14",
-      "assigned_workgroups": ["volunteers", "coc-inclusion"],
+      "assigned_workgroups": [
+        "registration-help-desk",
+        "code-of-conduct"
+      ],
       "contact_email": "priya.vasudevan@example.invalid",
       "contact_phone": "+91-00000-00001",
       "raw_response": "Have run the volunteer desk at two regional meetups. Happy to take on CoC training."
@@ -27,13 +40,27 @@
     {
       "application_id": "APP-2026-002",
       "name": "Kabir Anand",
-      "preferred_workgroups": ["design-branding", "website-tech"],
-      "interests": ["visual design", "static site generators"],
-      "skills": ["Figma", "Inkscape", "HTML/CSS", "Astro"],
+      "preferred_workgroups": [
+        "design",
+        "website"
+      ],
+      "interests": [
+        "visual design",
+        "static site generators"
+      ],
+      "skills": [
+        "Figma",
+        "Inkscape",
+        "HTML/CSS",
+        "Astro"
+      ],
       "availability": "weekends until November, full-time during conference week",
       "status": "assigned",
       "submitted_on": "2026-02-16",
-      "assigned_workgroups": ["design-branding", "website-tech"],
+      "assigned_workgroups": [
+        "design",
+        "website"
+      ],
       "contact_email": "kabir.anand@example.invalid",
       "contact_phone": "+91-00000-00002",
       "raw_response": "Portfolio at example.invalid/kabir. Did the badge design for a local PyData meetup."
@@ -41,13 +68,24 @@
     {
       "application_id": "APP-2026-003",
       "name": "Sanjana Iyer",
-      "preferred_workgroups": ["communications"],
-      "interests": ["social media", "newsletters"],
-      "skills": ["copywriting", "Canva", "Mastodon and Bluesky scheduling"],
+      "preferred_workgroups": [
+        "social-media-communications"
+      ],
+      "interests": [
+        "social media",
+        "newsletters"
+      ],
+      "skills": [
+        "copywriting",
+        "Canva",
+        "Mastodon and Bluesky scheduling"
+      ],
       "availability": "2-3 hours a week",
       "status": "assigned",
       "submitted_on": "2026-01-20",
-      "assigned_workgroups": ["communications"],
+      "assigned_workgroups": [
+        "social-media-communications"
+      ],
       "contact_email": "sanjana.iyer@example.invalid",
       "contact_phone": "+91-00000-00003",
       "raw_response": "Ran comms for a college tech fest with 1200 attendees."
@@ -55,13 +93,26 @@
     {
       "application_id": "APP-2026-004",
       "name": "Rehan Mathew",
-      "preferred_workgroups": ["sponsorship", "finance"],
-      "interests": ["partnerships", "budgeting"],
-      "skills": ["B2B outreach", "spreadsheets", "invoicing"],
+      "preferred_workgroups": [
+        "sponsoring",
+        "sponsoring"
+      ],
+      "interests": [
+        "partnerships",
+        "budgeting"
+      ],
+      "skills": [
+        "B2B outreach",
+        "spreadsheets",
+        "invoicing"
+      ],
       "availability": "weekday mornings",
       "status": "assigned",
       "submitted_on": "2026-01-28",
-      "assigned_workgroups": ["sponsorship", "finance"],
+      "assigned_workgroups": [
+        "sponsoring",
+        "sponsoring"
+      ],
       "contact_email": "rehan.mathew@example.invalid",
       "contact_phone": "+91-00000-00004",
       "raw_response": "Currently in enterprise sales. Can help with sponsor conversations."
@@ -69,9 +120,19 @@
     {
       "application_id": "APP-2026-005",
       "name": "Lakshmi Menon",
-      "preferred_workgroups": ["program", "volunteers"],
-      "interests": ["scientific Python", "reviewing talk proposals"],
-      "skills": ["NumPy", "scikit-learn", "technical review"],
+      "preferred_workgroups": [
+        "program-committee",
+        "registration-help-desk"
+      ],
+      "interests": [
+        "scientific Python",
+        "reviewing talk proposals"
+      ],
+      "skills": [
+        "NumPy",
+        "scikit-learn",
+        "technical review"
+      ],
       "availability": "weekends",
       "status": "under_review",
       "submitted_on": "2026-02-25",
@@ -83,13 +144,25 @@
     {
       "application_id": "APP-2026-006",
       "name": "Tanmay Bhatt",
-      "preferred_workgroups": ["website-tech"],
-      "interests": ["AV and streaming", "recordings"],
-      "skills": ["OBS", "video editing", "Python"],
+      "preferred_workgroups": [
+        "website",
+        "av-tech-support"
+      ],
+      "interests": [
+        "AV and streaming",
+        "recordings"
+      ],
+      "skills": [
+        "OBS",
+        "video editing",
+        "Python"
+      ],
       "availability": "conference days only",
-      "status": "under_review",
+      "status": "assigned",
       "submitted_on": "2026-02-27",
-      "assigned_workgroups": [],
+      "assigned_workgroups": [
+        "av-tech-support"
+      ],
       "contact_email": "tanmay.bhatt@example.invalid",
       "contact_phone": "+91-00000-00006",
       "raw_response": "Streamed a two-day hackathon last year. Own a camera and a capture card."
@@ -97,9 +170,18 @@
     {
       "application_id": "APP-2026-007",
       "name": "Ishita Roy",
-      "preferred_workgroups": ["venue-logistics", "volunteers"],
-      "interests": ["on-ground operations", "registration desk"],
-      "skills": ["event coordination", "vendor management"],
+      "preferred_workgroups": [
+        "logistics",
+        "registration-help-desk"
+      ],
+      "interests": [
+        "on-ground operations",
+        "registration desk"
+      ],
+      "skills": [
+        "event coordination",
+        "vendor management"
+      ],
       "availability": "flexible from October onwards",
       "status": "submitted",
       "submitted_on": "2026-03-02",
@@ -111,9 +193,18 @@
     {
       "application_id": "APP-2026-008",
       "name": "Aravind Kulkarni",
-      "preferred_workgroups": ["program"],
-      "interests": ["tutorials", "teaching"],
-      "skills": ["pandas", "teaching", "Jupyter"],
+      "preferred_workgroups": [
+        "program-committee"
+      ],
+      "interests": [
+        "tutorials",
+        "teaching"
+      ],
+      "skills": [
+        "pandas",
+        "teaching",
+        "Jupyter"
+      ],
       "availability": "one weekend a month",
       "status": "submitted",
       "submitted_on": "2026-03-04",
@@ -125,9 +216,18 @@
     {
       "application_id": "APP-2026-009",
       "name": "Nadia Sheikh",
-      "preferred_workgroups": ["communications", "design-branding"],
-      "interests": ["photography", "documenting the event"],
-      "skills": ["photography", "Lightroom"],
+      "preferred_workgroups": [
+        "social-media-communications",
+        "design"
+      ],
+      "interests": [
+        "photography",
+        "documenting the event"
+      ],
+      "skills": [
+        "photography",
+        "Lightroom"
+      ],
       "availability": "conference days only",
       "status": "submitted",
       "submitted_on": "2026-03-05",
@@ -139,9 +239,17 @@
     {
       "application_id": "APP-2026-010",
       "name": "Vikram Chandrasekaran",
-      "preferred_workgroups": ["finance"],
-      "interests": ["reimbursements", "grant admin"],
-      "skills": ["accounting", "compliance"],
+      "preferred_workgroups": [
+        "sponsoring"
+      ],
+      "interests": [
+        "reimbursements",
+        "grant admin"
+      ],
+      "skills": [
+        "accounting",
+        "compliance"
+      ],
       "availability": "weekday evenings",
       "status": "declined",
       "submitted_on": "2026-02-10",

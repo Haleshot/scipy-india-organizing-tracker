@@ -396,7 +396,10 @@ async def declare_graph(
     for workgroup in registry:
         workgroup_table.declare_record(
             row=Workgroup(
-                slug=workgroup.slug, name=workgroup.name, description=workgroup.description
+                slug=workgroup.slug,
+                name=workgroup.name,
+                description=workgroup.description,
+                signups=workgroup.signups,
             )
         )
 

@@ -142,8 +142,8 @@ async def test_list_unassigned_tasks():
 
 async def test_list_unassigned_tasks_can_be_scoped_to_a_workgroup():
     async with mcp_session() as session:
-        tasks = await call(session, "list_unassigned_tasks", workgroup="Website & Tech")
-        assert all(task["workgroup"] == "website-tech" for task in tasks)
+        tasks = await call(session, "list_unassigned_tasks", workgroup="Website")
+        assert all(task["workgroup"] == "website" for task in tasks)
 
 
 async def test_get_person_context():
@@ -156,8 +156,8 @@ async def test_get_person_context():
 
 async def test_get_workgroup_context():
     async with mcp_session() as session:
-        context = await call(session, "get_workgroup_context", workgroup="Website & Tech")
-        assert context["slug"] == "website-tech"
+        context = await call(session, "get_workgroup_context", workgroup="Website")
+        assert context["slug"] == "website"
         assert context["members"]
         assert context["open_tasks"]
         assert context["recent_meetings"]
@@ -184,9 +184,11 @@ async def test_get_task_history_returns_provenance():
 
 async def test_find_interested_unassigned_volunteers():
     async with mcp_session() as session:
-        waiting = await call(session, "find_interested_unassigned_volunteers", workgroup="program")
+        waiting = await call(
+            session, "find_interested_unassigned_volunteers", workgroup="program-committee"
+        )
         assert waiting
-        assert all(entry["workgroup"] == "program" for entry in waiting)
+        assert all(entry["workgroup"] == "program-committee" for entry in waiting)
 
 
 async def test_list_recent_decisions():

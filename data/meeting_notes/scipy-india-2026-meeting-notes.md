@@ -17,7 +17,7 @@ Meeting: 2026-01-09 | Kickoff
 
 Facilitator: Meera Raghavan
 Attendees: Meera Raghavan, Devika Nair, Arjun Pillai, Nikhil Bose, Farida Qureshi
-Workgroups: Program & CFP, Venue & Logistics, Finance, Website & Tech
+Workgroups: Program Committee, Logistics, Sponsoring, Website
 
 Topics
 
@@ -27,50 +27,50 @@ Rough budget envelope and ticket pricing.
 
 Decisions
 
-(Program & CFP) SciPy India 2026 runs 11-12 December 2026, two conference days plus one workshop day on 10 December.
+(Program Committee) SciPy India 2026 runs 11-12 December 2026, two conference days plus one workshop day on 10 December.
 
-(Finance) Ticket pricing stays at 2025 levels; a student tier is added.
+(Sponsoring) Ticket pricing stays at 2025 levels; a student tier is added.
 
 The organizing team meets every second Friday until the conference.
 
 Action items
 
 Task: Draft the CFP timeline and circulate it to the organizing list
-Workgroup: Program & CFP
+Workgroup: Program Committee
 Owner: Devika Nair
 Status: open
 Due: 23 Jan
 
 Task: Collect quotes from three candidate venues
-Workgroup: Venue & Logistics
+Workgroup: Logistics
 Owner:
 Status: open
 Due: end of January
 
 Task: Open a tracking spreadsheet for the budget
-Workgroup: Finance
+Workgroup: Sponsoring
 Owner: Farida Qureshi
 Status: open
 Due:
 
 Task: Set up the shared Drive folder and the meeting-notes doc
-Workgroup: Website & Tech
+Workgroup: Website
 Owner: Meera Raghavan
 Status: done
 Due:
 
 Workgroup changes
 
-Devika Nair joins Program & CFP
-Farida Qureshi joins Finance
-Nikhil Bose joins Venue & Logistics
+Devika Nair joins Program Committee
+Farida Qureshi joins Sponsoring
+Nikhil Bose joins Logistics
 
 
 Meeting: 2026-01-23 | CFP and venue shortlist
 
 Facilitator: Meera Raghavan
 Attendees: Meera Raghavan, Devika Nair, Arjun Pillai, Nikhil Bose, Farida Qureshi, Sanjana Iyer
-Workgroups: Program & CFP, Venue & Logistics, Communications, Finance, Website & Tech, Sponsorship
+Workgroups: Program Committee, Logistics, Social Media & Communications, Sponsoring, Website
 
 Topics
 
@@ -80,122 +80,122 @@ Who owns social media this year.
 
 Decisions
 
-(Program & CFP) The CFP opens 16 February and closes 5 April. Review closes 26 April.
+(Program Committee) The CFP opens 16 February and closes 5 April. Review closes 26 April.
 
-(Venue & Logistics) The shortlist is down to two: the university campus and the tech park auditorium.
+(Logistics) The shortlist is down to two: the university campus and the tech park auditorium.
 
 Action items
 
 Task: Draft the CFP timeline and circulate it to the organizing list
-Workgroup: Program & CFP
+Workgroup: Program Committee
 Owner: Devika Nair
 Status: done
 Due:
 
 Task: Collect quotes from three candidate venues
-Workgroup: Venue & Logistics
+Workgroup: Logistics
 Owner: Nikhil Bose
 Status: in_progress
 Due:
 
 Task: Write the review rubric for CFP submissions
-Workgroup: Program & CFP
+Workgroup: Program Committee
 Owner: Arjun Pillai
 Status: open
 Due: 9 Feb
 
 Task: Set up the SciPy India 2026 social accounts
-Workgroup: Communications
+Workgroup: Social Media & Communications
 Owner: Sanjana Iyer
 Status: open
 Due:
 
 Task: Decide on the ticketing platform
-Workgroup: Website & Tech
+Workgroup: Website
 Owner:
 Status: open
 Due:
 
 Task: Draft the sponsorship prospectus
-Workgroup: Sponsorship
+Workgroup: Sponsoring
 Owner:
 Status: open
 Due: 20 Feb
 
 Workgroup changes
 
-Sanjana Iyer joins Communications
-Arjun Pillai joins Program & CFP
+Sanjana Iyer joins Social Media & Communications
+Arjun Pillai joins Program Committee
 
 
-Meeting: 2026-02-06 | Sponsorship and site
+Meeting: 2026-02-06 | Sponsoring and site
 
 Facilitator: Arjun Pillai
 Attendees: Arjun Pillai, Meera Raghavan, Sanjana Iyer, Farida Qureshi, Rehan Mathew, Nikhil Bose
-Workgroups: Sponsorship, Website & Tech, Communications, Venue & Logistics, Program & CFP, Code of Conduct & Inclusion
+Workgroups: Sponsoring, Website, Social Media & Communications, Logistics, Program Committee, Code of Conduct
 
 Topics
 
-Sponsorship tiers and what each one includes.
+Sponsoring tiers and what each one includes.
 Static site versus the 2025 site template.
 Venue decision.
 
 Decisions
 
-(Venue & Logistics) The tech park auditorium is confirmed for 10-12 December.
+(Logistics) The tech park auditorium is confirmed for 10-12 December.
 
-(Sponsorship) Three sponsor tiers: platinum, gold, community. Community tier is free for non-profits.
+(Sponsoring) Three sponsor tiers: platinum, gold, community. Community tier is free for non-profits.
 
-(Website & Tech) The 2026 site reuses the 2025 template rather than starting over.
+(Website) The 2026 site reuses the 2025 template rather than starting over.
 
 Action items
 
 Task: Collect quotes from three candidate venues
-Workgroup: Venue & Logistics
+Workgroup: Logistics
 Owner: Nikhil Bose
 Status: done
 Due:
 
 Task: Draft the sponsorship prospectus
-Workgroup: Sponsorship
+Workgroup: Sponsoring
 Owner: Rehan Mathew
 Status: in_progress
 Due: 20 Feb
 
 Task: Port the 2025 site template and put up a holding page
-Workgroup: Website & Tech
+Workgroup: Website
 Owner:
 Status: open
 Due: 27 Feb
 
 Task: Write the review rubric for CFP submissions
-Workgroup: Program & CFP
+Workgroup: Program Committee
 Owner: Arjun Pillai
 Status: in_progress
 Due:
 
 Task: Publish the CFP announcement post
-Workgroup: Communications
+Workgroup: Social Media & Communications
 Owner: Sanjana Iyer
 Status: open
 Due: 16 Feb
 
 Task: Draft the code of conduct and the incident response process
-Workgroup: Code of Conduct & Inclusion
+Workgroup: Code of Conduct
 Owner:
 Status: open
 Due:
 
 Workgroup changes
 
-Rehan Mathew joins Sponsorship
+Rehan Mathew joins Sponsoring
 
 
 Meeting: 2026-02-20 | CFP is live
 
 Facilitator: Meera Raghavan
 Attendees: Meera Raghavan, Devika Nair, Arjun Pillai, Sanjana Iyer, Rehan Mathew, Priya Vasudevan
-Workgroups: Program & CFP, Communications, Sponsorship, Volunteers, Code of Conduct & Inclusion, Website & Tech
+Workgroups: Program Committee, Social Media & Communications, Sponsoring, Registration & Help Desk, Code of Conduct, Website
 
 Topics
 
@@ -205,73 +205,73 @@ Code of conduct draft.
 
 Decisions
 
-(Volunteers) Volunteer applications are collected through a Google Form and reviewed every two weeks.
+(Registration & Help Desk) Volunteer applications are collected through a Google Form and reviewed every two weeks.
 
-(Code of Conduct & Inclusion) The code of conduct is adapted from the PSF template with an India-specific contact list.
+(Code of Conduct) The code of conduct is adapted from the PSF template with an India-specific contact list.
 
-(Program & CFP) Reviewers see submissions anonymised for the first pass.
+(Program Committee) Reviewers see submissions anonymised for the first pass.
 
 Action items
 
 Task: Publish the CFP announcement post
-Workgroup: Communications
+Workgroup: Social Media & Communications
 Owner: Sanjana Iyer
 Status: done
 Due:
 
 Task: Write the review rubric for CFP submissions
-Workgroup: Program & CFP
+Workgroup: Program Committee
 Owner: Arjun Pillai
 Status: done
 Due:
 
 Task: Draft the code of conduct and the incident response process
-Workgroup: Code of Conduct & Inclusion
+Workgroup: Code of Conduct
 Owner: Priya Vasudevan
 Status: in_progress
 Due:
 
 Task: Port the 2025 site template and put up a holding page
-Workgroup: Website & Tech
+Workgroup: Website
 Owner:
 Status: blocked
 Due: 27 Feb
 
 Task: Review the first batch of volunteer applications
-Workgroup: Volunteers
+Workgroup: Registration & Help Desk
 Owner: Priya Vasudevan
 Status: open
 Due: 6 Mar
 
 Task: Draft the sponsorship prospectus
-Workgroup: Sponsorship
+Workgroup: Sponsoring
 Owner: Rehan Mathew
 Status: done
 Due:
 
 Task: Reach out to the first ten sponsor leads
-Workgroup: Sponsorship
+Workgroup: Sponsoring
 Owner: Rehan Mathew
 Status: open
 Due:
 
 Task: Find someone to own AV and recordings
-Workgroup: Website & Tech
+Workgroup: Website
 Owner:
 Status: open
 Due:
 
 Workgroup changes
 
-Priya Vasudevan joins Volunteers
-Priya Vasudevan joins Code of Conduct & Inclusion
+Priya Vasudevan joins Registration & Help Desk
+Priya Vasudevan joins Code of Conduct
 
 
-Meeting: 2026-03-06 | Volunteers and reviews
+Meeting: 2026-03-06 | Registration & Help Desk and reviews
 
 Facilitator: Priya Vasudevan
 Attendees: Priya Vasudevan, Meera Raghavan, Devika Nair, Sanjana Iyer, Rehan Mathew, Kabir Anand
-Workgroups: Volunteers, Program & CFP, Communications, Design & Branding, Website & Tech, Sponsorship
+Workgroups: Registration & Help Desk, Program Committee, Social Media & Communications, Design, Website, Sponsoring
 
 Topics
 
@@ -281,83 +281,83 @@ Branding refresh for 2026.
 
 Decisions
 
-(Volunteers) Applicants are assigned to a workgroup only after a short call with that workgroup's lead.
+(Registration & Help Desk) Applicants are assigned to a workgroup only after a short call with that workgroup's lead.
 
-(Design & Branding) The 2026 identity keeps the SciPy India mark and changes only the accent colour.
+(Design) The 2026 identity keeps the SciPy India mark and changes only the accent colour.
 
 Action items
 
 Task: Review the first batch of volunteer applications
-Workgroup: Volunteers
+Workgroup: Registration & Help Desk
 Owner: Priya Vasudevan
 Status: done
 Due:
 
 Task: Schedule intro calls with the six shortlisted volunteers
-Workgroup: Volunteers
+Workgroup: Registration & Help Desk
 Owner: Priya Vasudevan
 Status: open
 Due: 20 Mar
 
 Task: Refresh the badge and signage templates
-Workgroup: Design & Branding
+Workgroup: Design
 Owner: Kabir Anand
 Status: open
 Due:
 
 Task: Recruit four more CFP reviewers
-Workgroup: Program & CFP
+Workgroup: Program Committee
 Owner: Devika Nair
 Status: open
 Due: 20 Mar
 
 Task: Port the 2025 site template and put up a holding page
-Workgroup: Website & Tech
+Workgroup: Website
 Owner: Kabir Anand
 Status: in_progress
 Due:
 
 Task: Find someone to own AV and recordings
-Workgroup: Website & Tech
+Workgroup: Website
 Owner: Tanmay Bhatt
 Status: in_progress
 Due:
 
 Task: Send the sponsorship prospectus to confirmed leads
-Workgroup: Sponsorship
+Workgroup: Sponsoring
 Owner:
 Status: open
 Due:
 
 Task: Send the reminder email
-Workgroup: Communications
+Workgroup: Social Media & Communications
 Owner: Sanjana Iyer
 Status: open
 Due: 13 Mar
 
 Task: Send the reminder email
-Workgroup: Program & CFP
+Workgroup: Program Committee
 Owner: Devika Nair
 Status: open
 Due: 13 Mar
 
 Task: Follow up with the platinum sponsor leads
 ID: sponsor-followup-platinum
-Workgroup: Sponsorship
+Workgroup: Sponsoring
 Owner: Rehan Mathew
 Status: open
 Due:
 
 Task: Follow up with the community-tier leads
 ID: sponsor-followup-community
-Workgroup: Sponsorship
+Workgroup: Sponsoring
 Owner:
 Status: open
 Due:
 
 Workgroup changes
 
-Tanmay Bhatt joins Website & Tech
-Kabir Anand joins Design & Branding
-Kabir Anand joins Website & Tech
+Tanmay Bhatt joins Website
+Kabir Anand joins Design
+Kabir Anand joins Website
 

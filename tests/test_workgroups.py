@@ -7,13 +7,13 @@ def test_normalize_key_strips_punctuation_and_case():
 
 
 def test_resolve_matches_slug_name_and_alias(registry):
-    assert registry.resolve("design-branding") == "design-branding"
-    assert registry.resolve("Design & Branding") == "design-branding"
-    assert registry.resolve("Creatives") == "design-branding"
+    assert registry.resolve("design") == "design"
+    assert registry.resolve("Design") == "design"
+    assert registry.resolve("Creatives") == "design"
 
 
 def test_resolve_finds_a_registered_name_inside_a_phrase(registry):
-    assert registry.resolve("sponsorship follow-ups") == "sponsorship"
+    assert registry.resolve("sponsorship follow-ups") == "sponsoring"
 
 
 def test_resolve_returns_none_rather_than_guessing(registry):
@@ -26,11 +26,11 @@ def test_registry_comes_from_config_not_code(registry):
     # Nothing in the codebase may assume a particular set of workgroups.
     other = WorkgroupRegistry([Workgroup(slug="catering", name="Catering", aliases=("food",))])
     assert other.resolve("food") == "catering"
-    assert other.resolve("sponsorship") is None
+    assert other.resolve("sponsoring") is None
     assert set(registry.slugs) != set(other.slugs)
 
 
 def test_longest_alias_wins(registry):
     # "design" alone and "design branding" both index to the same slug here,
     # but the longest-match rule must not let a short alias hijack a phrase.
-    assert registry.resolve("website and tech planning") == "website-tech"
+    assert registry.resolve("website and tech planning") == "website"

@@ -40,7 +40,7 @@ def test_task_owner_workgroup_status_and_due(notes_text, registry):
     tasks = {t.description: t for t in meetings(notes_text, registry)[0].tasks}
     cfp = tasks["Draft the CFP timeline and circulate it to the organizing list"]
     assert [o.name for o in cfp.owners] == ["Devika Nair"]
-    assert cfp.workgroup == "program"
+    assert cfp.workgroup == "program-committee"
     assert cfp.status == "open"
     assert cfp.due == "23 Jan"
 
@@ -68,14 +68,14 @@ def test_status_changes_across_meetings(notes_text, registry):
 def test_decisions_carry_their_workgroup(notes_text, registry):
     first = meetings(notes_text, registry)[0]
     tagged = {d.workgroup for d in first.decisions}
-    assert "program" in tagged and "finance" in tagged
+    assert "program-committee" in tagged and "sponsoring" in tagged
     # A decision with no workgroup prefix stays untagged rather than guessed.
     assert None in tagged
 
 
 def test_workgroup_moves(notes_text, registry):
     first = meetings(notes_text, registry)[0]
-    assert ("Devika Nair", "program") in [
+    assert ("Devika Nair", "program-committee") in [
         (m.person.name, m.workgroup) for m in first.workgroup_moves
     ]
 

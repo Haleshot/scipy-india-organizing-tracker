@@ -127,7 +127,7 @@ async def test_search_finds_the_obvious_thing(graph):
 @requires_neo4j
 @pytest.mark.asyncio
 async def test_search_can_be_narrowed_to_one_kind(graph):
-    result = await graph.search("sponsorship", limit=5, kinds=["decision"])
+    result = await graph.search("sponsoring", limit=5, kinds=["decision"])
     if result.strategy == "unavailable":
         pytest.skip("no search index built")
     assert all(hit.kind == "decision" for hit in result.hits)

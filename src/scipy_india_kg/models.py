@@ -87,6 +87,7 @@ class Workgroup:
     slug: str
     name: str
     description: str
+    signups: int  # people who picked this role on the form; aggregate only
 
 
 @dataclass

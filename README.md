@@ -116,7 +116,7 @@ Meeting: 2026-09-05 | Volunteer onboarding
 
 Facilitator: Priya Vasudevan
 Attendees: Priya Vasudevan, Meera Raghavan, Kabir Anand
-Workgroups: Volunteers, Website & Tech
+Workgroups: Registration & Help Desk, Website
 
 Topics
 
@@ -124,20 +124,20 @@ Volunteer applications received since the last call.
 
 Decisions
 
-The Volunteers workgroup will schedule a short intro call before assigning
+The Registration & Help Desk workgroup will schedule a short intro call before assigning
 new applicants to a workgroup.
 
 Action items
 
 Task: Schedule intro calls with the shortlisted volunteers
-ID: volunteer-intro-calls
-Workgroup: Volunteers
+ID: intro-calls
+Workgroup: Registration & Help Desk
 Owner: Priya Vasudevan
 Status: open
 Due: 2026-09-10
 
 Task: Recruit additional CFP reviewers
-Workgroup: Program & CFP
+Workgroup: Program Committee
 Owner:
 Status: open
 Due:
@@ -175,7 +175,7 @@ the two halves of the project.
 
 Then there is the MCP server, the other reader. It connects to the same Neo4j,
 exposes eleven read-only tools, and lets an agent answer "what is still open in
-Website & Tech" from the graph rather than by grepping the notes file. It runs on
+Website" from the graph rather than by grepping the notes file. It runs on
 your laptop and is not part of the Pages deployment.
 
 Search indexes sit outside all of that and are optional. Full-text needs nothing
@@ -210,12 +210,12 @@ rules and the provenance fields.
 
 `./scripts/query` is a CLI over the graph, and `src/scipy_india_kg/mcp/` is a
 read-only MCP server offering the same eleven tools, so a local agent can answer
-"what is still open in Website & Tech" from the graph rather than by grepping
+"what is still open in Website" from the graph rather than by grepping
 the notes file.
 
 ```bash
 ./scripts/query list-unassigned-tasks
-./scripts/query get-workgroup-context "Website & Tech"
+./scripts/query get-workgroup-context "Website"
 python scripts/print_mcp_config.py --write   # then restart Claude Code here
 ```
 

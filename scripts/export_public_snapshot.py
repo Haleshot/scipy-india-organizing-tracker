@@ -66,7 +66,7 @@ DEFAULT_PROFILE = "public"
 APPLICATION_DERIVED = ("availability", "skills", "interests", "is_volunteer")
 
 PUBLIC_FIELDS: dict[str, tuple[str, ...]] = {
-    "Workgroup": ("slug", "name", "description"),
+    "Workgroup": ("slug", "name", "description", "signups"),
     "Meeting": ("id", "date", "title", "summary", "topics"),
     "Person": ("name",),
     "Task": ("id", "description", "status", "due", "first_seen", "last_seen", "meeting_count"),
@@ -116,7 +116,8 @@ def _clean(row: dict[str, Any]) -> dict[str, Any]:
 
 Q_WORKGROUPS = """
 MATCH (w:Workgroup)
-RETURN w.slug AS slug, w.name AS name, w.description AS description
+RETURN w.slug AS slug, w.name AS name, w.description AS description,
+       coalesce(w.signups, 0) AS signups
 ORDER BY name
 """
 

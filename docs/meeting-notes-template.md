@@ -23,7 +23,7 @@ Meeting: 2026-09-05 | Volunteer onboarding
 
 Facilitator: Priya Vasudevan
 Attendees: Priya Vasudevan, Meera Raghavan, Kabir Anand, Sanjana Iyer
-Workgroups: Volunteers, Website & Tech, Program & CFP
+Workgroups: Registration & Help Desk, Website, Program Committee
 
 Topics
 
@@ -33,7 +33,7 @@ Website work needed before the next public announcement.
 
 Decisions
 
-(Volunteers) The Volunteers workgroup will schedule a short intro call before
+(Registration & Help Desk) The Registration & Help Desk workgroup will schedule a short intro call before
 assigning new applicants to a workgroup.
 
 The 2026 website will reuse the existing site structure rather than start
@@ -42,29 +42,29 @@ from a blank project.
 Action items
 
 Task: Schedule intro calls with the shortlisted volunteers
-ID: volunteer-intro-calls
-Workgroup: Volunteers
+ID: intro-calls
+Workgroup: Registration & Help Desk
 Owner: Priya Vasudevan
 Status: open
 Due: 2026-09-10
 
 Task: Port the existing site structure and publish a holding page
 ID: website-holding-page
-Workgroup: Website & Tech
+Workgroup: Website
 Owner: Kabir Anand
 Status: in_progress
 Due: 2026-09-12
 
 Task: Recruit additional CFP reviewers
 ID: cfp-reviewer-recruitment
-Workgroup: Program & CFP
+Workgroup: Program Committee
 Owner:
 Status: open
 Due:
 
 Notes
 
-We have more interest in Program & CFP than we currently have review work
+We have more interest in Program Committee than we currently have review work
 for. Revisit assignments after the next CFP planning call.
 ```
 
@@ -79,7 +79,7 @@ graph.
 
 `Facilitator:`, `Attendees:` and `Workgroups:` are comma-separated. Workgroup
 names are matched against `config/workgroups.yaml`, including its aliases, so
-"Website & Tech", "website-tech" and "web" all land on the same workgroup. A
+"Website", "website-tech" and "web" all land on the same workgroup. A
 name that matches nothing is dropped rather than invented, so an unregistered
 work area shows up as a gap rather than a wrong edge.
 
@@ -92,7 +92,7 @@ A decision can name the workgroup it concerns by opening with it in brackets:
 ```text
 Decisions
 
-(Website & Tech) The 2026 website will reuse the existing site structure.
+(Website) The 2026 website will reuse the existing site structure.
 
 The organizing team meets every second Friday until the conference.
 ```
@@ -138,7 +138,7 @@ Action items
 
 Task: Port the existing site structure and publish a holding page
 ID: website-holding-page
-Workgroup: Website & Tech
+Workgroup: Website
 Owner: Kabir Anand
 Status: done
 Due: 2026-09-12

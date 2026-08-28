@@ -16,7 +16,7 @@ async def test_fixture_loads(registry):
     applications = await JsonFileVolunteerSource(FIXTURE, registry).applications()
     assert len(applications) == 10
     priya = next(a for a in applications if a.name == "Priya Vasudevan")
-    assert priya.preferred_workgroups == ["volunteers", "coc-inclusion"]
+    assert priya.preferred_workgroups == ["registration-help-desk", "code-of-conduct"]
     assert priya.status == "assigned"
     assert priya.submitted_on == datetime.date(2026, 2, 14)
 
@@ -37,7 +37,7 @@ def test_comma_separated_strings_work_like_lists(registry):
         },
         registry,
     )
-    assert record.preferred_workgroups == ["design-branding", "communications"]
+    assert record.preferred_workgroups == ["design", "social-media-communications"]
     assert record.skills == ["Figma", "Python"]
 
 
@@ -57,11 +57,11 @@ def test_sheet_rows_map_through_the_column_map(registry):
     source = GoogleSheetVolunteerSource("sheet", "Form Responses 1", registry)
     records = source.rows_to_records(
         ["Timestamp", "Your name", "Email address", "Which workgroups interest you?"],
-        [["2026-03-01 10:00:00", "Asha Kumar", "asha@example.invalid", "Sponsorship"]],
+        [["2026-03-01 10:00:00", "Asha Kumar", "asha@example.invalid", "Sponsoring"]],
     )
     assert len(records) == 1
     assert records[0].name == "Asha Kumar"
-    assert records[0].preferred_workgroups == ["sponsorship"]
+    assert records[0].preferred_workgroups == ["sponsoring"]
     assert records[0].submitted_on == datetime.date(2026, 3, 1)
 
 

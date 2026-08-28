@@ -33,8 +33,8 @@ async def test_unassigned_tasks_really_have_no_owner(graph):
 
 
 async def test_workgroup_filter_accepts_a_slug_or_a_display_name(graph):
-    by_slug = await graph.list_open_tasks(workgroup="website-tech")
-    by_name = await graph.list_open_tasks(workgroup="Website & Tech")
+    by_slug = await graph.list_open_tasks(workgroup="website")
+    by_name = await graph.list_open_tasks(workgroup="Website")
     assert by_slug and {t.id for t in by_slug} == {t.id for t in by_name}
 
 
@@ -60,7 +60,7 @@ async def test_same_description_returns_two_distinct_tasks(graph):
     details = await graph.get_task_history("Send the reminder email", limit=5)
     assert len(details) == 2
     assert len({d.id for d in details}) == 2
-    assert {d.workgroup for d in details} == {"communications", "program"}
+    assert {d.workgroup for d in details} == {"social-media-communications", "program-committee"}
     assert {d.owners[0] for d in details} == {"Sanjana Iyer", "Devika Nair"}
 
 
@@ -89,20 +89,21 @@ async def test_person_context_separates_membership_from_interest(graph):
     # notes, Finance from his application. Nothing is outstanding for him.
     assigned = await graph.get_person_context("Rehan Mathew")
     assert assigned.is_volunteer
-    assert set(assigned.member_of) == {"Sponsorship", "Finance"}
+    assert set(assigned.member_of) == {"Sponsoring"}
     assert assigned.awaiting_assignment_in == []
 
     # Lakshmi applied and has not been placed. That gap is the point of the field.
     waiting = await graph.get_person_context("Lakshmi Menon")
     assert waiting.member_of == []
-    assert set(waiting.awaiting_assignment_in) == {"Volunteers", "Program & CFP"}
+    assert set(waiting.awaiting_assignment_in) == {"Registration & Help Desk", "Program Committee"}
     assert waiting.open_tasks == []
 
 
 async def test_membership_records_which_source_created_it(graph):
-    context = await graph.get_workgroup_context("finance")
+    # Tanmay is on A/V because of his form answer, not because a meeting said so.
+    context = await graph.get_workgroup_context("av-tech-support")
     assert any("via volunteer_application" in member for member in context.members)
-    notes = await graph.get_workgroup_context("program")
+    notes = await graph.get_workgroup_context("program-committee")
     assert all("via meeting_notes" in member for member in notes.members)
 
 
@@ -111,8 +112,8 @@ async def test_partial_names_resolve_to_one_person(graph):
 
 
 async def test_workgroup_context_is_one_call_for_where_are_we(graph):
-    context = await graph.get_workgroup_context("Website & Tech")
-    assert context.slug == "website-tech"
+    context = await graph.get_workgroup_context("Website")
+    assert context.slug == "website"
     assert context.members
     assert context.open_tasks
     assert context.recent_meetings
@@ -123,7 +124,7 @@ async def test_workgroup_context_is_one_call_for_where_are_we(graph):
 
 
 async def test_an_empty_workgroup_is_visible_rather_than_missing(graph):
-    context = await graph.get_workgroup_context("community-partners")
+    context = await graph.get_workgroup_context("content")
     assert context is not None
     assert context.members == []
     assert context.open_tasks == []

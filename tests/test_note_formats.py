@@ -73,7 +73,7 @@ def test_facilitator_is_not_repeated_in_attendees(meetings):
 
 
 def test_workgroups_resolve_through_the_registry(meetings):
-    assert set(meetings[0].workgroups) >= {"volunteers", "website-tech", "program"}
+    assert set(meetings[0].workgroups) >= {"registration-help-desk", "website", "program-committee"}
 
 
 def test_topics_and_decisions_are_read_as_prose(meetings):
@@ -88,8 +88,8 @@ def test_topics_and_decisions_are_read_as_prose(meetings):
 def test_task_blocks_carry_every_field(meetings):
     tasks = {t.description: t for t in meetings[0].tasks}
     intro = tasks["Schedule intro calls with the shortlisted volunteers"]
-    assert intro.explicit_id == "volunteer-intro-calls"
-    assert intro.workgroup == "volunteers"
+    assert intro.explicit_id == "intro-calls"
+    assert intro.workgroup == "registration-help-desk"
     assert [o.name for o in intro.owners] == ["Priya Vasudevan"]
     assert intro.status == "open"
     assert intro.due == "2026-09-10"
@@ -139,7 +139,7 @@ def test_an_id_survives_a_rewording(meetings):
     reworded_id = task_identity(
         note_file="notes.md",
         description="Find more people to review CFP submissions",
-        workgroup="program",
+        workgroup="program-committee",
         explicit_id="cfp-reviewer-recruitment",
     ).id
     assert (

@@ -10,7 +10,7 @@ holds retrieval Cypher, so a tool and its CLI twin cannot answer differently.
 ```bash
 ./scripts/query describe-graph
 ./scripts/query list-unassigned-tasks
-./scripts/query get-workgroup-context "Website & Tech"
+./scripts/query get-workgroup-context "Website"
 ./scripts/query search "code of conduct" --json
 ```
 
@@ -61,7 +61,7 @@ is a fragile thing to make a background process depend on.
 
 Then you can ask things like "what open action items still have no owner", "what
 did we decide about the website in the last three meetings", or "give me the
-current context for Website & Tech". The last one is a single
+current context for Website". The last one is a single
 `get_workgroup_context` call. "What changed between the two most recent
 meetings" works because `get_meeting_context` returns each item with the status
 it held at that meeting and at the previous meeting that touched it, so the diff
