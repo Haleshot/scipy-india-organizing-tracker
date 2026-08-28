@@ -6,7 +6,7 @@ name: Refresh graph and publish snapshot
 # Read this before enabling it:
 #
 # * A local Neo4j container is NOT reachable from GitHub Actions. This workflow
-#   needs a Neo4j instance the runner can dial — Aura, or anything with a public
+#   needs a Neo4j instance the runner can dial: Aura, or anything with a public
 #   bolt+s:// endpoint. Without one, keep using the local flow: run the pipeline
 #   and the exporter on a laptop, commit web/public/data/graph.json, push.
 # * Required repository secrets:
@@ -16,7 +16,7 @@ name: Refresh graph and publish snapshot
 #     GOOGLE_DRIVE_ROOT_FOLDER_IDS
 # * The service account must have the notes folder shared with it.
 # * The snapshot is committed back to the repository, which triggers the Pages
-#   workflow. It contains only allowlisted fields — see
+#   workflow. It contains only allowlisted fields; see
 #   scripts/export_public_snapshot.py.
 
 on:

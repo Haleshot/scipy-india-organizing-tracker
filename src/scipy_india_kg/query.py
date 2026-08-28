@@ -1,4 +1,4 @@
-"""``python -m scipy_india_kg.query`` — the MCP tools, on the command line.
+"""``python -m scipy_india_kg.query``: the MCP tools, on the command line.
 
 Every subcommand mirrors one MCP tool by name (kebab-cased) and calls the same
 :class:`~scipy_india_kg.graph.OrganizerGraph` method with the same arguments.

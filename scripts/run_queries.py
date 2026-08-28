@@ -55,8 +55,8 @@ def parse_queries(text: str) -> dict[str, str]:
 
 def render(value: object) -> str:
     if isinstance(value, list):
-        return ", ".join(str(v) for v in value) if value else "—"
-    return "—" if value is None or value == "" else str(value)
+        return ", ".join(str(v) for v in value) if value else "-"
+    return "-" if value is None or value == "" else str(value)
 
 
 def main() -> int:

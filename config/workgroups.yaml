@@ -1,6 +1,6 @@
 # SciPy India workgroups.
 #
-# This file is the registry. Nothing in the code hardcodes a workgroup —
+# This file is the registry. Nothing in the code hardcodes a workgroup:
 # add, rename or remove entries here and re-run the pipeline.
 #
 #   slug        stable id, used as the Neo4j primary key. Don't change it

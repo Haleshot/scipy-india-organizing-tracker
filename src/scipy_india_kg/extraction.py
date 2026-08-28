@@ -238,7 +238,7 @@ _HEADING_LABEL_RE = re.compile(r"^(?:meetings?|date)\s*:\s*", re.IGNORECASE)
 def _clean_heading(line: str) -> str:
     """Strip whatever markup the export left on a meeting's first line.
 
-    ``## 2026-01-09 — Kickoff`` and ``Meeting: 2026-01-09 | Kickoff`` both reduce
+    ``## 2026-01-09 | Kickoff`` and ``Meeting: 2026-01-09 | Kickoff`` both reduce
     to the date plus the title.
     """
     text = _HEADING_MARKUP_RE.sub("", line.strip()).strip("*_ ").strip()

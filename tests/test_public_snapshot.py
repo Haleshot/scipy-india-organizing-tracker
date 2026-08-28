@@ -20,7 +20,7 @@ _spec.loader.exec_module(export)
 
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+")
 # International prefix, or a long unbroken digit run. Deliberately not
-# "digits with separators" — that matches every ISO date in the file.
+# "digits with separators", which matches every ISO date in the file.
 PHONE_RE = re.compile(r"\+\d[\d\s().-]{7,}\d|\d{10,}")
 
 
