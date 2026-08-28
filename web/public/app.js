@@ -555,9 +555,25 @@ function viewSearch(params) {
 
 /* -------------------------------------------------------------- explorer */
 
-const KIND_COLORS = {
-  person: '#0b6bcb', meeting: '#7c3aed', task: '#b45309',
-  workgroup: '#15803d', decision: '#be185d',
+/*
+ * Node colours come from the SciPy logo: blue #0054a6, green #009b42, amber
+ * #eeb54d and grey #666666, darkened where they need to hold up on white. Five
+ * arbitrary hues is how a legend ends up violet and pink for no reason, so the
+ * fifth category is told apart by shape instead of a fifth colour.
+ */
+const KIND_STYLE = {
+  person: { color: '#0054a6', dark: '#5f9fe8', shape: 'ellipse' },
+  workgroup: { color: '#007a34', dark: '#4aab72', shape: 'ellipse' },
+  meeting: { color: '#5b6570', dark: '#98a3ae', shape: 'round-rectangle' },
+  task: { color: '#8a5d05', dark: '#d0a14e', shape: 'ellipse' },
+  decision: { color: '#5b6570', dark: '#98a3ae', shape: 'diamond' },
+};
+
+const darkMode = () => window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
+const kindColor = (kind) => {
+  const style = KIND_STYLE[kind];
+  if (!style) return '#8a8f96';
+  return darkMode() ? style.dark : style.color;
 };
 
 const explorerState = {
@@ -627,7 +643,7 @@ function viewExplorer(params) {
     el('summary', { text: 'Display' }),
     el('div', { class: 'controls' },
       el('div', { class: 'segmented' },
-        Object.keys(KIND_COLORS).map((kind) =>
+        Object.keys(KIND_STYLE).map((kind) =>
           el('button', {
             type: 'button', 'aria-pressed': String(explorerState.kinds.has(kind)),
             onclick: (event) => {
@@ -638,8 +654,8 @@ function viewExplorer(params) {
             },
           }, kind))),
       el('div', { class: 'segmented' }, hopsButton),
-      el('div', { class: 'legend' }, Object.entries(KIND_COLORS).map(([kind, color]) =>
-        el('span', {}, el('i', { style: `background:${color}` }), kind)))));
+      el('div', { class: 'legend' }, Object.keys(KIND_STYLE).map((kind) =>
+        el('span', {}, el('i', { style: `background:${kindColor(kind)}` }), kind)))));
 
   const frag = el('div', {},
     el('h1', { text: 'Explorer' }),
@@ -735,7 +751,8 @@ function mountCytoscape(container, details) {
     ],
     style: [
       { selector: 'node', style: {
-        'background-color': (n) => KIND_COLORS[n.data('kind')] ?? '#888',
+        'background-color': (n) => kindColor(n.data('kind')),
+        shape: (n) => KIND_STYLE[n.data('kind')]?.shape ?? 'ellipse',
         label: (n) => (alwaysLabelled.has(n.data('kind')) || n.hasClass('named')
           ? truncate(n.data('label'), 26) : ''),
         'font-size': 9, color: ink,
