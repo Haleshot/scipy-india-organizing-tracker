@@ -351,6 +351,12 @@ numbers that cannot be compared. `search_organizing_graph` is registered only
 when an index exists that can serve it, so an agent is never handed a tool that
 returns nothing.
 
+Changing the embedding model re-embeds everything, because the model name is
+part of the hash that decides what is current. If the new model produces vectors
+of a different width the builder stops and tells you to add `--recreate`, since
+Neo4j keeps an existing vector index rather than widening it and search would
+otherwise go quiet instead of failing.
+
 Volunteer application text is indexed by neither. Somebody's free-text answer
 about themselves is not something to make semantically searchable by default.
 

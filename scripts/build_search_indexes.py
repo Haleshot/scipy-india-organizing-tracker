@@ -49,6 +49,31 @@ from scipy_india_kg.graph.search_text import (  # noqa: E402
     embedding_model_name,
 )
 
+
+def existing_vector_dimensions(session, index_name: str) -> int | None:
+    """The dimension an existing vector index was created with, or None.
+
+    `CREATE VECTOR INDEX ... IF NOT EXISTS` silently keeps the old index when
+    one already exists, so switching to a model with a different vector width
+    leaves an index that can never match the vectors being written into it. The
+    query embedding is a different length again, and search quietly returns
+    nothing useful. Better to notice here.
+    """
+    row = session.run(
+        """
+        SHOW INDEXES YIELD name, type, options
+        WHERE name = $name AND type = 'VECTOR'
+        RETURN options AS options
+        """,
+        name=index_name,
+    ).single()
+    if not row or not row["options"]:
+        return None
+    config = row["options"].get("indexConfig") or {}
+    dimensions = config.get("vector.dimensions")
+    return int(dimensions) if dimensions is not None else None
+
+
 PRIMARY_KEY = {
     "Meeting": "id",
     "Task": "id",
@@ -76,7 +101,9 @@ def create_full_text(session) -> None:
         print(f"  full-text {index:32} on {label}({', '.join(INDEXED_PROPERTIES[label])})")
 
 
-def write_embeddings(session, model: str, *, force: bool = False) -> tuple[int, int]:
+def write_embeddings(
+    session, model: str, *, force: bool = False, recreate: bool = False
+) -> tuple[int, int]:
     """Embed the nodes whose indexed text changed. Returns (embedded, skipped).
 
     Each node stores a hash of the exact text that was embedded alongside the
@@ -112,9 +139,24 @@ def write_embeddings(session, model: str, *, force: bool = False) -> tuple[int, 
         texts = [item[1] for item in pending]
         vectors = embed_texts(texts, model)
         dimensions = len(vectors[0])
+
+        index_name = VECTOR_INDEXES[label]
+        current = existing_vector_dimensions(session, index_name)
+        if current is not None and current != dimensions:
+            if not recreate:
+                raise SystemExit(
+                    f"\n{index_name} was built for {current}-dimensional vectors and "
+                    f"{model} produces {dimensions}. Neo4j will not widen an existing "
+                    f"vector index, so it has to be recreated.\n\n"
+                    f"    python scripts/build_search_indexes.py --embeddings --recreate\n\n"
+                    f"(or --drop first, if you would rather start from nothing)."
+                )
+            print(f"  dimension change {current} -> {dimensions}, recreating {index_name}")
+            session.run(f"DROP INDEX {index_name} IF EXISTS")
+
         session.run(
             f"""
-            CREATE VECTOR INDEX {VECTOR_INDEXES[label]} IF NOT EXISTS
+            CREATE VECTOR INDEX {index_name} IF NOT EXISTS
             FOR (n:{label}) ON n.embedding
             OPTIONS {{indexConfig: {{
                 `vector.dimensions`: {dimensions},
@@ -135,12 +177,9 @@ def write_embeddings(session, model: str, *, force: bool = False) -> tuple[int, 
             ],
         )
         embedded += len(nodes)
-        current = len(all_nodes) - len(nodes)
-        suffix = f", {current} already current" if current else ""
-        print(
-            f"  vector    {VECTOR_INDEXES[label]:32} {len(nodes)} embedded{suffix}, "
-            f"{dimensions} dims"
-        )
+        untouched = len(all_nodes) - len(nodes)
+        suffix = f", {untouched} already current" if untouched else ""
+        print(f"  vector    {index_name:32} {len(nodes)} embedded{suffix}, {dimensions} dims")
     return embedded, skipped
 
 
@@ -180,6 +219,11 @@ def main() -> int:
     parser.add_argument(
         "--force", action="store_true", help="re-embed every node, not only changed ones"
     )
+    parser.add_argument(
+        "--recreate",
+        action="store_true",
+        help="drop and rebuild any vector index whose dimensions no longer match the model",
+    )
     args = parser.parse_args()
 
     load_dotenv(REPO_ROOT / ".env")
@@ -207,7 +251,9 @@ def main() -> int:
             if args.embeddings:
                 model = args.model or embedding_model_name() or DEFAULT_LOCAL_MODEL
                 print(f"\nEmbedding with {model} (first run downloads the model):")
-                embedded, skipped = write_embeddings(session, model, force=args.force)
+                embedded, skipped = write_embeddings(
+                    session, model, force=args.force, recreate=args.recreate
+                )
                 if embedded:
                     print(f"\nEmbedded {embedded} nodes, left {skipped} unchanged.")
                 else:

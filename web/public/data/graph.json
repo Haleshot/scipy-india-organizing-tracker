@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-28T05:31:42+00:00",
+  "generated_at": "2026-08-28T05:34:32+00:00",
   "schema_version": 3,
   "profile": "public",
   "source": {
-    "built_at": "2026-08-28T05:31:42.443914Z",
+    "built_at": "2026-08-28T05:34:31.389793Z",
     "notes_source": "local",
     "extraction_mode": "markdown",
     "person_resolution": "exact"
@@ -118,7 +118,7 @@
   ],
   "meetings": [
     {
-      "id": 25,
+      "id": 5,
       "date": "2026-03-06",
       "title": "Volunteers and reviews",
       "summary": "First batch of volunteer applications; Review capacity for the CFP; Branding refresh for 2026",
@@ -131,22 +131,22 @@
       "attendees": [
         "Sanjana Iyer",
         "Rehan Mathew",
-        "Devika Nair",
         "Kabir Anand",
-        "Meera Raghavan",
-        "Priya Vasudevan"
+        "Devika Nair",
+        "Priya Vasudevan",
+        "Meera Raghavan"
       ],
       "workgroups": [
         "sponsorship",
+        "design-branding",
+        "website-tech",
         "volunteers",
         "program",
-        "communications",
-        "website-tech",
-        "design-branding"
+        "communications"
       ]
     },
     {
-      "id": 24,
+      "id": 4,
       "date": "2026-02-20",
       "title": "CFP is live",
       "summary": "First week of CFP submissions; Volunteer applications are open and coming in; Code of conduct draft",
@@ -157,24 +157,24 @@
       ],
       "facilitator": "Meera Raghavan",
       "attendees": [
-        "Devika Nair",
+        "Arjun Pillai",
+        "Meera Raghavan",
         "Sanjana Iyer",
         "Rehan Mathew",
-        "Meera Raghavan",
         "Priya Vasudevan",
-        "Arjun Pillai"
+        "Devika Nair"
       ],
       "workgroups": [
-        "website-tech",
-        "coc-inclusion",
-        "volunteers",
         "sponsorship",
+        "program",
         "communications",
-        "program"
+        "volunteers",
+        "coc-inclusion",
+        "website-tech"
       ]
     },
     {
-      "id": 23,
+      "id": 3,
       "date": "2026-02-06",
       "title": "Sponsorship and site",
       "summary": "Sponsorship tiers and what each one includes; Static site versus the 2025 site template; Venue decision",
@@ -185,24 +185,24 @@
       ],
       "facilitator": "Arjun Pillai",
       "attendees": [
-        "Sanjana Iyer",
-        "Arjun Pillai",
-        "Rehan Mathew",
         "Meera Raghavan",
         "Farida Qureshi",
-        "Nikhil Bose"
+        "Nikhil Bose",
+        "Rehan Mathew",
+        "Sanjana Iyer",
+        "Arjun Pillai"
       ],
       "workgroups": [
+        "website-tech",
+        "coc-inclusion",
+        "program",
         "venue-logistics",
         "communications",
-        "sponsorship",
-        "website-tech",
-        "program",
-        "coc-inclusion"
+        "sponsorship"
       ]
     },
     {
-      "id": 22,
+      "id": 2,
       "date": "2026-01-23",
       "title": "CFP and venue shortlist",
       "summary": "CFP timeline review; Venue shortlist and costs; Who owns social media this year",
@@ -213,24 +213,24 @@
       ],
       "facilitator": "Meera Raghavan",
       "attendees": [
-        "Arjun Pillai",
-        "Nikhil Bose",
-        "Farida Qureshi",
-        "Sanjana Iyer",
         "Meera Raghavan",
-        "Devika Nair"
+        "Nikhil Bose",
+        "Arjun Pillai",
+        "Devika Nair",
+        "Farida Qureshi",
+        "Sanjana Iyer"
       ],
       "workgroups": [
-        "communications",
+        "finance",
         "website-tech",
-        "program",
         "sponsorship",
+        "program",
         "venue-logistics",
-        "finance"
+        "communications"
       ]
     },
     {
-      "id": 21,
+      "id": 1,
       "date": "2026-01-09",
       "title": "Kickoff",
       "summary": "Dates and format for SciPy India 2026; Whether to keep the workshop day; Rough budget envelope and ticket pricing",
@@ -241,17 +241,17 @@
       ],
       "facilitator": "Meera Raghavan",
       "attendees": [
-        "Devika Nair",
-        "Arjun Pillai",
-        "Meera Raghavan",
         "Nikhil Bose",
-        "Farida Qureshi"
+        "Arjun Pillai",
+        "Farida Qureshi",
+        "Meera Raghavan",
+        "Devika Nair"
       ],
       "workgroups": [
-        "website-tech",
         "venue-logistics",
         "finance",
-        "program"
+        "program",
+        "website-tech"
       ]
     }
   ],
@@ -262,10 +262,10 @@
         "program"
       ],
       "meetings": [
-        23,
-        22,
-        21,
-        24
+        4,
+        1,
+        2,
+        3
       ],
       "tasks": [
         "program:write-the-review-rubric:92f4aec1bd"
@@ -277,14 +277,14 @@
         "program"
       ],
       "meetings": [
-        21,
-        24,
-        25,
-        22
+        5,
+        2,
+        4,
+        1
       ],
       "tasks": [
-        "program:draft-the-cfp-timeline-a:16fb2eead7",
         "program:send-the-reminder-email:8f4b536494",
+        "program:draft-the-cfp-timeline-a:16fb2eead7",
         "program:recruit-four-more-cfp-re:2dda909839"
       ]
     },
@@ -294,9 +294,9 @@
         "finance"
       ],
       "meetings": [
-        23,
-        22,
-        21
+        3,
+        2,
+        1
       ],
       "tasks": [
         "finance:open-a-tracking-spreadsh:b859064ba5"
@@ -305,27 +305,27 @@
     {
       "name": "Kabir Anand",
       "workgroups": [
-        "website-tech",
-        "design-branding"
+        "design-branding",
+        "website-tech"
       ],
       "meetings": [
-        25
+        5
       ],
       "tasks": [
-        "website-tech:decide-on-the-ticketing:958f5d7cf8",
         "website-tech:port-the-2025-site-templ:b6c221ebbb",
-        "design-branding:refresh-the-badge-and-si:9c894048ca"
+        "design-branding:refresh-the-badge-and-si:9c894048ca",
+        "website-tech:decide-on-the-ticketing:958f5d7cf8"
       ]
     },
     {
       "name": "Meera Raghavan",
       "workgroups": [],
       "meetings": [
-        23,
-        24,
-        21,
-        22,
-        25
+        2,
+        3,
+        4,
+        1,
+        5
       ],
       "tasks": [
         "website-tech:set-up-the-shared-drive:f909458795"
@@ -337,9 +337,9 @@
         "venue-logistics"
       ],
       "meetings": [
-        22,
-        21,
-        23
+        1,
+        2,
+        3
       ],
       "tasks": [
         "venue-logistics:collect-quotes-from-thre:558429b48c"
@@ -352,30 +352,30 @@
         "coc-inclusion"
       ],
       "meetings": [
-        24,
-        25
+        4,
+        5
       ],
       "tasks": [
-        "volunteers:review-the-first-batch-o:885b39a166",
+        "volunteers:schedule-intro-calls-wit:33110b8639",
         "coc-inclusion:draft-the-code-of-conduc:6f331d8a6e",
-        "volunteers:schedule-intro-calls-wit:33110b8639"
+        "volunteers:review-the-first-batch-o:885b39a166"
       ]
     },
     {
       "name": "Rehan Mathew",
       "workgroups": [
-        "finance",
-        "sponsorship"
+        "sponsorship",
+        "finance"
       ],
       "meetings": [
-        23,
-        24,
-        25
+        5,
+        4,
+        3
       ],
       "tasks": [
-        "sponsorship:draft-the-sponsorship-pr:4e3cfe0a9b",
+        "sponsorship:reach-out-to-the-first-t:d0b052e609",
         "sponsorship:sponsor-followup-platinu:8523d884b4",
-        "sponsorship:reach-out-to-the-first-t:d0b052e609"
+        "sponsorship:draft-the-sponsorship-pr:4e3cfe0a9b"
       ]
     },
     {
@@ -384,15 +384,15 @@
         "communications"
       ],
       "meetings": [
-        23,
-        25,
-        24,
-        22
+        5,
+        4,
+        3,
+        2
       ],
       "tasks": [
-        "communications:publish-the-cfp-announce:d738f7643d",
         "communications:send-the-reminder-email:457fef418f",
-        "communications:set-up-the-scipy-india-2:1243656ea5"
+        "communications:set-up-the-scipy-india-2:1243656ea5",
+        "communications:publish-the-cfp-announce:d738f7643d"
       ]
     },
     {
@@ -419,21 +419,21 @@
       "owners": [
         "Nikhil Bose"
       ],
-      "created_in": 21,
+      "created_in": 1,
       "history": [
         {
           "date": "2026-01-09",
-          "id": 21,
+          "id": 1,
           "status": "open"
         },
         {
           "date": "2026-01-23",
-          "id": 22,
+          "id": 2,
           "status": "in_progress"
         },
         {
           "date": "2026-02-06",
-          "id": 23,
+          "id": 3,
           "status": "done"
         }
       ]
@@ -450,16 +450,16 @@
       "owners": [
         "Devika Nair"
       ],
-      "created_in": 21,
+      "created_in": 1,
       "history": [
         {
           "date": "2026-01-09",
-          "id": 21,
+          "id": 1,
           "status": "open"
         },
         {
           "date": "2026-01-23",
-          "id": 22,
+          "id": 2,
           "status": "done"
         }
       ]
@@ -476,21 +476,21 @@
       "owners": [
         "Rehan Mathew"
       ],
-      "created_in": 22,
+      "created_in": 2,
       "history": [
         {
           "date": "2026-01-23",
-          "id": 22,
+          "id": 2,
           "status": "open"
         },
         {
           "date": "2026-02-06",
-          "id": 23,
+          "id": 3,
           "status": "in_progress"
         },
         {
           "date": "2026-02-20",
-          "id": 24,
+          "id": 4,
           "status": "done"
         }
       ]
@@ -507,16 +507,16 @@
       "owners": [
         "Sanjana Iyer"
       ],
-      "created_in": 23,
+      "created_in": 3,
       "history": [
         {
           "date": "2026-02-06",
-          "id": 23,
+          "id": 3,
           "status": "open"
         },
         {
           "date": "2026-02-20",
-          "id": 24,
+          "id": 4,
           "status": "done"
         }
       ]
@@ -533,16 +533,16 @@
       "owners": [
         "Priya Vasudevan"
       ],
-      "created_in": 24,
+      "created_in": 4,
       "history": [
         {
           "date": "2026-02-20",
-          "id": 24,
+          "id": 4,
           "status": "open"
         },
         {
           "date": "2026-03-06",
-          "id": 25,
+          "id": 5,
           "status": "done"
         }
       ]
@@ -559,11 +559,11 @@
       "owners": [
         "Meera Raghavan"
       ],
-      "created_in": 21,
+      "created_in": 1,
       "history": [
         {
           "date": "2026-01-09",
-          "id": 21,
+          "id": 1,
           "status": "done"
         }
       ]
@@ -580,21 +580,21 @@
       "owners": [
         "Arjun Pillai"
       ],
-      "created_in": 22,
+      "created_in": 2,
       "history": [
         {
           "date": "2026-01-23",
-          "id": 22,
+          "id": 2,
           "status": "open"
         },
         {
           "date": "2026-02-06",
-          "id": 23,
+          "id": 3,
           "status": "in_progress"
         },
         {
           "date": "2026-02-20",
-          "id": 24,
+          "id": 4,
           "status": "done"
         }
       ]
@@ -611,16 +611,16 @@
       "owners": [
         "Priya Vasudevan"
       ],
-      "created_in": 23,
+      "created_in": 3,
       "history": [
         {
           "date": "2026-02-06",
-          "id": 23,
+          "id": 3,
           "status": "open"
         },
         {
           "date": "2026-02-20",
-          "id": 24,
+          "id": 4,
           "status": "in_progress"
         }
       ]
@@ -637,16 +637,16 @@
       "owners": [
         "Tanmay Bhatt"
       ],
-      "created_in": 24,
+      "created_in": 4,
       "history": [
         {
           "date": "2026-02-20",
-          "id": 24,
+          "id": 4,
           "status": "open"
         },
         {
           "date": "2026-03-06",
-          "id": 25,
+          "id": 5,
           "status": "in_progress"
         }
       ]
@@ -663,21 +663,21 @@
       "owners": [
         "Kabir Anand"
       ],
-      "created_in": 23,
+      "created_in": 3,
       "history": [
         {
           "date": "2026-02-06",
-          "id": 23,
+          "id": 3,
           "status": "open"
         },
         {
           "date": "2026-02-20",
-          "id": 24,
+          "id": 4,
           "status": "blocked"
         },
         {
           "date": "2026-03-06",
-          "id": 25,
+          "id": 5,
           "status": "in_progress"
         }
       ]
@@ -694,11 +694,11 @@
       "owners": [
         "Kabir Anand"
       ],
-      "created_in": 22,
+      "created_in": 2,
       "history": [
         {
           "date": "2026-01-23",
-          "id": 22,
+          "id": 2,
           "status": "open"
         }
       ]
@@ -715,11 +715,11 @@
       "owners": [
         "Rehan Mathew"
       ],
-      "created_in": 25,
+      "created_in": 5,
       "history": [
         {
           "date": "2026-03-06",
-          "id": 25,
+          "id": 5,
           "status": "open"
         }
       ]
@@ -734,11 +734,11 @@
       "meeting_count": 1,
       "workgroup": "sponsorship",
       "owners": [],
-      "created_in": 25,
+      "created_in": 5,
       "history": [
         {
           "date": "2026-03-06",
-          "id": 25,
+          "id": 5,
           "status": "open"
         }
       ]
@@ -755,11 +755,11 @@
       "owners": [
         "Farida Qureshi"
       ],
-      "created_in": 21,
+      "created_in": 1,
       "history": [
         {
           "date": "2026-01-09",
-          "id": 21,
+          "id": 1,
           "status": "open"
         }
       ]
@@ -776,11 +776,11 @@
       "owners": [
         "Rehan Mathew"
       ],
-      "created_in": 24,
+      "created_in": 4,
       "history": [
         {
           "date": "2026-02-20",
-          "id": 24,
+          "id": 4,
           "status": "open"
         }
       ]
@@ -797,11 +797,11 @@
       "owners": [
         "Devika Nair"
       ],
-      "created_in": 25,
+      "created_in": 5,
       "history": [
         {
           "date": "2026-03-06",
-          "id": 25,
+          "id": 5,
           "status": "open"
         }
       ]
@@ -818,11 +818,11 @@
       "owners": [
         "Kabir Anand"
       ],
-      "created_in": 25,
+      "created_in": 5,
       "history": [
         {
           "date": "2026-03-06",
-          "id": 25,
+          "id": 5,
           "status": "open"
         }
       ]
@@ -839,11 +839,11 @@
       "owners": [
         "Priya Vasudevan"
       ],
-      "created_in": 25,
+      "created_in": 5,
       "history": [
         {
           "date": "2026-03-06",
-          "id": 25,
+          "id": 5,
           "status": "open"
         }
       ]
@@ -860,11 +860,11 @@
       "owners": [
         "Devika Nair"
       ],
-      "created_in": 25,
+      "created_in": 5,
       "history": [
         {
           "date": "2026-03-06",
-          "id": 25,
+          "id": 5,
           "status": "open"
         }
       ]
@@ -881,11 +881,11 @@
       "owners": [
         "Sanjana Iyer"
       ],
-      "created_in": 25,
+      "created_in": 5,
       "history": [
         {
           "date": "2026-03-06",
-          "id": 25,
+          "id": 5,
           "status": "open"
         }
       ]
@@ -900,11 +900,11 @@
       "meeting_count": 1,
       "workgroup": "sponsorship",
       "owners": [],
-      "created_in": 25,
+      "created_in": 5,
       "history": [
         {
           "date": "2026-03-06",
-          "id": 25,
+          "id": 5,
           "status": "open"
         }
       ]
@@ -921,11 +921,11 @@
       "owners": [
         "Sanjana Iyer"
       ],
-      "created_in": 22,
+      "created_in": 2,
       "history": [
         {
           "date": "2026-01-23",
-          "id": 22,
+          "id": 2,
           "status": "open"
         }
       ]
@@ -936,7 +936,7 @@
       "statement": "Applicants are assigned to a workgroup only after a short call with that workgroup's lead.",
       "workgroup": "volunteers",
       "meetings": [
-        25
+        5
       ],
       "date": "2026-03-06"
     },
@@ -944,7 +944,7 @@
       "statement": "The 2026 identity keeps the SciPy India mark and changes only the accent colour.",
       "workgroup": "design-branding",
       "meetings": [
-        25
+        5
       ],
       "date": "2026-03-06"
     },
@@ -952,7 +952,7 @@
       "statement": "Reviewers see submissions anonymised for the first pass.",
       "workgroup": "program",
       "meetings": [
-        24
+        4
       ],
       "date": "2026-02-20"
     },
@@ -960,7 +960,7 @@
       "statement": "The code of conduct is adapted from the PSF template with an India-specific contact list.",
       "workgroup": "coc-inclusion",
       "meetings": [
-        24
+        4
       ],
       "date": "2026-02-20"
     },
@@ -968,7 +968,7 @@
       "statement": "Volunteer applications are collected through a Google Form and reviewed every two weeks.",
       "workgroup": "volunteers",
       "meetings": [
-        24
+        4
       ],
       "date": "2026-02-20"
     },
@@ -976,7 +976,7 @@
       "statement": "The 2026 site reuses the 2025 template rather than starting over.",
       "workgroup": "website-tech",
       "meetings": [
-        23
+        3
       ],
       "date": "2026-02-06"
     },
@@ -984,7 +984,7 @@
       "statement": "The tech park auditorium is confirmed for 10-12 December.",
       "workgroup": "venue-logistics",
       "meetings": [
-        23
+        3
       ],
       "date": "2026-02-06"
     },
@@ -992,7 +992,7 @@
       "statement": "Three sponsor tiers: platinum, gold, community. Community tier is free for non-profits.",
       "workgroup": "sponsorship",
       "meetings": [
-        23
+        3
       ],
       "date": "2026-02-06"
     },
@@ -1000,7 +1000,7 @@
       "statement": "The CFP opens 16 February and closes 5 April. Review closes 26 April.",
       "workgroup": "program",
       "meetings": [
-        22
+        2
       ],
       "date": "2026-01-23"
     },
@@ -1008,7 +1008,7 @@
       "statement": "The shortlist is down to two: the university campus and the tech park auditorium.",
       "workgroup": "venue-logistics",
       "meetings": [
-        22
+        2
       ],
       "date": "2026-01-23"
     },
@@ -1016,7 +1016,7 @@
       "statement": "SciPy India 2026 runs 11-12 December 2026, two conference days plus one workshop day on 10 December.",
       "workgroup": "program",
       "meetings": [
-        21
+        1
       ],
       "date": "2026-01-09"
     },
@@ -1024,7 +1024,7 @@
       "statement": "The organizing team meets every second Friday until the conference.",
       "workgroup": null,
       "meetings": [
-        21
+        1
       ],
       "date": "2026-01-09"
     },
@@ -1032,7 +1032,7 @@
       "statement": "Ticket pricing stays at 2025 levels; a student tier is added.",
       "workgroup": "finance",
       "meetings": [
-        21
+        1
       ],
       "date": "2026-01-09"
     }
@@ -1112,27 +1112,27 @@
         "kind": "workgroup"
       },
       {
-        "id": "meeting:25",
+        "id": "meeting:5",
         "label": "2026-03-06 Volunteers and reviews",
         "kind": "meeting"
       },
       {
-        "id": "meeting:24",
+        "id": "meeting:4",
         "label": "2026-02-20 CFP is live",
         "kind": "meeting"
       },
       {
-        "id": "meeting:23",
+        "id": "meeting:3",
         "label": "2026-02-06 Sponsorship and site",
         "kind": "meeting"
       },
       {
-        "id": "meeting:22",
+        "id": "meeting:2",
         "label": "2026-01-23 CFP and venue shortlist",
         "kind": "meeting"
       },
       {
-        "id": "meeting:21",
+        "id": "meeting:1",
         "label": "2026-01-09 Kickoff",
         "kind": "meeting"
       },
@@ -1364,219 +1364,214 @@
     ],
     "edges": [
       {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "workgroup:sponsorship",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:25",
-        "target": "workgroup:volunteers",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:25",
-        "target": "workgroup:program",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:25",
-        "target": "workgroup:communications",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:25",
-        "target": "workgroup:website-tech",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "workgroup:design-branding",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:24",
+        "source": "meeting:5",
         "target": "workgroup:website-tech",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:24",
-        "target": "workgroup:coc-inclusion",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:24",
+        "source": "meeting:5",
         "target": "workgroup:volunteers",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:24",
-        "target": "workgroup:sponsorship",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:24",
-        "target": "workgroup:communications",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:24",
+        "source": "meeting:5",
         "target": "workgroup:program",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:23",
-        "target": "workgroup:venue-logistics",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:23",
+        "source": "meeting:5",
         "target": "workgroup:communications",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:23",
+        "source": "meeting:4",
         "target": "workgroup:sponsorship",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:23",
-        "target": "workgroup:website-tech",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:23",
+        "source": "meeting:4",
         "target": "workgroup:program",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:23",
+        "source": "meeting:4",
+        "target": "workgroup:communications",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:4",
+        "target": "workgroup:volunteers",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:4",
         "target": "workgroup:coc-inclusion",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:22",
+        "source": "meeting:4",
+        "target": "workgroup:website-tech",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
+        "target": "workgroup:website-tech",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
+        "target": "workgroup:coc-inclusion",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
+        "target": "workgroup:program",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
+        "target": "workgroup:venue-logistics",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
         "target": "workgroup:communications",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:22",
-        "target": "workgroup:website-tech",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:22",
-        "target": "workgroup:program",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:22",
+        "source": "meeting:3",
         "target": "workgroup:sponsorship",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:22",
-        "target": "workgroup:venue-logistics",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:22",
+        "source": "meeting:2",
         "target": "workgroup:finance",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:21",
+        "source": "meeting:2",
         "target": "workgroup:website-tech",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:21",
+        "source": "meeting:2",
+        "target": "workgroup:sponsorship",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:2",
+        "target": "workgroup:program",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:2",
         "target": "workgroup:venue-logistics",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:21",
+        "source": "meeting:2",
+        "target": "workgroup:communications",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:1",
+        "target": "workgroup:venue-logistics",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:1",
         "target": "workgroup:finance",
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:21",
+        "source": "meeting:1",
         "target": "workgroup:program",
         "kind": "DISCUSSED"
       },
       {
-        "source": "person:Arjun Pillai",
-        "target": "workgroup:program",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Arjun Pillai",
-        "target": "meeting:23",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Arjun Pillai",
-        "target": "meeting:22",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Arjun Pillai",
-        "target": "meeting:21",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Arjun Pillai",
-        "target": "meeting:24",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "workgroup:program",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "meeting:21",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "meeting:24",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "meeting:25",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "meeting:22",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Farida Qureshi",
-        "target": "workgroup:finance",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Farida Qureshi",
-        "target": "meeting:23",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Farida Qureshi",
-        "target": "meeting:22",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Farida Qureshi",
-        "target": "meeting:21",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Kabir Anand",
+        "source": "meeting:1",
         "target": "workgroup:website-tech",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "person:Arjun Pillai",
+        "target": "workgroup:program",
         "kind": "MEMBER_OF"
+      },
+      {
+        "source": "person:Arjun Pillai",
+        "target": "meeting:4",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Arjun Pillai",
+        "target": "meeting:1",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Arjun Pillai",
+        "target": "meeting:2",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Arjun Pillai",
+        "target": "meeting:3",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Devika Nair",
+        "target": "workgroup:program",
+        "kind": "MEMBER_OF"
+      },
+      {
+        "source": "person:Devika Nair",
+        "target": "meeting:5",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Devika Nair",
+        "target": "meeting:2",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Devika Nair",
+        "target": "meeting:4",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Devika Nair",
+        "target": "meeting:1",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Farida Qureshi",
+        "target": "workgroup:finance",
+        "kind": "MEMBER_OF"
+      },
+      {
+        "source": "person:Farida Qureshi",
+        "target": "meeting:3",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Farida Qureshi",
+        "target": "meeting:2",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Farida Qureshi",
+        "target": "meeting:1",
+        "kind": "ATTENDED"
       },
       {
         "source": "person:Kabir Anand",
@@ -1585,32 +1580,37 @@
       },
       {
         "source": "person:Kabir Anand",
-        "target": "meeting:25",
+        "target": "workgroup:website-tech",
+        "kind": "MEMBER_OF"
+      },
+      {
+        "source": "person:Kabir Anand",
+        "target": "meeting:5",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Meera Raghavan",
-        "target": "meeting:23",
+        "target": "meeting:2",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Meera Raghavan",
-        "target": "meeting:24",
+        "target": "meeting:3",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Meera Raghavan",
-        "target": "meeting:21",
+        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Meera Raghavan",
-        "target": "meeting:22",
+        "target": "meeting:1",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Meera Raghavan",
-        "target": "meeting:25",
+        "target": "meeting:5",
         "kind": "ATTENDED"
       },
       {
@@ -1620,17 +1620,17 @@
       },
       {
         "source": "person:Nikhil Bose",
-        "target": "meeting:22",
+        "target": "meeting:1",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Nikhil Bose",
-        "target": "meeting:21",
+        "target": "meeting:2",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Nikhil Bose",
-        "target": "meeting:23",
+        "target": "meeting:3",
         "kind": "ATTENDED"
       },
       {
@@ -1645,18 +1645,13 @@
       },
       {
         "source": "person:Priya Vasudevan",
-        "target": "meeting:24",
+        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Priya Vasudevan",
-        "target": "meeting:25",
+        "target": "meeting:5",
         "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Rehan Mathew",
-        "target": "workgroup:finance",
-        "kind": "MEMBER_OF"
       },
       {
         "source": "person:Rehan Mathew",
@@ -1665,17 +1660,22 @@
       },
       {
         "source": "person:Rehan Mathew",
-        "target": "meeting:23",
+        "target": "workgroup:finance",
+        "kind": "MEMBER_OF"
+      },
+      {
+        "source": "person:Rehan Mathew",
+        "target": "meeting:5",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Rehan Mathew",
-        "target": "meeting:24",
+        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Rehan Mathew",
-        "target": "meeting:25",
+        "target": "meeting:3",
         "kind": "ATTENDED"
       },
       {
@@ -1685,22 +1685,22 @@
       },
       {
         "source": "person:Sanjana Iyer",
-        "target": "meeting:23",
+        "target": "meeting:5",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Sanjana Iyer",
-        "target": "meeting:25",
+        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Sanjana Iyer",
-        "target": "meeting:24",
+        "target": "meeting:3",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Sanjana Iyer",
-        "target": "meeting:22",
+        "target": "meeting:2",
         "kind": "ATTENDED"
       },
       {
@@ -1719,17 +1719,17 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:21",
+        "source": "meeting:1",
         "target": "task:venue-logistics:collect-quotes-from-thre:558429b48c",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "meeting:22",
+        "source": "meeting:2",
         "target": "task:venue-logistics:collect-quotes-from-thre:558429b48c",
         "kind": "TOUCHED_ACTION"
       },
       {
-        "source": "meeting:23",
+        "source": "meeting:3",
         "target": "task:venue-logistics:collect-quotes-from-thre:558429b48c",
         "kind": "TOUCHED_ACTION"
       },
@@ -1744,12 +1744,12 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:21",
+        "source": "meeting:1",
         "target": "task:program:draft-the-cfp-timeline-a:16fb2eead7",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "meeting:22",
+        "source": "meeting:2",
         "target": "task:program:draft-the-cfp-timeline-a:16fb2eead7",
         "kind": "TOUCHED_ACTION"
       },
@@ -1764,17 +1764,17 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:22",
+        "source": "meeting:2",
         "target": "task:sponsorship:draft-the-sponsorship-pr:4e3cfe0a9b",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "meeting:23",
+        "source": "meeting:3",
         "target": "task:sponsorship:draft-the-sponsorship-pr:4e3cfe0a9b",
         "kind": "TOUCHED_ACTION"
       },
       {
-        "source": "meeting:24",
+        "source": "meeting:4",
         "target": "task:sponsorship:draft-the-sponsorship-pr:4e3cfe0a9b",
         "kind": "TOUCHED_ACTION"
       },
@@ -1789,12 +1789,12 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:23",
+        "source": "meeting:3",
         "target": "task:communications:publish-the-cfp-announce:d738f7643d",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "meeting:24",
+        "source": "meeting:4",
         "target": "task:communications:publish-the-cfp-announce:d738f7643d",
         "kind": "TOUCHED_ACTION"
       },
@@ -1809,12 +1809,12 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:24",
+        "source": "meeting:4",
         "target": "task:volunteers:review-the-first-batch-o:885b39a166",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "task:volunteers:review-the-first-batch-o:885b39a166",
         "kind": "TOUCHED_ACTION"
       },
@@ -1829,7 +1829,7 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:21",
+        "source": "meeting:1",
         "target": "task:website-tech:set-up-the-shared-drive:f909458795",
         "kind": "CREATED_ACTION"
       },
@@ -1844,17 +1844,17 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:22",
+        "source": "meeting:2",
         "target": "task:program:write-the-review-rubric:92f4aec1bd",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "meeting:23",
+        "source": "meeting:3",
         "target": "task:program:write-the-review-rubric:92f4aec1bd",
         "kind": "TOUCHED_ACTION"
       },
       {
-        "source": "meeting:24",
+        "source": "meeting:4",
         "target": "task:program:write-the-review-rubric:92f4aec1bd",
         "kind": "TOUCHED_ACTION"
       },
@@ -1869,12 +1869,12 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:23",
+        "source": "meeting:3",
         "target": "task:coc-inclusion:draft-the-code-of-conduc:6f331d8a6e",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "meeting:24",
+        "source": "meeting:4",
         "target": "task:coc-inclusion:draft-the-code-of-conduc:6f331d8a6e",
         "kind": "TOUCHED_ACTION"
       },
@@ -1889,12 +1889,12 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:24",
+        "source": "meeting:4",
         "target": "task:website-tech:find-someone-to-own-av-a:82a37e2c34",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "task:website-tech:find-someone-to-own-av-a:82a37e2c34",
         "kind": "TOUCHED_ACTION"
       },
@@ -1909,17 +1909,17 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:23",
+        "source": "meeting:3",
         "target": "task:website-tech:port-the-2025-site-templ:b6c221ebbb",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "meeting:24",
+        "source": "meeting:4",
         "target": "task:website-tech:port-the-2025-site-templ:b6c221ebbb",
         "kind": "TOUCHED_ACTION"
       },
       {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "task:website-tech:port-the-2025-site-templ:b6c221ebbb",
         "kind": "TOUCHED_ACTION"
       },
@@ -1934,7 +1934,7 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:22",
+        "source": "meeting:2",
         "target": "task:website-tech:decide-on-the-ticketing:958f5d7cf8",
         "kind": "CREATED_ACTION"
       },
@@ -1949,7 +1949,7 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "task:sponsorship:sponsor-followup-platinu:8523d884b4",
         "kind": "CREATED_ACTION"
       },
@@ -1959,7 +1959,7 @@
         "kind": "BELONGS_TO"
       },
       {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "task:sponsorship:sponsor-followup-communi:f596063641",
         "kind": "CREATED_ACTION"
       },
@@ -1974,7 +1974,7 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:21",
+        "source": "meeting:1",
         "target": "task:finance:open-a-tracking-spreadsh:b859064ba5",
         "kind": "CREATED_ACTION"
       },
@@ -1989,7 +1989,7 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:24",
+        "source": "meeting:4",
         "target": "task:sponsorship:reach-out-to-the-first-t:d0b052e609",
         "kind": "CREATED_ACTION"
       },
@@ -2004,7 +2004,7 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "task:program:recruit-four-more-cfp-re:2dda909839",
         "kind": "CREATED_ACTION"
       },
@@ -2019,7 +2019,7 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "task:design-branding:refresh-the-badge-and-si:9c894048ca",
         "kind": "CREATED_ACTION"
       },
@@ -2034,7 +2034,7 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "task:volunteers:schedule-intro-calls-wit:33110b8639",
         "kind": "CREATED_ACTION"
       },
@@ -2049,7 +2049,7 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "task:program:send-the-reminder-email:8f4b536494",
         "kind": "CREATED_ACTION"
       },
@@ -2064,7 +2064,7 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "task:communications:send-the-reminder-email:457fef418f",
         "kind": "CREATED_ACTION"
       },
@@ -2074,7 +2074,7 @@
         "kind": "BELONGS_TO"
       },
       {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "task:sponsorship:send-the-sponsorship-pro:920b15d739",
         "kind": "CREATED_ACTION"
       },
@@ -2089,7 +2089,7 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:22",
+        "source": "meeting:2",
         "target": "task:communications:set-up-the-scipy-india-2:1243656ea5",
         "kind": "CREATED_ACTION"
       },
@@ -2099,7 +2099,7 @@
         "kind": "CONCERNS"
       },
       {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "decision:Applicants are assigned to a workgroup only after a short call with that workgroup's lead.",
         "kind": "DECIDED"
       },
@@ -2109,7 +2109,7 @@
         "kind": "CONCERNS"
       },
       {
-        "source": "meeting:25",
+        "source": "meeting:5",
         "target": "decision:The 2026 identity keeps the SciPy India mark and changes only the accent colour.",
         "kind": "DECIDED"
       },
@@ -2119,7 +2119,7 @@
         "kind": "CONCERNS"
       },
       {
-        "source": "meeting:24",
+        "source": "meeting:4",
         "target": "decision:Reviewers see submissions anonymised for the first pass.",
         "kind": "DECIDED"
       },
@@ -2129,7 +2129,7 @@
         "kind": "CONCERNS"
       },
       {
-        "source": "meeting:24",
+        "source": "meeting:4",
         "target": "decision:The code of conduct is adapted from the PSF template with an India-specific contact list.",
         "kind": "DECIDED"
       },
@@ -2139,7 +2139,7 @@
         "kind": "CONCERNS"
       },
       {
-        "source": "meeting:24",
+        "source": "meeting:4",
         "target": "decision:Volunteer applications are collected through a Google Form and reviewed every two weeks.",
         "kind": "DECIDED"
       },
@@ -2149,7 +2149,7 @@
         "kind": "CONCERNS"
       },
       {
-        "source": "meeting:23",
+        "source": "meeting:3",
         "target": "decision:The 2026 site reuses the 2025 template rather than starting over.",
         "kind": "DECIDED"
       },
@@ -2159,7 +2159,7 @@
         "kind": "CONCERNS"
       },
       {
-        "source": "meeting:23",
+        "source": "meeting:3",
         "target": "decision:The tech park auditorium is confirmed for 10-12 December.",
         "kind": "DECIDED"
       },
@@ -2169,7 +2169,7 @@
         "kind": "CONCERNS"
       },
       {
-        "source": "meeting:23",
+        "source": "meeting:3",
         "target": "decision:Three sponsor tiers: platinum, gold, community. Community tier is free for non-profits.",
         "kind": "DECIDED"
       },
@@ -2179,7 +2179,7 @@
         "kind": "CONCERNS"
       },
       {
-        "source": "meeting:22",
+        "source": "meeting:2",
         "target": "decision:The CFP opens 16 February and closes 5 April. Review closes 26 April.",
         "kind": "DECIDED"
       },
@@ -2189,7 +2189,7 @@
         "kind": "CONCERNS"
       },
       {
-        "source": "meeting:22",
+        "source": "meeting:2",
         "target": "decision:The shortlist is down to two: the university campus and the tech park auditorium.",
         "kind": "DECIDED"
       },
@@ -2199,12 +2199,12 @@
         "kind": "CONCERNS"
       },
       {
-        "source": "meeting:21",
+        "source": "meeting:1",
         "target": "decision:SciPy India 2026 runs 11-12 December 2026, two conference days plus one workshop day on 10 December.",
         "kind": "DECIDED"
       },
       {
-        "source": "meeting:21",
+        "source": "meeting:1",
         "target": "decision:The organizing team meets every second Friday until the conference.",
         "kind": "DECIDED"
       },
@@ -2214,7 +2214,7 @@
         "kind": "CONCERNS"
       },
       {
-        "source": "meeting:21",
+        "source": "meeting:1",
         "target": "decision:Ticket pricing stays at 2025 levels; a student tier is added.",
         "kind": "DECIDED"
       }
