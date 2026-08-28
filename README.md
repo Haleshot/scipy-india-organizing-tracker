@@ -53,6 +53,7 @@ zensical build    # writes site/
 | [Privacy boundary](docs/privacy.md) | What gets published and what does not |
 | [Deploying](docs/deploying.md) | GitHub Pages, and moving to the real Google Doc |
 | [Troubleshooting](docs/troubleshooting.md) | When something is stale, stuck or refusing |
+| [Design notes](docs/design.md) | The dashboard's constraints, and what is absent on purpose |
 
 ## Layout
 

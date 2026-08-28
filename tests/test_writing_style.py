@@ -169,3 +169,60 @@ def test_the_dashboard_ships_no_em_dashes():
     for name in ("index.html", "app.js", "styles.css", "data/graph.json"):
         text = (REPO_ROOT / "web" / "public" / name).read_text(encoding="utf-8")
         assert not DASHES.search(text), f"em or en dash in web/public/{name}"
+
+
+# --------------------------------------------------------------------------- #
+# The dashboard's visual defaults
+#
+# The same reasoning as the prose checks above. These are the tells that make an
+# interface read as generated rather than designed, and every one of them was
+# present at some point in this project's history. Checking beats remembering.
+#
+# Comments are stripped before matching, so a comment explaining why a pattern
+# is absent does not trip the check that it is absent.
+# --------------------------------------------------------------------------- #
+
+WEB = REPO_ROOT / "web" / "public"
+
+VISUAL_TELLS = (
+    ("gradients", r"linear-gradient|radial-gradient|conic-gradient"),
+    ("glow shadows", r"box-shadow:[^;]*0 0 \d+px"),
+    ("capsule buttons", r"border-radius:\s*(?:999|9999|50)px"),
+    ("sparkle or emoji decoration", r"[✨\U0001F300-\U0001FAFF]"),
+    ("pulsing status dots", r"@keyframes|animation:\s*\w*(?:pulse|blink)"),
+    ("the generic violet palette", r"#7c3aed|#8b5cf6|#a855f7|#be185d|#ec4899"),
+    ("auto-fit card grids", r"repeat\(\s*auto-fit"),
+    ("opacity hover fades", r"transition:[^;]*opacity"),
+)
+
+
+def _without_comments(text: str, kind: str) -> str:
+    if kind == "css":
+        return re.sub(r"/\*.*?\*/", "", text, flags=re.S)
+    return re.sub(r"/\*.*?\*/", "", re.sub(r"^\s*//.*$", "", text, flags=re.M), flags=re.S)
+
+
+@pytest.mark.parametrize("label,pattern", VISUAL_TELLS, ids=[t[0] for t in VISUAL_TELLS])
+def test_the_dashboard_avoids_generated_ui_defaults(label, pattern):
+    for name, kind in (("styles.css", "css"), ("app.js", "js"), ("index.html", "html")):
+        body = _without_comments((WEB / name).read_text(encoding="utf-8"), kind)
+        assert not re.search(pattern, body, re.IGNORECASE), f"{label} in web/public/{name}"
+
+
+def test_spacing_stays_on_the_grid():
+    """8px grid, with 4px as the only half step and 2px for optical nudges."""
+    css = _without_comments((WEB / "styles.css").read_text(encoding="utf-8"), "css")
+    values = [int(v) for v in re.findall(r"(?:padding|margin|gap):\s*(\d+)px", css)]
+    assert values, "expected to find spacing declarations"
+    off = sorted({v for v in values if v % 4 and v not in (1, 2)})
+    assert not off, f"spacing off the grid: {off}"
+
+
+def test_one_accent_colour_and_it_is_the_logo_blue():
+    """A second accent is how a palette drifts. The graph legend is separate: it
+    encodes categories, and its colours come from the logo too."""
+    css = _without_comments((WEB / "styles.css").read_text(encoding="utf-8"), "css")
+    accents = re.findall(r"--accent:\s*(#[0-9a-fA-F]{6})", css)
+    assert accents, "no --accent defined"
+    assert accents[0].lower() == "#0054a6", "the light accent must be the SciPy logo blue"
+    assert len(set(accents)) <= 2, f"more than one accent per scheme: {accents}"

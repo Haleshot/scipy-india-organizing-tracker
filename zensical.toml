@@ -26,6 +26,7 @@ nav = [
   { "Privacy boundary" = "privacy.md" },
   { "Deploying" = "deploying.md" },
   { "Troubleshooting" = "troubleshooting.md" },
+  { "Design notes" = "design.md" },
 ]
 
 extra_css = ["assets/scipy.css"]
