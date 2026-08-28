@@ -1,0 +1,112 @@
+name: Refresh graph and publish snapshot
+
+# Manual only. Runs the real pipeline against real sources and publishes the
+# resulting snapshot.
+#
+# Read this before enabling it:
+#
+# * A local Neo4j container is NOT reachable from GitHub Actions. This workflow
+#   needs a Neo4j instance the runner can dial — Aura, or anything with a public
+#   bolt+s:// endpoint. Without one, keep using the local flow: run the pipeline
+#   and the exporter on a laptop, commit web/public/data/graph.json, push.
+# * Required repository secrets:
+#     NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD, NEO4J_DATABASE
+#     OPENAI_API_KEY                     (only if MEETING_EXTRACTOR=llm)
+#     GOOGLE_SERVICE_ACCOUNT_CREDENTIAL  (the JSON body, not a path)
+#     GOOGLE_DRIVE_ROOT_FOLDER_IDS
+# * The service account must have the notes folder shared with it.
+# * The snapshot is committed back to the repository, which triggers the Pages
+#   workflow. It contains only allowlisted fields — see
+#   scripts/export_public_snapshot.py.
+
+on:
+  workflow_dispatch:
+    inputs:
+      meeting_notes_source:
+        description: "local | google_drive"
+        default: google_drive
+        type: choice
+        options: [local, google_drive]
+      meeting_extractor:
+        description: "markdown | llm"
+        default: llm
+        type: choice
+        options: [markdown, llm]
+      person_resolution:
+        description: "exact | embedding"
+        default: embedding
+        type: choice
+        options: [exact, embedding]
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Check that a reachable Neo4j is configured
+        env:
+          NEO4J_URI: ${{ secrets.NEO4J_URI }}
+        run: |
+          if [ -z "$NEO4J_URI" ]; then
+            echo "::error::NEO4J_URI is not set. This workflow needs a hosted Neo4j;"
+            echo "::error::a container on your laptop is not reachable from Actions."
+            exit 1
+          fi
+
+      - name: Write the service account credential to a file
+        if: ${{ inputs.meeting_notes_source == 'google_drive' }}
+        env:
+          CREDENTIAL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_CREDENTIAL }}
+        run: |
+          printf '%s' "$CREDENTIAL" > "$RUNNER_TEMP/service_account.json"
+          echo "GOOGLE_SERVICE_ACCOUNT_CREDENTIAL=$RUNNER_TEMP/service_account.json" >> "$GITHUB_ENV"
+
+      - name: Run the pipeline
+        env:
+          COCOINDEX_DB: ./cocoindex.db
+          MEETING_NOTES_SOURCE: ${{ inputs.meeting_notes_source }}
+          MEETING_NOTES_DIR: ./data/meeting_notes
+          MEETING_EXTRACTOR: ${{ inputs.meeting_extractor }}
+          PERSON_RESOLUTION: ${{ inputs.person_resolution }}
+          GOOGLE_DRIVE_ROOT_FOLDER_IDS: ${{ secrets.GOOGLE_DRIVE_ROOT_FOLDER_IDS }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          NEO4J_URI: ${{ secrets.NEO4J_URI }}
+          NEO4J_USER: ${{ secrets.NEO4J_USER }}
+          NEO4J_PASSWORD: ${{ secrets.NEO4J_PASSWORD }}
+          NEO4J_DATABASE: ${{ secrets.NEO4J_DATABASE }}
+        run: cocoindex -d src update scipy_india_kg.main
+
+      - name: Export the sanitized snapshot
+        env:
+          NEO4J_URI: ${{ secrets.NEO4J_URI }}
+          NEO4J_USER: ${{ secrets.NEO4J_USER }}
+          NEO4J_PASSWORD: ${{ secrets.NEO4J_PASSWORD }}
+          NEO4J_DATABASE: ${{ secrets.NEO4J_DATABASE }}
+        run: python scripts/export_public_snapshot.py
+
+      - name: Re-check the privacy boundary
+        run: pytest tests/test_public_snapshot.py -q
+
+      - name: Commit the snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/public/data/graph.json
+          if git diff --cached --quiet; then
+            echo "Snapshot unchanged."
+          else
+            git commit -m "Refresh public graph snapshot"
+            git push
+          fi

@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: Lint
+        run: ruff check . && ruff format --check .
+      - name: Test
+        # The tests that need Neo4j skip themselves on a runner without one.
+        # What runs here is the pipeline's own logic: the extractors, task
+        # identity, person resolution, the volunteer adapters, search capability
+        # detection and the privacy guarantees on the committed snapshot.
+        run: pytest -q
+      - name: Report what was skipped
+        if: always()
+        run: pytest -q -rs 2>&1 | tail -20
