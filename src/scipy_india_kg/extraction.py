@@ -103,9 +103,16 @@ _LABEL_RE = re.compile(
 # until the next `Task:` or the end of the section. An empty value means the
 # notes did not record one, which is different from the field being absent and
 # is treated the same way: nothing is inferred.
-_TASK_OPEN_RE = re.compile(r"^\s*\*{0,2}task\*{0,2}\s*:\s*(.*)$", re.IGNORECASE)
+# The optional bullet matters. People write action items as a list, and a Doc
+# formatted for humans indents the fields under a bulleted `- Task:` line. Without
+# this the bullet path claims the line and "Task: " ends up inside the
+# description. See tests/test_docs_format.py.
+_TASK_OPEN_RE = re.compile(
+    rf"^\s*[{_BULLET_CHARS}]?\s*\*{{0,2}}task\*{{0,2}}\s*:\s*(.*)$", re.IGNORECASE
+)
 _TASK_FIELD_RE = re.compile(
-    r"^\s*\*{0,2}(id|key|owners?|workgroup|status|due|issues?)\*{0,2}\s*:\s*(.*)$",
+    rf"^\s*[{_BULLET_CHARS}]?\s*"
+    r"\*{0,2}(id|key|owners?|workgroup|status|due|issues?)\*{0,2}\s*:\s*(.*)$",
     re.IGNORECASE,
 )
 _PARENTHETICAL_WG_RE = re.compile(r"^\(([^)]+)\)\s*")
