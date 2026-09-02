@@ -1,88 +1,98 @@
 # Reading the dashboard
 
-The dashboard is one page per question. Nothing on it is typed by hand: every
-number comes from the meeting notes or the planning tracker, and it is only as
-current as the last time somebody ran a refresh. The footer says when that was.
+Nothing on the dashboard is typed by hand. Every number comes from the meeting
+notes or the planning repo, and it is as current as the last refresh, which the
+footer gives you a timestamp for.
 
-## Overview
+Six pages, one per question you might have arrived with.
 
-Opens with the number that usually matters, how many action items are still
-open and how many of those have nobody on them.
+=== "Overview"
 
-Unowned work is called out separately because it is the failure mode that hides.
-An item with an owner and no progress gets chased at the next meeting. An item
-nobody picked up sits in the notes looking like it is handled. The pipeline
-never assigns an owner, so when this says four, four action items were written
-down without a name against them.
+    Opens with the count that usually matters: how many action items are still
+    open, and how many of those have nobody against them.
 
-Below that is the most recent meeting with its decisions, then a table of open
-work per volunteer role, then the unowned items in full.
+    Unowned work gets its own number because it is the thing that goes missing.
+    An item with an owner and no progress gets chased next meeting. An item
+    nobody took sits in the notes looking handled. Since the pipeline never
+    fills in an owner, a four here means four items were written down without a
+    name on them.
 
-## Action items
+    Under that: the most recent meeting and what it decided, open work broken
+    down by volunteer role, then the unowned items listed out.
 
-Everything the meetings agreed to do. Statuses are `open`, `in progress`,
-`blocked`, `done`, `dropped`, and `unknown`.
+=== "Action items"
 
-`unknown` means the notes never said, and it counts as open. If a meeting stops
-mentioning an item, that is not evidence the item finished.
+    Everything the meetings agreed to do, with a status of open, in progress,
+    blocked, done, dropped or unknown.
 
-An action item repeated across meetings is one row, not several. Its status is
-whatever the most recent meeting said, and the whole history sits behind it, so
-you can see something go open, blocked, in progress over six weeks.
+    Unknown means the notes never said, and it counts as open. A meeting going
+    quiet about something is not the same as that thing finishing.
 
-## Meetings
+    An item that comes up in several meetings is one row here, not several. The
+    status shown is whatever the latest meeting said, and the history sits
+    behind it, so you can watch something go open, then blocked, then in
+    progress across six weeks.
 
-One entry per dated meeting: who was there, what was decided, and which action
-items were touched. Items that changed status are marked, which is the fastest
-way to answer what actually moved since last time.
+=== "Meetings"
 
-## GitHub issues
+    One entry per dated meeting: who was there, what got decided, and which
+    action items came up. Items that changed status are marked, which is the
+    quickest way to see what actually moved.
 
-The planning tracker, read straight from GitHub. This is a second source and it
-disagrees with the notes on purpose.
+=== "GitHub issues"
 
-An issue is linked to an action item only when somebody wrote that link into the
-notes. Nothing here guesses that two similarly worded things are the same work.
-So the "Linked to an action item" filter is small, and the gap between the two
-lists is the interesting part: work the room agreed to that nobody filed, and
-issues sitting in the tracker that no meeting has discussed.
+    The planning repo, read straight from GitHub.
 
-## Volunteer roles
+    An issue is tied to an action item only when somebody wrote that link into
+    the notes. Nothing guesses that two similarly worded things are the same
+    work, so the linked list stays short on purpose. The gap between the two
+    lists is where the useful information is: work the room agreed to that
+    nobody filed, and issues sitting in the tracker that no meeting has touched.
 
-The thirteen roles from the sign-up form, each with its open work and who is on
-it. A role with nobody on it shows as empty rather than being hidden, because an
-empty role is worth seeing.
+=== "Volunteer roles"
 
-Nobody who filled in the volunteer form is named here. See
-[what gets published](privacy.md).
+    The thirteen roles from the sign-up form, each with its open work and who
+    is on it. A role with nobody on it shows as empty rather than being hidden,
+    since that is worth knowing.
 
-## People
+    Nobody who filled in the volunteer form is named on this page.
 
-Everyone who appears in the notes: what they own, which roles they hold, which
-meetings they attended. Three people today, the ones listed at
-[scipy.in/2026/team](https://scipy.in/2026/team).
+=== "People"
 
-## Explorer
+    Everyone who turns up in the notes, with what they own, which roles they
+    hold and which meetings they were in. Three of us at the moment, the ones
+    on [scipy.in/2026/team](https://scipy.in/2026/team).
 
-All of the above is one graph, and this draws it. People, roles, meetings,
-decisions, action items and issues are nodes; the lines between them are things
-like "attended", "owns", "decided", "belongs to".
+## The explorer
 
-Search for a person or a role and pick it, and you get that one thing with what
-it connects to. **Directly connected** shows one step out. **One step further
-out** also brings in the neighbours of those, which is how you find who you
-share work with without having been in the same meeting. Click any node to read
-it in the panel.
+All of the above is one graph, and the explorer draws it. People, roles,
+meetings, decisions, action items and issues are the dots; the lines between
+them are things like attended, owns, decided, belongs to.
 
-Meetings, action items and issues start hidden under **Display**, because
-turning them all on at once produces a hairball nobody can read. Add them once
-you have narrowed to something small.
+Search for a person or a role and pick it, and you get that one thing plus what
+it connects to.
+
+| Control | What it does |
+| --- | --- |
+| Directly connected | One step out from whatever you picked |
+| One step further out | Also pulls in the neighbours of those, which is how you spot who you share work with without having sat in the same meeting |
+| Show everything | Drops the focus and draws the lot |
+| Display | Brings in meetings, action items and issues, which start hidden |
+
+Meetings, action items and issues start hidden because turning everything on at
+once gives you a hairball. Narrow to something small first, then add them.
+
+!!! tip "The panel does the explaining"
+
+    Clicking a dot opens it in the panel beside the drawing: a person's open
+    work, an issue's state on GitHub, a task's whole history. The drawing is for
+    finding things, and the panel is for reading them.
 
 ## What is not on it
 
-Contact details, volunteer form answers, the names of people who applied to
-volunteer and have not been assigned, and file paths into anyone's Drive. The
-exporter works from an allowlist, so a field added to the graph later does not
-appear here unless somebody adds it to that list on purpose.
+Contact details, volunteer form answers, and file paths into anyone's Drive. The
+export works from a list of allowed fields rather than a list of blocked ones,
+so a field added to the database later does not turn up here unless somebody
+adds it to that list deliberately.
 
 [What gets published](privacy.md) has the detail.

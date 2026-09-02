@@ -1,25 +1,21 @@
-# Refreshing the graph
+# Keeping it current
 
-One command rebuilds everything that derives from the sources:
+One command rebuilds everything that comes from the sources:
 
 ```bash
 ./scripts/refresh.sh
 ```
 
-It runs three stages in order, because they depend on each other. The graph is
-built from the notes and the tracker; the search indexes are built from the
-graph; the dashboard's data file is exported from the graph and checked before
-it is written. Running them out of order gives you a dashboard describing a
-graph that no longer exists.
+Three stages, in this order because each needs the one before it. The graph gets
+built from the notes and the tracker, the search indexes get built from the
+graph, and the dashboard's data file gets exported from the graph and checked
+before it is written.
 
 Everything is incremental. A meeting section whose text has not changed is
-matched against its cached extraction and skipped, and the index builder
-re-embeds only nodes whose indexed text moved. A refresh after one edited
-meeting takes about as long as a refresh after none.
+matched against its cached extraction and skipped, so a refresh after one edited
+meeting costs about the same as a refresh after none.
 
-A real run looks like this:
-
-```
+```title="a run after one edited meeting"
 1/3  Graph
   ✅ process_note_file: 1 total | 1 reprocessed
   Issue: 43 -> 43
@@ -31,20 +27,68 @@ A real run looks like this:
 3/3  Dashboard snapshot
   Wrote web/public/data/graph.json: 5 meetings, 3 people, 23 tasks
   privacy checks passed
+
+Done
+  Graph written to: bolt://127.0.0.1:7687 (database neo4j)
 ```
 
-## The flags
+That last line matters more than it looks. See
+[which database am I looking at](neo4j-desktop.md#which-database-am-i-looking-at).
 
-`--check` reports what is stale and writes nothing, which is what you want in
-CI or when you are not sure whether somebody else already ran it.
+## Flags
 
-`--reset` empties the graph and rebuilds from scratch. Reach for it after
-changing something structural, like a workgroup slug or the shape of a node,
-where incremental updates leave the old version behind.
+| Flag | When you want it |
+| --- | --- |
+| `--check` | Report what is stale, write nothing. Good in CI, or when you are not sure somebody else already ran it |
+| `--reset` | Empty the graph and rebuild. After changing something structural, like a workgroup slug, where incremental updates leave the old version behind |
+| `--watch` | Re-run whenever the notes change. Needs `fswatch` |
+| `--no-search` | Skip the indexes |
+| `--force` | Re-embed everything |
 
-`--no-search` skips the indexes, `--force` re-embeds everything, and `--watch`
-re-runs the whole thing whenever the notes change. `--watch` needs `fswatch`
-(`brew install fswatch`).
+## Doing it on a schedule
+
+Nothing here runs itself. A refresh happens when somebody runs the command, and
+for a team this size that is usually the right amount of automation: you get to
+see what changed before it goes out.
+
+If you would rather it ran on its own, the honest options are a cron entry on a
+machine that stays up, or GitHub Actions. Actions needs a Neo4j the runner can
+reach, which a container on your laptop is not, so it wants a hosted instance
+such as Aura before it does anything useful.
+
+??? example "A cron entry, if you want one"
+
+    ```bash title="crontab -e"
+    # Every weekday at 9am. Absolute paths, because cron has almost no PATH.
+    0 9 * * 1-5 cd /path/to/meeting-notes-graph && ./scripts/refresh.sh >> refresh.log 2>&1
+    ```
+
+    Two things to know. The GitHub source allows 60 unauthenticated requests an
+    hour, so set `GITHUB_TOKEN` before running this often. And a scheduled
+    refresh that fails is silent unless you read the log, which is the usual
+    reason people go back to running it by hand.
+
+## Putting the dashboard online
+
+`web/public` is the deployable directory as it stands. No build step, Cytoscape
+is vendored rather than pulled from a CDN, every URL is relative and routing
+uses the hash, so it behaves the same at a project path as at a domain root.
+
+For GitHub Pages, push the repository and set Settings, Pages, Source to GitHub
+Actions. The first deploy works on the committed snapshot with no database and
+no secrets, which is a good way to check the plumbing before pointing anything
+real at it.
+
+The workflow refuses to deploy a snapshot whose profile is not `public`, so an
+organiser export cannot go out by accident.
+
+To check a project-path deploy locally first, since that is where relative URLs
+usually break:
+
+```bash
+mkdir -p /tmp/pages/meeting-notes-graph && cp -R web/public/* /tmp/pages/meeting-notes-graph/
+python -m http.server 8000 --directory /tmp/pages
+```
 
 ## Live mode is a different thing
 
@@ -52,27 +96,25 @@ re-runs the whole thing whenever the notes change. `--watch` needs `fswatch`
 cocoindex -d src update -L scipy_india_kg.main
 ```
 
-This keeps **Neo4j** current and nothing else. It re-runs the pipeline every
+This keeps Neo4j current and nothing else. It re-runs every
 `LIVE_REFRESH_SECONDS`, 20 by default, and memoisation makes a cycle with no
 edits nearly free.
 
-What it does not touch is the dashboard export or the vector indexes. After an
-edit, the graph and `graph.json` disagree, and the dashboard is the half you are
-usually looking at. So live mode is for working on the pipeline, and
-`./scripts/refresh.sh --watch` is for working on the notes.
+What it does not touch is the dashboard export or the vector indexes, so after
+an edit the graph and the dashboard disagree. Live mode is for working on the
+pipeline; `./scripts/refresh.sh --watch` is for working on the notes.
 
 ## If you are downloading the Doc by hand
 
-With `MEETING_NOTES_SOURCE=local`, the pipeline reads every note file in
-`data/meeting_notes/`. Downloading the Doc again usually produces a new
-filename, so `SciPy India 2026 Meeting Notes (1).md` lands next to the one
+With `MEETING_NOTES_SOURCE=local` the pipeline reads every note file in
+`data/meeting_notes/`. Downloading the Doc again usually gives you a new
+filename, so `SciPy India 2026 Meeting Notes (1).md` lands beside the one
 already there, both get read, and every meeting appears twice.
 
-The pipeline refuses that rather than merging quietly: two files claiming the
-same meeting date and title is an error naming both filenames. Overwriting the
-existing file is fine, and so is deleting the old one first, because CocoIndex
-removes what a deleted file contributed. To stop thinking about it, set
-`MEETING_NOTES_FILE` in `.env` to one canonical name and always save over it.
+That is an error rather than a silent merge: two files claiming the same meeting
+date and title stops the run and names both filenames. Overwriting works, and so
+does deleting the old file first, since CocoIndex removes what a deleted file
+contributed.
 
-Connecting the Doc directly removes this problem entirely. See
+Connecting the Doc directly makes the whole problem go away. See
 [Connecting the sources](connecting-sources.md).

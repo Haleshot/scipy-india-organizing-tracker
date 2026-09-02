@@ -1,22 +1,28 @@
-# SciPy India organizing graph
+# SciPy India organizing tracker
 
-Turns the SciPy India organizing notes into a small Neo4j graph, so questions
-like "what is still open?" or "what did we decide about the venue?" can be
-answered without rereading months of meeting notes.
-
-The meetings stay in one Google Doc that people write during a call. A CocoIndex
-pipeline reads it, and the graph it builds has two readers that never talk to
-each other: a sanitized snapshot behind a static dashboard, and a read-only MCP
-server your local agent can query.
+We take notes in a Google Doc during organising calls and file tasks as issues
+on the planning repo. This reads both and keeps track of who owns what, what is
+still open, and which volunteer role it belongs to, so handing work to people
+stops being a memory exercise.
 
 ```
-meeting notes -> CocoIndex -> Neo4j -+-> read-only MCP server -> local agent
-                                     +-> sanitized snapshot -> dashboard
+meeting notes ->                     +-> sanitized export -> dashboard
+                 CocoIndex -> Neo4j -+
+GitHub issues ->                     +-> read-only MCP server -> your agent
 ```
 
-Fixture notes and fictional volunteer applications ship with the repo, so the
-whole thing runs with no credentials. The volunteer roles are real, taken from
-the sign-up form; nothing else from that form is here and no applicant is named.
+Two readers, and they never talk to each other. The dashboard is built from an
+export that copies only allowlisted fields, so it is safe to publish. The MCP
+server sits next to the private database on a laptop and is not deployed.
+
+Right now it runs on the three organisers listed at
+[scipy.in/2026/team](https://scipy.in/2026/team). Volunteer sign-ups exist, but
+nobody has been contacted yet, so none of that data is in this repository and
+`data/volunteers/applications.json` is empty on purpose. The thirteen volunteer
+roles in `config/workgroups.yaml` are the real ones from the sign-up form.
+
+No model runs unless you switch one on. See
+[How AI is used](docs/how-ai-is-used.md).
 
 ## Running it
 
@@ -29,9 +35,12 @@ docker compose up -d --wait
 python -m http.server 8000 --directory web/public
 ```
 
-After that, replacing the notes export and running `./scripts/refresh.sh` is the
-whole weekly loop. It rebuilds the graph, the search indexes and the dashboard
-snapshot, and tells you what changed.
+That builds a graph from the notes in `data/meeting_notes/` with no credentials
+needed. Pointing it at the team's real Doc and the issue tracker is
+[Connecting the sources](docs/connecting-sources.md).
+
+After that, `./scripts/refresh.sh` is the whole loop. It rebuilds the graph, the
+search indexes and the dashboard data, and says what changed.
 
 ## Documentation
 
@@ -50,23 +59,24 @@ zensical build    # writes site/
 | [Get started](docs/get-started.md) | First run from a clean shell |
 | [Connecting the sources](docs/connecting-sources.md) | The Google Doc and the issue tracker |
 | [Writing meeting notes](docs/writing-notes.md) | The note format, and why it is shaped that way |
-| [Refreshing the graph](docs/refreshing.md) | What to run after a meeting |
+| [Keeping it current](docs/refreshing.md) | What to run after a meeting, scheduling it, putting it online |
 | [Running it on Neo4j Desktop](docs/neo4j-desktop.md) | The graph in a query editor, and useful Cypher |
 | [Asking questions](docs/asking-questions.md) | The thirteen tools, and connecting Claude |
-| [Publishing](docs/publishing.md) | GitHub Pages, and evaluating the LLM extractor |
 | [The graph model](docs/graph-model.md) | Node labels, task identity, provenance |
 | [Design notes](docs/design.md) | The dashboard's constraints, and what is absent on purpose |
 
 ## Layout
 
 ```
-config/workgroups.yaml     volunteer roles, the source of truth
-data/                      fixture notes and applications
+config/workgroups.yaml     the thirteen volunteer roles
+config/people.yaml         the organisers, and their GitHub handles
+data/meeting_notes/        notes to build from when not using Drive
 src/scipy_india_kg/        pipeline, retrieval layer, MCP server, CLI
 scripts/refresh.sh         the one command
+scripts/check_drive.py     says which Drive setup step is missing
 web/public/                the dashboard, deployed as-is
 docs/                      this documentation, built by Zensical
-tests/                     213 tests; the Neo4j ones skip without it
+tests/                     the Neo4j ones skip when it is not running
 ```
 
 ## Tests

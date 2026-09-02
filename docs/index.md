@@ -1,17 +1,54 @@
-# SciPy India organizing graph
+# SciPy India organizing tracker
 
-Conference planning leaks. A decision gets made on a call and written into a Doc
-nobody opens again, an action item gets agreed and then lives in one person's
-head, and the issue tracker drifts out of step with both. Three months in,
-answering "did we ever sort out the venue?" means scrolling.
+We take notes in a Google Doc during organising calls, and we file tasks as
+issues on the planning repo. Both are fine on their own. Together they get hard
+to hold in your head: who agreed to do what, which volunteer role it sits under,
+and what nobody has picked up yet.
 
-This reads the meeting notes and the planning tracker and builds a graph out of
-them: meetings, who was in them, what they decided, the action items that came
-out, who owns each one, and which volunteer role it belongs to.
+This reads both and keeps track of that for you. It ends up as a dashboard you
+can open and a set of questions you can ask.
 
-Most people want the dashboard, which is a page you look at.
-[Reading the dashboard](reading-the-dashboard.md) explains what is on it and how
-the numbers are worked out. That is probably the page you want.
+<div class="grid cards" markdown>
+
+-   __Just want to look at it?__
+
+    ---
+
+    The dashboard is the main thing. Every page on it, and how each number is
+    worked out.
+
+    [Reading the dashboard](reading-the-dashboard.md)
+
+-   __Want to run your own copy?__
+
+    ---
+
+    About five minutes, no credentials. It ships with notes you can build from
+    straight away.
+
+    [Get started](get-started.md)
+
+-   __Taking minutes at the next call?__
+
+    ---
+
+    The note format. Plain labels you type during the meeting, nothing to fill
+    in afterwards.
+
+    [Writing meeting notes](writing-notes.md)
+
+-   __Wondering what it does with your data?__
+
+    ---
+
+    Nothing is sent anywhere by default. Here is what each optional model would
+    see if you turned it on.
+
+    [How AI is used](how-ai-is-used.md)
+
+</div>
+
+## How it fits together
 
 ```mermaid
 flowchart LR
@@ -22,36 +59,34 @@ flowchart LR
     neo --> mcp["MCP server"] --> agent["Your agent"]
 ```
 
-The published dashboard is built from a sanitized export, not from the database.
-The exporter copies only fields named in an allowlist, so contact details and
-volunteer form answers stay behind even if somebody adds them to the graph
-later. [What gets published](privacy.md) covers where that line sits.
+Notes and issues go into a database. Two things read that database and they
+never talk to each other.
 
-The MCP server is the other reader. It connects to the same Neo4j and gives an
-agent thirteen read-only tools, so you can ask "what is open in sponsoring and
-who has it" instead of writing a query. It runs on a laptop next to the private
-database and is never deployed.
+The dashboard is built from an export, not from the database itself. The
+exporter copies only the fields on a list, so contact details and form answers
+do not reach it even if somebody adds them to the database later.
+[What gets published](privacy.md) covers where that line sits and why.
 
-No model runs unless you turn one on, and nothing is sent anywhere by default.
-[How AI is used](how-ai-is-used.md) says what each of the three optional model
-paths would send, and why you might decline all of them.
+The other reader is an MCP server. It gives an agent thirteen read-only tools,
+so instead of writing a query you can ask what is open in sponsoring and who has
+it. That one runs on a laptop next to the private database and is not deployed
+anywhere.
 
-## Running your own
+## What it is for
 
-The setup pages are for the smaller group who want their own copy pointed at
-their own notes. [Get started](get-started.md) needs no credentials and builds a
-graph from the notes bundled with the repository.
+The point is deciding what to hand to which volunteer. Once the graph knows who
+owns what, which roles have work sitting unclaimed, and who has already said
+they are interested in an area, matching people to jobs stops being a memory
+exercise.
 
-If you are taking minutes at the next call and the pipeline is already running,
-the page you need is [Writing meeting notes](writing-notes.md). The format is
-plain labels typed during the meeting rather than a form filled in afterwards,
-and it is the one thing everything else depends on.
+Right now it is running on the three of us, which is small enough to check the
+whole thing by eye before anyone else's name goes near it.
 
 ## Where it came from
 
-It started as CocoIndex's
-[meeting_notes_graph_neo4j](https://github.com/cocoindex-io/cocoindex/tree/main/examples/meeting_notes_graph_neo4j)
-example, which is where the pipeline shape comes from: a document source,
-per-section extraction, entity resolution, a property graph. The volunteer
-roles, the issue source, the provenance tracking, the retrieval layer and the
-privacy boundary were added here.
+CocoIndex ships an example called
+[meeting_notes_graph_neo4j](https://github.com/cocoindex-io/cocoindex/tree/main/examples/meeting_notes_graph_neo4j),
+and that is where the shape comes from: read a document, pull structure out of
+each section, work out which names are the same person, write a graph. The
+volunteer roles, the GitHub source, the provenance tracking, the query layer and
+the export boundary were added on top.

@@ -5,8 +5,8 @@
 #   zensical build    writes site/
 
 [project]
-site_name = "SciPy India organizing graph"
-site_description = "Turning the SciPy India meeting notes into a graph the organizing team can query."
+site_name = "SciPy India organizing tracker"
+site_description = "Keeping track of who is doing what for SciPy India 2026, from the meeting notes and the planning tracker."
 site_url = "https://haleshot.github.io/meeting-notes-graph/"
 site_author = "SciPy India organizers"
 copyright = "SciPy India"
@@ -31,7 +31,6 @@ nav = [
     "refreshing.md",
     "neo4j-desktop.md",
     "asking-questions.md",
-    "publishing.md",
   ] },
   { "Reference" = [
     "graph-model.md",
@@ -46,10 +45,12 @@ language = "en"
 logo = "assets/scipy-india-logo.svg"
 favicon = "assets/scipy-india-logo.svg"
 features = [
+  "content.code.annotate",
   "content.code.copy",
   "navigation.instant",
   "navigation.instant.prefetch",
   "navigation.sections",
+  "navigation.indexes",
   "navigation.top",
   "navigation.tracking",
   "search.highlight",

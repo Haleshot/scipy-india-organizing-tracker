@@ -1,111 +1,115 @@
 # How AI is used
 
-Every default in this project is off. Build the graph as it ships and no model
-runs, no text leaves your machine, and no API key is needed. The dashboard you
-are looking at was built that way.
+Every model in this project is off unless you switch it on. Build the graph as
+it ships and nothing runs, nothing leaves your machine, and you need no API key.
+The dashboard was built that way.
 
-There are three places you can turn a model on, and each one is a trade you
-should make deliberately, because two of them send the meeting notes to a
-company you do not control.
+There are three places you can turn one on. Two of them send text to a company
+you do not control, so they are worth thinking about rather than enabling
+because they are there.
 
-## What is on by default
+## What runs by default
 
-Reading the notes is done by a parser, not a model. It looks for lines starting
-`Meeting:`, `Task:`, `Owner:` and so on, and it does exactly what those lines
-say. An empty `Owner:` produces a task with no owner rather than a guess about
-who probably has it.
+Reading the notes is a parser. It looks for lines starting `Meeting:`, `Task:`,
+`Owner:` and does what they say. An empty `Owner:` gives you a task with no
+owner rather than a guess about who probably has it.
 
-Working out that "Agriya" and "Agriya Khetarpal" are one person is string
-comparison after folding case and punctuation. Names that do not match stay
-separate. `config/people.yaml` handles the cases no algorithm could get right,
-such as a GitHub login, by writing the answer down.
+Working out that "Agriya" and "Agriya Khetarpal" are the same person is string
+comparison after folding case and punctuation. Anything that does not match
+stays separate, and `config/people.yaml` covers the cases no algorithm could
+get right, like a GitHub login, by writing the answer down.
 
-Both of those are boring on purpose. A wrong owner on a task is worse than a
-missing one, because a missing owner is visible and a wrong one is not.
+Both are dull by design. A wrong owner is worse than a missing one, because you
+can see a missing one.
 
-## Optional: a model reads the notes
+## The three optional models
 
-```bash
-MEETING_EXTRACTOR=llm
-LLM_MODEL=openai/gpt-5-mini
-OPENAI_API_KEY=...
-```
+=== "Reading the notes"
 
-Worth it if your team writes minutes as prose and nobody is going to type
-`Owner:` during a call. The parser needs those labels; a model does not.
+    ```bash title=".env"
+    MEETING_EXTRACTOR=llm
+    LLM_MODEL=openai/gpt-5-mini
+    OPENAI_API_KEY=...
+    ```
 
-**What gets sent:** the full text of each meeting section, once per section, and
-again whenever that section changes. That is everything written in the notes:
-names, what people said, what was decided, anything somebody typed into the
-document during the call.
+    Worth it if your team writes minutes as prose and nobody is going to type
+    `Owner:` mid-call. The parser needs those labels. A model does not.
 
-Model output is constrained to a schema, and the prompt tells it not to infer
-anything the text does not state. It is still a language model, so
-`scripts/eval_extraction.py` exists to diff it against the parser on a document
-both can read. Run that before trusting a graph built this way.
+    !!! warning "What gets sent"
 
-## Optional: a model helps merge names
+        The full text of every meeting section, once each, and again whenever a
+        section changes. That is everything in the notes: names, what people
+        said, what was decided, whatever somebody typed during the call.
 
-```bash
-PERSON_RESOLUTION=embedding
-RESOLUTION_LLM_MODEL=openai/gpt-5-mini
-```
+    Output is constrained to a schema and the prompt says not to infer anything
+    the text does not state, but it is still a language model.
+    `scripts/eval_extraction.py` diffs it against the parser on a document both
+    can read, so run that before trusting a graph built this way.
 
-Worth it if the same person appears as "Malayaja", "Malayaja C" and "malayaja c"
-across months of notes and adding each spelling to `people.yaml` has become a
-chore.
+=== "Merging names"
 
-**What gets sent:** names only. Every name is embedded, close pairs are
-shortlisted by vector distance, and only those pairs go to the model to confirm.
-No meeting text, no decisions, no task descriptions. This is the smaller of the
-two exposures by a wide margin.
+    ```bash title=".env"
+    PERSON_RESOLUTION=embedding
+    RESOLUTION_LLM_MODEL=openai/gpt-5-mini
+    ```
 
-## Optional: semantic search
+    Worth it once the same person shows up as "Malayaja", "Malayaja C" and
+    "malayaja c" across months of notes and keeping `people.yaml` current has
+    become a chore.
 
-```bash
-SEARCH_EMBEDDING_MODEL=Snowflake/snowflake-arctic-embed-xs
-```
+    !!! info "What gets sent"
 
-Turns the search tool from keyword matching into hybrid retrieval, so "who is
-handling money" finds tasks about sponsorship and budget.
+        Names, and nothing else. Every name is embedded, close pairs get
+        shortlisted by distance, and only those pairs go to the model to
+        confirm. No meeting text, no decisions, no task descriptions.
 
-**What gets sent: nothing.** That model name is a sentence-transformers model
-that downloads once and runs on your machine. No key, no network after the
-download. A LiteLLM `provider/model` string works too if you would rather use a
-hosted service, and that one does send text, so the local model is the default
-recommendation rather than an afterthought.
+    This is much the smaller of the two exposures. If you want the merging help
+    without sending notes anywhere, turn this on and leave `MEETING_EXTRACTOR`
+    alone.
 
-Volunteer application text is never indexed either way. Somebody's free-text
-answer about themselves is not something to make semantically searchable.
+=== "Search"
 
-## Optional: an agent queries the graph
+    ```bash title=".env"
+    SEARCH_EMBEDDING_MODEL=Snowflake/snowflake-arctic-embed-xs
+    ```
 
-The MCP server gives an agent thirteen read-only tools. Whatever the agent sees
-goes wherever that agent sends it, which is between you and whichever assistant
-you are running; this project does not choose it for you.
+    Turns search from keyword matching into something that finds sponsorship
+    and budget tasks when you ask who is handling money.
 
-The server itself makes no model calls. It reads Neo4j and returns rows. It also
-cannot write: queries run under `RoutingControl.READ`, so there is no tool that
-edits the notes, closes an issue, or changes the graph.
+    !!! success "What gets sent: nothing"
 
-## If you are deciding whether to send notes to a provider
+        That is a sentence-transformers model. It downloads once and runs on
+        your machine, with no key and no network after the download.
 
-Some things worth checking before you do.
+    A LiteLLM `provider/model` string works too, and that one does send text
+    over the wire, which is why the local model is the recommendation rather
+    than an afterthought.
+
+    Volunteer application text is never indexed either way.
+
+## Agents
+
+The MCP server hands an agent thirteen read-only tools. Whatever that agent sees
+goes wherever the agent sends it, which is between you and whichever assistant
+you run.
+
+The server itself makes no model calls. It reads Neo4j and returns rows, and it
+cannot write: queries run under `RoutingControl.READ`, so no tool can edit the
+notes, close an issue or change the graph.
+
+## Before you send notes to a provider
 
 Meeting notes name people who never agreed to that. A volunteer's name, an
-opinion somebody voiced in a call, a sponsor conversation that has not gone
-anywhere yet. Sending those to an API is a decision about other people's
-information, not only your own.
+opinion somebody voiced on a call, a sponsor conversation that has not gone
+anywhere. Sending those to an API is a decision about other people's
+information, not only your own, and worth raising with the team rather than
+flipping in `.env`.
 
-Check whether the provider trains on API input. Most do not by default on paid
-tiers, and free tiers are often the exception. OpenRouter passes requests
-through to whichever upstream you route to, so the policy that matters is that
-upstream's, not OpenRouter's.
+Check whether the provider trains on API input. Most paid tiers do not by
+default and free tiers often are the exception. OpenRouter passes requests
+through to whichever upstream you route to, so the policy that binds is that
+upstream's rather than OpenRouter's.
 
-Then consider whether you need it. If your team fills in the template, the
-parser handles it and the answer is no. `MEETING_EXTRACTOR=llm` earns its
-exposure when the alternative is nobody keeping structured notes at all.
-
-If you want the merging help without sending meeting text anywhere, turn on
-`PERSON_RESOLUTION=embedding` and leave `MEETING_EXTRACTOR=markdown`. Names go
-out, notes stay put.
+Then ask whether you need it at all. If the team fills in the template, the
+parser handles it and the answer is no. Turning on `MEETING_EXTRACTOR=llm` earns
+its exposure when the alternative is nobody keeping structured notes.
