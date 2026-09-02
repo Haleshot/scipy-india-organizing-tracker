@@ -33,9 +33,4 @@ __pycache__/
 # snapshot written by `export_public_snapshot.py --profile organizer`.
 private/
 
-# Review artefacts dropped in by external tools. Useful locally, not project files.
-CODEX_AUDIT.md
-CODEX_AUDIT_SCREENSHOTS/
-*_AUDIT.md
-
 .DS_Store
