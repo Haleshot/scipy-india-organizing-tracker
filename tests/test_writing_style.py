@@ -177,11 +177,7 @@ def test_the_dashboard_ships_no_em_dashes():
         assert not DASHES.search(text), f"em or en dash in web/public/{name}"
 
     snapshot = json.loads((REPO_ROOT / "web" / "public" / "data" / "graph.json").read_text())
-    ours = {
-        key: value
-        for key, value in snapshot.items()
-        if key not in ("issues", "graph")
-    }
+    ours = {key: value for key, value in snapshot.items() if key not in ("issues", "graph")}
     assert not DASHES.search(json.dumps(ours)), "em or en dash in the snapshot"
 
 
