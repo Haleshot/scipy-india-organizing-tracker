@@ -54,9 +54,10 @@ Open <http://localhost:8000>. The overview says how many action items are open
 and how many have nobody on them. The explorer draws the graph.
 
 Everything you are looking at came from
-`data/meeting_notes/scipy-india-2026-meeting-notes.md`. Open that file, change
-a task's status, save it, run `./scripts/refresh.sh` again, and watch the number
-move. That loop is the whole tool.
+`data/meeting_notes/scipy-india-2026-meeting-notes.md`. Open that file, change a
+task's status, save it, and run `./scripts/refresh.sh` again; the count on the
+overview moves. That edit-and-refresh loop is what using this looks like day to
+day.
 
 ## Let an agent query it
 

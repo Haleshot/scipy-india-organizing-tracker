@@ -44,15 +44,17 @@ zensical build    # writes site/
 
 | Page | For |
 | --- | --- |
+| [Reading the dashboard](docs/reading-the-dashboard.md) | What is on each page and how the numbers are worked out |
+| [How AI is used](docs/how-ai-is-used.md) | Every model path is optional, and what each one would send |
+| [Privacy boundary](docs/privacy.md) | What gets published and what does not |
 | [Get started](docs/get-started.md) | First run from a clean shell |
-| [Running it on Neo4j Desktop](docs/neo4j-desktop.md) | The graph in a query editor, and useful Cypher |
 | [Connecting the sources](docs/connecting-sources.md) | The Google Doc and the issue tracker |
 | [Writing meeting notes](docs/writing-notes.md) | The note format, and why it is shaped that way |
 | [Refreshing the graph](docs/refreshing.md) | What to run after a meeting |
+| [Running it on Neo4j Desktop](docs/neo4j-desktop.md) | The graph in a query editor, and useful Cypher |
 | [Asking questions](docs/asking-questions.md) | The thirteen tools, and connecting Claude |
-| [The graph model](docs/graph-model.md) | Node labels, task identity, provenance |
-| [Privacy boundary](docs/privacy.md) | What gets published and what does not |
 | [Publishing](docs/publishing.md) | GitHub Pages, and evaluating the LLM extractor |
+| [The graph model](docs/graph-model.md) | Node labels, task identity, provenance |
 | [Design notes](docs/design.md) | The dashboard's constraints, and what is absent on purpose |
 
 ## Layout

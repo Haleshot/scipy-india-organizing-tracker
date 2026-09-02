@@ -4,9 +4,9 @@ Out of the box this reads a file in `data/meeting_notes/`, which is enough to
 try it but means somebody has to keep downloading the Doc. Pointed at the real
 sources, it reads the team's Google Doc and the planning issue tracker directly.
 
-Two sources, because they record different things. The notes say what a room
-agreed. The tracker says what somebody is actually doing. Those drift apart
-within a week, and seeing the gap is most of the value.
+There are two sources because the notes record what a room agreed to and the
+tracker records what somebody went and filed, and those drift apart within about
+a week. Seeing where they disagree is most of the point.
 
 ```mermaid
 flowchart TB
@@ -69,7 +69,7 @@ Then in `.env`:
 ```bash
 MEETING_NOTES_SOURCE=google_drive
 GOOGLE_SERVICE_ACCOUNT_CREDENTIAL=./secrets/your-key.json
-GOOGLE_DRIVE_ROOT_FOLDER_IDS=1qjPFRVVzS9I6Q1X3uCm7EOkIk05lr1lr
+GOOGLE_DRIVE_ROOT_FOLDER_IDS=the-folder-id-from-the-url
 ```
 
 The folder id is the part of the Drive URL after `/folders/`.

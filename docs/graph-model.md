@@ -55,9 +55,9 @@ overlapping work and the pipeline will not decide which pairs match. The only
 thing that creates `TRACKED_BY` is an `Issue:` line on an action item, written
 by whoever took the minutes.
 
-That is a deliberate limit. Fuzzy title matching would produce an edge that is
-right most of the time, and a graph you have to second-guess is worse than one
-with gaps in it. `WORKS_ON` and `FILED_UNDER` follow the same rule: an assignee
+Fuzzy title matching would produce an edge that is right most of the time, which
+means checking every edge before trusting any of them. `WORKS_ON` and
+`FILED_UNDER` follow the same rule: an assignee
 becomes an edge only when `config/people.yaml` names them, and a label becomes a
 workgroup only when `config/workgroups.yaml` lists it.
 
