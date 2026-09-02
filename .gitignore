@@ -4,6 +4,13 @@
 # Local MCP client config: contains machine-specific absolute paths.
 # .claude/mcp.example.json is the committed template.
 .mcp.json
+# Google service-account keys. The name Google gives the download is
+# <project>-<hash>.json, which no generic pattern catches, so this ignores the
+# whole secrets/ directory and every JSON at the repo root that is not one we
+# put there on purpose.
+secrets/
+/*.json
+!/package.json
 *service_account*.json
 credentials*.json
 

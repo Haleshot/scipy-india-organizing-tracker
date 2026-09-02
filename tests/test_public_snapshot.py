@@ -9,6 +9,8 @@ import json
 import re
 from pathlib import Path
 
+import pytest
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SNAPSHOT = REPO_ROOT / "web" / "public" / "data" / "graph.json"
 
@@ -161,3 +163,42 @@ def test_the_organizer_export_lands_outside_the_deployable_directory():
     assert export.ORGANIZER_OUTPUT.parts[-2] == "private"
     ignored = (REPO_ROOT / ".gitignore").read_text(encoding="utf-8")
     assert "private/" in ignored
+
+
+# --------------------------------------------------------------------------- #
+# Credentials
+# --------------------------------------------------------------------------- #
+
+
+def test_no_tracked_file_contains_a_private_key():
+    """A service-account key downloaded from Google is named after the project,
+    which no generic gitignore pattern catches. This checks the outcome instead
+    of trusting the pattern."""
+    import subprocess
+
+    listing = subprocess.run(
+        ["git", "ls-files"], cwd=REPO_ROOT, capture_output=True, text=True, check=False
+    )
+    if listing.returncode != 0:
+        pytest.skip("not a git checkout")
+
+    markers = ("BEGIN PRIVATE KEY", "BEGIN RSA PRIVATE KEY", '"private_key"', "service_account")
+    offenders = []
+    for name in listing.stdout.split():
+        path = REPO_ROOT / name
+        if not path.is_file() or path.stat().st_size > 2_000_000:
+            continue
+        try:
+            body = path.read_text(encoding="utf-8", errors="ignore")
+        except OSError:
+            continue
+        # The word appears in prose and in env var names; a key has the marker
+        # and the PEM block together.
+        if any(marker in body for marker in markers[:3]):
+            offenders.append(name)
+    assert not offenders, f"tracked files look like they contain a private key: {offenders}"
+
+
+def test_the_secrets_directory_is_ignored():
+    ignored = (REPO_ROOT / ".gitignore").read_text(encoding="utf-8")
+    assert "secrets/" in ignored
