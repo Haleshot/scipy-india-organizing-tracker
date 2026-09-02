@@ -7,34 +7,34 @@
 [project]
 site_name = "SciPy India organizing graph"
 site_description = "Turning the SciPy India meeting notes into a graph the organizing team can query."
-site_url = "https://scipy-india.github.io/meeting-notes-graph/"
+site_url = "https://haleshot.github.io/meeting-notes-graph/"
 site_author = "SciPy India organizers"
 copyright = "SciPy India"
 
-repo_url = "https://github.com/scipy-india/meeting-notes-graph"
-repo_name = "scipy-india/meeting-notes-graph"
+repo_url = "https://github.com/Haleshot/meeting-notes-graph"
+repo_name = "Haleshot/meeting-notes-graph"
 edit_uri = "edit/main/docs/"
 
 # Grouped the way somebody arrives at it: set it up, then use it, then look
 # something up, then find out why it works the way it does.
 nav = [
   { "Home" = "index.md" },
-  { "Setting up" = [
-    "get-started.md",
-    "neo4j-desktop.md",
-    "connecting-sources.md",
+  { "Understanding it" = [
+    "reading-the-dashboard.md",
+    "how-ai-is-used.md",
+    "privacy.md",
   ] },
-  { "Using it" = [
+  { "Running your own" = [
+    "get-started.md",
+    "connecting-sources.md",
     "writing-notes.md",
     "refreshing.md",
+    "neo4j-desktop.md",
     "asking-questions.md",
+    "publishing.md",
   ] },
   { "Reference" = [
     "graph-model.md",
-    "privacy.md",
-    "publishing.md",
-  ] },
-  { "Why it is built this way" = [
     "design.md",
   ] },
 ]
