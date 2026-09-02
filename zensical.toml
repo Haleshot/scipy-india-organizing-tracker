@@ -7,12 +7,12 @@
 [project]
 site_name = "SciPy India organizing tracker"
 site_description = "Keeping track of who is doing what for SciPy India 2026, from the meeting notes and the planning tracker."
-site_url = "https://haleshot.github.io/meeting-notes-graph/"
+site_url = "https://haleshot.github.io/scipy-india-organizing-tracker/"
 site_author = "SciPy India organizers"
 copyright = "SciPy India"
 
-repo_url = "https://github.com/Haleshot/meeting-notes-graph"
-repo_name = "Haleshot/meeting-notes-graph"
+repo_url = "https://github.com/Haleshot/scipy-india-organizing-tracker"
+repo_name = "Haleshot/scipy-india-organizing-tracker"
 edit_uri = "edit/main/docs/"
 
 # Grouped the way somebody arrives at it: set it up, then use it, then look

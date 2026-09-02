@@ -60,7 +60,7 @@ such as Aura before it does anything useful.
 
     ```bash title="crontab -e"
     # Every weekday at 9am. Absolute paths, because cron has almost no PATH.
-    0 9 * * 1-5 cd /path/to/meeting-notes-graph && ./scripts/refresh.sh >> refresh.log 2>&1
+    0 9 * * 1-5 cd /path/to/scipy-india-organizing-tracker && ./scripts/refresh.sh >> refresh.log 2>&1
     ```
 
     Two things to know. The GitHub source allows 60 unauthenticated requests an
@@ -86,7 +86,7 @@ To check a project-path deploy locally first, since that is where relative URLs
 usually break:
 
 ```bash
-mkdir -p /tmp/pages/meeting-notes-graph && cp -R web/public/* /tmp/pages/meeting-notes-graph/
+mkdir -p /tmp/pages/scipy-india-organizing-tracker && cp -R web/public/* /tmp/pages/scipy-india-organizing-tracker/
 python -m http.server 8000 --directory /tmp/pages
 ```
 
