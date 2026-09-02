@@ -35,8 +35,6 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from neo4j import GraphDatabase
-
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_OUTPUT = REPO_ROOT / "web" / "public" / "data" / "graph.json"
 # Gitignored. Deliberately not under web/, so it cannot be deployed by accident.
@@ -446,6 +444,12 @@ def main() -> int:
 
     load_dotenv(REPO_ROOT / ".env")
     output = args.output or (DEFAULT_OUTPUT if args.profile == "public" else ORGANIZER_OUTPUT)
+    # Imported here rather than at module scope so the allowlist and the audit
+    # can be read without the driver installed. tests/test_public_snapshot.py
+    # imports this module to check PUBLIC_FIELDS against the committed snapshot
+    # and never opens a connection.
+    from neo4j import GraphDatabase
+
     driver = GraphDatabase.driver(
         os.environ.get("NEO4J_URI", "bolt://localhost:7687"),
         auth=(
