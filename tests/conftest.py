@@ -12,8 +12,22 @@ def registry():
     return load_registry(REPO_ROOT / "config" / "workgroups.yaml")
 
 
+CORPUS = Path(__file__).resolve().parent / "fixtures" / "corpus"
+
+
 @pytest.fixture(scope="session")
 def notes_text():
+    """The test corpus, not the real notes.
+
+    See tests/fixtures/corpus/README.md. The extractor tests need notes that
+    contain deliberate awkwardness, and the real notes should not have to.
+    """
+    return (CORPUS / "meeting-notes.md").read_text(encoding="utf-8")
+
+
+@pytest.fixture(scope="session")
+def real_notes_text():
+    """The notes the team actually keeps, for tests about the real document."""
     return (REPO_ROOT / "data" / "meeting_notes" / "scipy-india-2026-meeting-notes.md").read_text(
         encoding="utf-8"
     )

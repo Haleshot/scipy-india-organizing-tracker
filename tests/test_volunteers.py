@@ -9,7 +9,10 @@ from scipy_india_kg.volunteers import (
     normalize_record,
 )
 
-FIXTURE = Path(__file__).resolve().parent.parent / "data" / "volunteers" / "applications.json"
+# The test corpus, not data/volunteers/. The real file is empty on purpose:
+# nobody who filled in the form has been contacted, so none of it belongs in the
+# repository. See tests/fixtures/corpus/README.md.
+FIXTURE = Path(__file__).resolve().parent / "fixtures" / "corpus" / "applications.json"
 
 
 async def test_fixture_loads(registry):
