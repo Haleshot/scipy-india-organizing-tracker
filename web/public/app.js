@@ -203,8 +203,22 @@ function viewOverview() {
       tally('Open', s.open_tasks, '#/tasks'),
       tally('Unowned', s.unassigned_open_tasks, '#/tasks?filter=unassigned', true),
       tally('Volunteers waiting', waiting, '#/workgroups'),
+      tally('Open issues', s.open_issues ?? 0, '#/issues'),
       tally('Decisions', s.decisions, null)),
   );
+
+  // Two sources, said plainly. Notes and the tracker drift apart, and a reader
+  // should know which of the two they are looking at.
+  if (s.issues) {
+    const linked = (DATA.issues ?? []).filter((i) => (i.tasks ?? []).length).length;
+    frag.append(el('p', { class: 'lede' },
+      `Action items come from the meeting notes. ${plural(s.issues, 'issue')} `,
+      'also come from ',
+      el('a', { class: 'link', href: 'https://github.com/scipy-india/planning/issues', rel: 'noreferrer' }, 'scipy-india/planning'),
+      linked
+        ? `, and ${linked} of them are linked to an action item because a note said so.`
+        : '. None is linked to an action item yet; add an Issue: line to a task in the notes to join them.'));
+  }
 
   if (latest) {
     const decisions = DATA.decisions.filter((d) => d.meetings.includes(latest.id));
@@ -350,6 +364,84 @@ const TASK_FILTERS = [
   ['done', 'Done', (t) => t.status === 'done'],
   ['all', 'All', () => true],
 ];
+
+const ISSUE_FILTERS = [
+  ['open', 'Open', (i) => i.state === 'open'],
+  ['linked', 'Linked to an action item', (i) => (i.tasks ?? []).length > 0],
+  ['unassigned', 'Nobody assigned', (i) => i.state === 'open' && !(i.owners ?? []).length],
+  ['all', 'All', () => true],
+];
+
+let issueFilter = 'open';
+let issueSearch = '';
+
+/**
+ * The tracker, read through the same lens as everything else.
+ *
+ * This is not a second issue list to keep in step with GitHub. It is here so
+ * you can see the tracker and the meeting notes together: which issues nobody
+ * picked up, and which pieces of work the room agreed on and then filed.
+ */
+function viewIssues(params) {
+  if (params.get('filter') && ISSUE_FILTERS.some(([id]) => id === params.get('filter'))) {
+    issueFilter = params.get('filter');
+  }
+  const issues = DATA.issues ?? [];
+  if (!issues.length) {
+    return el('div', {},
+      el('h1', { text: 'GitHub issues' }),
+      el('p', { class: 'lede' },
+        'No issues are loaded. Set ISSUE_SOURCE=github and GITHUB_REPOS in .env, then run the refresh script.'));
+  }
+
+  return el('div', {},
+    el('h1', { text: 'GitHub issues' }),
+    el('p', { class: 'lede' },
+      'From ',
+      el('a', { class: 'link', href: 'https://github.com/scipy-india/planning/issues', rel: 'noreferrer' }, 'scipy-india/planning'),
+      '. An issue is joined to an action item only when a note says so with an Issue: line, so nothing here is a guess about which two things are the same work.'),
+    filtered({
+      segments: ISSUE_FILTERS.map(([id, label]) => [id, label]),
+      active: () => issueFilter,
+      onSegment: (id) => { issueFilter = id; },
+      placeholder: 'Filter by title, label or assignee',
+      query: () => issueSearch,
+      onQuery: (value) => { issueSearch = value; },
+      render: () => {
+        const active = ISSUE_FILTERS.find(([id]) => id === issueFilter) ?? ISSUE_FILTERS[0];
+        const list = issues.filter(active[2]).filter((i) => matchesText(issueSearch,
+          i.title, (i.owners ?? []).join(' '), (i.labels ?? []).join(' '), i.key));
+        return {
+          nodes: list.length
+            ? el('ul', { class: 'records' }, list.map(issueItem))
+            : emptyNote('Nothing matches.'),
+          shown: list.length,
+          total: issues.length,
+          noun: 'issue',
+        };
+      },
+    }));
+}
+
+function issueItem(issue) {
+  const tracked = (issue.tasks ?? []).map((id) => taskById(id)).filter(Boolean);
+  return el('li', {},
+    el('div', { class: 'row' },
+      el('span', { class: 'gutter meta', text: `#${issue.number}` }),
+      el('div', { class: 'body' },
+        el('div', { class: 'title' },
+          el('a', { class: 'link', href: issue.url, rel: 'noreferrer' }, issue.title)),
+        el('div', { class: 'meta' },
+          issue.state === 'open' ? 'open' : 'closed',
+          issue.workgroup ? [', ', wgLink(issue.workgroup)] : '',
+          (issue.owners ?? []).length
+            ? [', ', ...(issue.owners.map((name, index) => index ? [', ', personLink(name)] : personLink(name)).flat())]
+            : ''),
+        tracked.length
+          ? el('div', { class: 'meta' }, 'From the notes: ',
+              el('a', { class: 'link', href: `#/tasks?filter=all&focus=${encodeURIComponent(tracked[0].id)}` }, tracked[0].description))
+          : null)));
+}
 
 function viewTasks(params) {
   if (params.get('filter') && TASK_FILTERS.some(([id]) => id === params.get('filter'))) {
@@ -560,9 +652,28 @@ const KIND_STYLE = {
   meeting: { color: '#5b6570', dark: '#98a3ae', shape: 'round-rectangle' },
   task: { color: '#8a5d05', dark: '#d0a14e', shape: 'ellipse' },
   decision: { color: '#5b6570', dark: '#98a3ae', shape: 'diamond' },
+  issue: { color: '#6a3fa0', dark: '#a98ada', shape: 'round-rectangle' },
 };
 
-const darkMode = () => window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
+// What each kind is called on the page. The graph's own words leak otherwise,
+// and "workgroup" is not what anyone on this team calls a volunteer role.
+const KIND_LABEL = {
+  person: 'People',
+  workgroup: 'Volunteer roles',
+  meeting: 'Meetings',
+  task: 'Action items',
+  decision: 'Decisions',
+  issue: 'GitHub issues',
+};
+
+// An explicit choice wins; otherwise follow the system. Same three states as
+// the stylesheet, kept in step by reading the attribute the toggle sets.
+const darkMode = () => {
+  const chosen = document.documentElement.dataset.theme;
+  if (chosen === 'dark') return true;
+  if (chosen === 'light') return false;
+  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
+};
 const kindColor = (kind) => {
   const style = KIND_STYLE[kind];
   if (!style) return '#8a8f96';
@@ -573,8 +684,8 @@ const explorerState = {
   // Workgroups and people first. Meetings, tasks and decisions are what make
   // the whole-graph view unreadable, and they are one toggle away.
   kinds: new Set(['person', 'workgroup']),
-  focus: null,   // node id the neighbourhood is drawn around
-  hops: 1,
+  focus: null,   // the node everything is drawn around, or null for the whole graph
+  hops: 1,       // 1 = things joined straight to it, 2 = one step further out
   query: '',
 };
 
@@ -588,17 +699,22 @@ function viewExplorer(params) {
 
   // The controls people reach for stay in the bar. The ones they set once live
   // under Display, so a narrow screen is not a wall of buttons.
+  // "1 hop" and "2 hops" is graph vocabulary, and nobody outside this file
+  // should have to learn it to use the page. Same control, said in English.
+  const hopsLabel = () =>
+    explorerState.hops === 1 ? 'Directly connected' : 'One step further out';
   const hopsButton = el('button', {
-    type: 'button', title: 'How far from the focused node to draw',
+    type: 'button',
+    title: 'How much of the surrounding graph to draw',
     onclick: () => {
       explorerState.hops = explorerState.hops === 1 ? 2 : 1;
-      hopsButton.textContent = `${explorerState.hops} hop${explorerState.hops > 1 ? 's' : ''}`;
+      hopsButton.textContent = hopsLabel();
       mountCytoscape(container, details);
     },
-  }, `${explorerState.hops} hop${explorerState.hops > 1 ? 's' : ''}`);
+  }, hopsLabel());
 
   const searchField = el('input', {
-    type: 'search', class: 'filter-field', placeholder: 'Find a person or workgroup',
+    type: 'search', class: 'filter-field', placeholder: 'Find a person or a volunteer role',
     value: explorerState.query,
     oninput: (event) => { explorerState.query = event.target.value; renderPicker(picker, container, details); },
   });
@@ -619,7 +735,7 @@ function viewExplorer(params) {
         onclick: () => {
           if (cyInstance && !cyInstance.destroyed()) { cyInstance.fit(undefined, 30); cyInstance.center(); }
         },
-      }, 'Fit'),
+      }, 'Fit to view'),
       fullscreenButton,
       el('button', {
         type: 'button',
@@ -630,7 +746,7 @@ function viewExplorer(params) {
           picker.replaceChildren();
           mountCytoscape(container, details);
         },
-      }, 'Whole graph')));
+      }, 'Show everything')));
 
   const display = el('details', { class: 'display' },
     el('summary', { text: 'Display' }),
@@ -645,14 +761,15 @@ function viewExplorer(params) {
               event.currentTarget.setAttribute('aria-pressed', String(!on));
               mountCytoscape(container, details);
             },
-          }, kind))),
+          }, KIND_LABEL[kind] ?? kind))),
       el('div', { class: 'segmented' }, hopsButton),
       el('div', { class: 'legend' }, Object.keys(KIND_STYLE).map((kind) =>
-        el('span', {}, el('i', { style: `background:${kindColor(kind)}` }), kind)))));
+        el('span', {}, el('i', { style: `background:${kindColor(kind)}` }), KIND_LABEL[kind] ?? kind)))));
 
   const frag = el('div', {},
     el('h1', { text: 'Explorer' }),
-    el('p', { class: 'lede', text: 'Pick a person or workgroup to see what it connects to. The whole graph is available, but the neighbourhood of one thing is usually what you came for. Detail goes in the panel beside it so the drawing can stay readable.' }),
+    el('p', { class: 'lede', text: 'Everything on this site is one graph: people, the roles they hold, the meetings they attended, what those meetings decided, and the action items and GitHub issues that came out of them. This draws it.' }),
+    el('p', { class: 'lede', text: 'Search for a person or a role and pick it. The drawing then shows that one thing and what it is joined to, which is almost always what you wanted rather than the whole picture at once. Directly connected means one step away. One step further out also brings in their neighbours, which is how you find the people you share work with but have never met. Click any node to read it in the panel beside the drawing, and use Display to bring in meetings, action items and issues once you have a smaller picture to add them to.' }),
     controls,
     display,
     picker,
@@ -871,12 +988,12 @@ function nodeDetails(node, cy, details, container) {
   const panel = el('div', {},
     el('div', { class: 'picker-label', text: 'Selected' }),
     el('h3', { text: node.data('label') }),
-    el('div', { class: 'kind', text: kind }),
+    el('div', { class: 'kind', text: (KIND_LABEL[kind] ?? kind).replace(/s$/, '') }),
     el('div', { class: 'controls' }, el('div', { class: 'segmented' },
       el('button', {
         type: 'button',
         onclick: () => { explorerState.focus = node.id(); mountCytoscape(container, details); },
-      }, 'Focus'),
+      }, 'Draw around this'),
       el('button', {
         type: 'button',
         onclick: () => {
@@ -884,7 +1001,7 @@ function nodeDetails(node, cy, details, container) {
           explorerState.focus = node.id();
           mountCytoscape(container, details);
         },
-      }, 'Two hops'))));
+      }, 'And their neighbours'))));
 
   if (kind === 'person') {
     const person = DATA.people.find((p) => p.name === key);
@@ -949,8 +1066,30 @@ function nodeDetails(node, cy, details, container) {
         block('Workgroup', [task.workgroup ? wgLink(task.workgroup) : 'none']),
         block('Owners', [task.owners.join(', ') || el('span', { class: 'unowned', text: 'nobody assigned' })]),
         task.due ? block('Due', [task.due]) : null,
+        block('Tracked on GitHub', (DATA.issues ?? [])
+          .filter((i) => (i.tasks ?? []).includes(task.id))
+          .map((i) => el('a', { class: 'link', href: i.url, rel: 'noreferrer' }, `${i.key}, ${i.state}`))),
         block('History', (task.history ?? []).map((entry) =>
           el('span', {}, meetingLink(entry.id, entry.date), ' ', statusMark(entry.status)))));
+      return panel;
+    }
+  }
+
+  if (kind === 'issue') {
+    const issue = (DATA.issues ?? []).find((i) => i.key === key);
+    if (issue) {
+      const tracked = (issue.tasks ?? []).map((id) => taskById(id)).filter(Boolean);
+      add(panel,
+        block('State', [issue.state === 'open' ? 'open' : `closed${issue.state_reason ? `, ${issue.state_reason.replace(/_/g, ' ')}` : ''}`]),
+        block('On GitHub', [el('a', { class: 'link', href: issue.url, rel: 'noreferrer' }, issue.key)]),
+        block('Assigned to', (issue.owners ?? []).map(personLink), 'nobody assigned'),
+        block('Volunteer role', [issue.workgroup ? wgLink(issue.workgroup) : 'not filed under one']),
+        issue.labels?.length ? block('Labels', [issue.labels.join(', ')]) : null,
+        issue.milestone ? block('Milestone', [issue.milestone]) : null,
+        block('Action items that point here', tracked.map((t) =>
+          el('span', {}, t.description, ' ', statusMark(t.status))),
+          'none, the notes have not linked this to anything'),
+        block('Last updated', [issue.updated_at]));
       return panel;
     }
   }
@@ -1039,6 +1178,7 @@ const cssId = (value) => value.replace(/[^\w-]/g, '_');
 
 const ROUTES = {
   '/overview': viewOverview,
+  '/issues': viewIssues,
   '/meetings': viewMeetings,
   '/tasks': viewTasks,
   '/people': viewPeople,
@@ -1117,3 +1257,65 @@ fetch(DATA_URL)
       el('p', {}, `Fetching ${DATA_URL.pathname} failed: ${error.message}`),
       el('p', { class: 'muted', text: 'Run scripts/export_public_snapshot.py, then serve this directory over HTTP (file:// will not work).' })));
   });
+
+
+/* ---------------------------------------------------------------------------
+ * Theme
+ *
+ * The stored choice is applied by an inline script in index.html so the page
+ * never paints the wrong palette first. This part only handles the buttons and
+ * repainting the graph, whose node colours are computed in JavaScript rather
+ * than by CSS and so do not change on their own.
+ * ------------------------------------------------------------------------- */
+
+function readStoredTheme() {
+  try {
+    return localStorage.getItem('theme') ?? 'system';
+  } catch (error) {
+    return 'system';
+  }
+}
+
+function applyTheme(choice) {
+  if (choice === 'system') {
+    delete document.documentElement.dataset.theme;
+  } else {
+    document.documentElement.dataset.theme = choice;
+  }
+  try {
+    if (choice === 'system') localStorage.removeItem('theme');
+    else localStorage.setItem('theme', choice);
+  } catch (error) {
+    // Nothing to do. The choice still holds for this page.
+  }
+  for (const button of document.querySelectorAll('[data-set-theme]')) {
+    button.setAttribute('aria-pressed', String(button.dataset.setTheme === choice));
+  }
+  repaintGraph();
+}
+
+function repaintGraph() {
+  if (!cyInstance || cyInstance.destroyed()) return;
+  // Cytoscape resolved these to literal colours when the graph was mounted, so
+  // a CSS variable changing underneath it does nothing. Re-read and re-apply.
+  const ink = getComputedStyle(document.body).color;
+  const paper = getComputedStyle(document.body).backgroundColor;
+  cyInstance.nodes().forEach((node) => node.style({
+    'background-color': kindColor(node.data('kind')),
+    color: ink,
+    'text-background-color': paper,
+  }));
+}
+
+function initTheme() {
+  applyTheme(readStoredTheme());
+  for (const button of document.querySelectorAll('[data-set-theme]')) {
+    button.addEventListener('click', () => applyTheme(button.dataset.setTheme));
+  }
+  // Following the system means following it as it changes, not only at load.
+  window.matchMedia?.('(prefers-color-scheme: dark)').addEventListener?.('change', () => {
+    if (readStoredTheme() === 'system') repaintGraph();
+  });
+}
+
+initTheme();

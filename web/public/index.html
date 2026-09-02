@@ -9,6 +9,20 @@
      the site works at a GitHub Pages project URL exactly as it does at /. -->
 <link rel="stylesheet" href="./styles.css" />
 <link rel="icon" href="./scipy-india-logo.svg" />
+<script>
+  // Inline and before the stylesheet on purpose: a stored theme applied from
+  // app.js would paint the system palette first and then correct itself, which
+  // reads as a flicker on every navigation.
+  try {
+    var saved = localStorage.getItem("theme");
+    if (saved === "light" || saved === "dark") {
+      document.documentElement.dataset.theme = saved;
+    }
+  } catch (e) {
+    // Private windows and blocked site data both throw here. Following the
+    // system setting is a fine answer, so there is nothing to handle.
+  }
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -27,6 +41,7 @@
       <a href="#/overview">Overview</a>
       <a href="#/tasks">Action items</a>
       <a href="#/meetings">Meetings</a>
+      <a href="#/issues">GitHub issues</a>
       <a href="#/workgroups">Volunteer roles</a>
       <a href="#/people">People</a>
       <a href="#/explorer">Explorer</a>
@@ -35,12 +50,21 @@
     <div class="masthead-foot">
       <dl class="conference">
         <dt>Conference</dt>
-        <dd>11 to 12 December 2026</dd>
+        <dd>19 to 20 December 2026</dd>
         <dt>Site</dt>
         <dd><a class="link" href="https://scipy.in/2026">scipy.in/2026</a></dd>
         <dt>Team</dt>
         <dd><a class="link" href="https://scipy.in/2026/team">scipy.in/2026/team</a></dd>
       </dl>
+      <div class="theme">
+        <span id="theme-label">Theme</span>
+        <div class="theme-buttons" role="group" aria-labelledby="theme-label">
+          <button type="button" data-set-theme="light">Light</button>
+          <button type="button" data-set-theme="dark">Dark</button>
+          <button type="button" data-set-theme="system">System</button>
+        </div>
+      </div>
+
       <p id="freshness" class="meta">Loading</p>
     </div>
   </header>

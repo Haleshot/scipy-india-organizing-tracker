@@ -37,8 +37,12 @@
   --measure: 78ch;
 }
 
+/* Three states, not two. No data-theme means "follow the system", which is what
+ * a first-time visitor gets; the toggle then stamps light or dark on <html> and
+ * that wins in both directions, so someone on a dark laptop can still read the
+ * page in light. The palette is written once and referenced twice. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --paper: #14181e;         /* matches scipy.in/2026 */
     --paper-sunk: #1a1f26;
     --ink: #ced6dd;
@@ -54,6 +58,23 @@
     --done: #6fbb8b;
     --unknown: #868f98;
   }
+}
+
+:root[data-theme="dark"] {
+    --paper: #14181e;         /* matches scipy.in/2026 */
+    --paper-sunk: #1a1f26;
+    --ink: #ced6dd;
+    --ink-2: #a2abb4;
+    --ink-3: #79828b;
+    --rule: #262c34;
+    --rule-strong: #3a424b;
+    --accent: #6ba6ea;
+
+    --open: #d59b53;
+    --progress: #6ba6ea;
+    --blocked: #e58f88;
+    --done: #6fbb8b;
+    --unknown: #868f98;
 }
 
 * { box-sizing: border-box; }
@@ -297,3 +318,53 @@ details.display .controls { border-bottom: 0; margin-top: 8px; padding-bottom: 0
 
 .empty { color: var(--ink-3); font-style: italic; padding: 16px 0; }
 section + section { margin-top: 0; }
+
+
+/* ---------------------------------------------------------------------------
+ * Theme toggle
+ *
+ * Three buttons rather than one, because a single button that cycles never
+ * tells you what it will do next or what state you are in. This does both.
+ * ------------------------------------------------------------------------- */
+
+.theme {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.theme > span {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.theme-buttons {
+  display: flex;
+  border: 1px solid var(--rule);
+}
+
+.theme-buttons button {
+  appearance: none;
+  border: 0;
+  border-right: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink-3);
+  font: inherit;
+  font-size: 12px;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+
+.theme-buttons button:last-child { border-right: 0; }
+.theme-buttons button:hover { color: var(--ink); }
+
+.theme-buttons button[aria-pressed="true"] {
+  background: var(--paper-sunk);
+  color: var(--ink);
+}
+
+.theme-buttons button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
