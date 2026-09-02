@@ -84,6 +84,31 @@ It checks them in order, stops at the first thing that is not right, and tells
 you what to do about it. On success it lists the files it can see and reads one,
 which is the only real proof that the whole chain works.
 
+### How to lay the folders out
+
+`GOOGLE_DRIVE_ROOT_FOLDER_IDS` takes a comma-separated list, so several folders
+can feed one graph:
+
+```bash
+GOOGLE_DRIVE_ROOT_FOLDER_IDS=folder-one,folder-two
+```
+
+Worth doing, and not mainly for tidiness. A folder shared with the service
+account is readable in full: every file in it, including ones nobody meant as
+meeting notes. A folder that is not shared is invisible, and no configuration
+mistake can change that. The folder boundary is the strongest privacy control
+available here, because it sits outside this repository entirely.
+
+So put the organising team's meeting notes in their own folder and share only
+that one. Volunteer applications, sponsor correspondence, anything with somebody
+else's contact details in it, keep in a folder the service account has never
+been given. The pipeline then cannot read them by accident, whatever gets
+misconfigured later.
+
+Files in a shared folder that are not meeting notes are read and produce
+nothing, which is harmless but wasteful: the connector downloads them on every
+scan. A planning document sitting alongside the notes is worth moving out.
+
 ### On publishing folder ids
 
 A folder id and a Google Cloud project id are identifiers, not secrets. Knowing
