@@ -1,21 +1,19 @@
 name: Build the docs
 
-# The docs site and the dashboard are separate deployments. This one only
-# proves the Zensical build is clean on every push; publishing it is a decision
-# for later, and doing it here would fight the Pages workflow for the same
-# environment.
+# Validation only. The docs are published by pages.yml, which assembles them
+# under /docs/ alongside the dashboard, because a repository gets one Pages
+# deployment and two workflows publishing separately would overwrite each other.
+#
+# This runs on pull requests so a broken nav or a bad link is caught before it
+# reaches main.
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "docs/**"
-      - "zensical.toml"
-      - ".github/workflows/docs.yml"
   pull_request:
     paths:
       - "docs/**"
       - "zensical.toml"
+      - ".github/workflows/docs.yml"
+  workflow_dispatch:
 
 jobs:
   build:

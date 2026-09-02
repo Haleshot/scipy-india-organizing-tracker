@@ -1,17 +1,24 @@
-name: Deploy dashboard to GitHub Pages
+name: Deploy to GitHub Pages
 
-# Deploys web/public as-is, using the snapshot committed at
-# web/public/data/graph.json. No credentials, no Neo4j, no LLM: the fixture
-# snapshot in the repository is enough for the site to build and be useful.
+# One Pages site, two things on it:
 #
-# To publish a snapshot from real data, run the refresh workflow (or the
-# exporter locally), commit the regenerated graph.json, and push.
+#   /       the dashboard, served from web/public exactly as it sits in the repo
+#   /docs/  the Zensical documentation
+#
+# A repository gets one Pages deployment, so publishing these separately would
+# mean each overwriting the other. They are assembled into one directory instead.
+#
+# The dashboard uses the snapshot committed at web/public/data/graph.json, so no
+# credentials, no Neo4j and no model are needed to deploy. To publish real data,
+# run ./scripts/refresh.sh locally, commit the regenerated graph.json, and push.
 
 on:
   push:
     branches: [main]
     paths:
       - "web/**"
+      - "docs/**"
+      - "zensical.toml"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -20,7 +27,7 @@ permissions:
   pages: write
   id-token: write
 
-# One deployment at a time; don't cancel a run that is already publishing.
+# One deployment at a time, and never cancel one that is already publishing.
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -40,7 +47,7 @@ jobs:
       - name: Lint
         run: ruff check . && ruff format --check .
       - name: Snapshot privacy and shape checks
-        # These do not need Neo4j: they read the committed snapshot.
+        # These need no Neo4j: they read the committed snapshot.
         run: pytest tests/test_public_snapshot.py -q
       - name: Snapshot is present, public, and non-trivial
         run: |
@@ -66,9 +73,26 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - uses: actions/configure-pages@v5
+
+      - name: Build the docs
+        run: |
+          pip install zensical
+          zensical build
+
+      - name: Assemble the site
+        run: |
+          rm -rf _site
+          cp -R web/public _site
+          cp -R site _site/docs
+          test -f _site/index.html
+          test -f _site/docs/index.html
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: web/public
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

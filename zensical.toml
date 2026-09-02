@@ -7,7 +7,7 @@
 [project]
 site_name = "SciPy India organizing tracker"
 site_description = "Keeping track of who is doing what for SciPy India 2026, from the meeting notes and the planning tracker."
-site_url = "https://haleshot.github.io/scipy-india-organizing-tracker/"
+site_url = "https://haleshot.github.io/scipy-india-organizing-tracker/docs/"
 site_author = "SciPy India organizers"
 copyright = "SciPy India"
 
@@ -21,6 +21,7 @@ nav = [
   { "Home" = "index.md" },
   { "Understanding it" = [
     "reading-the-dashboard.md",
+    "adding-to-it.md",
     "how-ai-is-used.md",
     "privacy.md",
   ] },
@@ -34,6 +35,7 @@ nav = [
   ] },
   { "Reference" = [
     "graph-model.md",
+    "editing-these-docs.md",
     "design.md",
   ] },
 ]

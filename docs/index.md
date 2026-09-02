@@ -14,8 +14,8 @@ can open and a set of questions you can ask.
 
     ---
 
-    The dashboard is the main thing. Every page on it, and how each number is
-    worked out.
+    [Open the dashboard](../){ target=_blank }, then come back here for what
+    each page shows and how the numbers are worked out.
 
     [Reading the dashboard](reading-the-dashboard.md)
 
