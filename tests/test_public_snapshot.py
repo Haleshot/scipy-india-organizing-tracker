@@ -171,9 +171,8 @@ def test_the_organizer_export_lands_outside_the_deployable_directory():
 
 
 def test_no_tracked_file_contains_a_private_key():
-    """A service-account key downloaded from Google is named after the project,
-    which no generic gitignore pattern catches. This checks the outcome instead
-    of trusting the pattern."""
+    """A key downloaded from Google is named after the project, which no generic
+    gitignore pattern catches. This checks the outcome rather than the pattern."""
     import subprocess
 
     listing = subprocess.run(
@@ -183,21 +182,21 @@ def test_no_tracked_file_contains_a_private_key():
         pytest.skip("not a git checkout")
 
     # Assembled rather than written out, so this file does not match itself.
-    markers = (
-        "BEGIN " + "PRIVATE KEY",
-        '"private' + '_key"',
-    )
+    markers = ("BEGIN " + "PRIVATE KEY", '"private' + '_key"')
+    here = Path(__file__).resolve()
+
     offenders = []
     for name in listing.stdout.split():
         path = REPO_ROOT / name
-        if not path.is_file() or path.stat().st_size > 2_000_000:
+        if not path.is_file() or path.resolve() == here or path.stat().st_size > 2_000_000:
             continue
         try:
             body = path.read_text(encoding="utf-8", errors="ignore")
         except OSError:
             continue
-            if any(marker in body for marker in markers):
+        if any(marker in body for marker in markers):
             offenders.append(name)
+
     assert not offenders, f"tracked files look like they contain a private key: {offenders}"
 
 
