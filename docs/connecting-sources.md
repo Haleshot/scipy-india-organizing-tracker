@@ -137,6 +137,50 @@ unauthenticated requests an hour from one address, which is plenty for a manual
 refresh. Set `GITHUB_TOKEN` to raise that to 5000, which you want for anything
 running on a schedule, and which is required for a private repository.
 
+### Narrowing it to this conference
+
+`scipy-india/planning` goes back to July 2025 and holds 43 issues, most of them
+about things that are not this conference. Reading all of them buries the ten
+that matter.
+
+Two ways to narrow it, both applied by GitHub rather than after the fact, so a
+filtered read is one request instead of forty.
+
+=== "By label"
+
+    ```bash title=".env"
+    GITHUB_ISSUE_LABELS=conference
+    ```
+
+    The tidier answer, and the one to prefer once somebody has gone through and
+    labelled things. Only issues carrying every label listed here are read, so
+    one label is usually what you want.
+
+    The label has to exist and be applied first. Creating it is a one-off:
+
+    ```bash
+    gh label create conference --repo scipy-india/planning       --description "Work for the SciPy India 2026 conference" --color 0054a6
+    gh issue edit 44 --repo scipy-india/planning --add-label conference
+    ```
+
+=== "By date"
+
+    ```bash title=".env"
+    GITHUB_ISSUE_SINCE=2026-06-01
+    ```
+
+    Needs no labelling at all, which makes it the right first move. Only issues
+    updated on or after that date are read.
+
+    On this repository that cuts 43 issues to 10. Pick the date the team started
+    treating the conference as the priority.
+
+    The catch is that an old issue somebody comments on reappears, since the
+    filter is on updated rather than created. That is usually what you want, and
+    occasionally is not.
+
+Leave both empty to read everything, which is the default.
+
 Each issue becomes an `Issue` node carrying its number, title, state, labels,
 milestone and assignees. Issue **bodies are not read**, partly because they are
 long and partly because comment threads are where people paste things that

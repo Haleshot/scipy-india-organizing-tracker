@@ -6,7 +6,9 @@ graph, so "what did we agree to do about sponsorship, and is anyone actually on
 it" is a single question.
 
 Set ``ISSUE_SOURCE=github`` and ``GITHUB_REPOS=scipy-india/planning`` to turn
-this on. Public repositories need no token; GitHub allows 60 unauthenticated
+this on. A planning repository usually outlives any one thing being planned, so
+``GITHUB_ISSUE_LABELS`` and ``GITHUB_ISSUE_SINCE`` narrow it to the issues that
+belong to this conference. Public repositories need no token; GitHub allows 60 unauthenticated
 requests an hour from one address, which is plenty for a repo this size but not
 for a CI job that runs often. Set ``GITHUB_TOKEN`` to raise that to 5000, and it
 is required for private repositories.
@@ -23,6 +25,7 @@ import datetime
 import json
 import os
 import urllib.error
+import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
 from typing import Any
@@ -61,10 +64,28 @@ class IssueRecord:
 
 
 class GitHubIssueSource:
-    def __init__(self, repos: list[str], *, token: str = "", state: str = "all") -> None:
+    """Reads issues from one or more repositories.
+
+    ``labels`` and ``since`` are passed to GitHub rather than applied here, so a
+    filtered read costs one request instead of forty. A planning repo that
+    predates the thing you are planning holds a lot of issues you do not want in
+    the graph, and these are how you leave them out.
+    """
+
+    def __init__(
+        self,
+        repos: list[str],
+        *,
+        token: str = "",
+        state: str = "all",
+        labels: list[str] | None = None,
+        since: str = "",
+    ) -> None:
         self._repos = repos
         self._token = token
         self._state = state
+        self._labels = labels or []
+        self._since = since
 
     def _get(self, url: str) -> tuple[list[dict[str, Any]], str | None]:
         request = urllib.request.Request(url)
@@ -87,8 +108,15 @@ class GitHubIssueSource:
 
     def issues(self) -> list[IssueRecord]:
         records: list[IssueRecord] = []
+        query = f"state={self._state}&per_page={PAGE_SIZE}"
+        if self._labels:
+            # GitHub treats this as AND across labels, so one label per read is
+            # the sane way to use it. Several here means "carries all of these".
+            query += "&labels=" + urllib.parse.quote(",".join(self._labels))
+        if self._since:
+            query += "&since=" + urllib.parse.quote(self._since)
         for repo in self._repos:
-            url = f"{API_ROOT}/repos/{repo}/issues?state={self._state}&per_page={PAGE_SIZE}"
+            url = f"{API_ROOT}/repos/{repo}/issues?{query}"
             for _ in range(MAX_PAGES):
                 payload, url = self._get(url)  # type: ignore[assignment]
                 for raw in payload:
@@ -175,8 +203,27 @@ def issue_source(*, repos: list[str] | None = None) -> GitHubIssueSource | None:
         if repo.count("/") != 1:
             raise ValueError(f"GITHUB_REPOS entry {repo!r} should look like owner/name.")
 
+    since = os.environ.get("GITHUB_ISSUE_SINCE", "").strip()
+    if since:
+        # GitHub wants ISO 8601. A plain date is the useful thing to type, so
+        # accept that and fill in the rest.
+        try:
+            datetime.date.fromisoformat(since[:10])
+        except ValueError as error:
+            raise ValueError(
+                f"GITHUB_ISSUE_SINCE={since!r} is not a date. Use YYYY-MM-DD."
+            ) from error
+        if len(since) == 10:
+            since = f"{since}T00:00:00Z"
+
     return GitHubIssueSource(
         repos,
         token=os.environ.get("GITHUB_TOKEN", "").strip(),
         state=os.environ.get("GITHUB_ISSUE_STATE", "all").strip().lower(),
+        labels=[
+            label.strip()
+            for label in os.environ.get("GITHUB_ISSUE_LABELS", "").split(",")
+            if label.strip()
+        ],
+        since=since,
     )
