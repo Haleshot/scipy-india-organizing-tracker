@@ -10,6 +10,7 @@ does not try to judge whether prose is any good.
 
 from __future__ import annotations
 
+import json
 import re
 import subprocess
 from pathlib import Path
@@ -165,10 +166,23 @@ def test_no_emoji_in_markdown_headings():
 
 
 def test_the_dashboard_ships_no_em_dashes():
-    """The one a reader sees. Checks the built page and its data together."""
-    for name in ("index.html", "app.js", "styles.css", "data/graph.json"):
+    """The one a reader sees. Checks the built page and its data together.
+
+    The snapshot carries GitHub issue titles verbatim, and other people punctuate
+    how they like. Quoting someone accurately beats house style, so the scan
+    covers the strings this project writes and skips the ones it repeats.
+    """
+    for name in ("index.html", "app.js", "styles.css"):
         text = (REPO_ROOT / "web" / "public" / name).read_text(encoding="utf-8")
         assert not DASHES.search(text), f"em or en dash in web/public/{name}"
+
+    snapshot = json.loads((REPO_ROOT / "web" / "public" / "data" / "graph.json").read_text())
+    ours = {
+        key: value
+        for key, value in snapshot.items()
+        if key not in ("issues", "graph")
+    }
+    assert not DASHES.search(json.dumps(ours)), "em or en dash in the snapshot"
 
 
 # --------------------------------------------------------------------------- #
