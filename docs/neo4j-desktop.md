@@ -21,11 +21,48 @@ connects on, and 7474 for the browser interface.
 
 !!! warning "Docker and Desktop cannot both run"
 
-    They both want port 7687. If you have been using the Docker setup, run
-    `docker compose down` before starting the Desktop instance, or Desktop
-    starts and then fails to bind. The symptom is confusing: the pipeline
-    connects successfully and then rejects your password, because it reached
-    the *other* database.
+    They both want port 7687, and whichever starts first keeps it. If Desktop
+    refuses to start, its log will say `bind: address already in use`, and the
+    fix is `docker compose down` first.
+
+    Pausing Docker Desktop is not enough. Its port proxy keeps listening even
+    while the container is frozen. `lsof -nP -iTCP:7687 -sTCP:LISTEN` tells you
+    who actually has it; empty output means the port is free.
+
+## Which database am I looking at
+
+This is the one that catches everybody, so it is worth being explicit.
+
+Docker and Neo4j Desktop are **two separate databases**. They take turns on the
+same port, they have different passwords, and they do not share data. Building
+the graph in one and then querying the other gives you this:
+
+```title="Neo4j Desktop, querying the wrong instance"
+No changes, no records
+01N50: Label does not exist
+The label `Task` does not exist in database `neo4j`.
+```
+
+Nothing is broken. That database is simply empty, because the refresh went into
+the other one.
+
+The refresh tells you where it wrote, on its last line:
+
+```
+Done
+  Graph written to: bolt://127.0.0.1:7687 (database neo4j)
+```
+
+So the sequence for using Desktop is: stop Docker, start the Desktop instance,
+put the Desktop password in `.env`, and only then run the refresh. Doing it in
+any other order builds the graph somewhere you are not looking.
+
+```bash
+docker compose down
+lsof -nP -iTCP:7687 -sTCP:LISTEN   # expect no output
+# press Start in Neo4j Desktop, then:
+./scripts/refresh.sh
+```
 
 ## Point the pipeline at it
 

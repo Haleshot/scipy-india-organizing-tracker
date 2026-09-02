@@ -129,7 +129,14 @@ except Exception:
 PYEOF
   then
     echo "refresh: cannot reach Neo4j at ${NEO4J_URI:-bolt://localhost:7687}." >&2
-    echo "         Start it with:  docker compose up -d --wait" >&2
+    echo >&2
+    echo "  Start one of these, not both. They want the same port." >&2
+    echo "    Docker:         docker compose up -d --wait" >&2
+    echo "    Neo4j Desktop:  press Start on the instance" >&2
+    echo >&2
+    echo "  If one is already running, NEO4J_PASSWORD in .env belongs to the" >&2
+    echo "  other one. Docker uses the password in docker-compose.yml; Desktop" >&2
+    echo "  uses the one you set when you created the instance." >&2
     exit 1
   fi
 }
@@ -270,6 +277,11 @@ RESET_EOF
   fi
 
   say "Done"
+  # Which database this went into. Docker and Neo4j Desktop are two separate
+  # databases on the same port, and querying the empty one looks like a broken
+  # pipeline rather than the wrong connection.
+  note "Graph written to: ${NEO4J_URI:-bolt://localhost:7687} (database ${NEO4J_DATABASE:-neo4j})"
+  note "Queries only see this data if they run against that same instance."
   note "Dashboard data: $SNAPSHOT"
   note "Serve it with:  python -m http.server 8000 --directory web/public"
 }
