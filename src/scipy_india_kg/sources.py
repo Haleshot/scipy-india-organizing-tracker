@@ -48,6 +48,8 @@ DRIVE_MIME_TYPES = (
 
 NOTE_SUFFIXES = (".md", ".markdown", ".txt")
 
+KNOWN_SOURCES = ("local", "google_drive")
+
 
 class _LocalNoteSource:
     """Walks ``MEETING_NOTES_DIR`` for note files.
@@ -83,6 +85,15 @@ def meeting_note_source(*, live: bool = False) -> MeetingNoteSource:
         if not directory.is_dir():
             raise ValueError(f"MEETING_NOTES_DIR does not exist: {directory.resolve()}")
         filename = os.environ.get("MEETING_NOTES_FILE", "").strip() or None
+        # A value that names a source rather than a file means the value landed
+        # on the wrong line in .env. The two variables sit next to each other and
+        # the resulting error otherwise points at the directory, which is fine.
+        if filename in KNOWN_SOURCES:
+            raise ValueError(
+                f"MEETING_NOTES_FILE={filename!r} is the name of a source, not a file. "
+                f"You probably meant MEETING_NOTES_SOURCE={filename}. Set that, and "
+                "leave MEETING_NOTES_FILE empty."
+            )
         if filename and not (directory / filename).is_file():
             raise ValueError(
                 f"MEETING_NOTES_FILE={filename!r} is not in {directory.resolve()}. "
@@ -104,7 +115,9 @@ def meeting_note_source(*, live: bool = False) -> MeetingNoteSource:
             mime_types=DRIVE_MIME_TYPES,
         )
 
-    raise ValueError(f"Unknown MEETING_NOTES_SOURCE={kind!r}. Use 'local' or 'google_drive'.")
+    raise ValueError(
+        f"Unknown MEETING_NOTES_SOURCE={kind!r}. Use one of: {', '.join(KNOWN_SOURCES)}."
+    )
 
 
 def _require(name: str) -> str:
