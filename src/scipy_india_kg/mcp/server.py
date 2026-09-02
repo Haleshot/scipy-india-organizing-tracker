@@ -166,6 +166,51 @@ def build_server(graph: OrganizerGraph) -> MCPServer:
         return _dump(await graph.list_unassigned_tasks(workgroup=workgroup, limit=limit))
 
     @server.tool(annotations=READ_ONLY)
+    async def list_issues(
+        state: str | None = "open",
+        workgroup: str | None = None,
+        owner: str | None = None,
+        unassigned_only: bool = False,
+        limit: int = 50,
+    ) -> list[dict[str, Any]]:
+        """GitHub issues from the planning tracker.
+
+        Separate from the action items on purpose. An action item is what a
+        meeting agreed to do; an issue is what somebody filed. They overlap, and
+        where a note said so explicitly the issue's `tracks` field names the
+        action item it belongs to. Everywhere else the two are unjoined, and
+        that gap is usually the interesting thing.
+
+        Parameters
+        ----------
+        state: "open", "closed", or None for both.
+        workgroup: filter by slug or display name, from the issue's labels.
+        owner: filter to one person's exact canonical name.
+        unassigned_only: only issues with nobody assigned on GitHub.
+        limit: maximum rows.
+        """
+        return _dump(
+            await graph.list_issues(
+                state=state,
+                workgroup=workgroup,
+                owner=owner,
+                unassigned_only=unassigned_only,
+                limit=limit,
+            )
+        )
+
+    @server.tool(annotations=READ_ONLY)
+    async def find_issue(issue: str, limit: int = 3) -> list[dict[str, Any]]:
+        """One issue by number, by owner/repo#number, or by part of its title.
+
+        Parameters
+        ----------
+        issue: "44", "#44", "scipy-india/planning#44", or a piece of the title.
+        limit: how many matches to return when the title is ambiguous.
+        """
+        return _dump(await graph.find_issue(issue, limit=limit))
+
+    @server.tool(annotations=READ_ONLY)
     async def get_task_history(task: str, limit: int = 3) -> list[dict[str, Any]]:
         """Provenance for an action item: origin, every meeting that touched it, status each time.
 

@@ -118,6 +118,44 @@ WHERE ($workgroup IS NULL OR workgroup = $workgroup)
 RETURN * ORDER BY workgroup_name, description LIMIT $limit
 """
 
+# Issues. Kept apart from the task queries on purpose: a task is what a meeting
+# agreed to do and an issue is what somebody filed, and folding them into one
+# result would hide which of the two you are reading.
+_ISSUE_FIELDS = """
+       i.key AS key, i.repo AS repo, i.number AS number, i.title AS title,
+       i.url AS url, i.state AS state, i.state_reason AS state_reason,
+       i.labels AS labels, i.milestone AS milestone,
+       i.comment_count AS comment_count, i.updated_at AS updated_at,
+       w.slug AS workgroup, w.name AS workgroup_name,
+       [x IN collect(DISTINCT owner.name) WHERE x IS NOT NULL] AS owners,
+       [x IN collect(DISTINCT t.description) WHERE x IS NOT NULL] AS tracks
+"""
+
+LIST_ISSUES = f"""
+MATCH (i:Issue)
+OPTIONAL MATCH (i)-[:FILED_UNDER]->(w:Workgroup)
+OPTIONAL MATCH (owner:Person)-[:WORKS_ON]->(i)
+OPTIONAL MATCH (t:Task)-[:TRACKED_BY]->(i)
+WITH {_ISSUE_FIELDS}
+WHERE ($state IS NULL OR state = $state)
+  AND ($workgroup IS NULL OR workgroup = $workgroup)
+  AND ($owner IS NULL OR $owner IN owners)
+  AND (NOT $unassigned_only OR size(owners) = 0)
+RETURN * ORDER BY number DESC LIMIT $limit
+"""
+
+FIND_ISSUE = f"""
+MATCH (i:Issue)
+WHERE i.key = $needle
+   OR toString(i.number) = replace($needle, '#', '')
+   OR toLower(i.title) CONTAINS toLower($needle)
+OPTIONAL MATCH (i)-[:FILED_UNDER]->(w:Workgroup)
+OPTIONAL MATCH (owner:Person)-[:WORKS_ON]->(i)
+OPTIONAL MATCH (t:Task)-[:TRACKED_BY]->(i)
+WITH {_ISSUE_FIELDS}
+RETURN * ORDER BY number DESC LIMIT $limit
+"""
+
 FIND_TASK = f"""
 MATCH (t:Task)
 WHERE t.id = $needle OR toLower(t.description) CONTAINS toLower($needle)

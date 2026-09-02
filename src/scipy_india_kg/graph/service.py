@@ -34,6 +34,7 @@ from .capabilities import (
 from .models import (
     DecisionSummary,
     GraphReport,
+    IssueSummary,
     MeetingContext,
     MeetingSummary,
     PersonContext,
@@ -96,6 +97,26 @@ def _task(row: dict[str, Any]) -> TaskSummary:
         last_seen=_date(row.get("last_seen")),
         meeting_count=row.get("meeting_count") or 0,
         identity_basis=row.get("identity_basis") or "",
+    )
+
+
+def _issue(row: dict[str, Any]) -> IssueSummary:
+    return IssueSummary(
+        key=row["key"],
+        repo=row["repo"],
+        number=row["number"],
+        title=row["title"],
+        url=row.get("url") or "",
+        state=row.get("state") or "open",
+        state_reason=row.get("state_reason") or "",
+        labels=row.get("labels") or [],
+        milestone=row.get("milestone") or "",
+        comment_count=row.get("comment_count") or 0,
+        updated_at=_date(row.get("updated_at")),
+        workgroup=row.get("workgroup"),
+        workgroup_name=row.get("workgroup_name"),
+        owners=row.get("owners") or [],
+        tracks=row.get("tracks") or [],
     )
 
 
@@ -200,6 +221,32 @@ class OrganizerGraph:
             limit=limit,
         )
         return [_task(row) for row in rows]
+
+    # ------------------------------------------------------------------ issues
+
+    async def list_issues(
+        self,
+        state: str | None = "open",
+        workgroup: str | None = None,
+        owner: str | None = None,
+        unassigned_only: bool = False,
+        limit: int = 50,
+    ) -> list[IssueSummary]:
+        """Issues from the tracker. Pass ``state=None`` for closed ones too."""
+        rows = await self._rows(
+            cypher.LIST_ISSUES,
+            state=state,
+            workgroup=await self._resolve_workgroup(workgroup),
+            owner=owner,
+            unassigned_only=unassigned_only,
+            limit=limit,
+        )
+        return [_issue(row) for row in rows]
+
+    async def find_issue(self, issue: str, limit: int = 3) -> list[IssueSummary]:
+        """One issue by number, key or a piece of its title."""
+        rows = await self._rows(cypher.FIND_ISSUE, needle=issue, limit=limit)
+        return [_issue(row) for row in rows]
 
     async def get_task_history(self, task: str, limit: int = 3) -> list[TaskDetail]:
         """Full provenance for an action item: where it came from, every meeting

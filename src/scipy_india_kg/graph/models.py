@@ -50,6 +50,31 @@ class TaskSummary(pydantic.BaseModel):
     identity_basis: str = ""
 
 
+class IssueSummary(pydantic.BaseModel):
+    """A GitHub issue as the retrieval layer returns it.
+
+    ``tracks`` holds the action items a note explicitly linked to this issue,
+    which is empty for most of them and is the only join between the two
+    sources.
+    """
+
+    key: str
+    repo: str
+    number: int
+    title: str
+    url: str
+    state: str
+    state_reason: str = ""
+    labels: list[str] = pydantic.Field(default_factory=list)
+    milestone: str = ""
+    comment_count: int = 0
+    updated_at: datetime.date | None = None
+    workgroup: str | None = None
+    workgroup_name: str | None = None
+    owners: list[str] = pydantic.Field(default_factory=list)
+    tracks: list[str] = pydantic.Field(default_factory=list)
+
+
 class TaskDetail(TaskSummary):
     """A task plus the provenance behind it."""
 

@@ -113,6 +113,18 @@ def render(name: str, value: Any) -> str:
     elif name in {"list-open-tasks", "list-unassigned-tasks"}:
         lines.extend(_task_line(task) for task in value)
 
+    elif name in {"list-issues", "find-issue"}:
+        for issue in value:
+            state = (
+                issue.state if issue.state == "open" else f"closed, {issue.state_reason or 'done'}"
+            )
+            owners = ", ".join(issue.owners) or "nobody assigned"
+            lines.append(f"#{issue.number} {issue.title}")
+            lines.append(f"  {state} · {owners} · {issue.workgroup_name or 'no role'}")
+            if issue.tracks:
+                lines.append("  tracks: " + "; ".join(issue.tracks))
+            lines.append(f"  {issue.url}")
+
     elif name == "get-task-history":
         for task in value:
             lines.append(f"{task.description}")
@@ -225,6 +237,17 @@ def build_parser() -> argparse.ArgumentParser:
     unassigned.add_argument("--workgroup", default=None)
     unassigned.add_argument("--limit", type=int, default=50)
 
+    issues = subparsers.add_parser("list-issues", help="issues from the planning tracker")
+    issues.add_argument("--state", default="open", choices=["open", "closed", "all"])
+    issues.add_argument("--workgroup", default=None)
+    issues.add_argument("--owner", default=None)
+    issues.add_argument("--unassigned", action="store_true", help="only issues with no assignee")
+    issues.add_argument("--limit", type=int, default=50)
+
+    issue = subparsers.add_parser("find-issue", help="one issue by number, key or title")
+    issue.add_argument("issue", help="44, #44, owner/repo#44, or part of the title")
+    issue.add_argument("--limit", type=int, default=3)
+
     history = subparsers.add_parser("get-task-history", help="provenance for an action item")
     history.add_argument("task", help="task id or part of its description")
     history.add_argument("--limit", type=int, default=3)
@@ -268,6 +291,16 @@ async def run(args: argparse.Namespace) -> Any:
                 )
             case "list-unassigned-tasks":
                 return await graph.list_unassigned_tasks(workgroup=args.workgroup, limit=args.limit)
+            case "list-issues":
+                return await graph.list_issues(
+                    state=None if args.state == "all" else args.state,
+                    workgroup=args.workgroup,
+                    owner=args.owner,
+                    unassigned_only=args.unassigned,
+                    limit=args.limit,
+                )
+            case "find-issue":
+                return await graph.find_issue(args.issue, limit=args.limit)
             case "get-task-history":
                 return await graph.get_task_history(args.task, limit=args.limit)
             case "get-person-context":
