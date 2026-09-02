@@ -22,3 +22,42 @@
 
 /* Tables carry most of the reference material here. Align the numbers. */
 .md-typeset table:not([class]) td:nth-child(n+2):not(:has(a)) { font-variant-numeric: tabular-nums; }
+
+/* Buttons.
+ *
+ * Material's default .md-button is an outlined button whose border inherits the
+ * body text colour, which on the dark scheme reads as a disabled grey rather
+ * than something to click. These take the accent instead, and the primary
+ * variant fills so the one action per card is obvious. */
+.md-typeset .md-button {
+  border-color: var(--md-primary-fg-color);
+  color: var(--md-primary-fg-color);
+}
+
+.md-typeset .md-button:focus,
+.md-typeset .md-button:hover {
+  background-color: var(--md-primary-fg-color);
+  border-color: var(--md-primary-fg-color);
+  color: var(--md-default-bg-color);
+}
+
+.md-typeset .md-button--primary {
+  background-color: var(--md-primary-fg-color);
+  border-color: var(--md-primary-fg-color);
+  color: #ffffff;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .md-button--primary {
+  color: #10161d;
+}
+
+.md-typeset .md-button--primary:focus,
+.md-typeset .md-button--primary:hover {
+  background-color: var(--md-primary-fg-color--dark, var(--md-accent-fg-color));
+  border-color: var(--md-primary-fg-color--dark, var(--md-accent-fg-color));
+  color: #ffffff;
+}
+
+/* A card's action sits at its foot, not wherever the text ran out. */
+.md-typeset .grid.cards > ul > li > .md-button:last-child,
+.md-typeset .grid.cards > ul > li > p:last-child > .md-button { margin-top: .4rem; }

@@ -1,6 +1,6 @@
 # Reading the dashboard
 
-[Open the dashboard](../){ .md-button target=_blank } and read this beside it.
+[Open the dashboard](../){ .md-button .md-button--primary target=_blank } and read this beside it.
 
 Nothing on the dashboard is typed by hand. Every number comes from the meeting
 notes or the planning repo, and it is as current as the last refresh, which the

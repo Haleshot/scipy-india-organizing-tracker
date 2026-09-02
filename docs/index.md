@@ -17,7 +17,7 @@ can open and a set of questions you can ask.
     [Open the dashboard](../){ target=_blank }, then come back here for what
     each page shows and how the numbers are worked out.
 
-    [Reading the dashboard](reading-the-dashboard.md){ .md-button }
+    [Reading the dashboard](reading-the-dashboard.md){ .md-button .md-button--primary }
 
 -   __Want to run your own copy?__
 
@@ -26,7 +26,7 @@ can open and a set of questions you can ask.
     About five minutes, no credentials. It ships with notes you can build from
     straight away.
 
-    [Get started](get-started.md){ .md-button }
+    [Get started](get-started.md){ .md-button .md-button--primary }
 
 -   __Taking minutes at the next call?__
 
