@@ -6,13 +6,20 @@ Neo4j. No Google credentials, no API keys, no GitHub token.
 
 ## Pick where Neo4j runs
 
-Neo4j has to run somewhere, and there are two reasonable answers. Both listen on
-the same port, so pick one: they cannot both run at once.
+Neo4j has to run somewhere, and there are two answers. Both listen on the same
+port, so pick one: they cannot both run at once.
+
+!!! tip "Use Docker unless you have a reason not to"
+
+    It is one command, the password is already in `docker-compose.yml` and
+    `.env.example` so nothing has to match up by hand, and `docker compose down`
+    removes it cleanly. Neo4j Desktop is worth it when you want to write Cypher
+    against the graph by hand, and it needs a few more steps to get right.
 
 === "Docker"
 
     Nothing to install beyond Docker itself, and `docker compose down` takes it
-    all away again. Best if you just want to see this work.
+    all away again.
 
     ```bash
     docker compose up -d --wait

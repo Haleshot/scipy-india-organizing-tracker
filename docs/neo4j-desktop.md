@@ -1,9 +1,37 @@
 # Running it on Neo4j Desktop
 
-Docker is the quickest way to get a database up, but it gives you a black box.
-Neo4j Desktop gives you the same database with a query editor and a graph
-visualiser attached, which is what you want if you would rather poke at the data
-than read about it.
+Docker is the quickest way to get a database up and is what
+[Get started](get-started.md) recommends. Neo4j Desktop gives you the same
+database with a query editor and a visualiser attached, which is worth the extra
+setup if you want to write Cypher against the graph rather than read about it.
+
+!!! warning "Read this before you start"
+
+    Two things catch everyone, and both look like the pipeline is broken when it
+    is not.
+
+    Docker and Desktop cannot both run, and building the graph in one while
+    querying the other gives you empty results. See
+    [which database am I looking at](#which-database-am-i-looking-at).
+
+    `bolt://127.0.0.1:7687` is not a web address. Pasting it into a browser does
+    nothing. See [bolt is not a website](#bolt-is-not-a-website).
+
+## bolt is not a website
+
+`bolt://` is the protocol the Neo4j driver speaks. It is how `.env` tells the
+pipeline where the database is, and a browser has no idea what to do with it.
+Nothing is wrong when it fails to load.
+
+The thing you open in a browser is Neo4j's own interface, on a different port:
+
+| Address | What it is | Who uses it |
+| --- | --- | --- |
+| `bolt://127.0.0.1:7687` | The database protocol | `.env`, the pipeline, the MCP server |
+| <http://localhost:7474> | Neo4j Browser, the query editor | You, in a browser |
+
+With Desktop you rarely need 7474 directly, because Desktop has the same query
+editor built in: open the instance and use its Query tab.
 
 ## Create the instance
 
