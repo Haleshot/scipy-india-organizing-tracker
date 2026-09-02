@@ -30,6 +30,7 @@ import argparse
 import datetime
 import json
 import os
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -83,7 +84,13 @@ PUBLIC_FIELDS: dict[str, tuple[str, ...]] = {
 
 # Fields that must never appear anywhere in the output, checked after the fact
 # as a belt-and-braces assertion. The allowlist is what actually protects them.
-FORBIDDEN_SUBSTRINGS = ("contact_email", "contact_phone", "raw_response", "@")
+FORBIDDEN_SUBSTRINGS = ("contact_email", "contact_phone", "raw_response")
+
+# A bare "@" used to stand in for "an email address", which was a fine proxy
+# while every string in the snapshot came from meeting notes. GitHub issue
+# titles broke it: "FOSS in Science devroom @ IndiaFOSS" is not a leak. This
+# wants an actual address, and still catches every real one.
+EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+")
 
 OPEN_STATUSES = ("open", "in_progress", "blocked", "unknown")
 
@@ -189,6 +196,30 @@ RETURN toString(b.built_at) AS built_at, b.notes_source AS notes_source,
        b.extraction_mode AS extraction_mode, b.person_resolution AS person_resolution
 """
 
+# GitHub issues. Everything here is already public on github.com, which is why
+# it needs no allowlisting the way the volunteer tables do.
+Q_ISSUES = """
+MATCH (i:Issue)
+OPTIONAL MATCH (i)-[:FILED_UNDER]->(w:Workgroup)
+OPTIONAL MATCH (owner:Person)-[:WORKS_ON]->(i)
+OPTIONAL MATCH (t:Task)-[:TRACKED_BY]->(i)
+RETURN i.key AS key,
+       i.repo AS repo,
+       i.number AS number,
+       i.title AS title,
+       i.url AS url,
+       i.state AS state,
+       i.state_reason AS state_reason,
+       i.labels AS labels,
+       i.milestone AS milestone,
+       i.comment_count AS comment_count,
+       i.updated_at AS updated_at,
+       w.slug AS workgroup,
+       [x IN collect(DISTINCT owner.name) WHERE x IS NOT NULL] AS owners,
+       [x IN collect(DISTINCT t.id) WHERE x IS NOT NULL] AS tasks
+ORDER BY i.number DESC
+"""
+
 Q_TOTAL_PEOPLE = "MATCH (p:Person) RETURN count(p) AS count"
 
 # Skills and availability of people who are already on a workgroup. Their
@@ -237,6 +268,7 @@ def build_snapshot(
     tasks = rows(Q_TASKS)
     decisions = rows(Q_DECISIONS)
     people = rows(Q_PEOPLE)
+    issues = rows(Q_ISSUES)
     volunteers = rows(Q_ASSIGNED_VOLUNTEERS)
     build_rows = rows(Q_BUILD)
     total_people = rows(Q_TOTAL_PEOPLE)
@@ -289,7 +321,7 @@ def build_snapshot(
 
     return {
         "generated_at": datetime.datetime.now(datetime.UTC).isoformat(timespec="seconds"),
-        "schema_version": 3,
+        "schema_version": 4,
         "profile": profile,
         "source": {
             "built_at": source.get("built_at", ""),
@@ -306,6 +338,8 @@ def build_snapshot(
             "unassigned_open_tasks": sum(1 for t in open_tasks if not t["owners"]),
             "decisions": len(decisions),
             "workgroups": len(workgroups),
+            "issues": len(issues),
+            "open_issues": sum(1 for i in issues if i["state"] == "open"),
             "applications_by_status": {r["status"]: r["count"] for r in application_counts},
         },
         "workgroups": workgroups,
@@ -313,12 +347,13 @@ def build_snapshot(
         "people": people,
         "tasks": tasks,
         "decisions": decisions,
+        "issues": issues,
         "volunteer_pipeline": pipeline,
-        "graph": build_graph_view(workgroups, meetings, people, tasks, decisions),
+        "graph": build_graph_view(workgroups, meetings, people, tasks, decisions, issues),
     }
 
 
-def build_graph_view(workgroups, meetings, people, tasks, decisions) -> dict[str, Any]:
+def build_graph_view(workgroups, meetings, people, tasks, decisions, issues) -> dict[str, Any]:
     """Node/edge lists for the explorer. Ids are typed so the UI can style them."""
     nodes: list[dict[str, Any]] = []
     edges: list[dict[str, str]] = []
@@ -363,6 +398,17 @@ def build_graph_view(workgroups, meetings, people, tasks, decisions) -> dict[str
         for meeting_id in decision["meetings"]:
             add_edge(f"meeting:{meeting_id}", node, "DECIDED")
 
+    # Issues, and the two places they touch the rest of the graph: a person
+    # GitHub says is on it, and a task a note explicitly tied to it.
+    for issue in issues:
+        node = add_node(f"issue:{issue['key']}", f"#{issue['number']} {issue['title']}", "issue")
+        if issue["workgroup"]:
+            add_edge(node, f"workgroup:{issue['workgroup']}", "FILED_UNDER")
+        for owner in issue["owners"]:
+            add_edge(f"person:{owner}", node, "WORKS_ON")
+        for task_id in issue["tasks"]:
+            add_edge(f"task:{task_id}", node, "TRACKED_BY")
+
     known = {node["id"] for node in nodes}
     edges = [e for e in edges if e["source"] in known and e["target"] in known]
     return {"nodes": nodes, "edges": edges}
@@ -372,7 +418,9 @@ def audit(payload: dict[str, Any]) -> list[str]:
     """Cheap post-hoc check that nothing private slipped through. The allowlist
     is the real defence; this catches a mistake in it."""
     text = json.dumps(payload)
-    return [needle for needle in FORBIDDEN_SUBSTRINGS if needle in text]
+    found = [needle for needle in FORBIDDEN_SUBSTRINGS if needle in text]
+    found.extend(sorted(set(EMAIL_RE.findall(text))))
+    return found
 
 
 def main() -> int:
