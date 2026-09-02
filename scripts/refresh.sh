@@ -247,6 +247,26 @@ RESET_EOF
   after="$(graph_counts)"
   describe_change "$before" "$after"
 
+  # CocoIndex tracks what it has already written in cocoindex.db, which lives
+  # beside this repo rather than inside the database. Point NEO4J_URI or
+  # NEO4J_PASSWORD at a different instance and that state is describing somewhere
+  # else: every section matches its cached extraction, nothing gets written, and
+  # you are left looking at an empty graph with a successful run above it.
+  if [ "$after" = "{}" ] || [ "$(echo "$after" | tr -d '{} ')" = '"OpenTasks":0' ]; then
+    printf '\n' >&2
+    echo "  The run succeeded and the graph is empty." >&2
+    echo >&2
+    echo "  That usually means this is a different database from the one the last" >&2
+    echo "  run wrote to, and CocoIndex still thinks its work is done. Its state" >&2
+    echo "  lives in ${COCOINDEX_DB:-./cocoindex.db}, not in Neo4j, so switching" >&2
+    echo "  between Docker and Neo4j Desktop leaves it describing the other one." >&2
+    echo >&2
+    echo "  Rebuild from scratch:" >&2
+    echo "    ./scripts/refresh.sh --reset" >&2
+    printf '\n' >&2
+    return 1
+  fi
+
   if [ "$SEARCH" = 1 ]; then
     say "2/3  Search indexes"
     local flags="--embeddings"
