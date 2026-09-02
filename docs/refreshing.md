@@ -78,9 +78,11 @@ git push
     python -m http.server 8000 --directory web/public
     ```
 
-    It watches `data/meeting_notes/` for local files. Pointed at Drive it polls
-    on the same interval, which is the only way to notice a Doc edit: Drive does
-    not push.
+    How it waits depends on the source. A local directory has filesystem
+    events, so it reacts the moment you save. Google Drive has none and there is
+    no webhook here to receive one, so it polls every 60 seconds instead. Set
+    `WATCH_INTERVAL_SECONDS` to change that; a cycle with no edits is cheap,
+    because every unchanged meeting section matches its cache.
 
 Commit the snapshot once at the end rather than after every edit. Every push
 triggers a deploy, and the history is easier to read.
@@ -97,16 +99,18 @@ triggers a deploy, and the history is easier to read.
 
 ## Doing it on a schedule
 
-Nothing here runs itself. A refresh happens when somebody runs the command, and
-for a team this size that is usually the right amount of automation: you get to
-see what changed before it goes out.
+!!! warning "Nothing is scheduled right now"
 
-If you would rather it ran on its own, the honest options are a cron entry on a
-machine that stays up, or GitHub Actions. Actions needs a Neo4j the runner can
-reach, which a container on your laptop is not, so it wants a hosted instance
-such as Aura before it does anything useful.
+    No cron entry is installed and no workflow runs on a timer. A refresh
+    happens when somebody runs the command, and nothing below is set up for you.
 
-??? example "A cron entry, if you want one"
+For a team this size that is usually the right amount of automation, because you
+get to see what changed before it goes out. If you want it running on its own,
+there are two honest options: a cron entry on a machine that stays up, or GitHub
+Actions. Actions needs a Neo4j the runner can reach, which a container on your
+laptop is not, so it wants a hosted instance such as Aura first.
+
+??? example "Installing a cron entry yourself"
 
     ```bash title="crontab -e"
     # Every weekday at 9am. Absolute paths, because cron has almost no PATH.

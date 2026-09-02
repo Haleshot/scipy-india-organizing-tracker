@@ -17,7 +17,7 @@ can open and a set of questions you can ask.
     [Open the dashboard](../){ target=_blank }, then come back here for what
     each page shows and how the numbers are worked out.
 
-    [Reading the dashboard](reading-the-dashboard.md)
+    [Reading the dashboard](reading-the-dashboard.md){ .md-button }
 
 -   __Want to run your own copy?__
 
@@ -26,7 +26,7 @@ can open and a set of questions you can ask.
     About five minutes, no credentials. It ships with notes you can build from
     straight away.
 
-    [Get started](get-started.md)
+    [Get started](get-started.md){ .md-button }
 
 -   __Taking minutes at the next call?__
 
@@ -35,7 +35,7 @@ can open and a set of questions you can ask.
     The note format. Plain labels you type during the meeting, nothing to fill
     in afterwards.
 
-    [Writing meeting notes](writing-notes.md)
+    [Writing meeting notes](writing-notes.md){ .md-button }
 
 -   __Wondering what it does with your data?__
 
@@ -44,7 +44,7 @@ can open and a set of questions you can ask.
     Nothing is sent anywhere by default. Here is what each optional model would
     see if you turned it on.
 
-    [How AI is used](how-ai-is-used.md)
+    [How AI is used](how-ai-is-used.md){ .md-button }
 
 </div>
 

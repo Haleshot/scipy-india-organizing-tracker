@@ -316,6 +316,29 @@ fi
 # --watch: the dev loop that keeps *everything* current, not only the graph.
 # `cocoindex update -L` keeps Neo4j fresh but never touches the snapshot or the
 # embeddings, so the dashboard would go stale while you watched it.
+#
+# How it waits depends on where the notes are. A local directory has filesystem
+# events; Google Drive has none, and there is no webhook here to receive one, so
+# the only way to notice an edit in the Doc is to look again.
+
+# A failed cycle must not kill the watcher, but it has to be visible.
+watch_cycle() {
+  run_once || fail "Refresh" "Fix it and save the notes again."
+}
+
+if [ "${MEETING_NOTES_SOURCE:-local}" = "google_drive" ]; then
+  interval="${WATCH_INTERVAL_SECONDS:-60}"
+  echo "Watching the Drive folder every ${interval}s. Ctrl-C to stop."
+  echo "Nothing pushes a Doc edit to us, so this polls. Set WATCH_INTERVAL_SECONDS"
+  echo "to change the interval; a cycle with no edits is cheap."
+  watch_cycle
+  while sleep "$interval"; do
+    echo
+    echo "--- checking $(date '+%H:%M:%S') ---"
+    watch_cycle
+  done
+fi
+
 command -v fswatch >/dev/null 2>&1 || {
   echo "refresh: --watch needs fswatch (brew install fswatch)." >&2
   echo "         Without it, re-run ./scripts/refresh.sh after each edit." >&2
@@ -323,10 +346,9 @@ command -v fswatch >/dev/null 2>&1 || {
 }
 echo "Watching $NOTES_DIR. Every change refreshes the graph, search and snapshot."
 echo "Ctrl-C to stop."
-# A failed cycle must not kill the watcher, but it has to be visible.
-run_once || fail "Refresh" "Fix it and save the notes again."
+watch_cycle
 fswatch -o "$NOTES_DIR" | while read -r _; do
   echo
   echo "--- change detected $(date '+%H:%M:%S') ---"
-  run_once || fail "Refresh" "Fix it and save the notes again."
+  watch_cycle
 done
