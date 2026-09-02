@@ -1,55 +1,47 @@
 {
-  "generated_at": "2026-09-02T03:43:21+00:00",
+  "generated_at": "2026-09-02T04:51:48+00:00",
   "schema_version": 3,
   "profile": "public",
   "source": {
-    "built_at": "2026-09-02T03:43:19.698536Z",
+    "built_at": "2026-09-02T04:51:47.437959Z",
     "notes_source": "local",
     "extraction_mode": "markdown",
     "person_resolution": "exact"
   },
   "summary": {
-    "meetings": 5,
-    "people_listed": 10,
-    "people_withheld": 5,
-    "tasks": 22,
-    "open_tasks": 15,
-    "unassigned_open_tasks": 3,
-    "decisions": 13,
+    "meetings": 4,
+    "people_listed": 3,
+    "people_withheld": 0,
+    "tasks": 10,
+    "open_tasks": 5,
+    "unassigned_open_tasks": 1,
+    "decisions": 11,
     "workgroups": 13,
-    "applications_by_status": {
-      "assigned": 5,
-      "declined": 1,
-      "submitted": 3,
-      "under_review": 1
-    }
+    "applications_by_status": {}
   },
   "workgroups": [
     {
       "slug": "av-tech-support",
       "name": "A/V & Tech Support",
       "description": "Sound, projection, recording and streaming during the conference.",
-      "signups": 8,
       "open_tasks": 0,
       "total_tasks": 0,
-      "member_count": 1,
+      "member_count": 0,
       "awaiting_assignment": 0
     },
     {
       "slug": "code-of-conduct",
       "name": "Code of Conduct",
       "description": "The code of conduct, incident response, accessibility and inclusion.",
-      "signups": 7,
-      "open_tasks": 1,
-      "total_tasks": 1,
-      "member_count": 1,
+      "open_tasks": 0,
+      "total_tasks": 0,
+      "member_count": 0,
       "awaiting_assignment": 0
     },
     {
       "slug": "content",
       "name": "Content",
       "description": "Blog posts, speaker interviews and written material around the event.",
-      "signups": 1,
       "open_tasks": 0,
       "total_tasks": 0,
       "member_count": 0,
@@ -59,37 +51,33 @@
       "slug": "design",
       "name": "Design",
       "description": "Logo work, badges, signage, merchandise and slide templates.",
-      "signups": 4,
-      "open_tasks": 1,
-      "total_tasks": 1,
-      "member_count": 1,
-      "awaiting_assignment": 1
+      "open_tasks": 0,
+      "total_tasks": 0,
+      "member_count": 0,
+      "awaiting_assignment": 0
     },
     {
       "slug": "logistics",
       "name": "Logistics",
       "description": "Venue, food, travel, accommodation and everything on the ground.",
-      "signups": 12,
-      "open_tasks": 0,
-      "total_tasks": 1,
+      "open_tasks": 1,
+      "total_tasks": 2,
       "member_count": 1,
-      "awaiting_assignment": 1
+      "awaiting_assignment": 0
     },
     {
       "slug": "program-committee",
       "name": "Program Committee",
       "description": "Shaping the programme, the CFP timeline and the final schedule.",
-      "signups": 1,
-      "open_tasks": 2,
-      "total_tasks": 4,
-      "member_count": 2,
-      "awaiting_assignment": 2
+      "open_tasks": 1,
+      "total_tasks": 1,
+      "member_count": 1,
+      "awaiting_assignment": 0
     },
     {
       "slug": "proposal-reviewing",
       "name": "Proposal Reviewing",
       "description": "Reading and scoring CFP submissions.",
-      "signups": 1,
       "open_tasks": 0,
       "total_tasks": 0,
       "member_count": 0,
@@ -99,17 +87,15 @@
       "slug": "registration-help-desk",
       "name": "Registration & Help Desk",
       "description": "Check-in desks, badges, the queue, and answering questions all day.",
-      "signups": 19,
       "open_tasks": 1,
       "total_tasks": 2,
       "member_count": 1,
-      "awaiting_assignment": 2
+      "awaiting_assignment": 0
     },
     {
       "slug": "session-room-management",
       "name": "Session Room Management",
       "description": "Keeping talks on time, introducing speakers, running the mic.",
-      "signups": 15,
       "open_tasks": 0,
       "total_tasks": 0,
       "member_count": 0,
@@ -119,19 +105,17 @@
       "slug": "social-media-communications",
       "name": "Social Media & Communications",
       "description": "Announcements, social posts, newsletters and community partners.",
-      "signups": 10,
-      "open_tasks": 2,
-      "total_tasks": 3,
-      "member_count": 1,
-      "awaiting_assignment": 1
+      "open_tasks": 0,
+      "total_tasks": 0,
+      "member_count": 0,
+      "awaiting_assignment": 0
     },
     {
       "slug": "sponsoring",
       "name": "Sponsoring",
       "description": "Sponsor prospectus, outreach, invoicing and sponsor deliverables.",
-      "signups": 6,
-      "open_tasks": 5,
-      "total_tasks": 6,
+      "open_tasks": 2,
+      "total_tasks": 4,
       "member_count": 2,
       "awaiting_assignment": 0
     },
@@ -139,7 +123,6 @@
       "slug": "tutorial-workshop-support",
       "name": "Tutorial/Workshop Support",
       "description": "Running the workshop rooms, helping attendees with setup and prerequisites.",
-      "signups": 19,
       "open_tasks": 0,
       "total_tasks": 0,
       "member_count": 0,
@@ -149,819 +132,406 @@
       "slug": "website",
       "name": "Website",
       "description": "The conference site, schedule pages and ticketing integration.",
-      "signups": 15,
-      "open_tasks": 3,
-      "total_tasks": 4,
-      "member_count": 2,
+      "open_tasks": 0,
+      "total_tasks": 1,
+      "member_count": 1,
       "awaiting_assignment": 0
     }
   ],
   "meetings": [
     {
-      "id": 5,
-      "date": "2026-03-06",
-      "title": "Volunteers and reviews",
-      "summary": "First batch of volunteer applications.; Review capacity for the CFP.; Branding refresh for 2026.",
-      "topics": [
-        "First batch of volunteer applications.",
-        "Review capacity for the CFP.",
-        "Branding refresh for 2026."
-      ],
-      "facilitator": "Priya Vasudevan",
-      "attendees": [
-        "Devika Nair",
-        "Kabir Anand",
-        "Rehan Mathew",
-        "Sanjana Iyer",
-        "Priya Vasudevan",
-        "Meera Raghavan"
-      ],
-      "workgroups": [
-        "sponsoring",
-        "social-media-communications",
-        "design",
-        "website",
-        "registration-help-desk",
-        "program-committee"
-      ]
-    },
-    {
       "id": 4,
-      "date": "2026-02-20",
-      "title": "CFP is live",
-      "summary": "First week of CFP submissions.; Volunteer applications are open and coming in.; Code of conduct draft.",
+      "date": "2026-08-22",
+      "title": "Venue recon and keynote outreach",
+      "summary": "What we saw at IIT Madras.; Where keynote outreach has got to.; Volunteer form responses and what to do with them.",
       "topics": [
-        "First week of CFP submissions.",
-        "Volunteer applications are open and coming in.",
-        "Code of conduct draft."
+        "What we saw at IIT Madras.",
+        "Where keynote outreach has got to.",
+        "Volunteer form responses and what to do with them."
       ],
-      "facilitator": "Meera Raghavan",
+      "facilitator": "Srihari Thyagarajan",
       "attendees": [
-        "Meera Raghavan",
-        "Devika Nair",
-        "Rehan Mathew",
-        "Arjun Pillai",
-        "Sanjana Iyer",
-        "Priya Vasudevan"
+        "Malayaja Chutani",
+        "Agriya Khetarpal",
+        "Srihari Thyagarajan"
       ],
       "workgroups": [
         "registration-help-desk",
-        "website",
-        "social-media-communications",
-        "code-of-conduct",
-        "sponsoring",
-        "program-committee"
+        "logistics",
+        "program-committee",
+        "sponsoring"
       ]
     },
     {
       "id": 3,
-      "date": "2026-02-06",
-      "title": "Sponsorship and site",
-      "summary": "Sponsorship tiers and what each one includes.; Static site versus the 2025 site template.; Venue decision.",
+      "date": "2026-08-08",
+      "title": "Budget and venue",
+      "summary": "The budget Malayaja laid out, line by line.; Venue options, and whether IIT Madras is workable.; Who we want as keynote speakers.",
       "topics": [
-        "Sponsorship tiers and what each one includes.",
-        "Static site versus the 2025 site template.",
-        "Venue decision."
+        "The budget Malayaja laid out, line by line.",
+        "Venue options, and whether IIT Madras is workable.",
+        "Who we want as keynote speakers."
       ],
-      "facilitator": "Arjun Pillai",
+      "facilitator": "Malayaja Chutani",
       "attendees": [
-        "Farida Qureshi",
-        "Rehan Mathew",
-        "Nikhil Bose",
-        "Sanjana Iyer",
-        "Meera Raghavan",
-        "Arjun Pillai"
+        "Srihari Thyagarajan",
+        "Agriya Khetarpal",
+        "Malayaja Chutani"
       ],
       "workgroups": [
-        "social-media-communications",
-        "program-committee",
         "logistics",
         "website",
         "sponsoring",
-        "code-of-conduct"
+        "program-committee"
       ]
     },
     {
       "id": 2,
-      "date": "2026-01-23",
-      "title": "CFP and venue shortlist",
-      "summary": "CFP timeline review.; Venue shortlist and costs.; Who owns social media this year.",
+      "date": "2026-07-25",
+      "title": "Sponsorship deck review",
+      "summary": "Walking through the sponsorship deck Agriya drafted.; Tier structure and what each tier actually gets.; First responses to the volunteer form.",
       "topics": [
-        "CFP timeline review.",
-        "Venue shortlist and costs.",
-        "Who owns social media this year."
+        "Walking through the sponsorship deck Agriya drafted.",
+        "Tier structure and what each tier actually gets.",
+        "First responses to the volunteer form."
       ],
-      "facilitator": "Meera Raghavan",
+      "facilitator": "Agriya Khetarpal",
       "attendees": [
-        "Arjun Pillai",
-        "Nikhil Bose",
-        "Farida Qureshi",
-        "Sanjana Iyer",
-        "Meera Raghavan",
-        "Devika Nair"
+        "Agriya Khetarpal",
+        "Srihari Thyagarajan",
+        "Malayaja Chutani"
       ],
       "workgroups": [
-        "social-media-communications",
         "sponsoring",
-        "logistics",
-        "program-committee",
-        "website"
+        "registration-help-desk"
       ]
     },
     {
       "id": 1,
-      "date": "2026-01-09",
-      "title": "Kickoff",
-      "summary": "Dates and format for SciPy India 2026.; Whether to keep the workshop day.; Rough budget envelope and ticket pricing.",
+      "date": "2026-07-11",
+      "title": "Kickoff for the 2026 cycle",
+      "summary": "Dates, format and what we are committing to this year.; What we need in place before we can talk to anyone about money.; How we collect volunteer interest without a spreadsheet nobody maintains.",
       "topics": [
-        "Dates and format for SciPy India 2026.",
-        "Whether to keep the workshop day.",
-        "Rough budget envelope and ticket pricing."
+        "Dates, format and what we are committing to this year.",
+        "What we need in place before we can talk to anyone about money.",
+        "How we collect volunteer interest without a spreadsheet nobody maintains."
       ],
-      "facilitator": "Meera Raghavan",
+      "facilitator": "Srihari Thyagarajan",
       "attendees": [
-        "Arjun Pillai",
-        "Meera Raghavan",
-        "Devika Nair",
-        "Farida Qureshi",
-        "Nikhil Bose"
+        "Srihari Thyagarajan",
+        "Malayaja Chutani",
+        "Agriya Khetarpal"
       ],
       "workgroups": [
-        "program-committee",
+        "registration-help-desk",
         "logistics",
-        "website",
+        "program-committee",
         "sponsoring"
       ]
     }
   ],
   "people": [
     {
-      "name": "Arjun Pillai",
+      "name": "Agriya Khetarpal",
       "workgroups": [
-        "program-committee"
+        "sponsoring",
+        "website"
       ],
       "meetings": [
-        1,
+        3,
         2,
         4,
-        3
-      ],
-      "tasks": [
-        "program-committee:write-the-review-rubric:5d155cc23d"
-      ]
-    },
-    {
-      "name": "Devika Nair",
-      "workgroups": [
-        "program-committee"
-      ],
-      "meetings": [
-        5,
-        4,
-        1,
-        2
-      ],
-      "tasks": [
-        "program-committee:draft-the-cfp-timeline-a:9956438f71",
-        "program-committee:send-the-reminder-email:a47f0670fd",
-        "program-committee:recruit-four-more-cfp-re:9275d44e47"
-      ]
-    },
-    {
-      "name": "Farida Qureshi",
-      "workgroups": [
-        "sponsoring"
-      ],
-      "meetings": [
-        3,
-        1,
-        2
-      ],
-      "tasks": [
-        "sponsoring:open-a-tracking-spreadsh:a24eb4b8cf"
-      ]
-    },
-    {
-      "name": "Kabir Anand",
-      "workgroups": [
-        "website",
-        "design"
-      ],
-      "meetings": [
-        5
-      ],
-      "tasks": [
-        "website:port-the-2025-site-templ:f65d921900",
-        "design:refresh-the-badge-and-si:2a00c6b656"
-      ]
-    },
-    {
-      "name": "Meera Raghavan",
-      "workgroups": [],
-      "meetings": [
-        4,
-        1,
-        3,
-        5,
-        2
-      ],
-      "tasks": [
-        "website:set-up-the-shared-drive:a5b53b7d6d"
-      ]
-    },
-    {
-      "name": "Nikhil Bose",
-      "workgroups": [
-        "logistics"
-      ],
-      "meetings": [
-        2,
-        3,
         1
       ],
       "tasks": [
-        "logistics:collect-quotes-from-thre:02f6549b14"
+        "website:pretalx-instance:h2a1077c4ee",
+        "sponsoring:sponsorship-deck:h2d49d51dd0",
+        "sponsoring:foss-united-grant:h853ac81097",
+        "program-committee:keynote-shortlist:hab5b5e2edc",
+        "sponsoring:sponsor-outreach-round-1:hd9f92b862c"
       ]
     },
     {
-      "name": "Priya Vasudevan",
+      "name": "Malayaja Chutani",
       "workgroups": [
-        "registration-help-desk",
-        "code-of-conduct"
-      ],
-      "meetings": [
-        5,
-        4
-      ],
-      "tasks": [
-        "registration-help-desk:review-the-first-batch-o:55fbbf0897",
-        "registration-help-desk:schedule-intro-calls-wit:5e31ba2862",
-        "code-of-conduct:draft-the-code-of-conduc:7aa009bb9c"
-      ]
-    },
-    {
-      "name": "Rehan Mathew",
-      "workgroups": [
+        "logistics",
         "sponsoring"
       ],
       "meetings": [
-        5,
-        3,
-        4
+        4,
+        1,
+        2,
+        3
       ],
       "tasks": [
-        "sponsoring:sponsor-followup-platinu:8523d884b4",
-        "sponsoring:draft-the-sponsorship-pr:315d9505bf",
-        "sponsoring:reach-out-to-the-first-t:acab628424"
+        "sponsoring:budget-v1:h9919442459",
+        "program-committee:keynote-shortlist:hab5b5e2edc",
+        "logistics:iitm-venue-recon:hf5224fffc1"
       ]
     },
     {
-      "name": "Sanjana Iyer",
+      "name": "Srihari Thyagarajan",
       "workgroups": [
-        "social-media-communications"
+        "registration-help-desk",
+        "program-committee"
       ],
       "meetings": [
-        5,
         3,
         2,
+        1,
         4
       ],
       "tasks": [
-        "social-media-communications:set-up-the-scipy-india-2:232e4142f2",
-        "social-media-communications:send-the-reminder-email:34421e9c46",
-        "social-media-communications:publish-the-cfp-announce:14b1ae25cd"
-      ]
-    },
-    {
-      "name": "Tanmay Bhatt",
-      "workgroups": [
-        "website",
-        "av-tech-support"
-      ],
-      "meetings": [],
-      "tasks": [
-        "website:find-someone-to-own-av-a:ecdfd715dd"
+        "program-committee:keynote-shortlist:hab5b5e2edc",
+        "registration-help-desk:volunteer-shortlist:h7c9d193695",
+        "registration-help-desk:volunteer-form:h21429026c6",
+        "logistics:iitm-venue-recon:hf5224fffc1"
       ]
     }
   ],
   "tasks": [
     {
-      "id": "logistics:collect-quotes-from-thre:02f6549b14",
-      "description": "Collect quotes from three candidate venues",
+      "id": "sponsoring:sponsorship-deck:h2d49d51dd0",
+      "description": "Draft the sponsorship deck",
+      "status": "done",
+      "due": "2026-07-25",
+      "first_seen": "2026-07-11",
+      "last_seen": "2026-07-25",
+      "meeting_count": 2,
+      "workgroup": "sponsoring",
+      "owners": [
+        "Agriya Khetarpal"
+      ],
+      "created_in": 1,
+      "history": [
+        {
+          "date": "2026-07-11",
+          "id": 1,
+          "status": "in_progress"
+        },
+        {
+          "date": "2026-07-25",
+          "id": 2,
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "sponsoring:budget-v1:h9919442459",
+      "description": "Lay out a first budget",
+      "status": "done",
+      "due": "2026-08-08",
+      "first_seen": "2026-07-11",
+      "last_seen": "2026-08-08",
+      "meeting_count": 3,
+      "workgroup": "sponsoring",
+      "owners": [
+        "Malayaja Chutani"
+      ],
+      "created_in": 1,
+      "history": [
+        {
+          "date": "2026-07-11",
+          "id": 1,
+          "status": "open"
+        },
+        {
+          "date": "2026-07-25",
+          "id": 2,
+          "status": "in_progress"
+        },
+        {
+          "date": "2026-08-08",
+          "id": 3,
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "registration-help-desk:volunteer-form:h21429026c6",
+      "description": "Set up a volunteer sign-up form and publish it",
       "status": "done",
       "due": "",
-      "first_seen": "2026-01-09",
-      "last_seen": "2026-02-06",
-      "meeting_count": 3,
+      "first_seen": "2026-07-11",
+      "last_seen": "2026-07-25",
+      "meeting_count": 2,
+      "workgroup": "registration-help-desk",
+      "owners": [
+        "Srihari Thyagarajan"
+      ],
+      "created_in": 1,
+      "history": [
+        {
+          "date": "2026-07-11",
+          "id": 1,
+          "status": "in_progress"
+        },
+        {
+          "date": "2026-07-25",
+          "id": 2,
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "website:pretalx-instance:h2a1077c4ee",
+      "description": "Stand up our own pretalx instance for talk submissions",
+      "status": "done",
+      "due": "",
+      "first_seen": "2026-08-08",
+      "last_seen": "2026-08-08",
+      "meeting_count": 1,
+      "workgroup": "website",
+      "owners": [
+        "Agriya Khetarpal"
+      ],
+      "created_in": 3,
+      "history": [
+        {
+          "date": "2026-08-08",
+          "id": 3,
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "logistics:iitm-venue-recon:hf5224fffc1",
+      "description": "Visit IIT Madras and report back on the space",
+      "status": "done",
+      "due": "2026-08-22",
+      "first_seen": "2026-08-08",
+      "last_seen": "2026-08-22",
+      "meeting_count": 2,
       "workgroup": "logistics",
       "owners": [
-        "Nikhil Bose"
+        "Srihari Thyagarajan",
+        "Malayaja Chutani"
       ],
-      "created_in": 1,
+      "created_in": 3,
       "history": [
         {
-          "date": "2026-01-09",
-          "id": 1,
+          "date": "2026-08-08",
+          "id": 3,
           "status": "open"
         },
         {
-          "date": "2026-01-23",
-          "id": 2,
-          "status": "in_progress"
-        },
-        {
-          "date": "2026-02-06",
-          "id": 3,
+          "date": "2026-08-22",
+          "id": 4,
           "status": "done"
         }
       ]
     },
     {
-      "id": "program-committee:draft-the-cfp-timeline-a:9956438f71",
-      "description": "Draft the CFP timeline and circulate it to the organizing list",
-      "status": "done",
+      "id": "program-committee:keynote-shortlist:hab5b5e2edc",
+      "description": "Draw up a keynote speaker shortlist",
+      "status": "in_progress",
       "due": "",
-      "first_seen": "2026-01-09",
-      "last_seen": "2026-01-23",
+      "first_seen": "2026-08-08",
+      "last_seen": "2026-08-22",
       "meeting_count": 2,
       "workgroup": "program-committee",
       "owners": [
-        "Devika Nair"
+        "Srihari Thyagarajan",
+        "Malayaja Chutani",
+        "Agriya Khetarpal"
       ],
-      "created_in": 1,
+      "created_in": 3,
       "history": [
         {
-          "date": "2026-01-09",
-          "id": 1,
+          "date": "2026-08-08",
+          "id": 3,
           "status": "open"
         },
         {
-          "date": "2026-01-23",
-          "id": 2,
-          "status": "done"
+          "date": "2026-08-22",
+          "id": 4,
+          "status": "in_progress"
         }
       ]
     },
     {
-      "id": "sponsoring:draft-the-sponsorship-pr:315d9505bf",
-      "description": "Draft the sponsorship prospectus",
-      "status": "done",
+      "id": "sponsoring:sponsor-outreach-round-1:hd9f92b862c",
+      "description": "Send the sponsorship deck to the first round of leads",
+      "status": "in_progress",
       "due": "",
-      "first_seen": "2026-01-23",
-      "last_seen": "2026-02-20",
-      "meeting_count": 3,
+      "first_seen": "2026-08-08",
+      "last_seen": "2026-08-22",
+      "meeting_count": 2,
       "workgroup": "sponsoring",
       "owners": [
-        "Rehan Mathew"
-      ],
-      "created_in": 2,
-      "history": [
-        {
-          "date": "2026-01-23",
-          "id": 2,
-          "status": "open"
-        },
-        {
-          "date": "2026-02-06",
-          "id": 3,
-          "status": "in_progress"
-        },
-        {
-          "date": "2026-02-20",
-          "id": 4,
-          "status": "done"
-        }
-      ]
-    },
-    {
-      "id": "social-media-communications:publish-the-cfp-announce:14b1ae25cd",
-      "description": "Publish the CFP announcement post",
-      "status": "done",
-      "due": "",
-      "first_seen": "2026-02-06",
-      "last_seen": "2026-02-20",
-      "meeting_count": 2,
-      "workgroup": "social-media-communications",
-      "owners": [
-        "Sanjana Iyer"
+        "Agriya Khetarpal"
       ],
       "created_in": 3,
       "history": [
         {
-          "date": "2026-02-06",
+          "date": "2026-08-08",
           "id": 3,
           "status": "open"
         },
         {
-          "date": "2026-02-20",
+          "date": "2026-08-22",
           "id": 4,
-          "status": "done"
+          "status": "in_progress"
         }
       ]
     },
     {
-      "id": "registration-help-desk:review-the-first-batch-o:55fbbf0897",
-      "description": "Review the first batch of volunteer applications",
-      "status": "done",
-      "due": "",
-      "first_seen": "2026-02-20",
-      "last_seen": "2026-03-06",
-      "meeting_count": 2,
-      "workgroup": "registration-help-desk",
-      "owners": [
-        "Priya Vasudevan"
-      ],
-      "created_in": 4,
-      "history": [
-        {
-          "date": "2026-02-20",
-          "id": 4,
-          "status": "open"
-        },
-        {
-          "date": "2026-03-06",
-          "id": 5,
-          "status": "done"
-        }
-      ]
-    },
-    {
-      "id": "website:set-up-the-shared-drive:a5b53b7d6d",
-      "description": "Set up the shared Drive folder and the meeting-notes doc",
-      "status": "done",
-      "due": "",
-      "first_seen": "2026-01-09",
-      "last_seen": "2026-01-09",
+      "id": "sponsoring:foss-united-grant:h853ac81097",
+      "description": "Apply to the FOSS United Events grant",
+      "status": "open",
+      "due": "2026-08-31",
+      "first_seen": "2026-08-08",
+      "last_seen": "2026-08-08",
       "meeting_count": 1,
-      "workgroup": "website",
+      "workgroup": "sponsoring",
       "owners": [
-        "Meera Raghavan"
-      ],
-      "created_in": 1,
-      "history": [
-        {
-          "date": "2026-01-09",
-          "id": 1,
-          "status": "done"
-        }
-      ]
-    },
-    {
-      "id": "program-committee:write-the-review-rubric:5d155cc23d",
-      "description": "Write the review rubric for CFP submissions",
-      "status": "done",
-      "due": "",
-      "first_seen": "2026-01-23",
-      "last_seen": "2026-02-20",
-      "meeting_count": 3,
-      "workgroup": "program-committee",
-      "owners": [
-        "Arjun Pillai"
-      ],
-      "created_in": 2,
-      "history": [
-        {
-          "date": "2026-01-23",
-          "id": 2,
-          "status": "open"
-        },
-        {
-          "date": "2026-02-06",
-          "id": 3,
-          "status": "in_progress"
-        },
-        {
-          "date": "2026-02-20",
-          "id": 4,
-          "status": "done"
-        }
-      ]
-    },
-    {
-      "id": "code-of-conduct:draft-the-code-of-conduc:7aa009bb9c",
-      "description": "Draft the code of conduct and the incident response process",
-      "status": "in_progress",
-      "due": "",
-      "first_seen": "2026-02-06",
-      "last_seen": "2026-02-20",
-      "meeting_count": 2,
-      "workgroup": "code-of-conduct",
-      "owners": [
-        "Priya Vasudevan"
+        "Agriya Khetarpal"
       ],
       "created_in": 3,
       "history": [
         {
-          "date": "2026-02-06",
+          "date": "2026-08-08",
           "id": 3,
           "status": "open"
-        },
-        {
-          "date": "2026-02-20",
-          "id": 4,
-          "status": "in_progress"
         }
       ]
     },
     {
-      "id": "website:find-someone-to-own-av-a:ecdfd715dd",
-      "description": "Find someone to own AV and recordings",
-      "status": "in_progress",
-      "due": "",
-      "first_seen": "2026-02-20",
-      "last_seen": "2026-03-06",
-      "meeting_count": 2,
-      "workgroup": "website",
-      "owners": [
-        "Tanmay Bhatt"
-      ],
-      "created_in": 4,
-      "history": [
-        {
-          "date": "2026-02-20",
-          "id": 4,
-          "status": "open"
-        },
-        {
-          "date": "2026-03-06",
-          "id": 5,
-          "status": "in_progress"
-        }
-      ]
-    },
-    {
-      "id": "website:port-the-2025-site-templ:f65d921900",
-      "description": "Port the 2025 site template and put up a holding page",
-      "status": "in_progress",
-      "due": "",
-      "first_seen": "2026-02-06",
-      "last_seen": "2026-03-06",
-      "meeting_count": 3,
-      "workgroup": "website",
-      "owners": [
-        "Kabir Anand"
-      ],
-      "created_in": 3,
-      "history": [
-        {
-          "date": "2026-02-06",
-          "id": 3,
-          "status": "open"
-        },
-        {
-          "date": "2026-02-20",
-          "id": 4,
-          "status": "blocked"
-        },
-        {
-          "date": "2026-03-06",
-          "id": 5,
-          "status": "in_progress"
-        }
-      ]
-    },
-    {
-      "id": "website:decide-on-the-ticketing:4c34536bc0",
-      "description": "Decide on the ticketing platform",
+      "id": "logistics:catering-quotes:h0033d38aac",
+      "description": "Get catering quotes for both days",
       "status": "open",
       "due": "",
-      "first_seen": "2026-01-23",
-      "last_seen": "2026-01-23",
+      "first_seen": "2026-08-22",
+      "last_seen": "2026-08-22",
       "meeting_count": 1,
-      "workgroup": "website",
+      "workgroup": "logistics",
       "owners": [],
-      "created_in": 2,
-      "history": [
-        {
-          "date": "2026-01-23",
-          "id": 2,
-          "status": "open"
-        }
-      ]
-    },
-    {
-      "id": "sponsoring:sponsor-followup-communi:f596063641",
-      "description": "Follow up with the community-tier leads",
-      "status": "open",
-      "due": "",
-      "first_seen": "2026-03-06",
-      "last_seen": "2026-03-06",
-      "meeting_count": 1,
-      "workgroup": "sponsoring",
-      "owners": [],
-      "created_in": 5,
-      "history": [
-        {
-          "date": "2026-03-06",
-          "id": 5,
-          "status": "open"
-        }
-      ]
-    },
-    {
-      "id": "sponsoring:sponsor-followup-platinu:8523d884b4",
-      "description": "Follow up with the platinum sponsor leads",
-      "status": "open",
-      "due": "",
-      "first_seen": "2026-03-06",
-      "last_seen": "2026-03-06",
-      "meeting_count": 1,
-      "workgroup": "sponsoring",
-      "owners": [
-        "Rehan Mathew"
-      ],
-      "created_in": 5,
-      "history": [
-        {
-          "date": "2026-03-06",
-          "id": 5,
-          "status": "open"
-        }
-      ]
-    },
-    {
-      "id": "sponsoring:open-a-tracking-spreadsh:a24eb4b8cf",
-      "description": "Open a tracking spreadsheet for the budget",
-      "status": "open",
-      "due": "",
-      "first_seen": "2026-01-09",
-      "last_seen": "2026-01-09",
-      "meeting_count": 1,
-      "workgroup": "sponsoring",
-      "owners": [
-        "Farida Qureshi"
-      ],
-      "created_in": 1,
-      "history": [
-        {
-          "date": "2026-01-09",
-          "id": 1,
-          "status": "open"
-        }
-      ]
-    },
-    {
-      "id": "sponsoring:reach-out-to-the-first-t:acab628424",
-      "description": "Reach out to the first ten sponsor leads",
-      "status": "open",
-      "due": "",
-      "first_seen": "2026-02-20",
-      "last_seen": "2026-02-20",
-      "meeting_count": 1,
-      "workgroup": "sponsoring",
-      "owners": [
-        "Rehan Mathew"
-      ],
       "created_in": 4,
       "history": [
         {
-          "date": "2026-02-20",
+          "date": "2026-08-22",
           "id": 4,
           "status": "open"
         }
       ]
     },
     {
-      "id": "program-committee:recruit-four-more-cfp-re:9275d44e47",
-      "description": "Recruit four more CFP reviewers",
-      "status": "open",
-      "due": "20 Mar",
-      "first_seen": "2026-03-06",
-      "last_seen": "2026-03-06",
-      "meeting_count": 1,
-      "workgroup": "program-committee",
-      "owners": [
-        "Devika Nair"
-      ],
-      "created_in": 5,
-      "history": [
-        {
-          "date": "2026-03-06",
-          "id": 5,
-          "status": "open"
-        }
-      ]
-    },
-    {
-      "id": "design:refresh-the-badge-and-si:2a00c6b656",
-      "description": "Refresh the badge and signage templates",
+      "id": "registration-help-desk:volunteer-shortlist:h7c9d193695",
+      "description": "Shortlist volunteers and start intro calls",
       "status": "open",
       "due": "",
-      "first_seen": "2026-03-06",
-      "last_seen": "2026-03-06",
-      "meeting_count": 1,
-      "workgroup": "design",
-      "owners": [
-        "Kabir Anand"
-      ],
-      "created_in": 5,
-      "history": [
-        {
-          "date": "2026-03-06",
-          "id": 5,
-          "status": "open"
-        }
-      ]
-    },
-    {
-      "id": "registration-help-desk:schedule-intro-calls-wit:5e31ba2862",
-      "description": "Schedule intro calls with the six shortlisted volunteers",
-      "status": "open",
-      "due": "20 Mar",
-      "first_seen": "2026-03-06",
-      "last_seen": "2026-03-06",
+      "first_seen": "2026-08-22",
+      "last_seen": "2026-08-22",
       "meeting_count": 1,
       "workgroup": "registration-help-desk",
       "owners": [
-        "Priya Vasudevan"
+        "Srihari Thyagarajan"
       ],
-      "created_in": 5,
+      "created_in": 4,
       "history": [
         {
-          "date": "2026-03-06",
-          "id": 5,
-          "status": "open"
-        }
-      ]
-    },
-    {
-      "id": "social-media-communications:send-the-reminder-email:34421e9c46",
-      "description": "Send the reminder email",
-      "status": "open",
-      "due": "13 Mar",
-      "first_seen": "2026-03-06",
-      "last_seen": "2026-03-06",
-      "meeting_count": 1,
-      "workgroup": "social-media-communications",
-      "owners": [
-        "Sanjana Iyer"
-      ],
-      "created_in": 5,
-      "history": [
-        {
-          "date": "2026-03-06",
-          "id": 5,
-          "status": "open"
-        }
-      ]
-    },
-    {
-      "id": "program-committee:send-the-reminder-email:a47f0670fd",
-      "description": "Send the reminder email",
-      "status": "open",
-      "due": "13 Mar",
-      "first_seen": "2026-03-06",
-      "last_seen": "2026-03-06",
-      "meeting_count": 1,
-      "workgroup": "program-committee",
-      "owners": [
-        "Devika Nair"
-      ],
-      "created_in": 5,
-      "history": [
-        {
-          "date": "2026-03-06",
-          "id": 5,
-          "status": "open"
-        }
-      ]
-    },
-    {
-      "id": "sponsoring:send-the-sponsorship-pro:3eae212385",
-      "description": "Send the sponsorship prospectus to confirmed leads",
-      "status": "open",
-      "due": "",
-      "first_seen": "2026-03-06",
-      "last_seen": "2026-03-06",
-      "meeting_count": 1,
-      "workgroup": "sponsoring",
-      "owners": [],
-      "created_in": 5,
-      "history": [
-        {
-          "date": "2026-03-06",
-          "id": 5,
-          "status": "open"
-        }
-      ]
-    },
-    {
-      "id": "social-media-communications:set-up-the-scipy-india-2:232e4142f2",
-      "description": "Set up the SciPy India 2026 social accounts",
-      "status": "open",
-      "due": "",
-      "first_seen": "2026-01-23",
-      "last_seen": "2026-01-23",
-      "meeting_count": 1,
-      "workgroup": "social-media-communications",
-      "owners": [
-        "Sanjana Iyer"
-      ],
-      "created_in": 2,
-      "history": [
-        {
-          "date": "2026-01-23",
-          "id": 2,
+          "date": "2026-08-22",
+          "id": 4,
           "status": "open"
         }
       ]
@@ -969,132 +539,95 @@
   ],
   "decisions": [
     {
-      "statement": "Applicants are assigned to a role only after a short call with that role's lead.",
+      "statement": "IIT Madras works for both days. Malayaja and Srihari walked the lecture halls and the space for tutorials; power and seating are fine, and the open question is catering.",
+      "workgroup": "logistics",
+      "meetings": [
+        4
+      ],
+      "date": "2026-08-22"
+    },
+    {
+      "statement": "We have more volunteer interest than we can place right now, so we shortlist rather than assigning everyone, and we talk to people before putting them on anything.",
       "workgroup": "registration-help-desk",
       "meetings": [
-        5
+        4
       ],
-      "date": "2026-03-06"
+      "date": "2026-08-22"
     },
     {
-      "statement": "The 2026 identity keeps the SciPy India mark and changes only the accent colour.",
-      "workgroup": "design",
-      "meetings": [
-        5
-      ],
-      "date": "2026-03-06"
-    },
-    {
-      "statement": "Reviewers see submissions anonymised for the first pass.",
+      "statement": "Keynote outreach is a shared job. Everyone brings names and everyone sends emails, so nobody is a bottleneck.",
       "workgroup": "program-committee",
       "meetings": [
-        4
+        3
       ],
-      "date": "2026-02-20"
+      "date": "2026-08-08"
     },
     {
-      "statement": "The code of conduct is adapted from the PSF template with an India-specific contact list.",
-      "workgroup": "code-of-conduct",
-      "meetings": [
-        4
-      ],
-      "date": "2026-02-20"
-    },
-    {
-      "statement": "Volunteer applications are collected through a Google Form and reviewed every two weeks.",
-      "workgroup": "registration-help-desk",
-      "meetings": [
-        4
-      ],
-      "date": "2026-02-20"
-    },
-    {
-      "statement": "The 2026 site reuses the 2025 template rather than starting over.",
+      "statement": "Talk submissions go through our own pretalx instance rather than a hosted service, so we keep control of the data and the review workflow.",
       "workgroup": "website",
       "meetings": [
         3
       ],
-      "date": "2026-02-06"
+      "date": "2026-08-08"
     },
     {
-      "statement": "The tech park auditorium is confirmed for 10-12 December.",
-      "workgroup": "logistics",
-      "meetings": [
-        3
-      ],
-      "date": "2026-02-06"
-    },
-    {
-      "statement": "Three sponsor tiers: platinum, gold, community. Community tier is free for non-profits.",
+      "statement": "The budget is the version we take to sponsors. Everyone had input; Malayaja owns keeping it current.",
       "workgroup": "sponsoring",
       "meetings": [
         3
       ],
-      "date": "2026-02-06"
+      "date": "2026-08-08"
     },
     {
-      "statement": "The CFP opens 16 February and closes 5 April. Review closes 26 April.",
-      "workgroup": "program-committee",
-      "meetings": [
-        2
-      ],
-      "date": "2026-01-23"
-    },
-    {
-      "statement": "The shortlist is down to two: the university campus and the tech park auditorium.",
+      "statement": "We visit IIT Madras before committing to anything, rather than deciding from a floor plan.",
       "workgroup": "logistics",
       "meetings": [
+        3
+      ],
+      "date": "2026-08-08"
+    },
+    {
+      "statement": "The deck goes out only after the budget is in it, so sponsors can see what their money pays for.",
+      "workgroup": "sponsoring",
+      "meetings": [
         2
       ],
-      "date": "2026-01-23"
+      "date": "2026-07-25"
     },
     {
-      "statement": "SciPy India 2026 runs 11-12 December 2026, two conference days plus one workshop day on 10 December.",
-      "workgroup": "program-committee",
+      "statement": "Three sponsor tiers. The lowest one is free for non-profits and community groups, because we want them in the room rather than priced out.",
+      "workgroup": "sponsoring",
       "meetings": [
-        1
+        2
       ],
-      "date": "2026-01-09"
+      "date": "2026-07-25"
     },
     {
-      "statement": "The organizing team meets every second Friday until the conference.",
+      "statement": "SciPy India 2026 runs on 19 and 20 December, workshops on the first day and the conference on the second.",
       "workgroup": null,
       "meetings": [
         1
       ],
-      "date": "2026-01-09"
+      "date": "2026-07-11"
     },
     {
-      "statement": "Ticket pricing stays at 2025 levels; a student tier is added.",
+      "statement": "Volunteer sign-ups go through a form rather than email, so responses land in one place.",
+      "workgroup": "registration-help-desk",
+      "meetings": [
+        1
+      ],
+      "date": "2026-07-11"
+    },
+    {
+      "statement": "We need a sponsorship deck before approaching anyone, so that comes first and everything else waits on it.",
       "workgroup": "sponsoring",
       "meetings": [
         1
       ],
-      "date": "2026-01-09"
+      "date": "2026-07-11"
     }
   ],
-  "volunteer_pipeline": [
-    {
-      "workgroup": "design",
-      "awaiting_assignment": 1
-    },
-    {
-      "workgroup": "logistics",
-      "awaiting_assignment": 1
-    },
-    {
-      "workgroup": "program-committee",
-      "awaiting_assignment": 2
-    },
-    {
-      "workgroup": "registration-help-desk",
-      "awaiting_assignment": 2
-    },
-    {
-      "workgroup": "social-media-communications",
-      "awaiting_assignment": 1
-    }
-  ],
+  "volunteer_pipeline": [],
   "graph": {
     "nodes": [
       {
@@ -1163,325 +696,165 @@
         "kind": "workgroup"
       },
       {
-        "id": "meeting:5",
-        "label": "2026-03-06 Volunteers and reviews",
-        "kind": "meeting"
-      },
-      {
         "id": "meeting:4",
-        "label": "2026-02-20 CFP is live",
+        "label": "2026-08-22 Venue recon and keynote outreach",
         "kind": "meeting"
       },
       {
         "id": "meeting:3",
-        "label": "2026-02-06 Sponsorship and site",
+        "label": "2026-08-08 Budget and venue",
         "kind": "meeting"
       },
       {
         "id": "meeting:2",
-        "label": "2026-01-23 CFP and venue shortlist",
+        "label": "2026-07-25 Sponsorship deck review",
         "kind": "meeting"
       },
       {
         "id": "meeting:1",
-        "label": "2026-01-09 Kickoff",
+        "label": "2026-07-11 Kickoff for the 2026 cycle",
         "kind": "meeting"
       },
       {
-        "id": "person:Arjun Pillai",
-        "label": "Arjun Pillai",
+        "id": "person:Agriya Khetarpal",
+        "label": "Agriya Khetarpal",
         "kind": "person"
       },
       {
-        "id": "person:Devika Nair",
-        "label": "Devika Nair",
+        "id": "person:Malayaja Chutani",
+        "label": "Malayaja Chutani",
         "kind": "person"
       },
       {
-        "id": "person:Farida Qureshi",
-        "label": "Farida Qureshi",
+        "id": "person:Srihari Thyagarajan",
+        "label": "Srihari Thyagarajan",
         "kind": "person"
       },
       {
-        "id": "person:Kabir Anand",
-        "label": "Kabir Anand",
-        "kind": "person"
-      },
-      {
-        "id": "person:Meera Raghavan",
-        "label": "Meera Raghavan",
-        "kind": "person"
-      },
-      {
-        "id": "person:Nikhil Bose",
-        "label": "Nikhil Bose",
-        "kind": "person"
-      },
-      {
-        "id": "person:Priya Vasudevan",
-        "label": "Priya Vasudevan",
-        "kind": "person"
-      },
-      {
-        "id": "person:Rehan Mathew",
-        "label": "Rehan Mathew",
-        "kind": "person"
-      },
-      {
-        "id": "person:Sanjana Iyer",
-        "label": "Sanjana Iyer",
-        "kind": "person"
-      },
-      {
-        "id": "person:Tanmay Bhatt",
-        "label": "Tanmay Bhatt",
-        "kind": "person"
-      },
-      {
-        "id": "task:logistics:collect-quotes-from-thre:02f6549b14",
-        "label": "Collect quotes from three candidate venues",
+        "id": "task:sponsoring:sponsorship-deck:h2d49d51dd0",
+        "label": "Draft the sponsorship deck",
         "kind": "task"
       },
       {
-        "id": "task:program-committee:draft-the-cfp-timeline-a:9956438f71",
-        "label": "Draft the CFP timeline and circulate it to the organizing list",
+        "id": "task:sponsoring:budget-v1:h9919442459",
+        "label": "Lay out a first budget",
         "kind": "task"
       },
       {
-        "id": "task:sponsoring:draft-the-sponsorship-pr:315d9505bf",
-        "label": "Draft the sponsorship prospectus",
+        "id": "task:registration-help-desk:volunteer-form:h21429026c6",
+        "label": "Set up a volunteer sign-up form and publish it",
         "kind": "task"
       },
       {
-        "id": "task:social-media-communications:publish-the-cfp-announce:14b1ae25cd",
-        "label": "Publish the CFP announcement post",
+        "id": "task:website:pretalx-instance:h2a1077c4ee",
+        "label": "Stand up our own pretalx instance for talk submissions",
         "kind": "task"
       },
       {
-        "id": "task:registration-help-desk:review-the-first-batch-o:55fbbf0897",
-        "label": "Review the first batch of volunteer applications",
+        "id": "task:logistics:iitm-venue-recon:hf5224fffc1",
+        "label": "Visit IIT Madras and report back on the space",
         "kind": "task"
       },
       {
-        "id": "task:website:set-up-the-shared-drive:a5b53b7d6d",
-        "label": "Set up the shared Drive folder and the meeting-notes doc",
+        "id": "task:program-committee:keynote-shortlist:hab5b5e2edc",
+        "label": "Draw up a keynote speaker shortlist",
         "kind": "task"
       },
       {
-        "id": "task:program-committee:write-the-review-rubric:5d155cc23d",
-        "label": "Write the review rubric for CFP submissions",
+        "id": "task:sponsoring:sponsor-outreach-round-1:hd9f92b862c",
+        "label": "Send the sponsorship deck to the first round of leads",
         "kind": "task"
       },
       {
-        "id": "task:code-of-conduct:draft-the-code-of-conduc:7aa009bb9c",
-        "label": "Draft the code of conduct and the incident response process",
+        "id": "task:sponsoring:foss-united-grant:h853ac81097",
+        "label": "Apply to the FOSS United Events grant",
         "kind": "task"
       },
       {
-        "id": "task:website:find-someone-to-own-av-a:ecdfd715dd",
-        "label": "Find someone to own AV and recordings",
+        "id": "task:logistics:catering-quotes:h0033d38aac",
+        "label": "Get catering quotes for both days",
         "kind": "task"
       },
       {
-        "id": "task:website:port-the-2025-site-templ:f65d921900",
-        "label": "Port the 2025 site template and put up a holding page",
+        "id": "task:registration-help-desk:volunteer-shortlist:h7c9d193695",
+        "label": "Shortlist volunteers and start intro calls",
         "kind": "task"
       },
       {
-        "id": "task:website:decide-on-the-ticketing:4c34536bc0",
-        "label": "Decide on the ticketing platform",
-        "kind": "task"
-      },
-      {
-        "id": "task:sponsoring:sponsor-followup-communi:f596063641",
-        "label": "Follow up with the community-tier leads",
-        "kind": "task"
-      },
-      {
-        "id": "task:sponsoring:sponsor-followup-platinu:8523d884b4",
-        "label": "Follow up with the platinum sponsor leads",
-        "kind": "task"
-      },
-      {
-        "id": "task:sponsoring:open-a-tracking-spreadsh:a24eb4b8cf",
-        "label": "Open a tracking spreadsheet for the budget",
-        "kind": "task"
-      },
-      {
-        "id": "task:sponsoring:reach-out-to-the-first-t:acab628424",
-        "label": "Reach out to the first ten sponsor leads",
-        "kind": "task"
-      },
-      {
-        "id": "task:program-committee:recruit-four-more-cfp-re:9275d44e47",
-        "label": "Recruit four more CFP reviewers",
-        "kind": "task"
-      },
-      {
-        "id": "task:design:refresh-the-badge-and-si:2a00c6b656",
-        "label": "Refresh the badge and signage templates",
-        "kind": "task"
-      },
-      {
-        "id": "task:registration-help-desk:schedule-intro-calls-wit:5e31ba2862",
-        "label": "Schedule intro calls with the six shortlisted volunteers",
-        "kind": "task"
-      },
-      {
-        "id": "task:social-media-communications:send-the-reminder-email:34421e9c46",
-        "label": "Send the reminder email",
-        "kind": "task"
-      },
-      {
-        "id": "task:program-committee:send-the-reminder-email:a47f0670fd",
-        "label": "Send the reminder email",
-        "kind": "task"
-      },
-      {
-        "id": "task:sponsoring:send-the-sponsorship-pro:3eae212385",
-        "label": "Send the sponsorship prospectus to confirmed leads",
-        "kind": "task"
-      },
-      {
-        "id": "task:social-media-communications:set-up-the-scipy-india-2:232e4142f2",
-        "label": "Set up the SciPy India 2026 social accounts",
-        "kind": "task"
-      },
-      {
-        "id": "decision:Applicants are assigned to a role only after a short call with that role's lead.",
-        "label": "Applicants are assigned to a role only after a short call with that role's lead.",
+        "id": "decision:IIT Madras works for both days. Malayaja and Srihari walked the lecture halls and the space for tutorials; power and seating are fine, and the open question is catering.",
+        "label": "IIT Madras works for both days. Malayaja and Srihari walked the lecture halls and the space for tutorials; power and seating are fine, and the open question is catering.",
         "kind": "decision"
       },
       {
-        "id": "decision:The 2026 identity keeps the SciPy India mark and changes only the accent colour.",
-        "label": "The 2026 identity keeps the SciPy India mark and changes only the accent colour.",
+        "id": "decision:We have more volunteer interest than we can place right now, so we shortlist rather than assigning everyone, and we talk to people before putting them on anything.",
+        "label": "We have more volunteer interest than we can place right now, so we shortlist rather than assigning everyone, and we talk to people before putting them on anything.",
         "kind": "decision"
       },
       {
-        "id": "decision:Reviewers see submissions anonymised for the first pass.",
-        "label": "Reviewers see submissions anonymised for the first pass.",
+        "id": "decision:Keynote outreach is a shared job. Everyone brings names and everyone sends emails, so nobody is a bottleneck.",
+        "label": "Keynote outreach is a shared job. Everyone brings names and everyone sends emails, so nobody is a bottleneck.",
         "kind": "decision"
       },
       {
-        "id": "decision:The code of conduct is adapted from the PSF template with an India-specific contact list.",
-        "label": "The code of conduct is adapted from the PSF template with an India-specific contact list.",
+        "id": "decision:Talk submissions go through our own pretalx instance rather than a hosted service, so we keep control of the data and the review workflow.",
+        "label": "Talk submissions go through our own pretalx instance rather than a hosted service, so we keep control of the data and the review workflow.",
         "kind": "decision"
       },
       {
-        "id": "decision:Volunteer applications are collected through a Google Form and reviewed every two weeks.",
-        "label": "Volunteer applications are collected through a Google Form and reviewed every two weeks.",
+        "id": "decision:The budget is the version we take to sponsors. Everyone had input; Malayaja owns keeping it current.",
+        "label": "The budget is the version we take to sponsors. Everyone had input; Malayaja owns keeping it current.",
         "kind": "decision"
       },
       {
-        "id": "decision:The 2026 site reuses the 2025 template rather than starting over.",
-        "label": "The 2026 site reuses the 2025 template rather than starting over.",
+        "id": "decision:We visit IIT Madras before committing to anything, rather than deciding from a floor plan.",
+        "label": "We visit IIT Madras before committing to anything, rather than deciding from a floor plan.",
         "kind": "decision"
       },
       {
-        "id": "decision:The tech park auditorium is confirmed for 10-12 December.",
-        "label": "The tech park auditorium is confirmed for 10-12 December.",
+        "id": "decision:The deck goes out only after the budget is in it, so sponsors can see what their money pays for.",
+        "label": "The deck goes out only after the budget is in it, so sponsors can see what their money pays for.",
         "kind": "decision"
       },
       {
-        "id": "decision:Three sponsor tiers: platinum, gold, community. Community tier is free for non-profits.",
-        "label": "Three sponsor tiers: platinum, gold, community. Community tier is free for non-profits.",
+        "id": "decision:Three sponsor tiers. The lowest one is free for non-profits and community groups, because we want them in the room rather than priced out.",
+        "label": "Three sponsor tiers. The lowest one is free for non-profits and community groups, because we want them in the room rather than priced out.",
         "kind": "decision"
       },
       {
-        "id": "decision:The CFP opens 16 February and closes 5 April. Review closes 26 April.",
-        "label": "The CFP opens 16 February and closes 5 April. Review closes 26 April.",
+        "id": "decision:SciPy India 2026 runs on 19 and 20 December, workshops on the first day and the conference on the second.",
+        "label": "SciPy India 2026 runs on 19 and 20 December, workshops on the first day and the conference on the second.",
         "kind": "decision"
       },
       {
-        "id": "decision:The shortlist is down to two: the university campus and the tech park auditorium.",
-        "label": "The shortlist is down to two: the university campus and the tech park auditorium.",
+        "id": "decision:Volunteer sign-ups go through a form rather than email, so responses land in one place.",
+        "label": "Volunteer sign-ups go through a form rather than email, so responses land in one place.",
         "kind": "decision"
       },
       {
-        "id": "decision:SciPy India 2026 runs 11-12 December 2026, two conference days plus one workshop day on 10 December.",
-        "label": "SciPy India 2026 runs 11-12 December 2026, two conference days plus one workshop day on 10 December.",
-        "kind": "decision"
-      },
-      {
-        "id": "decision:The organizing team meets every second Friday until the conference.",
-        "label": "The organizing team meets every second Friday until the conference.",
-        "kind": "decision"
-      },
-      {
-        "id": "decision:Ticket pricing stays at 2025 levels; a student tier is added.",
-        "label": "Ticket pricing stays at 2025 levels; a student tier is added.",
+        "id": "decision:We need a sponsorship deck before approaching anyone, so that comes first and everything else waits on it.",
+        "label": "We need a sponsorship deck before approaching anyone, so that comes first and everything else waits on it.",
         "kind": "decision"
       }
     ],
     "edges": [
       {
-        "source": "meeting:5",
-        "target": "workgroup:sponsoring",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:5",
-        "target": "workgroup:social-media-communications",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:5",
-        "target": "workgroup:design",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:5",
-        "target": "workgroup:website",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:5",
-        "target": "workgroup:registration-help-desk",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:5",
-        "target": "workgroup:program-committee",
-        "kind": "DISCUSSED"
-      },
-      {
         "source": "meeting:4",
         "target": "workgroup:registration-help-desk",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:4",
-        "target": "workgroup:website",
+        "target": "workgroup:logistics",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:4",
-        "target": "workgroup:social-media-communications",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:4",
-        "target": "workgroup:code-of-conduct",
+        "target": "workgroup:program-committee",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:4",
         "target": "workgroup:sponsoring",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:4",
-        "target": "workgroup:program-committee",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:3",
-        "target": "workgroup:social-media-communications",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:3",
-        "target": "workgroup:program-committee",
         "kind": "DISCUSSED"
       },
       {
@@ -1501,12 +874,7 @@
       },
       {
         "source": "meeting:3",
-        "target": "workgroup:code-of-conduct",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:2",
-        "target": "workgroup:social-media-communications",
+        "target": "workgroup:program-committee",
         "kind": "DISCUSSED"
       },
       {
@@ -1516,22 +884,12 @@
       },
       {
         "source": "meeting:2",
-        "target": "workgroup:logistics",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:2",
-        "target": "workgroup:program-committee",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:2",
-        "target": "workgroup:website",
+        "target": "workgroup:registration-help-desk",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:1",
-        "target": "workgroup:program-committee",
+        "target": "workgroup:registration-help-desk",
         "kind": "DISCUSSED"
       },
       {
@@ -1541,7 +899,7 @@
       },
       {
         "source": "meeting:1",
-        "target": "workgroup:website",
+        "target": "workgroup:program-committee",
         "kind": "DISCUSSED"
       },
       {
@@ -1550,713 +908,393 @@
         "kind": "DISCUSSED"
       },
       {
-        "source": "person:Arjun Pillai",
-        "target": "workgroup:program-committee",
+        "source": "person:Agriya Khetarpal",
+        "target": "workgroup:sponsoring",
         "kind": "MEMBER_OF"
       },
       {
-        "source": "person:Arjun Pillai",
+        "source": "person:Agriya Khetarpal",
+        "target": "workgroup:website",
+        "kind": "MEMBER_OF"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
+        "target": "meeting:3",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
+        "target": "meeting:2",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
+        "target": "meeting:4",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
         "target": "meeting:1",
         "kind": "ATTENDED"
       },
       {
-        "source": "person:Arjun Pillai",
-        "target": "meeting:2",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Arjun Pillai",
-        "target": "meeting:4",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Arjun Pillai",
-        "target": "meeting:3",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "workgroup:program-committee",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "meeting:5",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "meeting:4",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "meeting:1",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "meeting:2",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Farida Qureshi",
-        "target": "workgroup:sponsoring",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Farida Qureshi",
-        "target": "meeting:3",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Farida Qureshi",
-        "target": "meeting:1",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Farida Qureshi",
-        "target": "meeting:2",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Kabir Anand",
-        "target": "workgroup:website",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Kabir Anand",
-        "target": "workgroup:design",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Kabir Anand",
-        "target": "meeting:5",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Meera Raghavan",
-        "target": "meeting:4",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Meera Raghavan",
-        "target": "meeting:1",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Meera Raghavan",
-        "target": "meeting:3",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Meera Raghavan",
-        "target": "meeting:5",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Meera Raghavan",
-        "target": "meeting:2",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Nikhil Bose",
+        "source": "person:Malayaja Chutani",
         "target": "workgroup:logistics",
         "kind": "MEMBER_OF"
       },
       {
-        "source": "person:Nikhil Bose",
-        "target": "meeting:2",
+        "source": "person:Malayaja Chutani",
+        "target": "workgroup:sponsoring",
+        "kind": "MEMBER_OF"
+      },
+      {
+        "source": "person:Malayaja Chutani",
+        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
-        "source": "person:Nikhil Bose",
-        "target": "meeting:3",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Nikhil Bose",
+        "source": "person:Malayaja Chutani",
         "target": "meeting:1",
         "kind": "ATTENDED"
       },
       {
-        "source": "person:Priya Vasudevan",
-        "target": "workgroup:registration-help-desk",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Priya Vasudevan",
-        "target": "workgroup:code-of-conduct",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Priya Vasudevan",
-        "target": "meeting:5",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Priya Vasudevan",
-        "target": "meeting:4",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Rehan Mathew",
-        "target": "workgroup:sponsoring",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Rehan Mathew",
-        "target": "meeting:5",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Rehan Mathew",
-        "target": "meeting:3",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Rehan Mathew",
-        "target": "meeting:4",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Sanjana Iyer",
-        "target": "workgroup:social-media-communications",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Sanjana Iyer",
-        "target": "meeting:5",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Sanjana Iyer",
-        "target": "meeting:3",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Sanjana Iyer",
+        "source": "person:Malayaja Chutani",
         "target": "meeting:2",
         "kind": "ATTENDED"
       },
       {
-        "source": "person:Sanjana Iyer",
+        "source": "person:Malayaja Chutani",
+        "target": "meeting:3",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "workgroup:registration-help-desk",
+        "kind": "MEMBER_OF"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "workgroup:program-committee",
+        "kind": "MEMBER_OF"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "meeting:3",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "meeting:2",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "meeting:1",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
         "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
-        "source": "person:Tanmay Bhatt",
+        "source": "task:sponsoring:sponsorship-deck:h2d49d51dd0",
+        "target": "workgroup:sponsoring",
+        "kind": "BELONGS_TO"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
+        "target": "task:sponsoring:sponsorship-deck:h2d49d51dd0",
+        "kind": "ASSIGNED_TO"
+      },
+      {
+        "source": "meeting:1",
+        "target": "task:sponsoring:sponsorship-deck:h2d49d51dd0",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "meeting:2",
+        "target": "task:sponsoring:sponsorship-deck:h2d49d51dd0",
+        "kind": "TOUCHED_ACTION"
+      },
+      {
+        "source": "task:sponsoring:budget-v1:h9919442459",
+        "target": "workgroup:sponsoring",
+        "kind": "BELONGS_TO"
+      },
+      {
+        "source": "person:Malayaja Chutani",
+        "target": "task:sponsoring:budget-v1:h9919442459",
+        "kind": "ASSIGNED_TO"
+      },
+      {
+        "source": "meeting:1",
+        "target": "task:sponsoring:budget-v1:h9919442459",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "meeting:2",
+        "target": "task:sponsoring:budget-v1:h9919442459",
+        "kind": "TOUCHED_ACTION"
+      },
+      {
+        "source": "meeting:3",
+        "target": "task:sponsoring:budget-v1:h9919442459",
+        "kind": "TOUCHED_ACTION"
+      },
+      {
+        "source": "task:registration-help-desk:volunteer-form:h21429026c6",
+        "target": "workgroup:registration-help-desk",
+        "kind": "BELONGS_TO"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "task:registration-help-desk:volunteer-form:h21429026c6",
+        "kind": "ASSIGNED_TO"
+      },
+      {
+        "source": "meeting:1",
+        "target": "task:registration-help-desk:volunteer-form:h21429026c6",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "meeting:2",
+        "target": "task:registration-help-desk:volunteer-form:h21429026c6",
+        "kind": "TOUCHED_ACTION"
+      },
+      {
+        "source": "task:website:pretalx-instance:h2a1077c4ee",
         "target": "workgroup:website",
-        "kind": "MEMBER_OF"
+        "kind": "BELONGS_TO"
       },
       {
-        "source": "person:Tanmay Bhatt",
-        "target": "workgroup:av-tech-support",
-        "kind": "MEMBER_OF"
+        "source": "person:Agriya Khetarpal",
+        "target": "task:website:pretalx-instance:h2a1077c4ee",
+        "kind": "ASSIGNED_TO"
       },
       {
-        "source": "task:logistics:collect-quotes-from-thre:02f6549b14",
+        "source": "meeting:3",
+        "target": "task:website:pretalx-instance:h2a1077c4ee",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "task:logistics:iitm-venue-recon:hf5224fffc1",
         "target": "workgroup:logistics",
         "kind": "BELONGS_TO"
       },
       {
-        "source": "person:Nikhil Bose",
-        "target": "task:logistics:collect-quotes-from-thre:02f6549b14",
+        "source": "person:Srihari Thyagarajan",
+        "target": "task:logistics:iitm-venue-recon:hf5224fffc1",
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:1",
-        "target": "task:logistics:collect-quotes-from-thre:02f6549b14",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "meeting:2",
-        "target": "task:logistics:collect-quotes-from-thre:02f6549b14",
-        "kind": "TOUCHED_ACTION"
+        "source": "person:Malayaja Chutani",
+        "target": "task:logistics:iitm-venue-recon:hf5224fffc1",
+        "kind": "ASSIGNED_TO"
       },
       {
         "source": "meeting:3",
-        "target": "task:logistics:collect-quotes-from-thre:02f6549b14",
+        "target": "task:logistics:iitm-venue-recon:hf5224fffc1",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "meeting:4",
+        "target": "task:logistics:iitm-venue-recon:hf5224fffc1",
         "kind": "TOUCHED_ACTION"
       },
       {
-        "source": "task:program-committee:draft-the-cfp-timeline-a:9956438f71",
+        "source": "task:program-committee:keynote-shortlist:hab5b5e2edc",
         "target": "workgroup:program-committee",
         "kind": "BELONGS_TO"
       },
       {
-        "source": "person:Devika Nair",
-        "target": "task:program-committee:draft-the-cfp-timeline-a:9956438f71",
+        "source": "person:Srihari Thyagarajan",
+        "target": "task:program-committee:keynote-shortlist:hab5b5e2edc",
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:1",
-        "target": "task:program-committee:draft-the-cfp-timeline-a:9956438f71",
+        "source": "person:Malayaja Chutani",
+        "target": "task:program-committee:keynote-shortlist:hab5b5e2edc",
+        "kind": "ASSIGNED_TO"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
+        "target": "task:program-committee:keynote-shortlist:hab5b5e2edc",
+        "kind": "ASSIGNED_TO"
+      },
+      {
+        "source": "meeting:3",
+        "target": "task:program-committee:keynote-shortlist:hab5b5e2edc",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "meeting:2",
-        "target": "task:program-committee:draft-the-cfp-timeline-a:9956438f71",
+        "source": "meeting:4",
+        "target": "task:program-committee:keynote-shortlist:hab5b5e2edc",
         "kind": "TOUCHED_ACTION"
       },
       {
-        "source": "task:sponsoring:draft-the-sponsorship-pr:315d9505bf",
+        "source": "task:sponsoring:sponsor-outreach-round-1:hd9f92b862c",
         "target": "workgroup:sponsoring",
         "kind": "BELONGS_TO"
       },
       {
-        "source": "person:Rehan Mathew",
-        "target": "task:sponsoring:draft-the-sponsorship-pr:315d9505bf",
+        "source": "person:Agriya Khetarpal",
+        "target": "task:sponsoring:sponsor-outreach-round-1:hd9f92b862c",
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "meeting:2",
-        "target": "task:sponsoring:draft-the-sponsorship-pr:315d9505bf",
+        "source": "meeting:3",
+        "target": "task:sponsoring:sponsor-outreach-round-1:hd9f92b862c",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "meeting:3",
-        "target": "task:sponsoring:draft-the-sponsorship-pr:315d9505bf",
-        "kind": "TOUCHED_ACTION"
-      },
-      {
         "source": "meeting:4",
-        "target": "task:sponsoring:draft-the-sponsorship-pr:315d9505bf",
+        "target": "task:sponsoring:sponsor-outreach-round-1:hd9f92b862c",
         "kind": "TOUCHED_ACTION"
       },
       {
-        "source": "task:social-media-communications:publish-the-cfp-announce:14b1ae25cd",
-        "target": "workgroup:social-media-communications",
+        "source": "task:sponsoring:foss-united-grant:h853ac81097",
+        "target": "workgroup:sponsoring",
         "kind": "BELONGS_TO"
       },
       {
-        "source": "person:Sanjana Iyer",
-        "target": "task:social-media-communications:publish-the-cfp-announce:14b1ae25cd",
+        "source": "person:Agriya Khetarpal",
+        "target": "task:sponsoring:foss-united-grant:h853ac81097",
         "kind": "ASSIGNED_TO"
       },
       {
         "source": "meeting:3",
-        "target": "task:social-media-communications:publish-the-cfp-announce:14b1ae25cd",
+        "target": "task:sponsoring:foss-united-grant:h853ac81097",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "meeting:4",
-        "target": "task:social-media-communications:publish-the-cfp-announce:14b1ae25cd",
-        "kind": "TOUCHED_ACTION"
+        "source": "task:logistics:catering-quotes:h0033d38aac",
+        "target": "workgroup:logistics",
+        "kind": "BELONGS_TO"
       },
       {
-        "source": "task:registration-help-desk:review-the-first-batch-o:55fbbf0897",
+        "source": "meeting:4",
+        "target": "task:logistics:catering-quotes:h0033d38aac",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "task:registration-help-desk:volunteer-shortlist:h7c9d193695",
         "target": "workgroup:registration-help-desk",
         "kind": "BELONGS_TO"
       },
       {
-        "source": "person:Priya Vasudevan",
-        "target": "task:registration-help-desk:review-the-first-batch-o:55fbbf0897",
+        "source": "person:Srihari Thyagarajan",
+        "target": "task:registration-help-desk:volunteer-shortlist:h7c9d193695",
         "kind": "ASSIGNED_TO"
       },
       {
         "source": "meeting:4",
-        "target": "task:registration-help-desk:review-the-first-batch-o:55fbbf0897",
+        "target": "task:registration-help-desk:volunteer-shortlist:h7c9d193695",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "meeting:5",
-        "target": "task:registration-help-desk:review-the-first-batch-o:55fbbf0897",
-        "kind": "TOUCHED_ACTION"
-      },
-      {
-        "source": "task:website:set-up-the-shared-drive:a5b53b7d6d",
-        "target": "workgroup:website",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Meera Raghavan",
-        "target": "task:website:set-up-the-shared-drive:a5b53b7d6d",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:1",
-        "target": "task:website:set-up-the-shared-drive:a5b53b7d6d",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:program-committee:write-the-review-rubric:5d155cc23d",
-        "target": "workgroup:program-committee",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Arjun Pillai",
-        "target": "task:program-committee:write-the-review-rubric:5d155cc23d",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:2",
-        "target": "task:program-committee:write-the-review-rubric:5d155cc23d",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "meeting:3",
-        "target": "task:program-committee:write-the-review-rubric:5d155cc23d",
-        "kind": "TOUCHED_ACTION"
-      },
-      {
-        "source": "meeting:4",
-        "target": "task:program-committee:write-the-review-rubric:5d155cc23d",
-        "kind": "TOUCHED_ACTION"
-      },
-      {
-        "source": "task:code-of-conduct:draft-the-code-of-conduc:7aa009bb9c",
-        "target": "workgroup:code-of-conduct",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Priya Vasudevan",
-        "target": "task:code-of-conduct:draft-the-code-of-conduc:7aa009bb9c",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:3",
-        "target": "task:code-of-conduct:draft-the-code-of-conduc:7aa009bb9c",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "meeting:4",
-        "target": "task:code-of-conduct:draft-the-code-of-conduc:7aa009bb9c",
-        "kind": "TOUCHED_ACTION"
-      },
-      {
-        "source": "task:website:find-someone-to-own-av-a:ecdfd715dd",
-        "target": "workgroup:website",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Tanmay Bhatt",
-        "target": "task:website:find-someone-to-own-av-a:ecdfd715dd",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:4",
-        "target": "task:website:find-someone-to-own-av-a:ecdfd715dd",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "meeting:5",
-        "target": "task:website:find-someone-to-own-av-a:ecdfd715dd",
-        "kind": "TOUCHED_ACTION"
-      },
-      {
-        "source": "task:website:port-the-2025-site-templ:f65d921900",
-        "target": "workgroup:website",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Kabir Anand",
-        "target": "task:website:port-the-2025-site-templ:f65d921900",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:3",
-        "target": "task:website:port-the-2025-site-templ:f65d921900",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "meeting:4",
-        "target": "task:website:port-the-2025-site-templ:f65d921900",
-        "kind": "TOUCHED_ACTION"
-      },
-      {
-        "source": "meeting:5",
-        "target": "task:website:port-the-2025-site-templ:f65d921900",
-        "kind": "TOUCHED_ACTION"
-      },
-      {
-        "source": "task:website:decide-on-the-ticketing:4c34536bc0",
-        "target": "workgroup:website",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "meeting:2",
-        "target": "task:website:decide-on-the-ticketing:4c34536bc0",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:sponsoring:sponsor-followup-communi:f596063641",
-        "target": "workgroup:sponsoring",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "meeting:5",
-        "target": "task:sponsoring:sponsor-followup-communi:f596063641",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:sponsoring:sponsor-followup-platinu:8523d884b4",
-        "target": "workgroup:sponsoring",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Rehan Mathew",
-        "target": "task:sponsoring:sponsor-followup-platinu:8523d884b4",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:5",
-        "target": "task:sponsoring:sponsor-followup-platinu:8523d884b4",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:sponsoring:open-a-tracking-spreadsh:a24eb4b8cf",
-        "target": "workgroup:sponsoring",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Farida Qureshi",
-        "target": "task:sponsoring:open-a-tracking-spreadsh:a24eb4b8cf",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:1",
-        "target": "task:sponsoring:open-a-tracking-spreadsh:a24eb4b8cf",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:sponsoring:reach-out-to-the-first-t:acab628424",
-        "target": "workgroup:sponsoring",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Rehan Mathew",
-        "target": "task:sponsoring:reach-out-to-the-first-t:acab628424",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:4",
-        "target": "task:sponsoring:reach-out-to-the-first-t:acab628424",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:program-committee:recruit-four-more-cfp-re:9275d44e47",
-        "target": "workgroup:program-committee",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "task:program-committee:recruit-four-more-cfp-re:9275d44e47",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:5",
-        "target": "task:program-committee:recruit-four-more-cfp-re:9275d44e47",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:design:refresh-the-badge-and-si:2a00c6b656",
-        "target": "workgroup:design",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Kabir Anand",
-        "target": "task:design:refresh-the-badge-and-si:2a00c6b656",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:5",
-        "target": "task:design:refresh-the-badge-and-si:2a00c6b656",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:registration-help-desk:schedule-intro-calls-wit:5e31ba2862",
-        "target": "workgroup:registration-help-desk",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Priya Vasudevan",
-        "target": "task:registration-help-desk:schedule-intro-calls-wit:5e31ba2862",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:5",
-        "target": "task:registration-help-desk:schedule-intro-calls-wit:5e31ba2862",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:social-media-communications:send-the-reminder-email:34421e9c46",
-        "target": "workgroup:social-media-communications",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Sanjana Iyer",
-        "target": "task:social-media-communications:send-the-reminder-email:34421e9c46",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:5",
-        "target": "task:social-media-communications:send-the-reminder-email:34421e9c46",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:program-committee:send-the-reminder-email:a47f0670fd",
-        "target": "workgroup:program-committee",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Devika Nair",
-        "target": "task:program-committee:send-the-reminder-email:a47f0670fd",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:5",
-        "target": "task:program-committee:send-the-reminder-email:a47f0670fd",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:sponsoring:send-the-sponsorship-pro:3eae212385",
-        "target": "workgroup:sponsoring",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "meeting:5",
-        "target": "task:sponsoring:send-the-sponsorship-pro:3eae212385",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:social-media-communications:set-up-the-scipy-india-2:232e4142f2",
-        "target": "workgroup:social-media-communications",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Sanjana Iyer",
-        "target": "task:social-media-communications:set-up-the-scipy-india-2:232e4142f2",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:2",
-        "target": "task:social-media-communications:set-up-the-scipy-india-2:232e4142f2",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "decision:Applicants are assigned to a role only after a short call with that role's lead.",
-        "target": "workgroup:registration-help-desk",
-        "kind": "CONCERNS"
-      },
-      {
-        "source": "meeting:5",
-        "target": "decision:Applicants are assigned to a role only after a short call with that role's lead.",
-        "kind": "DECIDED"
-      },
-      {
-        "source": "decision:The 2026 identity keeps the SciPy India mark and changes only the accent colour.",
-        "target": "workgroup:design",
-        "kind": "CONCERNS"
-      },
-      {
-        "source": "meeting:5",
-        "target": "decision:The 2026 identity keeps the SciPy India mark and changes only the accent colour.",
-        "kind": "DECIDED"
-      },
-      {
-        "source": "decision:Reviewers see submissions anonymised for the first pass.",
-        "target": "workgroup:program-committee",
+        "source": "decision:IIT Madras works for both days. Malayaja and Srihari walked the lecture halls and the space for tutorials; power and seating are fine, and the open question is catering.",
+        "target": "workgroup:logistics",
         "kind": "CONCERNS"
       },
       {
         "source": "meeting:4",
-        "target": "decision:Reviewers see submissions anonymised for the first pass.",
+        "target": "decision:IIT Madras works for both days. Malayaja and Srihari walked the lecture halls and the space for tutorials; power and seating are fine, and the open question is catering.",
         "kind": "DECIDED"
       },
       {
-        "source": "decision:The code of conduct is adapted from the PSF template with an India-specific contact list.",
-        "target": "workgroup:code-of-conduct",
-        "kind": "CONCERNS"
-      },
-      {
-        "source": "meeting:4",
-        "target": "decision:The code of conduct is adapted from the PSF template with an India-specific contact list.",
-        "kind": "DECIDED"
-      },
-      {
-        "source": "decision:Volunteer applications are collected through a Google Form and reviewed every two weeks.",
+        "source": "decision:We have more volunteer interest than we can place right now, so we shortlist rather than assigning everyone, and we talk to people before putting them on anything.",
         "target": "workgroup:registration-help-desk",
         "kind": "CONCERNS"
       },
       {
         "source": "meeting:4",
-        "target": "decision:Volunteer applications are collected through a Google Form and reviewed every two weeks.",
+        "target": "decision:We have more volunteer interest than we can place right now, so we shortlist rather than assigning everyone, and we talk to people before putting them on anything.",
         "kind": "DECIDED"
       },
       {
-        "source": "decision:The 2026 site reuses the 2025 template rather than starting over.",
+        "source": "decision:Keynote outreach is a shared job. Everyone brings names and everyone sends emails, so nobody is a bottleneck.",
+        "target": "workgroup:program-committee",
+        "kind": "CONCERNS"
+      },
+      {
+        "source": "meeting:3",
+        "target": "decision:Keynote outreach is a shared job. Everyone brings names and everyone sends emails, so nobody is a bottleneck.",
+        "kind": "DECIDED"
+      },
+      {
+        "source": "decision:Talk submissions go through our own pretalx instance rather than a hosted service, so we keep control of the data and the review workflow.",
         "target": "workgroup:website",
         "kind": "CONCERNS"
       },
       {
         "source": "meeting:3",
-        "target": "decision:The 2026 site reuses the 2025 template rather than starting over.",
+        "target": "decision:Talk submissions go through our own pretalx instance rather than a hosted service, so we keep control of the data and the review workflow.",
         "kind": "DECIDED"
       },
       {
-        "source": "decision:The tech park auditorium is confirmed for 10-12 December.",
+        "source": "decision:The budget is the version we take to sponsors. Everyone had input; Malayaja owns keeping it current.",
+        "target": "workgroup:sponsoring",
+        "kind": "CONCERNS"
+      },
+      {
+        "source": "meeting:3",
+        "target": "decision:The budget is the version we take to sponsors. Everyone had input; Malayaja owns keeping it current.",
+        "kind": "DECIDED"
+      },
+      {
+        "source": "decision:We visit IIT Madras before committing to anything, rather than deciding from a floor plan.",
         "target": "workgroup:logistics",
         "kind": "CONCERNS"
       },
       {
         "source": "meeting:3",
-        "target": "decision:The tech park auditorium is confirmed for 10-12 December.",
+        "target": "decision:We visit IIT Madras before committing to anything, rather than deciding from a floor plan.",
         "kind": "DECIDED"
       },
       {
-        "source": "decision:Three sponsor tiers: platinum, gold, community. Community tier is free for non-profits.",
+        "source": "decision:The deck goes out only after the budget is in it, so sponsors can see what their money pays for.",
         "target": "workgroup:sponsoring",
         "kind": "CONCERNS"
       },
       {
-        "source": "meeting:3",
-        "target": "decision:Three sponsor tiers: platinum, gold, community. Community tier is free for non-profits.",
+        "source": "meeting:2",
+        "target": "decision:The deck goes out only after the budget is in it, so sponsors can see what their money pays for.",
         "kind": "DECIDED"
       },
       {
-        "source": "decision:The CFP opens 16 February and closes 5 April. Review closes 26 April.",
-        "target": "workgroup:program-committee",
+        "source": "decision:Three sponsor tiers. The lowest one is free for non-profits and community groups, because we want them in the room rather than priced out.",
+        "target": "workgroup:sponsoring",
         "kind": "CONCERNS"
       },
       {
         "source": "meeting:2",
-        "target": "decision:The CFP opens 16 February and closes 5 April. Review closes 26 April.",
-        "kind": "DECIDED"
-      },
-      {
-        "source": "decision:The shortlist is down to two: the university campus and the tech park auditorium.",
-        "target": "workgroup:logistics",
-        "kind": "CONCERNS"
-      },
-      {
-        "source": "meeting:2",
-        "target": "decision:The shortlist is down to two: the university campus and the tech park auditorium.",
-        "kind": "DECIDED"
-      },
-      {
-        "source": "decision:SciPy India 2026 runs 11-12 December 2026, two conference days plus one workshop day on 10 December.",
-        "target": "workgroup:program-committee",
-        "kind": "CONCERNS"
-      },
-      {
-        "source": "meeting:1",
-        "target": "decision:SciPy India 2026 runs 11-12 December 2026, two conference days plus one workshop day on 10 December.",
+        "target": "decision:Three sponsor tiers. The lowest one is free for non-profits and community groups, because we want them in the room rather than priced out.",
         "kind": "DECIDED"
       },
       {
         "source": "meeting:1",
-        "target": "decision:The organizing team meets every second Friday until the conference.",
+        "target": "decision:SciPy India 2026 runs on 19 and 20 December, workshops on the first day and the conference on the second.",
         "kind": "DECIDED"
       },
       {
-        "source": "decision:Ticket pricing stays at 2025 levels; a student tier is added.",
+        "source": "decision:Volunteer sign-ups go through a form rather than email, so responses land in one place.",
+        "target": "workgroup:registration-help-desk",
+        "kind": "CONCERNS"
+      },
+      {
+        "source": "meeting:1",
+        "target": "decision:Volunteer sign-ups go through a form rather than email, so responses land in one place.",
+        "kind": "DECIDED"
+      },
+      {
+        "source": "decision:We need a sponsorship deck before approaching anyone, so that comes first and everything else waits on it.",
         "target": "workgroup:sponsoring",
         "kind": "CONCERNS"
       },
       {
         "source": "meeting:1",
-        "target": "decision:Ticket pricing stays at 2025 levels; a student tier is added.",
+        "target": "decision:We need a sponsorship deck before approaching anyone, so that comes first and everything else waits on it.",
         "kind": "DECIDED"
       }
     ]

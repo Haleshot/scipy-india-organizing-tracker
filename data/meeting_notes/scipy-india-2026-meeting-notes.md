@@ -1,363 +1,253 @@
 SciPy India 2026 meeting notes
 
-All names, email addresses and phone numbers below are invented. This file
-exists so the pipeline can be run and reviewed without touching real
-volunteer data. Replace it with the real notes export, or point
-MEETING_NOTES_SOURCE at Google Drive.
-
-The format is documented in docs/meeting-notes-template.md.
+Format is documented in docs/meeting-notes-template.md. One Meeting: line per
+meeting, ISO dates, blank fields mean nothing was decided. An Issue: line on an
+action item links it to a GitHub issue in scipy-india/planning.
 
 Links
 
-GitHub project: https://github.com/scipy-india/planning/projects/1
+Planning issues: https://github.com/scipy-india/planning/issues
 Website: https://scipy.in/2026
-Chat: https://discord.gg/scipy-india-fixture
+Team: https://scipy.in/2026/team
 
-Meeting: 2026-01-09 | Kickoff
+Meeting: 2026-07-11 | Kickoff for the 2026 cycle
 
-Facilitator: Meera Raghavan
-Attendees: Meera Raghavan, Devika Nair, Arjun Pillai, Nikhil Bose, Farida Qureshi
-Workgroups: Program Committee, Logistics, Sponsoring, Website
+Facilitator: Srihari Thyagarajan
+Attendees: Srihari Thyagarajan, Agriya Khetarpal, Malayaja Chutani
+Workgroups: Sponsoring, Registration & Help Desk, Program Committee, Logistics
 
 Topics
 
-Dates and format for SciPy India 2026.
-Whether to keep the workshop day.
-Rough budget envelope and ticket pricing.
+Dates, format and what we are committing to this year.
+What we need in place before we can talk to anyone about money.
+How we collect volunteer interest without a spreadsheet nobody maintains.
 
 Decisions
 
-(Program Committee) SciPy India 2026 runs 11-12 December 2026, two conference days plus one workshop day on 10 December.
+SciPy India 2026 runs on 19 and 20 December, workshops on the first day and the
+conference on the second.
 
-(Sponsoring) Ticket pricing stays at 2025 levels; a student tier is added.
+(Sponsoring) We need a sponsorship deck before approaching anyone, so that comes
+first and everything else waits on it.
 
-The organizing team meets every second Friday until the conference.
+(Registration & Help Desk) Volunteer sign-ups go through a form rather than
+email, so responses land in one place.
 
 Action items
 
-Task: Draft the CFP timeline and circulate it to the organizing list
-Workgroup: Program Committee
-Owner: Devika Nair
-Status: open
-Due: 23 Jan
+Task: Draft the sponsorship deck
+ID: sponsorship-deck
+Workgroup: Sponsoring
+Owner: Agriya Khetarpal
+Status: in_progress
+Due: 2026-07-25
 
-Task: Collect quotes from three candidate venues
+Task: Set up a volunteer sign-up form and publish it
+ID: volunteer-form
+Workgroup: Registration & Help Desk
+Owner: Srihari Thyagarajan
+Status: in_progress
+Due:
+
+Task: Lay out a first budget
+ID: budget-v1
+Workgroup: Sponsoring
+Owner: Malayaja Chutani
+Status: open
+Due:
+
+Workgroup changes
+
+Agriya Khetarpal joins Sponsoring
+Srihari Thyagarajan joins Registration & Help Desk
+Malayaja Chutani joins Logistics
+
+Meeting: 2026-07-25 | Sponsorship deck review
+
+Facilitator: Agriya Khetarpal
+Attendees: Agriya Khetarpal, Srihari Thyagarajan, Malayaja Chutani
+Workgroups: Sponsoring, Registration & Help Desk
+
+Topics
+
+Walking through the sponsorship deck Agriya drafted.
+Tier structure and what each tier actually gets.
+First responses to the volunteer form.
+
+Decisions
+
+(Sponsoring) Three sponsor tiers. The lowest one is free for non-profits and
+community groups, because we want them in the room rather than priced out.
+
+(Sponsoring) The deck goes out only after the budget is in it, so sponsors can
+see what their money pays for.
+
+Notes
+
+Agriya wrote the deck; Malayaja and Srihari reviewed it and sent comments. The
+structure is settled, the numbers are the open part.
+
+Action items
+
+Task: Draft the sponsorship deck
+ID: sponsorship-deck
+Workgroup: Sponsoring
+Owner: Agriya Khetarpal
+Status: done
+Due: 2026-07-25
+
+Task: Lay out a first budget
+ID: budget-v1
+Workgroup: Sponsoring
+Owner: Malayaja Chutani
+Status: in_progress
+Due: 2026-08-08
+
+Task: Set up a volunteer sign-up form and publish it
+ID: volunteer-form
+Workgroup: Registration & Help Desk
+Owner: Srihari Thyagarajan
+Status: done
+Due:
+
+Meeting: 2026-08-08 | Budget and venue
+
+Facilitator: Malayaja Chutani
+Attendees: Malayaja Chutani, Srihari Thyagarajan, Agriya Khetarpal
+Workgroups: Sponsoring, Logistics, Program Committee, Website
+
+Topics
+
+The budget Malayaja laid out, line by line.
+Venue options, and whether IIT Madras is workable.
+Who we want as keynote speakers.
+
+Decisions
+
+(Sponsoring) The budget is the version we take to sponsors. Everyone had input;
+Malayaja owns keeping it current.
+
+(Logistics) We visit IIT Madras before committing to anything, rather than
+deciding from a floor plan.
+
+(Website) Talk submissions go through our own pretalx instance rather than a
+hosted service, so we keep control of the data and the review workflow.
+
+(Program Committee) Keynote outreach is a shared job. Everyone brings names and
+everyone sends emails, so nobody is a bottleneck.
+
+Action items
+
+Task: Lay out a first budget
+ID: budget-v1
+Workgroup: Sponsoring
+Owner: Malayaja Chutani
+Status: done
+Due: 2026-08-08
+
+Task: Visit IIT Madras and report back on the space
+ID: iitm-venue-recon
+Workgroup: Logistics
+Owner: Malayaja Chutani, Srihari Thyagarajan
+Status: open
+Due: 2026-08-22
+
+Task: Draw up a keynote speaker shortlist
+ID: keynote-shortlist
+Workgroup: Program Committee
+Owner: Agriya Khetarpal, Malayaja Chutani, Srihari Thyagarajan
+Status: open
+Due: 2026-08-22
+
+Task: Send the sponsorship deck to the first round of leads
+ID: sponsor-outreach-round-1
+Workgroup: Sponsoring
+Owner:
+Status: open
+Due:
+
+Task: Apply to the FOSS United Events grant
+ID: foss-united-grant
+Workgroup: Sponsoring
+Owner: Agriya Khetarpal
+Issue: #44
+Status: open
+Due: 2026-08-31
+
+Task: Stand up our own pretalx instance for talk submissions
+ID: pretalx-instance
+Workgroup: Website
+Owner: Agriya Khetarpal
+Issue: #41
+Status: done
+Due:
+
+Workgroup changes
+
+Malayaja Chutani joins Sponsoring
+Srihari Thyagarajan joins Program Committee
+Agriya Khetarpal joins Website
+
+Meeting: 2026-08-22 | Venue recon and keynote outreach
+
+Facilitator: Srihari Thyagarajan
+Attendees: Srihari Thyagarajan, Malayaja Chutani, Agriya Khetarpal
+Workgroups: Logistics, Program Committee, Registration & Help Desk, Sponsoring
+
+Topics
+
+What we saw at IIT Madras.
+Where keynote outreach has got to.
+Volunteer form responses and what to do with them.
+
+Decisions
+
+(Logistics) IIT Madras works for both days. Malayaja and Srihari walked the
+lecture halls and the space for tutorials; power and seating are fine, and the
+open question is catering.
+
+(Registration & Help Desk) We have more volunteer interest than we can place
+right now, so we shortlist rather than assigning everyone, and we talk to people
+before putting them on anything.
+
+Notes
+
+The volunteer form has had a lot of responses. Nobody has been contacted yet,
+and none of that data goes anywhere public until we have spoken to people.
+
+Action items
+
+Task: Visit IIT Madras and report back on the space
+ID: iitm-venue-recon
+Workgroup: Logistics
+Owner: Malayaja Chutani, Srihari Thyagarajan
+Status: done
+Due: 2026-08-22
+
+Task: Draw up a keynote speaker shortlist
+ID: keynote-shortlist
+Workgroup: Program Committee
+Owner: Agriya Khetarpal, Malayaja Chutani, Srihari Thyagarajan
+Status: in_progress
+Due:
+
+Task: Get catering quotes for both days
+ID: catering-quotes
 Workgroup: Logistics
 Owner:
 Status: open
-Due: end of January
+Due:
 
-Task: Open a tracking spreadsheet for the budget
+Task: Send the sponsorship deck to the first round of leads
+ID: sponsor-outreach-round-1
 Workgroup: Sponsoring
-Owner: Farida Qureshi
-Status: open
-Due:
-
-Task: Set up the shared Drive folder and the meeting-notes doc
-Workgroup: Website
-Owner: Meera Raghavan
-Status: done
-Due:
-
-Workgroup changes
-
-Devika Nair joins Program Committee
-Farida Qureshi joins Sponsoring
-Nikhil Bose joins Logistics
-
-
-Meeting: 2026-01-23 | CFP and venue shortlist
-
-Facilitator: Meera Raghavan
-Attendees: Meera Raghavan, Devika Nair, Arjun Pillai, Nikhil Bose, Farida Qureshi, Sanjana Iyer
-Workgroups: Program Committee, Logistics, Social Media & Communications, Sponsoring, Website
-
-Topics
-
-CFP timeline review.
-Venue shortlist and costs.
-Who owns social media this year.
-
-Decisions
-
-(Program Committee) The CFP opens 16 February and closes 5 April. Review closes 26 April.
-
-(Logistics) The shortlist is down to two: the university campus and the tech park auditorium.
-
-Action items
-
-Task: Draft the CFP timeline and circulate it to the organizing list
-Workgroup: Program Committee
-Owner: Devika Nair
-Status: done
-Due:
-
-Task: Collect quotes from three candidate venues
-Workgroup: Logistics
-Owner: Nikhil Bose
+Owner: Agriya Khetarpal
 Status: in_progress
 Due:
 
-Task: Write the review rubric for CFP submissions
-Workgroup: Program Committee
-Owner: Arjun Pillai
-Status: open
-Due: 9 Feb
-
-Task: Set up the SciPy India 2026 social accounts
-Workgroup: Social Media & Communications
-Owner: Sanjana Iyer
-Status: open
-Due:
-
-Task: Decide on the ticketing platform
-Workgroup: Website
-Owner:
-Status: open
-Due:
-
-Task: Draft the sponsorship prospectus
-Workgroup: Sponsoring
-Owner:
-Status: open
-Due: 20 Feb
-
-Workgroup changes
-
-Sanjana Iyer joins Social Media & Communications
-Arjun Pillai joins Program Committee
-
-
-Meeting: 2026-02-06 | Sponsorship and site
-
-Facilitator: Arjun Pillai
-Attendees: Arjun Pillai, Meera Raghavan, Sanjana Iyer, Farida Qureshi, Rehan Mathew, Nikhil Bose
-Workgroups: Sponsoring, Website, Social Media & Communications, Logistics, Program Committee, Code of Conduct
-
-Topics
-
-Sponsorship tiers and what each one includes.
-Static site versus the 2025 site template.
-Venue decision.
-
-Decisions
-
-(Logistics) The tech park auditorium is confirmed for 10-12 December.
-
-(Sponsoring) Three sponsor tiers: platinum, gold, community. Community tier is free for non-profits.
-
-(Website) The 2026 site reuses the 2025 template rather than starting over.
-
-Action items
-
-Task: Collect quotes from three candidate venues
-Workgroup: Logistics
-Owner: Nikhil Bose
-Status: done
-Due:
-
-Task: Draft the sponsorship prospectus
-Workgroup: Sponsoring
-Owner: Rehan Mathew
-Status: in_progress
-Due: 20 Feb
-
-Task: Port the 2025 site template and put up a holding page
-Workgroup: Website
-Owner:
-Status: open
-Due: 27 Feb
-
-Task: Write the review rubric for CFP submissions
-Workgroup: Program Committee
-Owner: Arjun Pillai
-Status: in_progress
-Due:
-
-Task: Publish the CFP announcement post
-Workgroup: Social Media & Communications
-Owner: Sanjana Iyer
-Status: open
-Due: 16 Feb
-
-Task: Draft the code of conduct and the incident response process
-Workgroup: Code of Conduct
-Owner:
-Status: open
-Due:
-
-Workgroup changes
-
-Rehan Mathew joins Sponsoring
-
-
-Meeting: 2026-02-20 | CFP is live
-
-Facilitator: Meera Raghavan
-Attendees: Meera Raghavan, Devika Nair, Arjun Pillai, Sanjana Iyer, Rehan Mathew, Priya Vasudevan
-Workgroups: Program Committee, Social Media & Communications, Sponsoring, Registration & Help Desk, Code of Conduct, Website
-
-Topics
-
-First week of CFP submissions.
-Volunteer applications are open and coming in.
-Code of conduct draft.
-
-Decisions
-
-(Registration & Help Desk) Volunteer applications are collected through a Google Form and reviewed every two weeks.
-
-(Code of Conduct) The code of conduct is adapted from the PSF template with an India-specific contact list.
-
-(Program Committee) Reviewers see submissions anonymised for the first pass.
-
-Action items
-
-Task: Publish the CFP announcement post
-Workgroup: Social Media & Communications
-Owner: Sanjana Iyer
-Status: done
-Due:
-
-Task: Write the review rubric for CFP submissions
-Workgroup: Program Committee
-Owner: Arjun Pillai
-Status: done
-Due:
-
-Task: Draft the code of conduct and the incident response process
-Workgroup: Code of Conduct
-Owner: Priya Vasudevan
-Status: in_progress
-Due:
-
-Task: Port the 2025 site template and put up a holding page
-Workgroup: Website
-Owner:
-Status: blocked
-Due: 27 Feb
-
-Task: Review the first batch of volunteer applications
+Task: Shortlist volunteers and start intro calls
+ID: volunteer-shortlist
 Workgroup: Registration & Help Desk
-Owner: Priya Vasudevan
-Status: open
-Due: 6 Mar
-
-Task: Draft the sponsorship prospectus
-Workgroup: Sponsoring
-Owner: Rehan Mathew
-Status: done
-Due:
-
-Task: Reach out to the first ten sponsor leads
-Workgroup: Sponsoring
-Owner: Rehan Mathew
+Owner: Srihari Thyagarajan
 Status: open
 Due:
-
-Task: Find someone to own AV and recordings
-Workgroup: Website
-Owner:
-Status: open
-Due:
-
-Workgroup changes
-
-Priya Vasudevan joins Registration & Help Desk
-Priya Vasudevan joins Code of Conduct
-
-
-Meeting: 2026-03-06 | Volunteers and reviews
-
-Facilitator: Priya Vasudevan
-Attendees: Priya Vasudevan, Meera Raghavan, Devika Nair, Sanjana Iyer, Rehan Mathew, Kabir Anand
-Workgroups: Registration & Help Desk, Program Committee, Social Media & Communications, Design, Website, Sponsoring
-
-Topics
-
-First batch of volunteer applications.
-Review capacity for the CFP.
-Branding refresh for 2026.
-
-Decisions
-
-(Registration & Help Desk) Applicants are assigned to a role only after a short call with that role's lead.
-
-(Design) The 2026 identity keeps the SciPy India mark and changes only the accent colour.
-
-Action items
-
-Task: Review the first batch of volunteer applications
-Workgroup: Registration & Help Desk
-Owner: Priya Vasudevan
-Status: done
-Due:
-
-Task: Schedule intro calls with the six shortlisted volunteers
-Workgroup: Registration & Help Desk
-Owner: Priya Vasudevan
-Status: open
-Due: 20 Mar
-
-Task: Refresh the badge and signage templates
-Workgroup: Design
-Owner: Kabir Anand
-Status: open
-Due:
-
-Task: Recruit four more CFP reviewers
-Workgroup: Program Committee
-Owner: Devika Nair
-Status: open
-Due: 20 Mar
-
-Task: Port the 2025 site template and put up a holding page
-Workgroup: Website
-Owner: Kabir Anand
-Status: in_progress
-Due:
-
-Task: Find someone to own AV and recordings
-Workgroup: Website
-Owner: Tanmay Bhatt
-Status: in_progress
-Due:
-
-Task: Send the sponsorship prospectus to confirmed leads
-Workgroup: Sponsoring
-Owner:
-Status: open
-Due:
-
-Task: Send the reminder email
-Workgroup: Social Media & Communications
-Owner: Sanjana Iyer
-Status: open
-Due: 13 Mar
-
-Task: Send the reminder email
-Workgroup: Program Committee
-Owner: Devika Nair
-Status: open
-Due: 13 Mar
-
-Task: Follow up with the platinum sponsor leads
-ID: sponsor-followup-platinum
-Workgroup: Sponsoring
-Owner: Rehan Mathew
-Status: open
-Due:
-
-Task: Follow up with the community-tier leads
-ID: sponsor-followup-community
-Workgroup: Sponsoring
-Owner:
-Status: open
-Due:
-
-Workgroup changes
-
-Tanmay Bhatt joins Website
-Kabir Anand joins Design
-Kabir Anand joins Website
-
