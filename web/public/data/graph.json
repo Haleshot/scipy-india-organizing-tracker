@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-02T05:06:09+00:00",
+  "generated_at": "2026-09-02T06:32:45+00:00",
   "schema_version": 4,
   "profile": "public",
   "source": {
-    "built_at": "2026-09-02T05:06:08.779332Z",
-    "notes_source": "local",
+    "built_at": "2026-09-02T06:32:45.076889Z",
+    "notes_source": "google_drive",
     "extraction_mode": "markdown",
     "person_resolution": "exact"
   },
@@ -17,8 +17,8 @@
     "unassigned_open_tasks": 1,
     "decisions": 11,
     "workgroups": 13,
-    "issues": 0,
-    "open_issues": 0,
+    "issues": 43,
+    "open_issues": 19,
     "applications_by_status": {}
   },
   "workgroups": [
@@ -154,14 +154,14 @@
       "facilitator": "Srihari Thyagarajan",
       "attendees": [
         "Srihari Thyagarajan",
-        "Agriya Khetarpal",
-        "Malayaja Chutani"
+        "Malayaja Chutani",
+        "Agriya Khetarpal"
       ],
       "workgroups": [
-        "logistics",
-        "registration-help-desk",
         "sponsoring",
-        "program-committee"
+        "program-committee",
+        "registration-help-desk",
+        "logistics"
       ]
     },
     {
@@ -176,15 +176,15 @@
       ],
       "facilitator": "Malayaja Chutani",
       "attendees": [
-        "Malayaja Chutani",
+        "Agriya Khetarpal",
         "Srihari Thyagarajan",
-        "Agriya Khetarpal"
+        "Malayaja Chutani"
       ],
       "workgroups": [
-        "logistics",
         "sponsoring",
-        "program-committee",
-        "website"
+        "logistics",
+        "website",
+        "program-committee"
       ]
     },
     {
@@ -199,9 +199,9 @@
       ],
       "facilitator": "Agriya Khetarpal",
       "attendees": [
+        "Malayaja Chutani",
         "Agriya Khetarpal",
-        "Srihari Thyagarajan",
-        "Malayaja Chutani"
+        "Srihari Thyagarajan"
       ],
       "workgroups": [
         "sponsoring",
@@ -225,9 +225,9 @@
         "Srihari Thyagarajan"
       ],
       "workgroups": [
+        "logistics",
         "registration-help-desk",
         "program-committee",
-        "logistics",
         "sponsoring"
       ]
     }
@@ -236,21 +236,21 @@
     {
       "name": "Agriya Khetarpal",
       "workgroups": [
-        "sponsoring",
-        "website"
+        "website",
+        "sponsoring"
       ],
       "meetings": [
         2,
-        1,
         3,
+        1,
         4
       ],
       "tasks": [
-        "website:pretalx-instance:h2a1077c4ee",
-        "sponsoring:sponsorship-deck:h2d49d51dd0",
-        "sponsoring:foss-united-grant:h853ac81097",
-        "sponsoring:sponsor-outreach-round-1:hd9f92b862c",
-        "program-committee:keynote-shortlist:hab5b5e2edc"
+        "sponsoring:foss-united-grant:h8fdf862f42",
+        "sponsoring:sponsor-outreach-round-1:h8217c74149",
+        "website:pretalx-instance:h32299a8aae",
+        "sponsoring:sponsorship-deck:heb70087595",
+        "program-committee:keynote-shortlist:he91092c0de"
       ]
     },
     {
@@ -260,22 +260,22 @@
         "logistics"
       ],
       "meetings": [
-        3,
-        1,
         2,
-        4
+        1,
+        4,
+        3
       ],
       "tasks": [
-        "sponsoring:budget-v1:h9919442459",
-        "logistics:iitm-venue-recon:hf5224fffc1",
-        "program-committee:keynote-shortlist:hab5b5e2edc"
+        "logistics:iitm-venue-recon:ha697290a36",
+        "program-committee:keynote-shortlist:he91092c0de",
+        "sponsoring:budget-v1:h5497589605"
       ]
     },
     {
       "name": "Srihari Thyagarajan",
       "workgroups": [
-        "program-committee",
-        "registration-help-desk"
+        "registration-help-desk",
+        "program-committee"
       ],
       "meetings": [
         4,
@@ -284,16 +284,16 @@
         2
       ],
       "tasks": [
-        "registration-help-desk:volunteer-form:h21429026c6",
-        "registration-help-desk:volunteer-shortlist:h7c9d193695",
-        "program-committee:keynote-shortlist:hab5b5e2edc",
-        "logistics:iitm-venue-recon:hf5224fffc1"
+        "registration-help-desk:volunteer-form:hea8a8a2b2e",
+        "logistics:iitm-venue-recon:ha697290a36",
+        "program-committee:keynote-shortlist:he91092c0de",
+        "registration-help-desk:volunteer-shortlist:hf197a302cd"
       ]
     }
   ],
   "tasks": [
     {
-      "id": "sponsoring:sponsorship-deck:h2d49d51dd0",
+      "id": "sponsoring:sponsorship-deck:heb70087595",
       "description": "Draft the sponsorship deck",
       "status": "done",
       "due": "2026-07-25",
@@ -309,7 +309,7 @@
         {
           "date": "2026-07-11",
           "id": 1,
-          "status": "in_progress"
+          "status": "unknown"
         },
         {
           "date": "2026-07-25",
@@ -319,7 +319,7 @@
       ]
     },
     {
-      "id": "sponsoring:budget-v1:h9919442459",
+      "id": "sponsoring:budget-v1:h5497589605",
       "description": "Lay out a first budget",
       "status": "done",
       "due": "2026-08-08",
@@ -340,7 +340,7 @@
         {
           "date": "2026-07-25",
           "id": 2,
-          "status": "in_progress"
+          "status": "unknown"
         },
         {
           "date": "2026-08-08",
@@ -350,7 +350,7 @@
       ]
     },
     {
-      "id": "registration-help-desk:volunteer-form:h21429026c6",
+      "id": "registration-help-desk:volunteer-form:hea8a8a2b2e",
       "description": "Set up a volunteer sign-up form and publish it",
       "status": "done",
       "due": "",
@@ -366,7 +366,7 @@
         {
           "date": "2026-07-11",
           "id": 1,
-          "status": "in_progress"
+          "status": "unknown"
         },
         {
           "date": "2026-07-25",
@@ -376,7 +376,7 @@
       ]
     },
     {
-      "id": "website:pretalx-instance:h2a1077c4ee",
+      "id": "website:pretalx-instance:h32299a8aae",
       "description": "Stand up our own pretalx instance for talk submissions",
       "status": "done",
       "due": "",
@@ -397,7 +397,7 @@
       ]
     },
     {
-      "id": "logistics:iitm-venue-recon:hf5224fffc1",
+      "id": "logistics:iitm-venue-recon:ha697290a36",
       "description": "Visit IIT Madras and report back on the space",
       "status": "done",
       "due": "2026-08-22",
@@ -406,8 +406,8 @@
       "meeting_count": 2,
       "workgroup": "logistics",
       "owners": [
-        "Malayaja Chutani",
-        "Srihari Thyagarajan"
+        "Srihari Thyagarajan",
+        "Malayaja Chutani"
       ],
       "created_in": 3,
       "history": [
@@ -424,61 +424,7 @@
       ]
     },
     {
-      "id": "program-committee:keynote-shortlist:hab5b5e2edc",
-      "description": "Draw up a keynote speaker shortlist",
-      "status": "in_progress",
-      "due": "",
-      "first_seen": "2026-08-08",
-      "last_seen": "2026-08-22",
-      "meeting_count": 2,
-      "workgroup": "program-committee",
-      "owners": [
-        "Malayaja Chutani",
-        "Srihari Thyagarajan",
-        "Agriya Khetarpal"
-      ],
-      "created_in": 3,
-      "history": [
-        {
-          "date": "2026-08-08",
-          "id": 3,
-          "status": "open"
-        },
-        {
-          "date": "2026-08-22",
-          "id": 4,
-          "status": "in_progress"
-        }
-      ]
-    },
-    {
-      "id": "sponsoring:sponsor-outreach-round-1:hd9f92b862c",
-      "description": "Send the sponsorship deck to the first round of leads",
-      "status": "in_progress",
-      "due": "",
-      "first_seen": "2026-08-08",
-      "last_seen": "2026-08-22",
-      "meeting_count": 2,
-      "workgroup": "sponsoring",
-      "owners": [
-        "Agriya Khetarpal"
-      ],
-      "created_in": 3,
-      "history": [
-        {
-          "date": "2026-08-08",
-          "id": 3,
-          "status": "open"
-        },
-        {
-          "date": "2026-08-22",
-          "id": 4,
-          "status": "in_progress"
-        }
-      ]
-    },
-    {
-      "id": "sponsoring:foss-united-grant:h853ac81097",
+      "id": "sponsoring:foss-united-grant:h8fdf862f42",
       "description": "Apply to the FOSS United Events grant",
       "status": "open",
       "due": "2026-08-31",
@@ -499,7 +445,7 @@
       ]
     },
     {
-      "id": "logistics:catering-quotes:h0033d38aac",
+      "id": "logistics:catering-quotes:h56bbea1b12",
       "description": "Get catering quotes for both days",
       "status": "open",
       "due": "",
@@ -518,7 +464,7 @@
       ]
     },
     {
-      "id": "registration-help-desk:volunteer-shortlist:h7c9d193695",
+      "id": "registration-help-desk:volunteer-shortlist:hf197a302cd",
       "description": "Shortlist volunteers and start intro calls",
       "status": "open",
       "due": "",
@@ -535,6 +481,60 @@
           "date": "2026-08-22",
           "id": 4,
           "status": "open"
+        }
+      ]
+    },
+    {
+      "id": "program-committee:keynote-shortlist:he91092c0de",
+      "description": "Draw up a keynote speaker shortlist",
+      "status": "unknown",
+      "due": "",
+      "first_seen": "2026-08-08",
+      "last_seen": "2026-08-22",
+      "meeting_count": 2,
+      "workgroup": "program-committee",
+      "owners": [
+        "Srihari Thyagarajan",
+        "Malayaja Chutani",
+        "Agriya Khetarpal"
+      ],
+      "created_in": 3,
+      "history": [
+        {
+          "date": "2026-08-08",
+          "id": 3,
+          "status": "open"
+        },
+        {
+          "date": "2026-08-22",
+          "id": 4,
+          "status": "unknown"
+        }
+      ]
+    },
+    {
+      "id": "sponsoring:sponsor-outreach-round-1:h8217c74149",
+      "description": "Send the sponsorship deck to the first round of leads",
+      "status": "unknown",
+      "due": "",
+      "first_seen": "2026-08-08",
+      "last_seen": "2026-08-22",
+      "meeting_count": 2,
+      "workgroup": "sponsoring",
+      "owners": [
+        "Agriya Khetarpal"
+      ],
+      "created_in": 3,
+      "history": [
+        {
+          "date": "2026-08-08",
+          "id": 3,
+          "status": "open"
+        },
+        {
+          "date": "2026-08-22",
+          "id": 4,
+          "status": "unknown"
         }
       ]
     }
@@ -629,7 +629,714 @@
       "date": "2026-07-11"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "key": "scipy-india/planning#44",
+      "repo": "scipy-india/planning",
+      "number": 44,
+      "title": "Apply to FOSS United Events grant in August",
+      "url": "https://github.com/scipy-india/planning/issues/44",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 1,
+      "updated_at": "2026-08-11",
+      "workgroup": null,
+      "owners": [],
+      "tasks": [
+        "sponsoring:foss-united-grant:h8fdf862f42"
+      ]
+    },
+    {
+      "key": "scipy-india/planning#43",
+      "repo": "scipy-india/planning",
+      "number": 43,
+      "title": "Apply to 2026 PSF Grants funding round in August",
+      "url": "https://github.com/scipy-india/planning/issues/43",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 0,
+      "updated_at": "2026-08-30",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#42",
+      "repo": "scipy-india/planning",
+      "number": 42,
+      "title": "2026 conference planning",
+      "url": "https://github.com/scipy-india/planning/issues/42",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 1,
+      "updated_at": "2026-08-25",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#41",
+      "repo": "scipy-india/planning",
+      "number": 41,
+      "title": "Self-host a pretalx instance",
+      "url": "https://github.com/scipy-india/planning/issues/41",
+      "state": "closed",
+      "state_reason": "not_planned",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 2,
+      "updated_at": "2026-07-15",
+      "workgroup": null,
+      "owners": [],
+      "tasks": [
+        "website:pretalx-instance:h32299a8aae"
+      ]
+    },
+    {
+      "key": "scipy-india/planning#40",
+      "repo": "scipy-india/planning",
+      "number": 40,
+      "title": "Email",
+      "url": "https://github.com/scipy-india/planning/issues/40",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 3,
+      "updated_at": "2026-07-28",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#38",
+      "repo": "scipy-india/planning",
+      "number": 38,
+      "title": "scipy.in successfully forwarded via Cloudflare and FOSSEE IT – follow-up tasks",
+      "url": "https://github.com/scipy-india/planning/issues/38",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 5,
+      "updated_at": "2026-06-16",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#37",
+      "repo": "scipy-india/planning",
+      "number": 37,
+      "title": "Data For India webinar",
+      "url": "https://github.com/scipy-india/planning/issues/37",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 0,
+      "updated_at": "2026-03-16",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#36",
+      "repo": "scipy-india/planning",
+      "number": 36,
+      "title": "Collaborations with HydPy",
+      "url": "https://github.com/scipy-india/planning/issues/36",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 0,
+      "updated_at": "2026-03-16",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#35",
+      "repo": "scipy-india/planning",
+      "number": 35,
+      "title": "ChennaiPy collaboration",
+      "url": "https://github.com/scipy-india/planning/issues/35",
+      "state": "closed",
+      "state_reason": "not_planned",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 3,
+      "updated_at": "2026-03-22",
+      "workgroup": null,
+      "owners": [
+        "Srihari Thyagarajan"
+      ],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#34",
+      "repo": "scipy-india/planning",
+      "number": 34,
+      "title": "Start using PSF insignia with our online presence",
+      "url": "https://github.com/scipy-india/planning/issues/34",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [
+        "documentation"
+      ],
+      "milestone": "",
+      "comment_count": 12,
+      "updated_at": "2026-05-09",
+      "workgroup": null,
+      "owners": [
+        "Agriya Khetarpal",
+        "Srihari Thyagarajan"
+      ],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#33",
+      "repo": "scipy-india/planning",
+      "number": 33,
+      "title": "Partnering with the Python Software Foundation",
+      "url": "https://github.com/scipy-india/planning/issues/33",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 3,
+      "updated_at": "2026-03-17",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#32",
+      "repo": "scipy-india/planning",
+      "number": 32,
+      "title": "FOSS United/FOSS Hack 2026 community partnership",
+      "url": "https://github.com/scipy-india/planning/issues/32",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 3,
+      "updated_at": "2026-02-28",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#31",
+      "repo": "scipy-india/planning",
+      "number": 31,
+      "title": "Blog posts roundup",
+      "url": "https://github.com/scipy-india/planning/issues/31",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 0,
+      "updated_at": "2026-02-25",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#30",
+      "repo": "scipy-india/planning",
+      "number": 30,
+      "title": "BangPypers x SciPy India (February 2026)",
+      "url": "https://github.com/scipy-india/planning/issues/30",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 3,
+      "updated_at": "2026-02-25",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#29",
+      "repo": "scipy-india/planning",
+      "number": 29,
+      "title": "Proposal: we should start partnering with conferences and events, starting with HydPy for PyConf Hyderabad 2026",
+      "url": "https://github.com/scipy-india/planning/issues/29",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 5,
+      "updated_at": "2026-02-25",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#28",
+      "repo": "scipy-india/planning",
+      "number": 28,
+      "title": "Get ourselves a GitHub Team plan",
+      "url": "https://github.com/scipy-india/planning/issues/28",
+      "state": "closed",
+      "state_reason": "not_planned",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 8,
+      "updated_at": "2026-06-16",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#27",
+      "repo": "scipy-india/planning",
+      "number": 27,
+      "title": "Collaborations roundup",
+      "url": "https://github.com/scipy-india/planning/issues/27",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 0,
+      "updated_at": "2025-11-04",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#26",
+      "repo": "scipy-india/planning",
+      "number": 26,
+      "title": "India Ecoacoustics Network collaboration(s)",
+      "url": "https://github.com/scipy-india/planning/issues/26",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 0,
+      "updated_at": "2025-11-04",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#25",
+      "repo": "scipy-india/planning",
+      "number": 25,
+      "title": "Set up EthicalAds",
+      "url": "https://github.com/scipy-india/planning/issues/25",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 3,
+      "updated_at": "2026-05-09",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#24",
+      "repo": "scipy-india/planning",
+      "number": 24,
+      "title": "Make the planning meetings public",
+      "url": "https://github.com/scipy-india/planning/issues/24",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 1,
+      "updated_at": "2026-08-11",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#23",
+      "repo": "scipy-india/planning",
+      "number": 23,
+      "title": "Start adding to the \"Events\" section on our LinkedIn page",
+      "url": "https://github.com/scipy-india/planning/issues/23",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 3,
+      "updated_at": "2026-02-25",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#22",
+      "repo": "scipy-india/planning",
+      "number": 22,
+      "title": "In-person sprints for scientific Python projects",
+      "url": "https://github.com/scipy-india/planning/issues/22",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 0,
+      "updated_at": "2025-10-13",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#21",
+      "repo": "scipy-india/planning",
+      "number": 21,
+      "title": "Hugging Science collaboration(s)",
+      "url": "https://github.com/scipy-india/planning/issues/21",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 7,
+      "updated_at": "2026-07-07",
+      "workgroup": null,
+      "owners": [
+        "Agriya Khetarpal",
+        "Srihari Thyagarajan"
+      ],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#20",
+      "repo": "scipy-india/planning",
+      "number": 20,
+      "title": "Pint of Science India collaboration",
+      "url": "https://github.com/scipy-india/planning/issues/20",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 3,
+      "updated_at": "2025-12-18",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#19",
+      "repo": "scipy-india/planning",
+      "number": 19,
+      "title": "Newsletter",
+      "url": "https://github.com/scipy-india/planning/issues/19",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 0,
+      "updated_at": "2025-10-13",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#18",
+      "repo": "scipy-india/planning",
+      "number": 18,
+      "title": "FOSS in Science devroom @ IndiaFOSS – add livestream timestamps",
+      "url": "https://github.com/scipy-india/planning/issues/18",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 1,
+      "updated_at": "2025-10-04",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#17",
+      "repo": "scipy-india/planning",
+      "number": 17,
+      "title": "Proposal: Alternating Community Calls and Invited Sessions",
+      "url": "https://github.com/scipy-india/planning/issues/17",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 6,
+      "updated_at": "2026-02-25",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#16",
+      "repo": "scipy-india/planning",
+      "number": 16,
+      "title": "Offline community events and collaborations",
+      "url": "https://github.com/scipy-india/planning/issues/16",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 1,
+      "updated_at": "2025-09-17",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#15",
+      "repo": "scipy-india/planning",
+      "number": 15,
+      "title": "Start thinking about grants",
+      "url": "https://github.com/scipy-india/planning/issues/15",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 1,
+      "updated_at": "2026-07-29",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#14",
+      "repo": "scipy-india/planning",
+      "number": 14,
+      "title": "Add events to community calendars",
+      "url": "https://github.com/scipy-india/planning/issues/14",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 1,
+      "updated_at": "2025-10-13",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#13",
+      "repo": "scipy-india/planning",
+      "number": 13,
+      "title": "Domain",
+      "url": "https://github.com/scipy-india/planning/issues/13",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 2,
+      "updated_at": "2026-05-08",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#12",
+      "repo": "scipy-india/planning",
+      "number": 12,
+      "title": "Data retrieval and archival",
+      "url": "https://github.com/scipy-india/planning/issues/12",
+      "state": "open",
+      "state_reason": "",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 0,
+      "updated_at": "2025-09-17",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#11",
+      "repo": "scipy-india/planning",
+      "number": 11,
+      "title": "September/October 2025 Community Call ToDos",
+      "url": "https://github.com/scipy-india/planning/issues/11",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 4,
+      "updated_at": "2025-10-13",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#10",
+      "repo": "scipy-india/planning",
+      "number": 10,
+      "title": "Change \"meetup(s)\" to \"community call(s)\"",
+      "url": "https://github.com/scipy-india/planning/issues/10",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 3,
+      "updated_at": "2025-10-13",
+      "workgroup": null,
+      "owners": [
+        "Agriya Khetarpal"
+      ],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#9",
+      "repo": "scipy-india/planning",
+      "number": 9,
+      "title": "Stuff to finalise on 25th July before the meetup",
+      "url": "https://github.com/scipy-india/planning/issues/9",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 3,
+      "updated_at": "2025-07-25",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#8",
+      "repo": "scipy-india/planning",
+      "number": 8,
+      "title": "One last push; get more people to RSVP",
+      "url": "https://github.com/scipy-india/planning/issues/8",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 3,
+      "updated_at": "2025-07-25",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#7",
+      "repo": "scipy-india/planning",
+      "number": 7,
+      "title": "WIP: Meet-up #1 schedule",
+      "url": "https://github.com/scipy-india/planning/issues/7",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 4,
+      "updated_at": "2025-07-25",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#6",
+      "repo": "scipy-india/planning",
+      "number": 6,
+      "title": "Create feedback forms - for meetup and for interest in SciPy India conference",
+      "url": "https://github.com/scipy-india/planning/issues/6",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 3,
+      "updated_at": "2025-07-25",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#5",
+      "repo": "scipy-india/planning",
+      "number": 5,
+      "title": "Figure out our FOSS United dashboard",
+      "url": "https://github.com/scipy-india/planning/issues/5",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 1,
+      "updated_at": "2025-07-17",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#4",
+      "repo": "scipy-india/planning",
+      "number": 4,
+      "title": "Review and select 3 proposals",
+      "url": "https://github.com/scipy-india/planning/issues/4",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 7,
+      "updated_at": "2025-07-25",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#3",
+      "repo": "scipy-india/planning",
+      "number": 3,
+      "title": "Create posts for speakers for July 26th, 2025",
+      "url": "https://github.com/scipy-india/planning/issues/3",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 2,
+      "updated_at": "2025-07-25",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#2",
+      "repo": "scipy-india/planning",
+      "number": 2,
+      "title": "Create RSVP post for July 26th, 2025",
+      "url": "https://github.com/scipy-india/planning/issues/2",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 7,
+      "updated_at": "2025-07-17",
+      "workgroup": null,
+      "owners": [],
+      "tasks": []
+    },
+    {
+      "key": "scipy-india/planning#1",
+      "repo": "scipy-india/planning",
+      "number": 1,
+      "title": "Create CFP design and post for July 26th, 2025",
+      "url": "https://github.com/scipy-india/planning/issues/1",
+      "state": "closed",
+      "state_reason": "completed",
+      "labels": [],
+      "milestone": "",
+      "comment_count": 1,
+      "updated_at": "2025-07-12",
+      "workgroup": null,
+      "owners": [
+        "Agriya Khetarpal"
+      ],
+      "tasks": []
+    }
+  ],
   "volunteer_pipeline": [],
   "graph": {
     "nodes": [
@@ -734,53 +1441,53 @@
         "kind": "person"
       },
       {
-        "id": "task:sponsoring:sponsorship-deck:h2d49d51dd0",
+        "id": "task:sponsoring:sponsorship-deck:heb70087595",
         "label": "Draft the sponsorship deck",
         "kind": "task"
       },
       {
-        "id": "task:sponsoring:budget-v1:h9919442459",
+        "id": "task:sponsoring:budget-v1:h5497589605",
         "label": "Lay out a first budget",
         "kind": "task"
       },
       {
-        "id": "task:registration-help-desk:volunteer-form:h21429026c6",
+        "id": "task:registration-help-desk:volunteer-form:hea8a8a2b2e",
         "label": "Set up a volunteer sign-up form and publish it",
         "kind": "task"
       },
       {
-        "id": "task:website:pretalx-instance:h2a1077c4ee",
+        "id": "task:website:pretalx-instance:h32299a8aae",
         "label": "Stand up our own pretalx instance for talk submissions",
         "kind": "task"
       },
       {
-        "id": "task:logistics:iitm-venue-recon:hf5224fffc1",
+        "id": "task:logistics:iitm-venue-recon:ha697290a36",
         "label": "Visit IIT Madras and report back on the space",
         "kind": "task"
       },
       {
-        "id": "task:program-committee:keynote-shortlist:hab5b5e2edc",
-        "label": "Draw up a keynote speaker shortlist",
-        "kind": "task"
-      },
-      {
-        "id": "task:sponsoring:sponsor-outreach-round-1:hd9f92b862c",
-        "label": "Send the sponsorship deck to the first round of leads",
-        "kind": "task"
-      },
-      {
-        "id": "task:sponsoring:foss-united-grant:h853ac81097",
+        "id": "task:sponsoring:foss-united-grant:h8fdf862f42",
         "label": "Apply to the FOSS United Events grant",
         "kind": "task"
       },
       {
-        "id": "task:logistics:catering-quotes:h0033d38aac",
+        "id": "task:logistics:catering-quotes:h56bbea1b12",
         "label": "Get catering quotes for both days",
         "kind": "task"
       },
       {
-        "id": "task:registration-help-desk:volunteer-shortlist:h7c9d193695",
+        "id": "task:registration-help-desk:volunteer-shortlist:hf197a302cd",
         "label": "Shortlist volunteers and start intro calls",
+        "kind": "task"
+      },
+      {
+        "id": "task:program-committee:keynote-shortlist:he91092c0de",
+        "label": "Draw up a keynote speaker shortlist",
+        "kind": "task"
+      },
+      {
+        "id": "task:sponsoring:sponsor-outreach-round-1:h8217c74149",
+        "label": "Send the sponsorship deck to the first round of leads",
         "kind": "task"
       },
       {
@@ -837,12 +1544,232 @@
         "id": "decision:We need a sponsorship deck before approaching anyone, so that comes first and everything else waits on it.",
         "label": "We need a sponsorship deck before approaching anyone, so that comes first and everything else waits on it.",
         "kind": "decision"
+      },
+      {
+        "id": "issue:scipy-india/planning#44",
+        "label": "#44 Apply to FOSS United Events grant in August",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#43",
+        "label": "#43 Apply to 2026 PSF Grants funding round in August",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#42",
+        "label": "#42 2026 conference planning",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#41",
+        "label": "#41 Self-host a pretalx instance",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#40",
+        "label": "#40 Email",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#38",
+        "label": "#38 scipy.in successfully forwarded via Cloudflare and FOSSEE IT – follow-up tasks",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#37",
+        "label": "#37 Data For India webinar",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#36",
+        "label": "#36 Collaborations with HydPy",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#35",
+        "label": "#35 ChennaiPy collaboration",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#34",
+        "label": "#34 Start using PSF insignia with our online presence",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#33",
+        "label": "#33 Partnering with the Python Software Foundation",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#32",
+        "label": "#32 FOSS United/FOSS Hack 2026 community partnership",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#31",
+        "label": "#31 Blog posts roundup",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#30",
+        "label": "#30 BangPypers x SciPy India (February 2026)",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#29",
+        "label": "#29 Proposal: we should start partnering with conferences and events, starting with HydPy for PyConf Hyderabad 2026",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#28",
+        "label": "#28 Get ourselves a GitHub Team plan",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#27",
+        "label": "#27 Collaborations roundup",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#26",
+        "label": "#26 India Ecoacoustics Network collaboration(s)",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#25",
+        "label": "#25 Set up EthicalAds",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#24",
+        "label": "#24 Make the planning meetings public",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#23",
+        "label": "#23 Start adding to the \"Events\" section on our LinkedIn page",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#22",
+        "label": "#22 In-person sprints for scientific Python projects",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#21",
+        "label": "#21 Hugging Science collaboration(s)",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#20",
+        "label": "#20 Pint of Science India collaboration",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#19",
+        "label": "#19 Newsletter",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#18",
+        "label": "#18 FOSS in Science devroom @ IndiaFOSS – add livestream timestamps",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#17",
+        "label": "#17 Proposal: Alternating Community Calls and Invited Sessions",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#16",
+        "label": "#16 Offline community events and collaborations",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#15",
+        "label": "#15 Start thinking about grants",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#14",
+        "label": "#14 Add events to community calendars",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#13",
+        "label": "#13 Domain",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#12",
+        "label": "#12 Data retrieval and archival",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#11",
+        "label": "#11 September/October 2025 Community Call ToDos",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#10",
+        "label": "#10 Change \"meetup(s)\" to \"community call(s)\"",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#9",
+        "label": "#9 Stuff to finalise on 25th July before the meetup",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#8",
+        "label": "#8 One last push; get more people to RSVP",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#7",
+        "label": "#7 WIP: Meet-up #1 schedule",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#6",
+        "label": "#6 Create feedback forms - for meetup and for interest in SciPy India conference",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#5",
+        "label": "#5 Figure out our FOSS United dashboard",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#4",
+        "label": "#4 Review and select 3 proposals",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#3",
+        "label": "#3 Create posts for speakers for July 26th, 2025",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#2",
+        "label": "#2 Create RSVP post for July 26th, 2025",
+        "kind": "issue"
+      },
+      {
+        "id": "issue:scipy-india/planning#1",
+        "label": "#1 Create CFP design and post for July 26th, 2025",
+        "kind": "issue"
       }
     ],
     "edges": [
       {
         "source": "meeting:4",
-        "target": "workgroup:logistics",
+        "target": "workgroup:sponsoring",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:4",
+        "target": "workgroup:program-committee",
         "kind": "DISCUSSED"
       },
       {
@@ -852,16 +1779,6 @@
       },
       {
         "source": "meeting:4",
-        "target": "workgroup:sponsoring",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:4",
-        "target": "workgroup:program-committee",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:3",
         "target": "workgroup:logistics",
         "kind": "DISCUSSED"
       },
@@ -872,7 +1789,7 @@
       },
       {
         "source": "meeting:3",
-        "target": "workgroup:program-committee",
+        "target": "workgroup:logistics",
         "kind": "DISCUSSED"
       },
       {
@@ -881,6 +1798,11 @@
         "kind": "DISCUSSED"
       },
       {
+        "source": "meeting:3",
+        "target": "workgroup:program-committee",
+        "kind": "DISCUSSED"
+      },
+      {
         "source": "meeting:2",
         "target": "workgroup:sponsoring",
         "kind": "DISCUSSED"
@@ -892,17 +1814,17 @@
       },
       {
         "source": "meeting:1",
+        "target": "workgroup:logistics",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:1",
         "target": "workgroup:registration-help-desk",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:1",
         "target": "workgroup:program-committee",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:1",
-        "target": "workgroup:logistics",
         "kind": "DISCUSSED"
       },
       {
@@ -912,12 +1834,12 @@
       },
       {
         "source": "person:Agriya Khetarpal",
-        "target": "workgroup:sponsoring",
+        "target": "workgroup:website",
         "kind": "MEMBER_OF"
       },
       {
         "source": "person:Agriya Khetarpal",
-        "target": "workgroup:website",
+        "target": "workgroup:sponsoring",
         "kind": "MEMBER_OF"
       },
       {
@@ -927,12 +1849,12 @@
       },
       {
         "source": "person:Agriya Khetarpal",
-        "target": "meeting:1",
+        "target": "meeting:3",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Agriya Khetarpal",
-        "target": "meeting:3",
+        "target": "meeting:1",
         "kind": "ATTENDED"
       },
       {
@@ -952,7 +1874,7 @@
       },
       {
         "source": "person:Malayaja Chutani",
-        "target": "meeting:3",
+        "target": "meeting:2",
         "kind": "ATTENDED"
       },
       {
@@ -962,13 +1884,18 @@
       },
       {
         "source": "person:Malayaja Chutani",
-        "target": "meeting:2",
+        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Malayaja Chutani",
-        "target": "meeting:4",
+        "target": "meeting:3",
         "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "workgroup:registration-help-desk",
+        "kind": "MEMBER_OF"
       },
       {
         "source": "person:Srihari Thyagarajan",
@@ -977,11 +1904,6 @@
       },
       {
         "source": "person:Srihari Thyagarajan",
-        "target": "workgroup:registration-help-desk",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Srihari Thyagarajan",
         "target": "meeting:4",
         "kind": "ATTENDED"
       },
@@ -1001,199 +1923,199 @@
         "kind": "ATTENDED"
       },
       {
-        "source": "task:sponsoring:sponsorship-deck:h2d49d51dd0",
+        "source": "task:sponsoring:sponsorship-deck:heb70087595",
         "target": "workgroup:sponsoring",
         "kind": "BELONGS_TO"
       },
       {
         "source": "person:Agriya Khetarpal",
-        "target": "task:sponsoring:sponsorship-deck:h2d49d51dd0",
+        "target": "task:sponsoring:sponsorship-deck:heb70087595",
         "kind": "ASSIGNED_TO"
       },
       {
         "source": "meeting:1",
-        "target": "task:sponsoring:sponsorship-deck:h2d49d51dd0",
+        "target": "task:sponsoring:sponsorship-deck:heb70087595",
         "kind": "CREATED_ACTION"
       },
       {
         "source": "meeting:2",
-        "target": "task:sponsoring:sponsorship-deck:h2d49d51dd0",
+        "target": "task:sponsoring:sponsorship-deck:heb70087595",
         "kind": "TOUCHED_ACTION"
       },
       {
-        "source": "task:sponsoring:budget-v1:h9919442459",
+        "source": "task:sponsoring:budget-v1:h5497589605",
         "target": "workgroup:sponsoring",
         "kind": "BELONGS_TO"
       },
       {
         "source": "person:Malayaja Chutani",
-        "target": "task:sponsoring:budget-v1:h9919442459",
+        "target": "task:sponsoring:budget-v1:h5497589605",
         "kind": "ASSIGNED_TO"
       },
       {
         "source": "meeting:1",
-        "target": "task:sponsoring:budget-v1:h9919442459",
+        "target": "task:sponsoring:budget-v1:h5497589605",
         "kind": "CREATED_ACTION"
       },
       {
         "source": "meeting:2",
-        "target": "task:sponsoring:budget-v1:h9919442459",
+        "target": "task:sponsoring:budget-v1:h5497589605",
         "kind": "TOUCHED_ACTION"
       },
       {
         "source": "meeting:3",
-        "target": "task:sponsoring:budget-v1:h9919442459",
+        "target": "task:sponsoring:budget-v1:h5497589605",
         "kind": "TOUCHED_ACTION"
       },
       {
-        "source": "task:registration-help-desk:volunteer-form:h21429026c6",
+        "source": "task:registration-help-desk:volunteer-form:hea8a8a2b2e",
         "target": "workgroup:registration-help-desk",
         "kind": "BELONGS_TO"
       },
       {
         "source": "person:Srihari Thyagarajan",
-        "target": "task:registration-help-desk:volunteer-form:h21429026c6",
+        "target": "task:registration-help-desk:volunteer-form:hea8a8a2b2e",
         "kind": "ASSIGNED_TO"
       },
       {
         "source": "meeting:1",
-        "target": "task:registration-help-desk:volunteer-form:h21429026c6",
+        "target": "task:registration-help-desk:volunteer-form:hea8a8a2b2e",
         "kind": "CREATED_ACTION"
       },
       {
         "source": "meeting:2",
-        "target": "task:registration-help-desk:volunteer-form:h21429026c6",
+        "target": "task:registration-help-desk:volunteer-form:hea8a8a2b2e",
         "kind": "TOUCHED_ACTION"
       },
       {
-        "source": "task:website:pretalx-instance:h2a1077c4ee",
+        "source": "task:website:pretalx-instance:h32299a8aae",
         "target": "workgroup:website",
         "kind": "BELONGS_TO"
       },
       {
         "source": "person:Agriya Khetarpal",
-        "target": "task:website:pretalx-instance:h2a1077c4ee",
+        "target": "task:website:pretalx-instance:h32299a8aae",
         "kind": "ASSIGNED_TO"
       },
       {
         "source": "meeting:3",
-        "target": "task:website:pretalx-instance:h2a1077c4ee",
+        "target": "task:website:pretalx-instance:h32299a8aae",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "task:logistics:iitm-venue-recon:hf5224fffc1",
+        "source": "task:logistics:iitm-venue-recon:ha697290a36",
         "target": "workgroup:logistics",
         "kind": "BELONGS_TO"
       },
       {
-        "source": "person:Malayaja Chutani",
-        "target": "task:logistics:iitm-venue-recon:hf5224fffc1",
+        "source": "person:Srihari Thyagarajan",
+        "target": "task:logistics:iitm-venue-recon:ha697290a36",
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "person:Srihari Thyagarajan",
-        "target": "task:logistics:iitm-venue-recon:hf5224fffc1",
+        "source": "person:Malayaja Chutani",
+        "target": "task:logistics:iitm-venue-recon:ha697290a36",
         "kind": "ASSIGNED_TO"
       },
       {
         "source": "meeting:3",
-        "target": "task:logistics:iitm-venue-recon:hf5224fffc1",
+        "target": "task:logistics:iitm-venue-recon:ha697290a36",
         "kind": "CREATED_ACTION"
       },
       {
         "source": "meeting:4",
-        "target": "task:logistics:iitm-venue-recon:hf5224fffc1",
+        "target": "task:logistics:iitm-venue-recon:ha697290a36",
         "kind": "TOUCHED_ACTION"
       },
       {
-        "source": "task:program-committee:keynote-shortlist:hab5b5e2edc",
-        "target": "workgroup:program-committee",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Malayaja Chutani",
-        "target": "task:program-committee:keynote-shortlist:hab5b5e2edc",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "person:Srihari Thyagarajan",
-        "target": "task:program-committee:keynote-shortlist:hab5b5e2edc",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "person:Agriya Khetarpal",
-        "target": "task:program-committee:keynote-shortlist:hab5b5e2edc",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:3",
-        "target": "task:program-committee:keynote-shortlist:hab5b5e2edc",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "meeting:4",
-        "target": "task:program-committee:keynote-shortlist:hab5b5e2edc",
-        "kind": "TOUCHED_ACTION"
-      },
-      {
-        "source": "task:sponsoring:sponsor-outreach-round-1:hd9f92b862c",
+        "source": "task:sponsoring:foss-united-grant:h8fdf862f42",
         "target": "workgroup:sponsoring",
         "kind": "BELONGS_TO"
       },
       {
         "source": "person:Agriya Khetarpal",
-        "target": "task:sponsoring:sponsor-outreach-round-1:hd9f92b862c",
+        "target": "task:sponsoring:foss-united-grant:h8fdf862f42",
         "kind": "ASSIGNED_TO"
       },
       {
         "source": "meeting:3",
-        "target": "task:sponsoring:sponsor-outreach-round-1:hd9f92b862c",
+        "target": "task:sponsoring:foss-united-grant:h8fdf862f42",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "meeting:4",
-        "target": "task:sponsoring:sponsor-outreach-round-1:hd9f92b862c",
-        "kind": "TOUCHED_ACTION"
-      },
-      {
-        "source": "task:sponsoring:foss-united-grant:h853ac81097",
-        "target": "workgroup:sponsoring",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Agriya Khetarpal",
-        "target": "task:sponsoring:foss-united-grant:h853ac81097",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:3",
-        "target": "task:sponsoring:foss-united-grant:h853ac81097",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:logistics:catering-quotes:h0033d38aac",
+        "source": "task:logistics:catering-quotes:h56bbea1b12",
         "target": "workgroup:logistics",
         "kind": "BELONGS_TO"
       },
       {
         "source": "meeting:4",
-        "target": "task:logistics:catering-quotes:h0033d38aac",
+        "target": "task:logistics:catering-quotes:h56bbea1b12",
         "kind": "CREATED_ACTION"
       },
       {
-        "source": "task:registration-help-desk:volunteer-shortlist:h7c9d193695",
+        "source": "task:registration-help-desk:volunteer-shortlist:hf197a302cd",
         "target": "workgroup:registration-help-desk",
         "kind": "BELONGS_TO"
       },
       {
         "source": "person:Srihari Thyagarajan",
-        "target": "task:registration-help-desk:volunteer-shortlist:h7c9d193695",
+        "target": "task:registration-help-desk:volunteer-shortlist:hf197a302cd",
         "kind": "ASSIGNED_TO"
       },
       {
         "source": "meeting:4",
-        "target": "task:registration-help-desk:volunteer-shortlist:h7c9d193695",
+        "target": "task:registration-help-desk:volunteer-shortlist:hf197a302cd",
         "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "task:program-committee:keynote-shortlist:he91092c0de",
+        "target": "workgroup:program-committee",
+        "kind": "BELONGS_TO"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "task:program-committee:keynote-shortlist:he91092c0de",
+        "kind": "ASSIGNED_TO"
+      },
+      {
+        "source": "person:Malayaja Chutani",
+        "target": "task:program-committee:keynote-shortlist:he91092c0de",
+        "kind": "ASSIGNED_TO"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
+        "target": "task:program-committee:keynote-shortlist:he91092c0de",
+        "kind": "ASSIGNED_TO"
+      },
+      {
+        "source": "meeting:3",
+        "target": "task:program-committee:keynote-shortlist:he91092c0de",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "meeting:4",
+        "target": "task:program-committee:keynote-shortlist:he91092c0de",
+        "kind": "TOUCHED_ACTION"
+      },
+      {
+        "source": "task:sponsoring:sponsor-outreach-round-1:h8217c74149",
+        "target": "workgroup:sponsoring",
+        "kind": "BELONGS_TO"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
+        "target": "task:sponsoring:sponsor-outreach-round-1:h8217c74149",
+        "kind": "ASSIGNED_TO"
+      },
+      {
+        "source": "meeting:3",
+        "target": "task:sponsoring:sponsor-outreach-round-1:h8217c74149",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "meeting:4",
+        "target": "task:sponsoring:sponsor-outreach-round-1:h8217c74149",
+        "kind": "TOUCHED_ACTION"
       },
       {
         "source": "decision:IIT Madras works for both days. Malayaja and Srihari walked the lecture halls and the space for tutorials; power and seating are fine, and the open question is catering.",
@@ -1299,6 +2221,51 @@
         "source": "meeting:1",
         "target": "decision:We need a sponsorship deck before approaching anyone, so that comes first and everything else waits on it.",
         "kind": "DECIDED"
+      },
+      {
+        "source": "task:sponsoring:foss-united-grant:h8fdf862f42",
+        "target": "issue:scipy-india/planning#44",
+        "kind": "TRACKED_BY"
+      },
+      {
+        "source": "task:website:pretalx-instance:h32299a8aae",
+        "target": "issue:scipy-india/planning#41",
+        "kind": "TRACKED_BY"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "issue:scipy-india/planning#35",
+        "kind": "WORKS_ON"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
+        "target": "issue:scipy-india/planning#34",
+        "kind": "WORKS_ON"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "issue:scipy-india/planning#34",
+        "kind": "WORKS_ON"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
+        "target": "issue:scipy-india/planning#21",
+        "kind": "WORKS_ON"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "issue:scipy-india/planning#21",
+        "kind": "WORKS_ON"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
+        "target": "issue:scipy-india/planning#10",
+        "kind": "WORKS_ON"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
+        "target": "issue:scipy-india/planning#1",
+        "kind": "WORKS_ON"
       }
     ]
   }

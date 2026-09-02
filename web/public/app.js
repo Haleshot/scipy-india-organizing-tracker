@@ -423,23 +423,45 @@ function viewIssues(params) {
     }));
 }
 
+/** An issue's state, borrowing the action item status colours so the two lists
+ *  read the same way. GitHub's own words, not ours: "not planned" is a real
+ *  outcome and flattening it to "closed" loses that. */
+function issueMark(issue) {
+  if (issue.state === 'open') return el('span', { class: 'status status-open', text: 'open' });
+  const reason = issue.state_reason === 'not_planned' ? 'not planned' : 'done';
+  const tone = issue.state_reason === 'not_planned' ? 'dropped' : 'done';
+  return el('span', { class: `status status-${tone}`, text: reason });
+}
+
 function issueItem(issue) {
   const tracked = (issue.tasks ?? []).map((id) => taskById(id)).filter(Boolean);
-  return el('li', {},
+  const meta = el('div', { class: 'meta' },
+    el('a', { class: 'link', href: issue.url, rel: 'noreferrer' }, `#${issue.number}`),
+    issue.workgroup ? wgLink(issue.workgroup) : el('span', { text: 'no role' }),
+    (issue.owners ?? []).length
+      ? el('span', {}, ...joinNodes(issue.owners, personLink))
+      : el('span', { text: 'nobody assigned' }),
+    issue.milestone ? el('span', { text: issue.milestone }) : null,
+    (issue.labels ?? []).length ? el('span', { text: issue.labels.join(', ') }) : null,
+    issue.comment_count ? el('span', { text: plural(issue.comment_count, 'comment') }) : null);
+
+  return el('li', { id: `issue-${issue.number}` },
     el('div', { class: 'row' },
-      el('span', { class: 'gutter meta', text: `#${issue.number}` }),
+      el('span', { class: 'gutter' }, issueMark(issue)),
       el('div', { class: 'body' },
-        el('div', { class: 'title' },
-          el('a', { class: 'link', href: issue.url, rel: 'noreferrer' }, issue.title)),
-        el('div', { class: 'meta' },
-          issue.state === 'open' ? 'open' : 'closed',
-          issue.workgroup ? [', ', wgLink(issue.workgroup)] : '',
-          (issue.owners ?? []).length
-            ? [', ', ...(issue.owners.map((name, index) => index ? [', ', personLink(name)] : personLink(name)).flat())]
-            : ''),
+        el('div', { class: 'title', text: issue.title }),
+        meta,
+        // The point of holding both sources: what the room said, beside what
+        // the tracker says. They disagree often enough to be worth showing.
         tracked.length
-          ? el('div', { class: 'meta' }, 'From the notes: ',
-              el('a', { class: 'link', href: `#/tasks?filter=all&focus=${encodeURIComponent(tracked[0].id)}` }, tracked[0].description))
+          ? el('ul', { class: 'timeline' }, tracked.map((task) => el('li', {},
+              el('span', { class: 'when', text: 'in the notes' }),
+              statusMark(task.status),
+              el('span', { class: 'note' },
+                el('a', {
+                  class: 'link',
+                  href: `#/tasks?filter=all&focus=${encodeURIComponent(task.id)}`,
+                }, task.description)))))
           : null)));
 }
 
