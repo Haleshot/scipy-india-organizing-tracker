@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-09-02T06:32:45+00:00",
+  "generated_at": "2026-09-02T08:11:21+00:00",
   "schema_version": 4,
   "profile": "public",
   "source": {
-    "built_at": "2026-09-02T06:32:45.076889Z",
+    "built_at": "2026-09-02T08:11:20.398975Z",
     "notes_source": "google_drive",
     "extraction_mode": "markdown",
     "person_resolution": "exact"
   },
   "summary": {
-    "meetings": 4,
+    "meetings": 5,
     "people_listed": 3,
     "people_withheld": 0,
-    "tasks": 10,
-    "open_tasks": 5,
-    "unassigned_open_tasks": 1,
-    "decisions": 11,
+    "tasks": 13,
+    "open_tasks": 8,
+    "unassigned_open_tasks": 2,
+    "decisions": 15,
     "workgroups": 13,
     "issues": 43,
     "open_issues": 19,
@@ -89,8 +89,8 @@
       "slug": "registration-help-desk",
       "name": "Registration & Help Desk",
       "description": "Check-in desks, badges, the queue, and answering questions all day.",
-      "open_tasks": 1,
-      "total_tasks": 2,
+      "open_tasks": 3,
+      "total_tasks": 4,
       "member_count": 1,
       "awaiting_assignment": 0
     },
@@ -107,8 +107,8 @@
       "slug": "social-media-communications",
       "name": "Social Media & Communications",
       "description": "Announcements, social posts, newsletters and community partners.",
-      "open_tasks": 0,
-      "total_tasks": 0,
+      "open_tasks": 1,
+      "total_tasks": 1,
       "member_count": 0,
       "awaiting_assignment": 0
     },
@@ -142,37 +142,53 @@
   ],
   "meetings": [
     {
-      "id": 4,
-      "date": "2026-08-22",
-      "title": "Venue recon and keynote outreach",
-      "summary": "What we saw at IIT Madras.; Where keynote outreach has got to.; Volunteer form responses and what to do with them.",
+      "id": 5,
+      "date": "2026-08-29",
+      "title": "Volunteer intro call and venue confirmation",
+      "summary": "Getting the shortlisted volunteers onto one call. What we can and cannot offer volunteers, given the budget. Where volunteer coordination happens day to day.",
       "topics": [
-        "What we saw at IIT Madras.",
-        "Where keynote outreach has got to.",
-        "Volunteer form responses and what to do with them."
+        "Getting the shortlisted volunteers onto one call. What we can and cannot offer volunteers, given the budget. Where volunteer coordination happens day to day."
       ],
       "facilitator": "Srihari Thyagarajan",
       "attendees": [
         "Srihari Thyagarajan",
-        "Malayaja Chutani",
-        "Agriya Khetarpal"
+        "Agriya Khetarpal",
+        "Malayaja Chutani"
       ],
       "workgroups": [
-        "sponsoring",
+        "logistics",
+        "social-media-communications",
+        "registration-help-desk"
+      ]
+    },
+    {
+      "id": 4,
+      "date": "2026-08-22",
+      "title": "Venue recon and keynote outreach",
+      "summary": "What we saw at IIT Madras. Where keynote outreach has got to. Volunteer form responses and what to do with them.",
+      "topics": [
+        "What we saw at IIT Madras. Where keynote outreach has got to. Volunteer form responses and what to do with them."
+      ],
+      "facilitator": "Srihari Thyagarajan",
+      "attendees": [
+        "Srihari Thyagarajan",
+        "Agriya Khetarpal",
+        "Malayaja Chutani"
+      ],
+      "workgroups": [
         "program-committee",
+        "logistics",
         "registration-help-desk",
-        "logistics"
+        "sponsoring"
       ]
     },
     {
       "id": 3,
       "date": "2026-08-08",
       "title": "Budget and venue",
-      "summary": "The budget Malayaja laid out, line by line.; Venue options, and whether IIT Madras is workable.; Who we want as keynote speakers.",
+      "summary": "The budget Malayaja laid out, line by line. Venue options, and whether IIT Madras is workable. Who we want as keynote speakers.",
       "topics": [
-        "The budget Malayaja laid out, line by line.",
-        "Venue options, and whether IIT Madras is workable.",
-        "Who we want as keynote speakers."
+        "The budget Malayaja laid out, line by line. Venue options, and whether IIT Madras is workable. Who we want as keynote speakers."
       ],
       "facilitator": "Malayaja Chutani",
       "attendees": [
@@ -181,42 +197,38 @@
         "Malayaja Chutani"
       ],
       "workgroups": [
-        "sponsoring",
-        "logistics",
         "website",
-        "program-committee"
+        "sponsoring",
+        "program-committee",
+        "logistics"
       ]
     },
     {
       "id": 2,
       "date": "2026-07-25",
       "title": "Sponsorship deck review",
-      "summary": "Walking through the sponsorship deck Agriya drafted.; Tier structure and what each tier actually gets.; First responses to the volunteer form.",
+      "summary": "Walking through the sponsorship deck Agriya drafted. Tier structure and what each tier actually gets. First responses to the volunteer form.",
       "topics": [
-        "Walking through the sponsorship deck Agriya drafted.",
-        "Tier structure and what each tier actually gets.",
-        "First responses to the volunteer form."
+        "Walking through the sponsorship deck Agriya drafted. Tier structure and what each tier actually gets. First responses to the volunteer form."
       ],
       "facilitator": "Agriya Khetarpal",
       "attendees": [
-        "Malayaja Chutani",
+        "Srihari Thyagarajan",
         "Agriya Khetarpal",
-        "Srihari Thyagarajan"
+        "Malayaja Chutani"
       ],
       "workgroups": [
-        "sponsoring",
-        "registration-help-desk"
+        "registration-help-desk",
+        "sponsoring"
       ]
     },
     {
       "id": 1,
       "date": "2026-07-11",
       "title": "Kickoff for the 2026 cycle",
-      "summary": "Dates, format and what we are committing to this year.; What we need in place before we can talk to anyone about money.; How we collect volunteer interest without a spreadsheet nobody maintains.",
+      "summary": "Dates, format and what we are committing to this year. What we need in place before we can talk to anyone about money. How we collect volunteer interest without a spreadsheet nobody maintains.",
       "topics": [
-        "Dates, format and what we are committing to this year.",
-        "What we need in place before we can talk to anyone about money.",
-        "How we collect volunteer interest without a spreadsheet nobody maintains."
+        "Dates, format and what we are committing to this year. What we need in place before we can talk to anyone about money. How we collect volunteer interest without a spreadsheet nobody maintains."
       ],
       "facilitator": "Srihari Thyagarajan",
       "attendees": [
@@ -225,10 +237,10 @@
         "Srihari Thyagarajan"
       ],
       "workgroups": [
-        "logistics",
-        "registration-help-desk",
         "program-committee",
-        "sponsoring"
+        "registration-help-desk",
+        "sponsoring",
+        "logistics"
       ]
     }
   ],
@@ -236,21 +248,22 @@
     {
       "name": "Agriya Khetarpal",
       "workgroups": [
-        "website",
-        "sponsoring"
+        "sponsoring",
+        "website"
       ],
       "meetings": [
-        2,
-        3,
         1,
+        3,
+        2,
+        5,
         4
       ],
       "tasks": [
-        "sponsoring:foss-united-grant:h8fdf862f42",
-        "sponsoring:sponsor-outreach-round-1:h8217c74149",
-        "website:pretalx-instance:h32299a8aae",
         "sponsoring:sponsorship-deck:heb70087595",
-        "program-committee:keynote-shortlist:he91092c0de"
+        "sponsoring:sponsor-outreach-round-1:h8217c74149",
+        "sponsoring:foss-united-grant:h8fdf862f42",
+        "program-committee:keynote-shortlist:he91092c0de",
+        "website:pretalx-instance:h32299a8aae"
       ]
     },
     {
@@ -260,15 +273,16 @@
         "logistics"
       ],
       "meetings": [
-        2,
         1,
-        4,
-        3
+        3,
+        2,
+        5,
+        4
       ],
       "tasks": [
         "logistics:iitm-venue-recon:ha697290a36",
-        "program-committee:keynote-shortlist:he91092c0de",
-        "sponsoring:budget-v1:h5497589605"
+        "sponsoring:budget-v1:h5497589605",
+        "program-committee:keynote-shortlist:he91092c0de"
       ]
     },
     {
@@ -278,15 +292,18 @@
         "program-committee"
       ],
       "meetings": [
+        5,
+        2,
         4,
         3,
-        1,
-        2
+        1
       ],
       "tasks": [
-        "registration-help-desk:volunteer-form:hea8a8a2b2e",
-        "logistics:iitm-venue-recon:ha697290a36",
         "program-committee:keynote-shortlist:he91092c0de",
+        "logistics:iitm-venue-recon:ha697290a36",
+        "registration-help-desk:volunteer-intro-call:h7979644396",
+        "registration-help-desk:volunteer-form:hea8a8a2b2e",
+        "registration-help-desk:volunteer-call-time:h07e82a931d",
         "registration-help-desk:volunteer-shortlist:hf197a302cd"
       ]
     }
@@ -309,7 +326,7 @@
         {
           "date": "2026-07-11",
           "id": 1,
-          "status": "unknown"
+          "status": "in_progress"
         },
         {
           "date": "2026-07-25",
@@ -340,7 +357,7 @@
         {
           "date": "2026-07-25",
           "id": 2,
-          "status": "unknown"
+          "status": "in_progress"
         },
         {
           "date": "2026-08-08",
@@ -366,7 +383,7 @@
         {
           "date": "2026-07-11",
           "id": 1,
-          "status": "unknown"
+          "status": "in_progress"
         },
         {
           "date": "2026-07-25",
@@ -424,6 +441,86 @@
       ]
     },
     {
+      "id": "program-committee:keynote-shortlist:he91092c0de",
+      "description": "Draw up a keynote speaker shortlist",
+      "status": "in_progress",
+      "due": "",
+      "first_seen": "2026-08-08",
+      "last_seen": "2026-08-22",
+      "meeting_count": 2,
+      "workgroup": "program-committee",
+      "owners": [
+        "Srihari Thyagarajan",
+        "Agriya Khetarpal",
+        "Malayaja Chutani"
+      ],
+      "created_in": 3,
+      "history": [
+        {
+          "date": "2026-08-08",
+          "id": 3,
+          "status": "open"
+        },
+        {
+          "date": "2026-08-22",
+          "id": 4,
+          "status": "in_progress"
+        }
+      ]
+    },
+    {
+      "id": "sponsoring:sponsor-outreach-round-1:h8217c74149",
+      "description": "Send the sponsorship deck to the first round of leads",
+      "status": "in_progress",
+      "due": "",
+      "first_seen": "2026-08-08",
+      "last_seen": "2026-08-22",
+      "meeting_count": 2,
+      "workgroup": "sponsoring",
+      "owners": [
+        "Agriya Khetarpal"
+      ],
+      "created_in": 3,
+      "history": [
+        {
+          "date": "2026-08-08",
+          "id": 3,
+          "status": "open"
+        },
+        {
+          "date": "2026-08-22",
+          "id": 4,
+          "status": "in_progress"
+        }
+      ]
+    },
+    {
+      "id": "registration-help-desk:volunteer-shortlist:hf197a302cd",
+      "description": "Shortlist volunteers and start intro calls",
+      "status": "in_progress",
+      "due": "2026-09-06",
+      "first_seen": "2026-08-22",
+      "last_seen": "2026-08-29",
+      "meeting_count": 2,
+      "workgroup": "registration-help-desk",
+      "owners": [
+        "Srihari Thyagarajan"
+      ],
+      "created_in": 4,
+      "history": [
+        {
+          "date": "2026-08-22",
+          "id": 4,
+          "status": "open"
+        },
+        {
+          "date": "2026-08-29",
+          "id": 5,
+          "status": "in_progress"
+        }
+      ]
+    },
+    {
       "id": "sponsoring:foss-united-grant:h8fdf862f42",
       "description": "Apply to the FOSS United Events grant",
       "status": "open",
@@ -440,6 +537,27 @@
         {
           "date": "2026-08-08",
           "id": 3,
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "id": "registration-help-desk:volunteer-call-time:h07e82a931d",
+      "description": "Confirm the call time once replies are in",
+      "status": "open",
+      "due": "2026-09-04",
+      "first_seen": "2026-08-29",
+      "last_seen": "2026-08-29",
+      "meeting_count": 1,
+      "workgroup": "registration-help-desk",
+      "owners": [
+        "Srihari Thyagarajan"
+      ],
+      "created_in": 5,
+      "history": [
+        {
+          "date": "2026-08-29",
+          "id": 5,
           "status": "open"
         }
       ]
@@ -464,82 +582,79 @@
       ]
     },
     {
-      "id": "registration-help-desk:volunteer-shortlist:hf197a302cd",
-      "description": "Shortlist volunteers and start intro calls",
+      "id": "social-media-communications:volunteer-zulip-onboardi:h98539e35c4",
+      "description": "Get volunteers onto Zulip and into the volunteers channel",
       "status": "open",
       "due": "",
-      "first_seen": "2026-08-22",
-      "last_seen": "2026-08-22",
+      "first_seen": "2026-08-29",
+      "last_seen": "2026-08-29",
+      "meeting_count": 1,
+      "workgroup": "social-media-communications",
+      "owners": [],
+      "created_in": 5,
+      "history": [
+        {
+          "date": "2026-08-29",
+          "id": 5,
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "id": "registration-help-desk:volunteer-intro-call:h7979644396",
+      "description": "Send the volunteer intro call invite",
+      "status": "open",
+      "due": "2026-08-29",
+      "first_seen": "2026-08-29",
+      "last_seen": "2026-08-29",
       "meeting_count": 1,
       "workgroup": "registration-help-desk",
       "owners": [
         "Srihari Thyagarajan"
       ],
-      "created_in": 4,
+      "created_in": 5,
       "history": [
         {
-          "date": "2026-08-22",
-          "id": 4,
+          "date": "2026-08-29",
+          "id": 5,
           "status": "open"
-        }
-      ]
-    },
-    {
-      "id": "program-committee:keynote-shortlist:he91092c0de",
-      "description": "Draw up a keynote speaker shortlist",
-      "status": "unknown",
-      "due": "",
-      "first_seen": "2026-08-08",
-      "last_seen": "2026-08-22",
-      "meeting_count": 2,
-      "workgroup": "program-committee",
-      "owners": [
-        "Srihari Thyagarajan",
-        "Malayaja Chutani",
-        "Agriya Khetarpal"
-      ],
-      "created_in": 3,
-      "history": [
-        {
-          "date": "2026-08-08",
-          "id": 3,
-          "status": "open"
-        },
-        {
-          "date": "2026-08-22",
-          "id": 4,
-          "status": "unknown"
-        }
-      ]
-    },
-    {
-      "id": "sponsoring:sponsor-outreach-round-1:h8217c74149",
-      "description": "Send the sponsorship deck to the first round of leads",
-      "status": "unknown",
-      "due": "",
-      "first_seen": "2026-08-08",
-      "last_seen": "2026-08-22",
-      "meeting_count": 2,
-      "workgroup": "sponsoring",
-      "owners": [
-        "Agriya Khetarpal"
-      ],
-      "created_in": 3,
-      "history": [
-        {
-          "date": "2026-08-08",
-          "id": 3,
-          "status": "open"
-        },
-        {
-          "date": "2026-08-22",
-          "id": 4,
-          "status": "unknown"
         }
       ]
     }
   ],
   "decisions": [
+    {
+      "statement": "IIT Madras, Chennai is confirmed for 19 and 20 December.",
+      "workgroup": "logistics",
+      "meetings": [
+        5
+      ],
+      "date": "2026-08-29"
+    },
+    {
+      "statement": "The first volunteer call is Sunday 6 September at 4 PM. Srihari sends the invite and collects replies on the time before fixing it.",
+      "workgroup": "registration-help-desk",
+      "meetings": [
+        5
+      ],
+      "date": "2026-08-29"
+    },
+    {
+      "statement": "Volunteer coordination happens on Zulip, in the volunteers channel, rather than over email.",
+      "workgroup": "social-media-communications",
+      "meetings": [
+        5
+      ],
+      "date": "2026-08-29"
+    },
+    {
+      "statement": "Volunteers do not get free tickets, travel or venue support, because the budget does not cover it. Early bird pricing stays open to them if they want to attend. This goes in the invite rather than coming up later.",
+      "workgroup": "registration-help-desk",
+      "meetings": [
+        5
+      ],
+      "date": "2026-08-29"
+    },
     {
       "statement": "IIT Madras works for both days. Malayaja and Srihari walked the lecture halls and the space for tutorials; power and seating are fine, and the open question is catering.",
       "workgroup": "logistics",
@@ -1007,8 +1122,8 @@
       "updated_at": "2026-07-07",
       "workgroup": null,
       "owners": [
-        "Agriya Khetarpal",
-        "Srihari Thyagarajan"
+        "Srihari Thyagarajan",
+        "Agriya Khetarpal"
       ],
       "tasks": []
     },
@@ -1406,6 +1521,11 @@
         "kind": "workgroup"
       },
       {
+        "id": "meeting:5",
+        "label": "2026-08-29 Volunteer intro call and venue confirmation",
+        "kind": "meeting"
+      },
+      {
         "id": "meeting:4",
         "label": "2026-08-22 Venue recon and keynote outreach",
         "kind": "meeting"
@@ -1466,21 +1586,6 @@
         "kind": "task"
       },
       {
-        "id": "task:sponsoring:foss-united-grant:h8fdf862f42",
-        "label": "Apply to the FOSS United Events grant",
-        "kind": "task"
-      },
-      {
-        "id": "task:logistics:catering-quotes:h56bbea1b12",
-        "label": "Get catering quotes for both days",
-        "kind": "task"
-      },
-      {
-        "id": "task:registration-help-desk:volunteer-shortlist:hf197a302cd",
-        "label": "Shortlist volunteers and start intro calls",
-        "kind": "task"
-      },
-      {
         "id": "task:program-committee:keynote-shortlist:he91092c0de",
         "label": "Draw up a keynote speaker shortlist",
         "kind": "task"
@@ -1489,6 +1594,56 @@
         "id": "task:sponsoring:sponsor-outreach-round-1:h8217c74149",
         "label": "Send the sponsorship deck to the first round of leads",
         "kind": "task"
+      },
+      {
+        "id": "task:registration-help-desk:volunteer-shortlist:hf197a302cd",
+        "label": "Shortlist volunteers and start intro calls",
+        "kind": "task"
+      },
+      {
+        "id": "task:sponsoring:foss-united-grant:h8fdf862f42",
+        "label": "Apply to the FOSS United Events grant",
+        "kind": "task"
+      },
+      {
+        "id": "task:registration-help-desk:volunteer-call-time:h07e82a931d",
+        "label": "Confirm the call time once replies are in",
+        "kind": "task"
+      },
+      {
+        "id": "task:logistics:catering-quotes:h56bbea1b12",
+        "label": "Get catering quotes for both days",
+        "kind": "task"
+      },
+      {
+        "id": "task:social-media-communications:volunteer-zulip-onboardi:h98539e35c4",
+        "label": "Get volunteers onto Zulip and into the volunteers channel",
+        "kind": "task"
+      },
+      {
+        "id": "task:registration-help-desk:volunteer-intro-call:h7979644396",
+        "label": "Send the volunteer intro call invite",
+        "kind": "task"
+      },
+      {
+        "id": "decision:IIT Madras, Chennai is confirmed for 19 and 20 December.",
+        "label": "IIT Madras, Chennai is confirmed for 19 and 20 December.",
+        "kind": "decision"
+      },
+      {
+        "id": "decision:The first volunteer call is Sunday 6 September at 4 PM. Srihari sends the invite and collects replies on the time before fixing it.",
+        "label": "The first volunteer call is Sunday 6 September at 4 PM. Srihari sends the invite and collects replies on the time before fixing it.",
+        "kind": "decision"
+      },
+      {
+        "id": "decision:Volunteer coordination happens on Zulip, in the volunteers channel, rather than over email.",
+        "label": "Volunteer coordination happens on Zulip, in the volunteers channel, rather than over email.",
+        "kind": "decision"
+      },
+      {
+        "id": "decision:Volunteers do not get free tickets, travel or venue support, because the budget does not cover it. Early bird pricing stays open to them if they want to attend. This goes in the invite rather than coming up later.",
+        "label": "Volunteers do not get free tickets, travel or venue support, because the budget does not cover it. Early bird pricing stays open to them if they want to attend. This goes in the invite rather than coming up later.",
+        "kind": "decision"
       },
       {
         "id": "decision:IIT Madras works for both days. Malayaja and Srihari walked the lecture halls and the space for tutorials; power and seating are fine, and the open question is catering.",
@@ -1763,8 +1918,18 @@
     ],
     "edges": [
       {
-        "source": "meeting:4",
-        "target": "workgroup:sponsoring",
+        "source": "meeting:5",
+        "target": "workgroup:logistics",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:5",
+        "target": "workgroup:social-media-communications",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:5",
+        "target": "workgroup:registration-help-desk",
         "kind": "DISCUSSED"
       },
       {
@@ -1774,22 +1939,17 @@
       },
       {
         "source": "meeting:4",
+        "target": "workgroup:logistics",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:4",
         "target": "workgroup:registration-help-desk",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:4",
-        "target": "workgroup:logistics",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:3",
         "target": "workgroup:sponsoring",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:3",
-        "target": "workgroup:logistics",
         "kind": "DISCUSSED"
       },
       {
@@ -1799,7 +1959,22 @@
       },
       {
         "source": "meeting:3",
+        "target": "workgroup:sponsoring",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
         "target": "workgroup:program-committee",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:3",
+        "target": "workgroup:logistics",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:2",
+        "target": "workgroup:registration-help-desk",
         "kind": "DISCUSSED"
       },
       {
@@ -1808,8 +1983,18 @@
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:2",
+        "source": "meeting:1",
+        "target": "workgroup:program-committee",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:1",
         "target": "workgroup:registration-help-desk",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:1",
+        "target": "workgroup:sponsoring",
         "kind": "DISCUSSED"
       },
       {
@@ -1818,19 +2003,9 @@
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:1",
-        "target": "workgroup:registration-help-desk",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:1",
-        "target": "workgroup:program-committee",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:1",
+        "source": "person:Agriya Khetarpal",
         "target": "workgroup:sponsoring",
-        "kind": "DISCUSSED"
+        "kind": "MEMBER_OF"
       },
       {
         "source": "person:Agriya Khetarpal",
@@ -1839,12 +2014,7 @@
       },
       {
         "source": "person:Agriya Khetarpal",
-        "target": "workgroup:sponsoring",
-        "kind": "MEMBER_OF"
-      },
-      {
-        "source": "person:Agriya Khetarpal",
-        "target": "meeting:2",
+        "target": "meeting:1",
         "kind": "ATTENDED"
       },
       {
@@ -1854,7 +2024,12 @@
       },
       {
         "source": "person:Agriya Khetarpal",
-        "target": "meeting:1",
+        "target": "meeting:2",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
+        "target": "meeting:5",
         "kind": "ATTENDED"
       },
       {
@@ -1874,22 +2049,27 @@
       },
       {
         "source": "person:Malayaja Chutani",
-        "target": "meeting:2",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Malayaja Chutani",
         "target": "meeting:1",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Malayaja Chutani",
-        "target": "meeting:4",
+        "target": "meeting:3",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Malayaja Chutani",
-        "target": "meeting:3",
+        "target": "meeting:2",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Malayaja Chutani",
+        "target": "meeting:5",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Malayaja Chutani",
+        "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
@@ -1904,6 +2084,16 @@
       },
       {
         "source": "person:Srihari Thyagarajan",
+        "target": "meeting:5",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "meeting:2",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
         "target": "meeting:4",
         "kind": "ATTENDED"
       },
@@ -1915,11 +2105,6 @@
       {
         "source": "person:Srihari Thyagarajan",
         "target": "meeting:1",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Srihari Thyagarajan",
-        "target": "meeting:2",
         "kind": "ATTENDED"
       },
       {
@@ -2028,46 +2213,6 @@
         "kind": "TOUCHED_ACTION"
       },
       {
-        "source": "task:sponsoring:foss-united-grant:h8fdf862f42",
-        "target": "workgroup:sponsoring",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Agriya Khetarpal",
-        "target": "task:sponsoring:foss-united-grant:h8fdf862f42",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:3",
-        "target": "task:sponsoring:foss-united-grant:h8fdf862f42",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:logistics:catering-quotes:h56bbea1b12",
-        "target": "workgroup:logistics",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "meeting:4",
-        "target": "task:logistics:catering-quotes:h56bbea1b12",
-        "kind": "CREATED_ACTION"
-      },
-      {
-        "source": "task:registration-help-desk:volunteer-shortlist:hf197a302cd",
-        "target": "workgroup:registration-help-desk",
-        "kind": "BELONGS_TO"
-      },
-      {
-        "source": "person:Srihari Thyagarajan",
-        "target": "task:registration-help-desk:volunteer-shortlist:hf197a302cd",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "meeting:4",
-        "target": "task:registration-help-desk:volunteer-shortlist:hf197a302cd",
-        "kind": "CREATED_ACTION"
-      },
-      {
         "source": "task:program-committee:keynote-shortlist:he91092c0de",
         "target": "workgroup:program-committee",
         "kind": "BELONGS_TO"
@@ -2078,12 +2223,12 @@
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "person:Malayaja Chutani",
+        "source": "person:Agriya Khetarpal",
         "target": "task:program-committee:keynote-shortlist:he91092c0de",
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "person:Agriya Khetarpal",
+        "source": "person:Malayaja Chutani",
         "target": "task:program-committee:keynote-shortlist:he91092c0de",
         "kind": "ASSIGNED_TO"
       },
@@ -2116,6 +2261,131 @@
         "source": "meeting:4",
         "target": "task:sponsoring:sponsor-outreach-round-1:h8217c74149",
         "kind": "TOUCHED_ACTION"
+      },
+      {
+        "source": "task:registration-help-desk:volunteer-shortlist:hf197a302cd",
+        "target": "workgroup:registration-help-desk",
+        "kind": "BELONGS_TO"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "task:registration-help-desk:volunteer-shortlist:hf197a302cd",
+        "kind": "ASSIGNED_TO"
+      },
+      {
+        "source": "meeting:4",
+        "target": "task:registration-help-desk:volunteer-shortlist:hf197a302cd",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "meeting:5",
+        "target": "task:registration-help-desk:volunteer-shortlist:hf197a302cd",
+        "kind": "TOUCHED_ACTION"
+      },
+      {
+        "source": "task:sponsoring:foss-united-grant:h8fdf862f42",
+        "target": "workgroup:sponsoring",
+        "kind": "BELONGS_TO"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
+        "target": "task:sponsoring:foss-united-grant:h8fdf862f42",
+        "kind": "ASSIGNED_TO"
+      },
+      {
+        "source": "meeting:3",
+        "target": "task:sponsoring:foss-united-grant:h8fdf862f42",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "task:registration-help-desk:volunteer-call-time:h07e82a931d",
+        "target": "workgroup:registration-help-desk",
+        "kind": "BELONGS_TO"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "task:registration-help-desk:volunteer-call-time:h07e82a931d",
+        "kind": "ASSIGNED_TO"
+      },
+      {
+        "source": "meeting:5",
+        "target": "task:registration-help-desk:volunteer-call-time:h07e82a931d",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "task:logistics:catering-quotes:h56bbea1b12",
+        "target": "workgroup:logistics",
+        "kind": "BELONGS_TO"
+      },
+      {
+        "source": "meeting:4",
+        "target": "task:logistics:catering-quotes:h56bbea1b12",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "task:social-media-communications:volunteer-zulip-onboardi:h98539e35c4",
+        "target": "workgroup:social-media-communications",
+        "kind": "BELONGS_TO"
+      },
+      {
+        "source": "meeting:5",
+        "target": "task:social-media-communications:volunteer-zulip-onboardi:h98539e35c4",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "task:registration-help-desk:volunteer-intro-call:h7979644396",
+        "target": "workgroup:registration-help-desk",
+        "kind": "BELONGS_TO"
+      },
+      {
+        "source": "person:Srihari Thyagarajan",
+        "target": "task:registration-help-desk:volunteer-intro-call:h7979644396",
+        "kind": "ASSIGNED_TO"
+      },
+      {
+        "source": "meeting:5",
+        "target": "task:registration-help-desk:volunteer-intro-call:h7979644396",
+        "kind": "CREATED_ACTION"
+      },
+      {
+        "source": "decision:IIT Madras, Chennai is confirmed for 19 and 20 December.",
+        "target": "workgroup:logistics",
+        "kind": "CONCERNS"
+      },
+      {
+        "source": "meeting:5",
+        "target": "decision:IIT Madras, Chennai is confirmed for 19 and 20 December.",
+        "kind": "DECIDED"
+      },
+      {
+        "source": "decision:The first volunteer call is Sunday 6 September at 4 PM. Srihari sends the invite and collects replies on the time before fixing it.",
+        "target": "workgroup:registration-help-desk",
+        "kind": "CONCERNS"
+      },
+      {
+        "source": "meeting:5",
+        "target": "decision:The first volunteer call is Sunday 6 September at 4 PM. Srihari sends the invite and collects replies on the time before fixing it.",
+        "kind": "DECIDED"
+      },
+      {
+        "source": "decision:Volunteer coordination happens on Zulip, in the volunteers channel, rather than over email.",
+        "target": "workgroup:social-media-communications",
+        "kind": "CONCERNS"
+      },
+      {
+        "source": "meeting:5",
+        "target": "decision:Volunteer coordination happens on Zulip, in the volunteers channel, rather than over email.",
+        "kind": "DECIDED"
+      },
+      {
+        "source": "decision:Volunteers do not get free tickets, travel or venue support, because the budget does not cover it. Early bird pricing stays open to them if they want to attend. This goes in the invite rather than coming up later.",
+        "target": "workgroup:registration-help-desk",
+        "kind": "CONCERNS"
+      },
+      {
+        "source": "meeting:5",
+        "target": "decision:Volunteers do not get free tickets, travel or venue support, because the budget does not cover it. Early bird pricing stays open to them if they want to attend. This goes in the invite rather than coming up later.",
+        "kind": "DECIDED"
       },
       {
         "source": "decision:IIT Madras works for both days. Malayaja and Srihari walked the lecture halls and the space for tutorials; power and seating are fine, and the open question is catering.",
@@ -2248,12 +2518,12 @@
         "kind": "WORKS_ON"
       },
       {
-        "source": "person:Agriya Khetarpal",
+        "source": "person:Srihari Thyagarajan",
         "target": "issue:scipy-india/planning#21",
         "kind": "WORKS_ON"
       },
       {
-        "source": "person:Srihari Thyagarajan",
+        "source": "person:Agriya Khetarpal",
         "target": "issue:scipy-india/planning#21",
         "kind": "WORKS_ON"
       },
