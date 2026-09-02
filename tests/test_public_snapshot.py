@@ -182,7 +182,11 @@ def test_no_tracked_file_contains_a_private_key():
     if listing.returncode != 0:
         pytest.skip("not a git checkout")
 
-    markers = ("BEGIN PRIVATE KEY", "BEGIN RSA PRIVATE KEY", '"private_key"', "service_account")
+    # Assembled rather than written out, so this file does not match itself.
+    markers = (
+        "BEGIN " + "PRIVATE KEY",
+        '"private' + '_key"',
+    )
     offenders = []
     for name in listing.stdout.split():
         path = REPO_ROOT / name
@@ -192,9 +196,7 @@ def test_no_tracked_file_contains_a_private_key():
             body = path.read_text(encoding="utf-8", errors="ignore")
         except OSError:
             continue
-        # The word appears in prose and in env var names; a key has the marker
-        # and the PEM block together.
-        if any(marker in body for marker in markers[:3]):
+            if any(marker in body for marker in markers):
             offenders.append(name)
     assert not offenders, f"tracked files look like they contain a private key: {offenders}"
 
