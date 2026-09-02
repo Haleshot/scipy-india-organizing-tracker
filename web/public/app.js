@@ -54,9 +54,14 @@ function filtered({ segments, active, onSegment, placeholder, query, onQuery, re
   const count = el('span', { class: 'count' });
 
   const paint = () => {
-    const { nodes, shown, total, noun } = render();
+    // `plural` takes the irregular form because "3 persons" reads like a police
+    // report. Both branches go through it so the count says the same word.
+    const { nodes, shown, total, noun, nounPlural } = render();
+    const many = nounPlural ?? `${noun}s`;
     results.replaceChildren(nodes);
-    count.textContent = shown === total ? `${plural(total, noun)}` : `${shown} of ${total} ${noun}s`;
+    count.textContent = shown === total
+      ? plural(total, noun, many)
+      : `${shown} of ${total} ${many}`;
   };
 
   const bar = el('div', { class: 'controls' },
@@ -199,12 +204,16 @@ function viewOverview() {
       s.people_withheld
         ? `${plural(s.people_listed, 'person', 'people')} named here; ${s.people_withheld} more applied to volunteer and are counted rather than named.`
         : `${plural(s.people_listed, 'person', 'people')} named here.`),
+    // Every figure links somewhere that shows the rows behind it. A number you
+    // cannot open is a number you cannot check.
     el('dl', { class: 'tally' },
-      tally('Open', s.open_tasks, '#/tasks'),
-      tally('Unowned', s.unassigned_open_tasks, '#/tasks?filter=unassigned', true),
-      tally('Volunteers waiting', waiting, '#/workgroups'),
-      tally('Open issues', s.open_issues ?? 0, '#/issues'),
-      tally('Decisions', s.decisions, null)),
+      tally('Open action items', s.open_tasks, '#/tasks?filter=open'),
+      tally('No owner', s.unassigned_open_tasks, '#/tasks?filter=unassigned', true),
+      tally('Open issues', s.open_issues ?? 0, '#/issues?filter=open'),
+      tally('Decisions', s.decisions, '#/decisions'),
+      // Only when volunteer applications are actually loaded. With
+      // VOLUNTEER_SOURCE=none this is always zero and means nothing.
+      waiting ? tally('Volunteers waiting', waiting, '#/workgroups') : null),
   );
 
   // Two sources, said plainly. Notes and the tracker drift apart, and a reader
@@ -364,6 +373,54 @@ const TASK_FILTERS = [
   ['done', 'Done', (t) => t.status === 'done'],
   ['all', 'All', () => true],
 ];
+
+let decisionSearch = '';
+
+/**
+ * Decisions, newest first.
+ *
+ * They are their own nodes rather than a line in a meeting, because "what did
+ * we decide about the venue" should be one lookup rather than a reread of six
+ * meetings. A decision that came up again keeps every meeting that recorded it.
+ */
+function viewDecisions() {
+  const decisions = [...DATA.decisions].sort((a, b) =>
+    (b.meetings?.[0] ?? 0) - (a.meetings?.[0] ?? 0));
+  return el('div', {},
+    el('h1', { text: 'Decisions' }),
+    el('p', { class: 'lede', text: 'What the meetings settled, newest first. A decision names the volunteer role it concerns when the notes said so, and stays unfiled when they did not.' }),
+    filtered({
+      segments: null,
+      active: () => null,
+      onSegment: () => {},
+      placeholder: 'Filter by text or volunteer role',
+      query: () => decisionSearch,
+      onQuery: (value) => { decisionSearch = value; },
+      render: () => {
+        const list = decisions.filter((d) => matchesText(decisionSearch,
+          d.statement, d.workgroup && wgName(d.workgroup)));
+        return {
+          nodes: list.length
+            ? el('ul', { class: 'records' }, list.map(decisionItem))
+            : emptyNote('Nothing matches.'),
+          shown: list.length,
+          total: decisions.length,
+          noun: 'decision',
+        };
+      },
+    }));
+}
+
+function decisionItem(decision) {
+  return el('li', {},
+    el('div', { class: 'row' },
+      el('span', { class: 'gutter meta', text: 'decided' }),
+      el('div', { class: 'body' },
+        el('div', { class: 'title', text: decision.statement }),
+        el('div', { class: 'meta' },
+          decision.workgroup ? wgLink(decision.workgroup) : el('span', { text: 'no role' }),
+          ...(decision.meetings ?? []).slice(0, 3).map((id) => meetingLink(id))))));
+}
 
 const ISSUE_FILTERS = [
   ['open', 'Open', (i) => i.state === 'open'],
@@ -539,7 +596,7 @@ function viewPeople(params) {
           nodes: list.length
             ? el('ul', { class: 'records' }, list.map(personDetail))
             : emptyNote('Nobody matches.'),
-          shown: list.length, total: DATA.people.length, noun: 'person',
+          shown: list.length, total: DATA.people.length, noun: 'person', nounPlural: 'people',
         };
       },
     }),
@@ -1200,6 +1257,7 @@ const cssId = (value) => value.replace(/[^\w-]/g, '_');
 
 const ROUTES = {
   '/overview': viewOverview,
+  '/decisions': viewDecisions,
   '/issues': viewIssues,
   '/meetings': viewMeetings,
   '/tasks': viewTasks,
