@@ -30,12 +30,22 @@ jobs:
       - name: The nav must not point at pages that do not exist
         run: |
           python - <<'PY'
-          import pathlib, re, sys, tomllib
+          import pathlib, sys, tomllib
           config = tomllib.loads(pathlib.Path("zensical.toml").read_text())
+
+          def iter_nav_targets(node):
+              if isinstance(node, str):
+                  yield node
+              elif isinstance(node, list):
+                  for item in node:
+                      yield from iter_nav_targets(item)
+              elif isinstance(node, dict):
+                  for item in node.values():
+                      yield from iter_nav_targets(item)
+
           missing = [
               target
-              for entry in config["project"]["nav"]
-              for target in entry.values()
+              for target in iter_nav_targets(config["project"]["nav"])
               if not (pathlib.Path("docs") / target).is_file()
           ]
           if missing:
