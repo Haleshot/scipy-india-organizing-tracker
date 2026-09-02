@@ -1,10 +1,11 @@
 # The graph model
 
-Node labels, relationship types, and the reasoning behind task identity, the
-decision edges and the provenance fields.
+What the labels and relationships mean, and the reasoning behind task identity,
+the decision edges and the provenance fields. Read this before writing Cypher
+against the graph, or before deciding a query gave you a surprising answer.
 
-Six node labels and ten relationship types, plus a singleton that records how
-the graph was built.
+Seven node labels and thirteen relationship types, plus a singleton that records
+how the graph was built.
 
 ```mermaid
 graph LR
@@ -19,6 +20,9 @@ graph LR
     P -->|MEMBER_OF| W
     P -->|INTERESTED_IN| W
     P -->|SUBMITTED| A[VolunteerApplication]
+    T -->|TRACKED_BY| I[Issue]
+    P -->|WORKS_ON| I
+    I -->|FILED_UNDER| W
 ```
 
 | Node | Key | Properties |
@@ -28,14 +32,34 @@ graph LR
 | `Task` | `id` | `description`, `status`, `due`, `note_file`, `identity_basis`, `first_seen`, `last_seen`, `meeting_count`, `extraction_mode` |
 | `Workgroup` | `slug` | `name`, `description` |
 | `Decision` | `statement` | `note_file`, `first_seen`, `extraction_mode` |
+| `Issue` | `key` | `repo`, `number`, `title`, `url`, `state`, `state_reason`, `labels`, `assignee_logins`, `milestone`, `comment_count`, `created_at`, `updated_at` |
 | `VolunteerApplication` | `application_id` | `display_name`, `status`, `availability`, `interests`, `skills`, `submitted_on`, and the private `contact_email`, `contact_phone`, `raw_response` |
-| `GraphBuild` | `id` | `built_at`, `pipeline_version`, `notes_source`, `volunteer_source`, `extraction_mode`, `person_resolution` |
+| `GraphBuild` | `id` | `built_at`, `pipeline_version`, `notes_source`, `volunteer_source`, `extraction_mode`, `person_resolution`, `issue_source`, `issue_count` |
 
 Workgroups come from [config/workgroups.yaml](../config/workgroups.yaml) and
 nowhere else. That file also holds the aliases that let "Design", "design &
 branding" and "Creatives" all land on one workgroup. A name that matches nothing
 is dropped rather than invented, so an unregistered work area shows up as a gap
 instead of a wrong edge.
+
+People come from `config/people.yaml`, which also maps GitHub logins to names.
+That mapping is written down rather than derived, because nothing about the
+string `malayajac` reveals that it means Malayaja Chutani, and an entity
+resolver confident enough to guess that would also be confident enough to merge
+two different people.
+
+### Two sources, joined only where somebody said so
+
+`Task` comes from the meeting notes; `Issue` comes from GitHub. They describe
+overlapping work and the pipeline will not decide which pairs match. The only
+thing that creates `TRACKED_BY` is an `Issue:` line on an action item, written
+by whoever took the minutes.
+
+That is a deliberate limit. Fuzzy title matching would produce an edge that is
+right most of the time, and a graph you have to second-guess is worse than one
+with gaps in it. `WORKS_ON` and `FILED_UNDER` follow the same rule: an assignee
+becomes an edge only when `config/people.yaml` names them, and a label becomes a
+workgroup only when `config/workgroups.yaml` lists it.
 
 ### Decisions and action items are different things
 
@@ -81,7 +105,7 @@ credits the meeting that first named an owner, and `MEMBER_OF.source`
 distinguishes a membership the team recorded in a meeting from one inferred from
 a form field.
 
-`./scripts/query get-task-history "Port the 2025 site"` prints all of it. Raw
+`./scripts/query get-task-history "sponsorship deck"` prints all of it. Raw
 source text is deliberately not copied into the graph, and none of this
 provenance reaches the public snapshot beyond the build-mode names in the
 dashboard footer.

@@ -11,10 +11,11 @@ holds retrieval Cypher, so a tool and its CLI twin cannot answer differently.
 ./scripts/query describe-graph
 ./scripts/query list-unassigned-tasks
 ./scripts/query get-workgroup-context "Website"
+./scripts/query list-issues --unassigned
 ./scripts/query search "code of conduct" --json
 ```
 
-The eleven tools, which are also the eleven CLI subcommands:
+The thirteen tools, which are also the thirteen CLI subcommands:
 
 | Tool | Arguments | Answers |
 | --- | --- | --- |
@@ -28,11 +29,14 @@ The eleven tools, which are also the eleven CLI subcommands:
 | `get_workgroup_context` | `workgroup`, `recent_meetings=3` | where a workgroup stands, in one call |
 | `list_recent_decisions` | `workgroup=None`, `limit=10` | decisions, newest first, with their meetings |
 | `find_interested_unassigned_volunteers` | `workgroup=None` | who asked for a workgroup and is still waiting |
+| `list_issues` | `state="open"`, `workgroup=None`, `owner=None`, `unassigned_only=False`, `limit=50` | issues from the planning tracker |
+| `find_issue` | `issue`, `limit=3` | one issue by number, key or title |
 | `search_organizing_graph` | `query`, `limit=10`, `kinds=None` | open-ended text search |
 
 Everything is read-only, and not merely by convention: queries run under
 `RoutingControl.READ`, so Neo4j rejects a write rather than trusting the caller.
-There is no arbitrary-Cypher tool and no write tool of any kind.
+There is no arbitrary-Cypher tool and no write tool of any kind, which also
+means an agent cannot close a GitHub issue or edit the notes through this.
 [tests/test_graph_readonly.py](../tests/test_graph_readonly.py) proves it by
 attempting one.
 
@@ -60,8 +64,8 @@ set explicitly rather than relying on `pip install -e .`, because a `.pth` file
 is a fragile thing to make a background process depend on.
 
 Then you can ask things like "what open action items still have no owner", "what
-did we decide about the website in the last three meetings", or "give me the
-current context for Website". The last one is a single
+did we decide about the website in the last three meetings", "which open issues
+has nobody picked up", or "give me the current context for Website". The last one is a single
 `get_workgroup_context` call. "What changed between the two most recent
 meetings" works because `get_meeting_context` returns each item with the status
 it held at that meeting and at the previous meeting that touched it, so the diff

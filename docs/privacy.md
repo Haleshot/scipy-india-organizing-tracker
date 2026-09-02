@@ -32,6 +32,29 @@ applicants their names would be public.
 Fixture data makes the difference between the profiles look harmless. Real
 applications are the reason the default is the strict one.
 
+## Issues are already public
+
+GitHub issue titles, states, labels and assignees are published as they are,
+because they are already published: anyone can read
+[scipy-india/planning](https://github.com/scipy-india/planning/issues). Issue
+bodies are the exception and are never read at all, because a comment thread is
+where somebody eventually pastes an email address or a phone number.
+
+## Credentials
+
+The Google service-account key is the one file in this project that is genuinely
+dangerous to leak. It belongs in `secrets/`, which `.gitignore` covers along
+with every JSON file at the repository root, because the name Google gives the
+download is `<project>-<hash>.json` and no generic pattern catches that.
+
+`test_no_tracked_file_contains_a_private_key` scans every tracked file for the
+markers a key contains and fails the build if it finds one. That checks the
+outcome rather than the pattern, which is the only version of this check worth
+having.
+
+Folder ids, project ids and repository names are not secrets. See
+[Connecting the sources](connecting-sources.md).
+
 [tests/test_public_snapshot.py](../tests/test_public_snapshot.py) enforces this
 against the committed snapshot, and `./scripts/refresh.sh` runs those tests on
 the file it just wrote.

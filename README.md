@@ -45,13 +45,14 @@ zensical build    # writes site/
 | Page | For |
 | --- | --- |
 | [Get started](docs/get-started.md) | First run from a clean shell |
-| [Weekly workflow](docs/workflow.md) | What to do after each meeting |
-| [Writing meeting notes](docs/meeting-notes-template.md) | The note format, and why it is shaped that way |
+| [Running it on Neo4j Desktop](docs/neo4j-desktop.md) | The graph in a query editor, and useful Cypher |
+| [Connecting the sources](docs/connecting-sources.md) | The Google Doc and the issue tracker |
+| [Writing meeting notes](docs/writing-notes.md) | The note format, and why it is shaped that way |
+| [Refreshing the graph](docs/refreshing.md) | What to run after a meeting |
+| [Asking questions](docs/asking-questions.md) | The thirteen tools, and connecting Claude |
 | [The graph model](docs/graph-model.md) | Node labels, task identity, provenance |
-| [MCP and CLI](docs/mcp-and-cli.md) | The eleven tools, and connecting Claude |
 | [Privacy boundary](docs/privacy.md) | What gets published and what does not |
-| [Deploying](docs/deploying.md) | GitHub Pages, and moving to the real Google Doc |
-| [Troubleshooting](docs/troubleshooting.md) | When something is stale, stuck or refusing |
+| [Publishing](docs/publishing.md) | GitHub Pages, and evaluating the LLM extractor |
 | [Design notes](docs/design.md) | The dashboard's constraints, and what is absent on purpose |
 
 ## Layout

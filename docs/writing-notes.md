@@ -1,4 +1,4 @@
-# The meeting-notes template
+# Writing meeting notes
 
 This is the shape the deterministic extractor reads. It is meant to be typed
 during a call by a person, not filled in afterwards like a form, so it is built
@@ -21,8 +21,8 @@ SciPy India 2026 meeting notes
 
 Meeting: 2026-09-05 | Volunteer onboarding
 
-Facilitator: Priya Vasudevan
-Attendees: Priya Vasudevan, Meera Raghavan, Kabir Anand, Sanjana Iyer
+Facilitator: Srihari Thyagarajan
+Attendees: Srihari Thyagarajan, Agriya Khetarpal, Malayaja Chutani
 Workgroups: Registration & Help Desk, Website, Program Committee
 
 Topics
@@ -33,25 +33,26 @@ Website work needed before the next public announcement.
 
 Decisions
 
-(Registration & Help Desk) The Registration & Help Desk workgroup will schedule a short intro call before
-assigning new applicants to a workgroup.
+(Registration & Help Desk) We schedule a short intro call before assigning any
+new applicant to a role, rather than placing people from a form answer.
 
-The 2026 website will reuse the existing site structure rather than start
-from a blank project.
+(Website) The 2026 site reuses the existing structure rather than starting from
+a blank project.
 
 Action items
 
 Task: Schedule intro calls with the shortlisted volunteers
 ID: intro-calls
 Workgroup: Registration & Help Desk
-Owner: Priya Vasudevan
+Owner: Srihari Thyagarajan
 Status: open
 Due: 2026-09-10
 
-Task: Port the existing site structure and publish a holding page
-ID: website-holding-page
+Task: Stand up our own pretalx instance for talk submissions
+ID: pretalx-instance
 Workgroup: Website
-Owner: Kabir Anand
+Owner: Agriya Khetarpal
+Issue: #41
 Status: in_progress
 Due: 2026-09-12
 
@@ -62,10 +63,14 @@ Owner:
 Status: open
 Due:
 
+Workgroup changes
+
+Malayaja Chutani joins Program Committee
+
 Notes
 
-We have more interest in Program Committee than we currently have review work
-for. Revisit assignments after the next CFP planning call.
+There is more interest in Program Committee than there is review work for right
+now. Revisit assignments after the next CFP planning call.
 ```
 
 ## What each part does
@@ -103,6 +108,11 @@ when a decision belongs to the whole team, as the second one here does.
 `Action items` is the part with structure. Each item opens with `Task:` and the
 lines after it belong to that item until the next `Task:` or a blank line.
 
+`Workgroup changes` records somebody taking on a volunteer role, written as
+"Name joins Role". That is what puts a person on a role in the graph, and it is
+deliberately something a human states rather than something inferred from who
+happened to own a task in that area.
+
 `Notes` is for context you want in the document that is not a decision or an
 action item. The parser recognises the heading so the prose underneath does not
 get read as a decision, then ignores it. Nothing from `Notes` reaches the graph.
@@ -119,6 +129,28 @@ finished is not evidence that it is.
 Recognised statuses are `open`, `in_progress`, `blocked`, `done`, `dropped` and
 `unknown`. Anything else falls back to `unknown`.
 
+## Linking a task to a GitHub issue
+
+`Issue:` on an action item joins it to an issue in the tracker:
+
+```text
+Task: Apply to the FOSS United Events grant
+ID: foss-united-grant
+Workgroup: Sponsoring
+Owner: Agriya Khetarpal
+Issue: #44
+Status: open
+```
+
+The dashboard then shows the task's status from the notes beside the issue's
+state on GitHub, which is how the two get compared. `#44` means the first
+repository in `GITHUB_REPOS`; write `owner/repo#44` for any other. Several
+issues on one line is fine.
+
+This link is only ever made because a note said so. The pipeline will not decide
+that a task and an issue are the same work because their wording is close. See
+[Connecting the sources](connecting-sources.md).
+
 ## IDs and repeated tasks
 
 An action item repeated in a later meeting is the same action item, and that is
@@ -127,8 +159,8 @@ The pipeline works out identity from the workgroup and the wording when you give
 it nothing else, which is fine for most items.
 
 `ID:` is worth adding in two cases. The first is an item likely to be reworded:
-without an ID, "Port the site" and "Port the existing site structure" are two
-different tasks. The second is two items in one workgroup that genuinely read
+without an ID, "Stand up pretalx" and "Stand up our own pretalx instance" are
+two different tasks. The second is two items in one workgroup that genuinely read
 the same, where the ID is the only thing that keeps them apart.
 
 To carry a task forward, repeat it with the same ID and the new status:
@@ -136,10 +168,10 @@ To carry a task forward, repeat it with the same ID and the new status:
 ```text
 Action items
 
-Task: Port the existing site structure and publish a holding page
-ID: website-holding-page
+Task: Stand up our own pretalx instance for talk submissions
+ID: pretalx-instance
 Workgroup: Website
-Owner: Kabir Anand
+Owner: Agriya Khetarpal
 Status: done
 Due: 2026-09-12
 ```

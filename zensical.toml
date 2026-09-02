@@ -15,17 +15,28 @@ repo_url = "https://github.com/scipy-india/meeting-notes-graph"
 repo_name = "scipy-india/meeting-notes-graph"
 edit_uri = "edit/main/docs/"
 
+# Grouped the way somebody arrives at it: set it up, then use it, then look
+# something up, then find out why it works the way it does.
 nav = [
   { "Home" = "index.md" },
-  { "Get started" = "get-started.md" },
-  { "Weekly workflow" = "workflow.md" },
-  { "Writing meeting notes" = "meeting-notes-template.md" },
-  { "The graph model" = "graph-model.md" },
-  { "Querying it: MCP and CLI" = "mcp-and-cli.md" },
-  { "Privacy boundary" = "privacy.md" },
-  { "Deploying" = "deploying.md" },
-  { "Troubleshooting" = "troubleshooting.md" },
-  { "Design notes" = "design.md" },
+  { "Setting up" = [
+    "get-started.md",
+    "neo4j-desktop.md",
+    "connecting-sources.md",
+  ] },
+  { "Using it" = [
+    "writing-notes.md",
+    "refreshing.md",
+    "asking-questions.md",
+  ] },
+  { "Reference" = [
+    "graph-model.md",
+    "privacy.md",
+    "publishing.md",
+  ] },
+  { "Why it is built this way" = [
+    "design.md",
+  ] },
 ]
 
 extra_css = ["assets/scipy.css"]
