@@ -47,7 +47,6 @@ zensical build    # writes site/
 | [Get started](docs/get-started.md) | First run from a clean shell |
 | [Weekly workflow](docs/workflow.md) | What to do after each meeting |
 | [Writing meeting notes](docs/meeting-notes-template.md) | The note format, and why it is shaped that way |
-| [Volunteer roles](docs/volunteer-roles.md) | The roles from the form and their sign-up counts |
 | [The graph model](docs/graph-model.md) | Node labels, task identity, provenance |
 | [MCP and CLI](docs/mcp-and-cli.md) | The eleven tools, and connecting Claude |
 | [Privacy boundary](docs/privacy.md) | What gets published and what does not |

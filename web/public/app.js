@@ -185,7 +185,6 @@ function viewOverview() {
   const unassigned = openTasks.filter((t) => t.owners.length === 0);
   const latest = DATA.meetings[0];
   const waiting = DATA.workgroups.reduce((total, w) => total + w.awaiting_assignment, 0);
-  const signups = DATA.workgroups.reduce((total, w) => total + (w.signups ?? 0), 0);
 
   // A status memo opens with a sentence, not a row of tiles.
   const sentence = unassigned.length
@@ -204,7 +203,6 @@ function viewOverview() {
       tally('Open', s.open_tasks, '#/tasks'),
       tally('Unowned', s.unassigned_open_tasks, '#/tasks?filter=unassigned', true),
       tally('Volunteers waiting', waiting, '#/workgroups'),
-      tally('Role sign-ups', signups, '#/workgroups'),
       tally('Decisions', s.decisions, null)),
   );
 
@@ -255,24 +253,21 @@ function workgroupTable() {
         el('th', { class: 'num', text: 'Done' }),
         el('th', { class: 'num', text: 'On it' }),
         el('th', { class: 'num', title: 'Volunteers who asked for this role and have not been assigned to it' },
-          'Waiting'),
-        el('th', { class: 'num', title: 'People who picked this role on the sign-up form' },
-          'Sign-ups'))),
+          'Waiting'))),
       el('tbody', {}, DATA.workgroups.map((w) => {
         const done = DATA.tasks.filter((t) => t.workgroup === w.slug && t.status === 'done').length;
         const cell = (n) => el('td', { class: n ? 'num' : 'num zero', text: String(n) });
         return el('tr', {},
           el('td', {}, wgLink(w.slug)),
           cell(w.open_tasks), cell(done), cell(w.member_count),
-          cell(w.awaiting_assignment), cell(w.signups ?? 0));
+          cell(w.awaiting_assignment));
       })),
       el('tfoot', {}, el('tr', {},
         el('td', { text: 'Total' }),
         el('td', { class: 'num', text: String(DATA.workgroups.reduce((t, w) => t + w.open_tasks, 0)) }),
         el('td', { class: 'num', text: String(DATA.tasks.filter((t) => t.status === 'done').length) }),
         el('td', { class: 'num', text: String(DATA.workgroups.reduce((t, w) => t + w.member_count, 0)) }),
-        el('td', { class: 'num', text: String(DATA.workgroups.reduce((t, w) => t + w.awaiting_assignment, 0)) }),
-        el('td', { class: 'num', text: String(DATA.workgroups.reduce((t, w) => t + (w.signups ?? 0), 0)) })))));
+        el('td', { class: 'num', text: String(DATA.workgroups.reduce((t, w) => t + w.awaiting_assignment, 0)) })))));
 }
 
 /* --------------------------------------------------------------- meetings */
@@ -453,7 +448,6 @@ function workgroupDetail(workgroup) {
       ['Members', people.length
         ? joinNodes(people, (p) => personLink(p.name))
         : el('span', { class: 'unowned', text: 'nobody assigned yet' })],
-      ['Sign-ups', workgroup.signups ? `${workgroup.signups} on the form` : ''],
       ['Action items', `${open.length} open of ${tasks.length}`],
       ['Waiting', workgroup.awaiting_assignment > 0
         ? `${plural(workgroup.awaiting_assignment, 'volunteer')} asked for this role and ${workgroup.awaiting_assignment === 1 ? 'has' : 'have'} not been assigned to it`
@@ -472,8 +466,7 @@ function viewWorkgroups(params) {
   return el('div', {},
     el('h1', { text: 'Volunteer roles' }),
     el('p', { class: 'lede' },
-      'These are the roles on the volunteer sign-up form. Sign-ups are how many people picked each one; ',
-      'nothing else from that form is published here.'),
+      'The roles volunteers can take on. Add or rename them in config/workgroups.yaml.'),
     filtered({
       placeholder: 'Filter roles',
       query: () => workgroupFilter,

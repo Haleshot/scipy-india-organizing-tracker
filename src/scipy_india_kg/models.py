@@ -87,7 +87,6 @@ class Workgroup:
     slug: str
     name: str
     description: str
-    signups: int  # people who picked this role on the form; aggregate only
 
 
 @dataclass
@@ -96,6 +95,53 @@ class Decision:
     note_file: str
     first_seen: datetime.date
     extraction_mode: str
+
+
+@dataclass
+class Issue:
+    """A GitHub issue.
+
+    Separate from ``Task`` on purpose. A task is what a meeting agreed to do; an
+    issue is what someone opened a tracker entry for. They often describe the
+    same work, and when a note says so the TRACKED_BY edge joins them, but the
+    pipeline never guesses that two things match because their wording is close.
+
+    Issue bodies are not read, so nothing pasted into a comment thread can end
+    up in the graph.
+    """
+
+    key: str  # "owner/repo#number"
+    repo: str
+    number: int
+    title: str
+    url: str
+    state: str  # "open" | "closed"
+    state_reason: str  # "completed" | "not_planned" | "reopened" | ""
+    labels: list[str]
+    assignee_logins: list[str]
+    milestone: str
+    comment_count: int
+    created_at: datetime.date
+    updated_at: datetime.date
+
+
+@dataclass
+class WorksOnRel:
+    """``Person -[:WORKS_ON]-> Issue``, from the issue's assignees."""
+
+    assigned_via: str  # always "github_assignee" today, room for more later
+
+
+@dataclass
+class TrackedByRel:
+    """``Task -[:TRACKED_BY]-> Issue``, because a note said so.
+
+    Only ever created from an explicit ``Issue:`` line on an action item. There
+    is no fuzzy matching between task descriptions and issue titles.
+    """
+
+    first_meeting_id: int
+    first_seen: datetime.date
 
 
 @dataclass
@@ -190,6 +236,8 @@ class GraphBuild:
     extraction_mode: str  # "markdown" | "llm"
     person_resolution: str  # "exact" | "embedding"
     workgroup_config: str  # basename of the registry file
+    issue_source: str  # "none" | "github"
+    issue_count: int
 
 
 # CREATED_ACTION, DECIDED, DISCUSSED, CONCERNS, INTERESTED_IN and SUBMITTED
@@ -240,6 +288,14 @@ class ExtractedTask(pydantic.BaseModel):
         description=(
             "A stable id the notes gave this action item, written as 'id: some-slug'. "
             "Null when the notes do not give one. Never invent an id."
+        ),
+    )
+    issue_refs: list[str] = pydantic.Field(
+        default_factory=list,
+        description=(
+            "GitHub issues the notes explicitly link this action item to, written as "
+            "'issue: owner/repo#12' or 'issue: #12'. Empty when the notes link none. "
+            "Never infer a link from a similar title."
         ),
     )
 

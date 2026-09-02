@@ -20,7 +20,6 @@ nav = [
   { "Get started" = "get-started.md" },
   { "Weekly workflow" = "workflow.md" },
   { "Writing meeting notes" = "meeting-notes-template.md" },
-  { "Volunteer roles" = "volunteer-roles.md" },
   { "The graph model" = "graph-model.md" },
   { "Querying it: MCP and CLI" = "mcp-and-cli.md" },
   { "Privacy boundary" = "privacy.md" },

@@ -7,88 +7,72 @@
 #   slug        stable id and Neo4j primary key. Changing it creates a new node.
 #   name        what the form calls it, shown everywhere.
 #   description one line, for people who have not seen the form.
-#   aliases     other spellings that turn up in meeting notes. Matching ignores
-#               case and punctuation, so only genuinely different wording needs
-#               a line here.
-#   signups     how many people picked this role on the form. Aggregate only:
-#               no names, no contact details, nothing that identifies anybody.
-#               Regenerate with scripts/summarise_signups.py.
+#   aliases     other spellings that turn up in meeting notes and issue labels.
+#               Matching ignores case and punctuation, so only genuinely
+#               different wording needs a line here.
 
 workgroups:
   - slug: registration-help-desk
     name: Registration & Help Desk
     description: Check-in desks, badges, the queue, and answering questions all day.
     aliases: [registration, help desk, front desk, check-in]
-    signups: 19
 
   - slug: tutorial-workshop-support
     name: Tutorial/Workshop Support
     description: Running the workshop rooms, helping attendees with setup and prerequisites.
     aliases: [tutorials, workshops, workshop support, tutorial support]
-    signups: 19
 
   - slug: website
     name: Website
     description: The conference site, schedule pages and ticketing integration.
     aliases: [web, website team, site, web-tech, website and tech]
-    signups: 15
 
   - slug: session-room-management
     name: Session Room Management
     description: Keeping talks on time, introducing speakers, running the mic.
     aliases: [session management, room management, session chairs, chairs]
-    signups: 15
 
   - slug: logistics
     name: Logistics
     description: Venue, food, travel, accommodation and everything on the ground.
     aliases: [venue, ops, on-ground, food, hospitality, venue and logistics]
-    signups: 12
 
   - slug: social-media-communications
     name: Social Media & Communications
     description: Announcements, social posts, newsletters and community partners.
     aliases: [comms, communications, social media, marketing, publicity, outreach]
-    signups: 10
 
   - slug: av-tech-support
     name: A/V & Tech Support
     description: Sound, projection, recording and streaming during the conference.
     aliases: [av, a/v, audio visual, tech support, streaming, recordings]
-    signups: 8
 
   - slug: code-of-conduct
     name: Code of Conduct
     description: The code of conduct, incident response, accessibility and inclusion.
     aliases: [coc, conduct, inclusion, diversity, accessibility]
-    signups: 7
 
   - slug: sponsoring
     name: Sponsoring
     description: Sponsor prospectus, outreach, invoicing and sponsor deliverables.
     aliases: [sponsors, sponsorship, sponsor outreach, partnerships]
-    signups: 6
 
   - slug: design
     name: Design
     description: Logo work, badges, signage, merchandise and slide templates.
     aliases: [branding, creatives, print, design and branding]
-    signups: 4
 
   - slug: proposal-reviewing
     name: Proposal Reviewing
     description: Reading and scoring CFP submissions.
     aliases: [reviewing, cfp review, proposal review, reviews]
-    signups: 1
 
   - slug: program-committee
     name: Program Committee
     description: Shaping the programme, the CFP timeline and the final schedule.
     aliases: [program, programme, program committee members, cfp, schedule]
-    signups: 1
 
   - slug: content
     name: Content
     description: Blog posts, speaker interviews and written material around the event.
     aliases: [writing, blog, editorial]
-    signups: 1

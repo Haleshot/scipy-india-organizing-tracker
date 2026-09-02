@@ -39,9 +39,6 @@ class Workgroup:
     name: str
     description: str = ""
     aliases: tuple[str, ...] = field(default_factory=tuple)
-    # How many people picked this role on the sign-up form. Aggregate only, and
-    # the only thing from that form that lives in this repository.
-    signups: int = 0
 
 
 class WorkgroupRegistry:
@@ -104,7 +101,6 @@ def load_registry(path: str | Path | None = None) -> WorkgroupRegistry:
             name=str(e.get("name", e["slug"])),
             description=str(e.get("description", "")),
             aliases=tuple(str(a) for a in (e.get("aliases") or [])),
-            signups=int(e.get("signups") or 0),
         )
         for e in entries
     ]
