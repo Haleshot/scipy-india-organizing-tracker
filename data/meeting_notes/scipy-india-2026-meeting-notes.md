@@ -251,3 +251,64 @@ Workgroup: Registration & Help Desk
 Owner: Srihari Thyagarajan
 Status: open
 Due:
+
+Meeting: 2026-08-29 | Volunteer intro call and venue confirmation
+
+Facilitator: Srihari Thyagarajan
+Attendees: Srihari Thyagarajan, Agriya Khetarpal, Malayaja Chutani
+Workgroups: Registration & Help Desk, Logistics, Social Media & Communications
+
+Topics
+
+Getting the shortlisted volunteers onto one call.
+What we can and cannot offer volunteers, given the budget.
+Where volunteer coordination happens day to day.
+
+Decisions
+
+(Logistics) IIT Madras, Chennai is confirmed for 19 and 20 December.
+
+(Registration & Help Desk) The first volunteer call is Sunday 6 September at
+4 PM. Srihari sends the invite and collects replies on the time before fixing it.
+
+(Registration & Help Desk) Volunteers do not get free tickets, travel or venue
+support, because the budget does not cover it. Early bird pricing stays open to
+them if they want to attend. This goes in the invite rather than coming up later.
+
+(Social Media & Communications) Volunteer coordination happens on Zulip, in the
+volunteers channel, rather than over email.
+
+Notes
+
+The invite recaps what SciPy India is and that the conference is back after a
+hiatus, since several people who signed up have not been to one before.
+
+Action items
+
+Task: Send the volunteer intro call invite
+ID: volunteer-intro-call
+Workgroup: Registration & Help Desk
+Owner: Srihari Thyagarajan
+Status: done
+Due: 2026-08-29
+
+Task: Confirm the call time once replies are in
+ID: volunteer-call-time
+Workgroup: Registration & Help Desk
+Owner: Srihari Thyagarajan
+Status: open
+Due: 2026-09-04
+
+Task: Get volunteers onto Zulip and into the volunteers channel
+ID: volunteer-zulip-onboarding
+Workgroup: Social Media & Communications
+Owner:
+Status: open
+Due:
+
+Task: Shortlist volunteers and start intro calls
+ID: volunteer-shortlist
+Workgroup: Registration & Help Desk
+Owner: Srihari Thyagarajan
+Status: in_progress
+Due: 2026-09-06
