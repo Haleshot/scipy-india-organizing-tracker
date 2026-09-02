@@ -67,3 +67,34 @@ async def resolve_embedding(names: set[str], embedder, model: str) -> ResolvedEn
         embedder=embedder,
         resolve_pair=LlmPairResolver(model=model),
     )
+
+
+def apply_team(resolved: ResolvedEntities, team) -> ResolvedEntities:
+    """Fold ``config/people.yaml`` over an automatic resolution.
+
+    Automatic resolution is good at spelling and hopeless at identity: nothing
+    in "Haleshot" says "Srihari Thyagarajan". So the team file gets the last
+    word. Any spelling it claims points at the name written there, and names it
+    says nothing about keep whatever the resolver decided.
+    """
+    if not len(team):
+        return resolved
+
+    dedup: dict[str, str | None] = {}
+    claimed = set(team.names())
+
+    def target(name: str) -> str:
+        # Follow the resolver's own chain first, then let the team file override.
+        current = resolved.canonical_of(name)
+        return team.resolve(name) or team.resolve(current) or current
+
+    for name in resolved:
+        canonical = target(name)
+        dedup[canonical] = None
+        if name != canonical:
+            dedup[name] = canonical
+
+    # Everyone on the team gets a node even if no source has mentioned them.
+    for name in claimed:
+        dedup.setdefault(name, None)
+    return ResolvedEntities(dedup)

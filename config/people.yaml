@@ -1,0 +1,25 @@
+# The organising team, and the handles they go by elsewhere.
+#
+# Two jobs. First, it is the list of people the graph starts with, so the team
+# shows up even before anyone writes a meeting note. Second, it maps GitHub
+# logins to real names, which is the only way an issue assigned to
+# "agriyakhetarpal" and a note that says "Agriya" become the same person.
+#
+# Names here win over anything the notes spell differently: put the spelling you
+# want displayed under `name`, and every other spelling under `aliases`.
+#
+# Public file. Names and public GitHub handles only, nothing else. These three
+# are listed at https://scipy.in/2026/team.
+
+people:
+  - name: Srihari Thyagarajan
+    github: Haleshot
+    aliases: [Srihari, Hari]
+
+  - name: Agriya Khetarpal
+    github: agriyakhetarpal
+    aliases: [Agriya]
+
+  - name: Malayaja Chutani
+    github: malayajac
+    aliases: [Malayaja]
