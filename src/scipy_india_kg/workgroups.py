@@ -65,6 +65,19 @@ class WorkgroupRegistry:
     def get(self, slug: str) -> Workgroup | None:
         return self._by_slug.get(slug)
 
+    def resolve_exact(self, text: str | None) -> str | None:
+        """Map text to a slug only when it names a workgroup and nothing else.
+
+        ``resolve`` finds a registered name inside a longer phrase, which is what
+        you want for "sponsorship follow-ups" and exactly what you do not want
+        when deciding where a workgroup name ends in a run-together line: the
+        whole tail of "joins Sponsoring Srihari Thyagarajan joins Registration &
+        Help Desk" contains a longer registered name than the one it starts with.
+        """
+        if not text:
+            return None
+        return self._index.get(normalize_key(text))
+
     def resolve(self, text: str | None) -> str | None:
         """Map free text to a workgroup slug, or ``None`` if nothing matches."""
         if not text:

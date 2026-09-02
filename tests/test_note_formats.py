@@ -342,3 +342,97 @@ def test_an_unknown_section_is_ignored_not_misread(registry):
     meeting = extract_meeting_markdown(section, registry)
     assert [d.statement for d in meeting.decisions] == ["The CFP closes on 5 April."]
     assert meeting.tasks == []
+
+
+# --------------------------------------------------------------------------- #
+# What a Google Doc does to Markdown on the way back out
+#
+# Pasting the formatted notes into a Doc and letting Drive export them again is
+# not lossless. Three things come back changed, and each one showed up as wrong
+# data rather than an error: three people named "Srihari Thyagarajan Attendees:
+# Srihari Thyagarajan", and every status reading "unknown".
+# --------------------------------------------------------------------------- #
+
+
+def test_labels_run_together_are_split_apart(registry):
+    """Docs collapses a soft line break inside a paragraph into a space."""
+    joined = (
+        "Meeting: 2026-07-11 | Kickoff\n"
+        "\n"
+        "Facilitator: Srihari Thyagarajan Attendees: Srihari Thyagarajan, "
+        "Agriya Khetarpal, Malayaja Chutani Workgroups: Sponsoring, Logistics\n"
+    )
+    meeting = extract_meeting_markdown(split_meetings(joined)[0], registry)
+    assert meeting.organizer.name == "Srihari Thyagarajan"
+    assert [a.name for a in meeting.attendees] == ["Agriya Khetarpal", "Malayaja Chutani"]
+    assert set(meeting.workgroups) >= {"sponsoring", "logistics"}
+
+
+def test_escaped_underscores_still_name_a_status(registry):
+    """A Doc exports in_progress as in\\_progress, which matched nothing."""
+    text = (
+        "Meeting: 2026-07-11 | Kickoff\n"
+        "\n"
+        "Action items\n"
+        "\n"
+        "* Task: Draft the sponsorship deck\n"
+        "  * ID: sponsorship-deck\n"
+        "  * Status: in\\_progress\n"
+    )
+    meeting = extract_meeting_markdown(split_meetings(text)[0], registry)
+    assert meeting.tasks[0].status == "in_progress"
+    assert meeting.tasks[0].explicit_id == "sponsorship-deck"
+
+
+def test_markdown_links_become_their_text(registry):
+    text = (
+        "Meeting: 2026-07-11 | Kickoff\n"
+        "\n"
+        "Action items\n"
+        "\n"
+        "* Task: Read [the CFP guide](https://scipy.in/2026/cfp)\n"
+    )
+    meeting = extract_meeting_markdown(split_meetings(text)[0], registry)
+    assert meeting.tasks[0].description == "Read the CFP guide"
+
+
+def test_prose_containing_a_label_is_left_alone(registry):
+    """Only lines that already open with a label get split."""
+    text = (
+        "Meeting: 2026-07-11 | Kickoff\n"
+        "\n"
+        "Notes\n"
+        "\n"
+        "The format is documented elsewhere. An Issue: line links a task to GitHub.\n"
+    )
+    meeting = extract_meeting_markdown(split_meetings(text)[0], registry)
+    assert meeting.tasks == []
+    assert meeting.organizer is None
+
+
+def test_several_workgroup_moves_on_one_line(registry):
+    """Docs joins these too, and one wrong move is worse than none.
+
+    Splitting them needs the registry, because only it knows that
+    "Registration & Help Desk" ends where it does.
+    """
+    text = (
+        "Meeting: 2026-07-11 | Kickoff\n"
+        "\n"
+        "Workgroup changes\n"
+        "\n"
+        "Agriya Khetarpal joins Sponsoring Srihari Thyagarajan joins "
+        "Registration & Help Desk Malayaja Chutani joins Logistics\n"
+    )
+    meeting = extract_meeting_markdown(split_meetings(text)[0], registry)
+    assert [(m.person.name, m.workgroup) for m in meeting.workgroup_moves] == [
+        ("Agriya Khetarpal", "sponsoring"),
+        ("Srihari Thyagarajan", "registration-help-desk"),
+        ("Malayaja Chutani", "logistics"),
+    ]
+
+
+def test_a_move_to_an_unregistered_workgroup_is_dropped(registry):
+    text = "Meeting: 2026-07-11 | Kickoff\n\nWorkgroup changes\n\nSomebody joins Quidditch\n"
+    meeting = extract_meeting_markdown(split_meetings(text)[0], registry)
+    assert meeting.workgroup_moves == []

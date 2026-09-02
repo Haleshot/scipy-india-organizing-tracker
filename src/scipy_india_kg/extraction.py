@@ -59,6 +59,72 @@ def _is_boundary(line: str) -> bool:
     return bool(_MARKDOWN_HEADING_RE.match(line)) and not line.lstrip().startswith("###")
 
 
+# Markdown escaping that a Google Doc adds on the way out. Pasting Markdown into
+# a Doc and exporting it again brings back `in\_progress` and `[text](url)`, and
+# `in\_progress` does not match any known status, so a task silently becomes
+# "unknown". Undo both before anything tries to read a value.
+_MD_ESCAPE_RE = re.compile(r"\\([_*\[\]()#+\-.!`~\\])")
+_MD_LINK_RE = re.compile(r"\[([^\]]+)\]\((?:[^)]*)\)")
+
+# Labels that own a whole line. A Doc that had these on separate lines exports
+# them joined, because Google Docs treats a soft line break inside a paragraph as
+# a space. See _unjoin_labels.
+_HEADER_LABELS = ("Facilitator", "Organizer", "Organiser", "Attendees", "Present", "Workgroups")
+_TASK_LABELS = (
+    "Task",
+    "ID",
+    "Key",
+    "Owner",
+    "Owners",
+    "Workgroup",
+    "Status",
+    "Due",
+    "Issue",
+    "Issues",
+)
+
+
+def _unjoin_labels(line: str, labels: tuple[str, ...]) -> list[str]:
+    """Split a line that has several `Label:` fields run together.
+
+    Google Docs collapses the line breaks inside a paragraph, so
+
+        Facilitator: Srihari
+        Attendees: Srihari, Agriya
+
+    comes back as one line, and the facilitator ends up named
+    "Srihari Attendees: Srihari". Only lines that already begin with one of
+    these labels are split, so a sentence in Notes that happens to contain
+    "Issue:" is left alone.
+    """
+    first = line.lstrip()
+    if not any(first.lower().startswith(f"{label.lower()}:") for label in labels):
+        return [line]
+
+    pattern = re.compile(
+        r"\s+(?=(?:" + "|".join(re.escape(label) for label in labels) + r")\s*:)",
+        re.IGNORECASE,
+    )
+    parts = [part.strip() for part in pattern.split(line) if part.strip()]
+    return parts or [line]
+
+
+def normalize_export(text: str) -> str:
+    """Undo what a Google Doc does to Markdown on the way back out.
+
+    Three things: escaped punctuation, links turned into `[text](url)`, and
+    labelled lines run together. All of them are lossless to reverse, and all of
+    them otherwise show up as wrong data rather than as an error.
+    """
+    text = _MD_ESCAPE_RE.sub(r"\1", text)
+    text = _MD_LINK_RE.sub(r"\1", text)
+
+    out: list[str] = []
+    for line in text.splitlines():
+        out.extend(_unjoin_labels(line, _HEADER_LABELS + _TASK_LABELS))
+    return "\n".join(out)
+
+
 def split_meetings(text: str) -> list[str]:
     """Cut a notes document into one chunk per meeting.
 
@@ -67,7 +133,7 @@ def split_meetings(text: str) -> list[str]:
     having no date.
     """
     sections: list[list[str]] = [[]]
-    for line in text.splitlines():
+    for line in normalize_export(text).splitlines():
         if _is_boundary(line):
             sections.append([])
         sections[-1].append(line)
@@ -116,9 +182,49 @@ _TASK_FIELD_RE = re.compile(
     re.IGNORECASE,
 )
 _PARENTHETICAL_WG_RE = re.compile(r"^\(([^)]+)\)\s*")
-_JOINS_RE = re.compile(
-    r"^(?P<person>.+?)\s+(?:joins|joined|moves to|assigned to)\s+(?P<wg>.+?)\.?$", re.IGNORECASE
-)
+_JOIN_VERB_RE = re.compile(r"\s+(?:joins|joined|moves to|assigned to)\s+", re.IGNORECASE)
+
+
+def _parse_moves(line: str, registry: WorkgroupRegistry) -> list[tuple[str, str]]:
+    """Every "Name joins Role" on one line, in order.
+
+    Normally there is one per line. A Google Doc collapses the line breaks
+    inside a paragraph, so three of them arrive run together and the plain
+    pattern reads the whole tail as one workgroup name.
+
+    Splitting them needs the registry: only it knows that "Registration & Help
+    Desk" ends where it does and that the next word starts a person's name. So
+    the longest run of words that resolves to a known workgroup wins, and
+    whatever follows begins the next move.
+    """
+    moves: list[tuple[str, str]] = []
+    remaining = line.strip().rstrip(".")
+
+    while remaining:
+        verb = _JOIN_VERB_RE.search(remaining)
+        if verb is None:
+            break
+        person = remaining[: verb.start()].strip()
+        tail = remaining[verb.end() :].strip()
+        if not person or not tail:
+            break
+
+        words = tail.split()
+        # Longest first, but an exact match only. The fuzzy resolve would happily
+        # find "registration help desk" inside the entire remaining tail.
+        for count in range(len(words), 0, -1):
+            slug = registry.resolve_exact(" ".join(words[:count]))
+            if slug:
+                moves.append((person, slug))
+                remaining = " ".join(words[count:])
+                break
+        else:
+            # Nothing after the verb names a workgroup, so this is not a move.
+            break
+
+    return moves
+
+
 _TRAILING_SEP = re.compile(r"[\s–—|,;:.-]+$")
 _LEADING_SEP = re.compile(r"^[\s–—|,;:.-]+")
 
@@ -498,27 +604,15 @@ def extract_meeting_markdown(
                 if _ends_item(stripped):
                     flush_paragraph()
         elif section == "moves" and _BULLET_RE.match(line):
-            match = _JOINS_RE.match(_BULLET_RE.sub("", line).strip())
-            if match:
-                slug = registry.resolve(match.group("wg"))
-                if slug:
-                    moves.append(
-                        ExtractedWorkgroupMove(
-                            person=ExtractedPerson(name=match.group("person").strip()),
-                            workgroup=slug,
-                        )
-                    )
+            for person, slug in _parse_moves(_BULLET_RE.sub("", line), registry):
+                moves.append(
+                    ExtractedWorkgroupMove(person=ExtractedPerson(name=person), workgroup=slug)
+                )
         elif section == "moves":
-            match = _JOINS_RE.match(stripped)
-            if match:
-                slug = registry.resolve(match.group("wg"))
-                if slug:
-                    moves.append(
-                        ExtractedWorkgroupMove(
-                            person=ExtractedPerson(name=match.group("person").strip()),
-                            workgroup=slug,
-                        )
-                    )
+            for person, slug in _parse_moves(stripped, registry):
+                moves.append(
+                    ExtractedWorkgroupMove(person=ExtractedPerson(name=person), workgroup=slug)
+                )
 
     flush_paragraph()
     flush_task()
