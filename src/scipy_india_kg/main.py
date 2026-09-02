@@ -74,21 +74,26 @@ from cocoindex.ops.sentence_transformers import SentenceTransformerEmbedder
 from cocoindex.resources.id import IdGenerator
 
 from . import __version__, extraction, person_resolution
+from .issues import IssueRecord, issue_source, workgroup_for
 from .models import (
     AssignedToRel,
     AttendedRel,
     BelongsToRel,
     Decision,
     GraphBuild,
+    Issue,
     Meeting,
     MemberOfRel,
     Person,
     Task,
     TouchedActionRel,
+    TrackedByRel,
     VolunteerApplication,
     VolunteerApplicationRecord,
     Workgroup,
+    WorksOnRel,
 )
+from .people import load_people
 from .sources import meeting_note_source
 from .task_identity import task_identity
 from .volunteers import volunteer_source
@@ -158,6 +163,7 @@ class TaskMention:
     due: str
     workgroup: str | None
     owners: list[str]  # raw names, pre-resolution
+    issue_refs: list[str]  # "owner/repo#12" or "#12", exactly as the note wrote them
 
 
 @dataclass
@@ -244,6 +250,7 @@ async def process_note_file(
                     due=task.due,
                     workgroup=task.workgroup,
                     owners=[o.name for o in task.owners],
+                    issue_refs=list(task.issue_refs),
                 )
             )
 
@@ -362,6 +369,8 @@ async def resolve_persons(raw_persons: set[str]) -> ResolvedEntities:
 async def declare_graph(
     meetings: list[MeetingExtraction],
     applications: list[VolunteerApplicationRecord],
+    issues: list[IssueRecord],
+    team_logins: dict[str, str],
     persons: ResolvedEntities,
     registry: WorkgroupRegistry,
     targets: dict[str, Any],
@@ -387,6 +396,8 @@ async def declare_graph(
             workgroup_config=Path(
                 os.environ.get("WORKGROUPS_CONFIG", "config/workgroups.yaml")
             ).name,
+            issue_source=os.environ.get("ISSUE_SOURCE", "none").lower(),
+            issue_count=len(issues),
         )
     )
 
@@ -399,7 +410,6 @@ async def declare_graph(
                 slug=workgroup.slug,
                 name=workgroup.name,
                 description=workgroup.description,
-                signups=workgroup.signups,
             )
         )
 
@@ -464,6 +474,81 @@ async def declare_graph(
                     record=BelongsToRel(first_meeting_id=meeting_id, first_seen=date),
                 )
                 break
+
+    # --- GitHub issues.
+    #
+    # An issue is declared exactly as GitHub reports it. The only judgement
+    # anywhere here is which workgroup a label names, and a label that names
+    # none leaves the issue unfiled rather than guessed at.
+    issue_table = targets["issue"]
+    known_issues: set[str] = set()
+    github_logins = team_logins
+    for issue in issues:
+        known_issues.add(issue.key)
+        issue_table.declare_record(
+            row=Issue(
+                key=issue.key,
+                repo=issue.repo,
+                number=issue.number,
+                title=issue.title,
+                url=issue.url,
+                state=issue.state,
+                state_reason=issue.state_reason,
+                labels=issue.labels,
+                assignee_logins=issue.assignee_logins,
+                milestone=issue.milestone,
+                comment_count=issue.comment_count,
+                created_at=issue.created_at,
+                updated_at=issue.updated_at,
+            )
+        )
+
+        slug = workgroup_for(issue, registry)
+        if slug:
+            targets["filed_under"].declare_relation(from_id=issue.key, to_id=slug)
+
+        # Assignees become edges only when the team file says who they are. An
+        # unmapped login stays on the node as a string, so nothing is lost.
+        for login in issue.assignee_logins:
+            name = github_logins.get(login.casefold())
+            if name:
+                targets["works_on"].declare_relation(
+                    from_id=canonical(name),
+                    to_id=issue.key,
+                    record=WorksOnRel(assigned_via="github_assignee"),
+                )
+
+    # Task -> Issue, from `Issue:` lines in the notes and nowhere else. A
+    # reference to an issue the source did not return is skipped: it would
+    # otherwise create a dangling edge to a node that has no properties.
+    default_repo = _default_issue_repo()
+    linked: set[tuple[str, str]] = set()
+    missing: set[str] = set()
+    for meeting in meetings:
+        for mention in meeting.tasks:
+            for ref in mention.issue_refs:
+                key = f"{default_repo}{ref}" if ref.startswith("#") and default_repo else ref
+                if key not in known_issues:
+                    missing.add(ref)
+                    continue
+                if (mention.task_id, key) in linked:
+                    continue
+                linked.add((mention.task_id, key))
+                targets["tracked_by"].declare_relation(
+                    from_id=mention.task_id,
+                    to_id=key,
+                    record=TrackedByRel(
+                        first_meeting_id=meeting.meeting_id, first_seen=meeting.date
+                    ),
+                )
+    if missing:
+        print(
+            "warning: the notes reference "
+            + ", ".join(sorted(missing))
+            + ", which the configured issue source did not return, so no TRACKED_BY "
+            "edge was made. Check the number, and check GITHUB_REPOS covers the repo.",
+            file=sys.stderr,
+        )
 
     # --- Per-meeting edges.
     #
@@ -625,6 +710,12 @@ async def app_main() -> None:
         await neo4j.TableSchema.from_class(VolunteerApplication, primary_key="application_id"),
         primary_key="application_id",
     )
+    issue_table = await neo4j.mount_table_target(
+        KG_DB,
+        "Issue",
+        await neo4j.TableSchema.from_class(Issue, primary_key="key"),
+        primary_key="key",
+    )
     build_table = await neo4j.mount_table_target(
         KG_DB,
         "GraphBuild",
@@ -678,6 +769,18 @@ async def app_main() -> None:
         "submitted": await neo4j.mount_relation_target(
             KG_DB, "SUBMITTED", person_table, application_table
         ),
+        # GitHub issues. WORKS_ON comes from an issue's assignees; TRACKED_BY
+        # only ever comes from an `Issue:` line someone wrote on an action item.
+        "issue": issue_table,
+        "works_on": await neo4j.mount_relation_target(KG_DB, "WORKS_ON", person_table, issue_table),
+        "tracked_by": await neo4j.mount_relation_target(
+            KG_DB, "TRACKED_BY", task_table, issue_table
+        ),
+        # Not CONCERNS: CocoIndex keys a relation target by its type name alone,
+        # so one name cannot serve two different pairs of endpoints.
+        "filed_under": await neo4j.mount_relation_target(
+            KG_DB, "FILED_UNDER", issue_table, workgroup_table
+        ),
     }
 
     await coco.mount(
@@ -687,6 +790,17 @@ async def app_main() -> None:
         targets,
         meeting_table,
     )
+
+
+def _default_issue_repo() -> str:
+    """The repo a bare `#12` in the notes means: the first in GITHUB_REPOS.
+
+    Empty when issues are off or several repos are configured without one being
+    obviously first, in which case a bare reference is left unresolved rather
+    than attached to whichever repo happened to be listed.
+    """
+    repos = [r.strip() for r in os.environ.get("GITHUB_REPOS", "").split(",") if r.strip()]
+    return repos[0] if repos else ""
 
 
 def _live_interval() -> datetime.timedelta:
@@ -728,6 +842,17 @@ async def run_pipeline(
     # --- Volunteer applications
     applications = await volunteer_source(registry).applications()
 
+    # --- GitHub issues. Off unless ISSUE_SOURCE=github, and a failure to reach
+    # GitHub should not take the whole graph down with it: the notes are the
+    # source of record, issues are the second opinion.
+    issues: list[IssueRecord] = []
+    source_of_issues = issue_source()
+    if source_of_issues is not None:
+        try:
+            issues = await asyncio.to_thread(source_of_issues.issues)
+        except (ValueError, OSError) as error:
+            print(f"warning: skipping GitHub issues, {error}", file=sys.stderr)
+
     # --- Phase 2
     raw_persons: set[str] = set()
     for meeting in all_meetings:
@@ -738,10 +863,38 @@ async def run_pipeline(
         for task in meeting.tasks:
             raw_persons.update(task.owners)
     raw_persons.update(a.name for a in applications)
+    # Everyone on the team, whether or not they appear in a note yet, plus the
+    # names behind any GitHub logins assigned to an issue.
+    team = load_people()
+    raw_persons.update(team.names())
+    logins = team.github_logins()
+    unmapped = sorted(
+        {
+            login
+            for issue in issues
+            for login in issue.assignee_logins
+            if login.casefold() not in logins
+        }
+    )
+    if unmapped:
+        print(
+            "note: these GitHub logins are assigned to issues but are not in "
+            f"config/people.yaml, so they get no Person node: {', '.join(unmapped)}",
+            file=sys.stderr,
+        )
+    raw_persons.update(
+        logins[login.casefold()]
+        for issue in issues
+        for login in issue.assignee_logins
+        if login.casefold() in logins
+    )
 
     persons = await coco.use_mount(
         coco.component_subpath("resolve_persons"), resolve_persons, raw_persons
     )
+    # The team file gets the last word on who is who, outside the memoised
+    # resolution so that editing config/people.yaml takes effect on the next run.
+    persons = person_resolution.apply_team(persons, team)
 
     # --- Phase 3
     await coco.mount(
@@ -749,6 +902,8 @@ async def run_pipeline(
         declare_graph,
         all_meetings,
         applications,
+        issues,
+        logins,
         persons,
         registry,
         targets,

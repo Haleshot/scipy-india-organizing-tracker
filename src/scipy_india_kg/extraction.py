@@ -84,7 +84,10 @@ _ISO_DATE_RE = re.compile(r"\b(\d{4}-\d{2}-\d{2})\b")
 _BULLET_CHARS = r"-*+\u2022\u25cf\u25aa\u25e6\u2043\u00b7\u2219\u25a0\u25cb\u2010\u2013"
 _BULLET_RE = re.compile(rf"^\s*[{_BULLET_CHARS}]\s+")
 _CHECKBOX_RE = re.compile(rf"^\s*[{_BULLET_CHARS}]\s*\[( |x|X)\]\s*")
-_FIELD_RE = re.compile(r"\b(owners?|workgroup|status|due|id|key)\s*:\s*", re.IGNORECASE)
+_FIELD_RE = re.compile(r"\b(owners?|workgroup|status|due|id|key|issues?)\s*:\s*", re.IGNORECASE)
+# "owner/repo#12", or "#12" when the issue is in the default repository. Anything
+# else on an `Issue:` line is ignored rather than half-parsed.
+_ISSUE_REF_RE = re.compile(r"(?:([\w.-]+/[\w.-]+))?#(\d+)")
 _SUBHEADING_RE = re.compile(r"^#{3,}\s*(.+?)\s*$")
 # In plain text a section heading is just a short line on its own: "Topics",
 # "Decisions", "Action items". Recognised only when the whole line, stripped of
@@ -102,7 +105,8 @@ _LABEL_RE = re.compile(
 # is treated the same way: nothing is inferred.
 _TASK_OPEN_RE = re.compile(r"^\s*\*{0,2}task\*{0,2}\s*:\s*(.*)$", re.IGNORECASE)
 _TASK_FIELD_RE = re.compile(
-    r"^\s*\*{0,2}(id|key|owners?|workgroup|status|due)\*{0,2}\s*:\s*(.*)$", re.IGNORECASE
+    r"^\s*\*{0,2}(id|key|owners?|workgroup|status|due|issues?)\*{0,2}\s*:\s*(.*)$",
+    re.IGNORECASE,
 )
 _PARENTHETICAL_WG_RE = re.compile(r"^\(([^)]+)\)\s*")
 _JOINS_RE = re.compile(
@@ -147,6 +151,20 @@ def _split_people(value: str) -> list[str]:
     return people
 
 
+def _split_issue_refs(value: str) -> list[str]:
+    """Issue references on an `Issue:` line, in the order written.
+
+    A bare `#12` is left bare. The pipeline attaches the default repository
+    later, because only it knows what that is.
+    """
+    refs: list[str] = []
+    for repo, number in _ISSUE_REF_RE.findall(value):
+        ref = f"{repo}#{number}" if repo else f"#{number}"
+        if ref not in refs:
+            refs.append(ref)
+    return refs
+
+
 def _parse_task_line(line: str, registry: WorkgroupRegistry) -> ExtractedTask | None:
     checkbox = _CHECKBOX_RE.match(line)
     if checkbox:
@@ -169,12 +187,10 @@ def _parse_task_line(line: str, registry: WorkgroupRegistry) -> ExtractedTask | 
     workgroup: str | None = None
     due = ""
     explicit_id: str | None = None
+    issue_refs: list[str] = []
     for i, match in enumerate(matches):
-        key = (
-            match.group(1).lower().rstrip("s")
-            if match.group(1).lower().startswith("owner")
-            else match.group(1).lower()
-        )
+        raw_key = match.group(1).lower()
+        key = raw_key.rstrip("s") if raw_key.startswith(("owner", "issue")) else raw_key
         end = matches[i + 1].start() if i + 1 < len(matches) else len(body)
         value = _TRAILING_SEP.sub("", body[match.end() : end]).strip()
         if not value:
@@ -191,6 +207,8 @@ def _parse_task_line(line: str, registry: WorkgroupRegistry) -> ExtractedTask | 
             due = value
         elif key in {"id", "key"}:
             explicit_id = value
+        elif key == "issue":
+            issue_refs.extend(r for r in _split_issue_refs(value) if r not in issue_refs)
 
     return ExtractedTask(
         description=description,
@@ -199,6 +217,7 @@ def _parse_task_line(line: str, registry: WorkgroupRegistry) -> ExtractedTask | 
         status=status,
         due=due,
         explicit_id=explicit_id,
+        issue_refs=issue_refs,
     )
 
 
@@ -262,6 +281,7 @@ class _TaskBlock:
         self.status = "unknown"
         self.due = ""
         self.explicit_id: str | None = None
+        self.issue_refs: list[str] = []
 
     def extend_description(self, line: str) -> None:
         self.description = f"{self.description} {line}".strip()
@@ -284,6 +304,8 @@ class _TaskBlock:
             self.due = value
         elif key in {"id", "key"}:
             self.explicit_id = value
+        elif key.startswith("issue"):
+            self.issue_refs.extend(r for r in _split_issue_refs(value) if r not in self.issue_refs)
 
     def build(self) -> ExtractedTask | None:
         if not self.description:
@@ -295,6 +317,7 @@ class _TaskBlock:
             status=self.status,
             due=self.due,
             explicit_id=self.explicit_id,
+            issue_refs=list(self.issue_refs),
         )
 
 
