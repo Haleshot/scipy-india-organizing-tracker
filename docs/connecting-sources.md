@@ -42,6 +42,15 @@ Deletions work the same way. Remove a task line and the task's edge to that
 meeting goes; remove the whole meeting and everything only that meeting
 contributed comes out. Nothing accumulates as debris.
 
+!!! warning "Turn off Markdown detection after pasting"
+
+    Google Docs converts Markdown on paste, which is what makes the formatted
+    notes look right. Leaving it on afterwards means an underscore you type gets
+    escaped, and `in_progress` exports as `in\_progress`, which matches no known
+    status. The pipeline unescapes that, along with `[text](url)` links and
+    labelled lines that Docs has run together, but the less it has to undo the
+    better.
+
 !!! note "Docs export as plain text, not Markdown"
 
     The Drive connector exports a Google Doc as `text/plain`, so `##` headings

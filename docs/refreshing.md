@@ -35,6 +35,56 @@ Done
 That last line matters more than it looks. See
 [which database am I looking at](neo4j-desktop.md#which-database-am-i-looking-at).
 
+## How long an edit takes to show up
+
+Nothing watches the Doc. Editing it changes nothing anywhere until somebody runs
+the refresh, and there are four places the change has to travel through.
+
+```mermaid
+flowchart LR
+    edit["you edit<br/>the Doc"] --> drive["Drive<br/>seconds"]
+    drive --> refresh["./scripts/refresh.sh<br/>~20s, when you run it"]
+    refresh --> local["localhost:8000<br/>immediately"]
+    refresh --> commit["commit graph.json<br/>+ push"] --> pages["Pages<br/>~1 min"]
+```
+
+Google saves your edit within seconds and the Drive API sees it right away, so
+that part is never the delay. Everything after it waits on you.
+
+| What you want | What to run | How long |
+| --- | --- | --- |
+| See it locally | `./scripts/refresh.sh`, then reload | About 20 seconds |
+| See it while editing | `./scripts/refresh.sh --watch` in one terminal | Picks it up on the next cycle |
+| Get it onto the published dashboard | Refresh, commit `web/public/data/graph.json`, push | About a minute after the push |
+
+The published dashboard reads a committed file, not the database, so a refresh
+that stays on your laptop changes nothing anyone else can see. That is the step
+people forget.
+
+```bash title="edit the Doc, then publish it"
+./scripts/refresh.sh
+git add web/public/data/graph.json
+git commit -S --signoff -m "chore: refresh the snapshot"
+git push
+```
+
+!!! tip "Working through a batch of edits"
+
+    `--watch` re-runs the whole refresh whenever the notes change, so you can
+    keep the dashboard open on one screen and the Doc on another.
+
+    ```bash
+    ./scripts/refresh.sh --watch     # needs fswatch
+    python -m http.server 8000 --directory web/public
+    ```
+
+    It watches `data/meeting_notes/` for local files. Pointed at Drive it polls
+    on the same interval, which is the only way to notice a Doc edit: Drive does
+    not push.
+
+Commit the snapshot once at the end rather than after every edit. Every push
+triggers a deploy, and the history is easier to read.
+
 ## Flags
 
 | Flag | When you want it |
