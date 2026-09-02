@@ -96,7 +96,12 @@ def task_identity(
         readable = _slugify(description)
         material = f"desc\x1f{note_file}\x1f{normalized}"
 
-    digest = hashlib.sha1(material.encode("utf-8")).hexdigest()[:10]
+    # The "h" is not decoration. A ten-character hex digest is all decimal
+    # digits about one time in a hundred, which is indistinguishable from an
+    # Indian mobile number to anything scanning for leaked contact details,
+    # including this project's own privacy check. The prefix makes that
+    # impossible without changing what the digest is.
+    digest = "h" + hashlib.sha1(material.encode("utf-8")).hexdigest()[:10]
     return TaskIdentity(
         id=f"{scope}:{readable}:{digest}",
         basis=basis,
