@@ -99,16 +99,38 @@ triggers a deploy, and the history is easier to read.
 
 ## Doing it on a schedule
 
-!!! warning "Nothing is scheduled right now"
+`.github/workflows/refresh-graph.yml` runs every three hours, reads the Doc and
+the tracker, and publishes the result. Nobody has to remember anything.
 
-    No cron entry is installed and no workflow runs on a timer. A refresh
-    happens when somebody runs the command, and nothing below is set up for you.
+It works without a hosted database. The graph is derived entirely from the
+sources, so nothing needs to survive between runs: the job starts a throwaway
+Neo4j beside itself, builds the whole graph into it, exports the snapshot, and
+throws the database away. A run that finds no edits writes nothing and publishes
+nothing.
 
-For a team this size that is usually the right amount of automation, because you
-get to see what changed before it goes out. If you want it running on its own,
-there are two honest options: a cron entry on a machine that stays up, or GitHub
-Actions. Actions needs a Neo4j the runner can reach, which a container on your
-laptop is not, so it wants a hosted instance such as Aura first.
+No model runs in it either. The deterministic parser and exact name matching
+need no API key, so the only places anything is sent are Google and GitHub.
+
+!!! warning "It needs two secrets before it can do anything"
+
+    Until these are set the scheduled run fails on its first step, which is
+    deliberate: a green run that quietly published nothing would be worse.
+
+    ```bash
+    gh secret set GOOGLE_SERVICE_ACCOUNT_JSON < secrets/your-key.json
+    gh secret set GOOGLE_DRIVE_ROOT_FOLDER_IDS --body "id-one,id-two"
+    ```
+
+    The first is the whole JSON key file. GitHub encrypts secrets and does not
+    show them again, including to you. Issues need nothing extra, because the
+    repository's own token can read them.
+
+Run it by hand any time from the Actions tab, and tick "Rebuild from scratch" if
+something looks stale.
+
+### A cron entry instead
+
+Worth it if you would rather the key stayed on a machine you own.
 
 ??? example "Installing a cron entry yourself"
 
