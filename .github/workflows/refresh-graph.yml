@@ -77,11 +77,13 @@ jobs:
           cache-dependency-path: pyproject.toml
 
       - name: Install
-        # No test or lint tooling: this job builds a graph, it does not check
-        # the code. CI does that on push.
+        # The dev extra, because refresh.sh gates the snapshot on
+        # tests/test_public_snapshot.py and that needs pytest. Those tests are
+        # the thing standing between this job and publishing something private,
+        # so they are not optional here.
         run: |
           python -m pip install --upgrade pip
-          pip install -e .
+          pip install -e ".[dev]"
 
       - name: Write the service-account key
         env:

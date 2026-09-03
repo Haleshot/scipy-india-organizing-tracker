@@ -299,11 +299,26 @@ RESET_EOF
 
   # The exporter works from an allowlist, so a leak needs a mistake in that
   # allowlist. These tests read the file that was just written and check.
-  if "$PY" -m pytest tests/test_public_snapshot.py -q >/dev/null 2>&1; then
+  #
+  # A missing pytest used to land here as "privacy checks failed", which sent
+  # everyone looking for a leak that was not there. The two are different
+  # problems and now say so.
+  if ! "$PY" -c "import pytest" >/dev/null 2>&1; then
+    fail "Privacy checks" "pytest is not installed, so they could not run."
+    echo "  The snapshot was written but nothing has checked it. Install the" >&2
+    echo "  dev extra and run again:  pip install -e '.[dev]'" >&2
+    return 1
+  fi
+
+  local privacy_log
+  privacy_log="$(mktemp "${TMPDIR:-/tmp}/scipy-privacy.XXXXXX")"
+  if "$PY" -m pytest tests/test_public_snapshot.py -q >"$privacy_log" 2>&1; then
+    rm -f "$privacy_log"
     note "privacy checks passed"
   else
     fail "Privacy checks" "The snapshot just written did not pass them."
-    echo "  Run: pytest tests/test_public_snapshot.py -q" >&2
+    sed 's/^/  /' "$privacy_log" >&2
+    rm -f "$privacy_log"
     return 1
   fi
 
