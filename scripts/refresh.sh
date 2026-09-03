@@ -28,6 +28,13 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 REPO="$PWD"
 
+# Where CocoIndex keeps its incremental state. It has no default of its own and
+# fails with "Settings must provide db_path" when it is unset, which only shows
+# up somewhere without a .env, such as CI. The two places below that fall back
+# to ./cocoindex.db assume this value, so set it once here rather than leaving
+# three copies of the same guess.
+export COCOINDEX_DB="${COCOINDEX_DB:-$REPO/cocoindex.db}"
+
 CHECK=0
 FORCE=0
 WATCH=0
