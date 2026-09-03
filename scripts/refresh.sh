@@ -85,7 +85,11 @@ fail() { printf '\n\033[1;31m%s failed.\033[0m %s\n' "$1" "${2:-}" >&2; }
 # Run a stage, show its interesting lines, and keep its real exit status.
 # Piping straight into grep reports grep's status instead, and a trailing
 # `|| true` reports success for a stage that never ran.
-STAGE_LOG="$(mktemp -t scipy-refresh)"
+# Not `mktemp -t scipy-refresh`. On macOS `-t` takes a bare prefix, and on GNU
+# coreutils it needs at least three X's, so the short form works on a laptop and
+# fails on a Linux runner with "too few X's in template". Spelling the path out
+# behaves the same on both.
+STAGE_LOG="$(mktemp "${TMPDIR:-/tmp}/scipy-refresh.XXXXXX")"
 trap 'rm -f "$STAGE_LOG"' EXIT
 
 # Markers CocoIndex prints when a component fails. It reports them and then
