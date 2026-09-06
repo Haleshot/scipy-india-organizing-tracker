@@ -316,7 +316,7 @@ Due: 2026-09-06
 Meeting: 2026-09-06 | First volunteer call
 
 Facilitator: Srihari Thyagarajan
-Attendees: Srihari Thyagarajan, Agriya Khetarpal
+Attendees: Srihari Thyagarajan, Agriya Khetarpal, Malayaja Chutani, Shiv Katira, Saachi Kaup, Druhan Shah, Yajat rangnekar, Muralidharan Murugesan, ABEL GEORGE ABRAHAM, Arjun Verma
 Workgroups: Registration & Help Desk, Sponsoring, Social Media & Communications, Design, Proposal Reviewing, Program Committee
 
 Topics
@@ -347,8 +347,8 @@ than turning up at the booth with nothing.
 
 Notes
 
-Volunteers who attended are not named here. Nobody has agreed to be listed on a
-public page, and this document feeds one.
+Everyone who joined is listed above. This document feeds a public page, so
+names recorded here are published.
 
 The community has been more offline this year: booths at PyConf Hyderabad and
 ChennaiFOSS, and a joint meetup with BangPypers. The conference is back after a

@@ -1,8 +1,8 @@
-<!-- A real Google Docs export, kept because it broke the parser. The
-     volunteer names have been replaced with stand-ins: nobody agreed to be
-     listed in a public repository, and no test depends on them. Everything
-     else, including the stray heading markers and the blank lines between
-     bullets, is exactly as Drive returned it. -->
+<!-- A real Google Docs export, kept exactly as Drive returned it, because
+     it broke the parser: a heading marker on every body paragraph, blank lines
+     between bullets, and three labels run onto one line. Nothing here is
+     tidied. The people named attended the call and are listed on the public
+     dashboard already. -->
 
 # SciPy India 2026 meeting notes
 
@@ -18,7 +18,7 @@ Format is documented in docs/meeting-notes-template.md. One Meeting: line per me
 
 ## Meeting: 2026-09-06 | First volunteer call
 
-## Facilitator: Srihari Thyagarajan Attendees: Srihari Thyagarajan, Agriya Khetarpal, Malayaja Chutani, Volunteer One, Volunteer Two, Volunteer Three, Volunteer Four, Volunteer Five, Volunteer Six, Volunteer Seven, Workgroups: Registration & Help Desk, Sponsoring, Social Media & Communications, Design, Proposal Reviewing, Program Committee
+## Facilitator: Srihari Thyagarajan Attendees: Srihari Thyagarajan, Agriya Khetarpal, Malayaja Chutani, Shiv Katira, Saachi Kaup, Druhan Shah, Yajat rangnekar, Muralidharan Murugesan, ABEL GEORGE ABRAHAM, Arjun Verma, Workgroups: Registration & Help Desk, Sponsoring, Social Media & Communications, Design, Proposal Reviewing, Program Committee
 
 ### Topics
 
