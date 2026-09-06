@@ -68,10 +68,20 @@ def tracked_files() -> list[Path]:
 
 
 def prose_files() -> list[Path]:
+    """Prose this project wrote.
+
+    tests/fixtures/ is excluded. What is in there is captured input, not
+    writing: real Google Docs exports kept because they broke the parser, with
+    every stray heading marker and run-together line left exactly as Drive
+    returned it. Holding those to a house style would mean editing the evidence.
+    """
     return [
         path
         for path in tracked_files()
-        if path.suffix in PROSE_SUFFIXES and "vendor" not in path.parts and path.is_file()
+        if path.suffix in PROSE_SUFFIXES
+        and "vendor" not in path.parts
+        and "fixtures" not in path.parts
+        and path.is_file()
     ]
 
 
