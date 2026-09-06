@@ -23,3 +23,11 @@ people:
   - name: Malayaja Chutani
     github: malayajac
     aliases: [Malayaja]
+
+# Volunteers, from the first call on 6 September 2026. Listed here so the
+# dashboard shows a name the way its owner writes it rather than the way it
+# happened to arrive: a form field typed in caps is not a shout.
+#
+# Add `github:` for anyone who has a handle and their issues attach to them.
+  - name: Abel George Abraham
+    aliases: [ABEL GEORGE ABRAHAM]
