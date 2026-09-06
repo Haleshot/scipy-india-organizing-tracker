@@ -312,3 +312,116 @@ Workgroup: Registration & Help Desk
 Owner: Srihari Thyagarajan
 Status: in_progress
 Due: 2026-09-06
+
+Meeting: 2026-09-06 | First volunteer call
+
+Facilitator: Srihari Thyagarajan
+Attendees: Srihari Thyagarajan, Agriya Khetarpal
+Workgroups: Registration & Help Desk, Sponsoring, Social Media & Communications, Design, Proposal Reviewing, Program Committee
+
+Topics
+
+Introductions to SciPy India, both the community and the conference.
+Where the community is this year, and the shift towards an offline presence.
+The community booth at IndiaFOSS and what we need before it.
+A round of introductions from everyone on the call.
+The volunteer roles people picked on the form, and what each one involves.
+Questions on startup discounts, workgroup creation and CFP reviewing.
+
+Decisions
+
+(Registration & Help Desk) The first call is deliberately informal, with no
+agenda beyond people meeting each other. Role assignment comes after, once
+people know what the roles are.
+
+(Sponsoring) Sponsorship outreach is the immediate priority, because it decides
+most of what the conference can be. Volunteers who ticked sponsorship on the
+form get contacted first.
+
+(Social Media & Communications) Almost all work happens on Zulip rather than
+email. We create a channel per workgroup and add people to the ones matching
+what they signed up for, so questions land somewhere other people can see them.
+
+(Design) We want standees, flyers and a social post before IndiaFOSS, rather
+than turning up at the booth with nothing.
+
+Notes
+
+Volunteers who attended are not named here. Nobody has agreed to be listed on a
+public page, and this document feeds one.
+
+The community has been more offline this year: booths at PyConf Hyderabad and
+ChennaiFOSS, and a joint meetup with BangPypers. The conference is back after a
+hiatus, which is why the current team decided it needed more hands.
+
+Action items
+
+Task: Send the volunteer intro call invite
+ID: volunteer-intro-call
+Workgroup: Registration & Help Desk
+Owner: Srihari Thyagarajan
+Status: done
+Due: 2026-08-29
+
+Task: Confirm the call time once replies are in
+ID: volunteer-call-time
+Workgroup: Registration & Help Desk
+Owner: Srihari Thyagarajan
+Status: done
+Due: 2026-09-04
+
+Task: Shortlist volunteers and start intro calls
+ID: volunteer-shortlist
+Workgroup: Registration & Help Desk
+Owner: Srihari Thyagarajan
+Status: done
+Due: 2026-09-06
+
+Task: Get volunteers onto Zulip and into the volunteers channel
+ID: volunteer-zulip-onboarding
+Workgroup: Social Media & Communications
+Owner: Srihari Thyagarajan
+Status: in_progress
+Due:
+
+Task: Create a Zulip channel per workgroup and add people to the ones they picked
+ID: zulip-workgroup-channels
+Workgroup: Social Media & Communications
+Owner: Srihari Thyagarajan
+Status: open
+Due:
+
+Task: Contact the volunteers who picked sponsorship
+ID: sponsoring-volunteer-outreach
+Workgroup: Sponsoring
+Owner: Agriya Khetarpal
+Status: open
+Due:
+
+Task: Staff the community booth at IndiaFOSS
+ID: indiafoss-booth
+Workgroup: Registration & Help Desk
+Owner:
+Status: open
+Due:
+
+Task: Standees, flyers and a social post ahead of IndiaFOSS
+ID: indiafoss-collateral
+Workgroup: Design
+Owner:
+Status: open
+Due:
+
+Task: Decide whether volunteers get a startup discount
+ID: volunteer-startup-discount
+Workgroup: Registration & Help Desk
+Owner:
+Status: open
+Due:
+
+Task: Answer the questions raised on workgroup creation and CFP reviewing
+ID: cfp-reviewing-questions
+Workgroup: Proposal Reviewing
+Owner: Srihari Thyagarajan
+Status: open
+Due:
