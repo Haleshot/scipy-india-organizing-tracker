@@ -49,14 +49,26 @@ _MARKDOWN_HEADING_RE = re.compile(r"^\s{0,3}#{1,2}\s+\S")
 _MEETING_LINE_RE = re.compile(r"^\s{0,3}(?:#{1,3}\s*)?\*{0,2}meetings?\s*:", re.IGNORECASE)
 
 
+# A heading only starts a meeting if it carries a date. Pasting into a Google
+# Doc can apply Heading 2 to every paragraph of a section, so "## Facilitator:"
+# and "## (Sponsoring) We decided..." arrive as headings. Treating those as
+# boundaries cut one meeting into fragments with no date, and every fragment was
+# then dropped for having none: the meeting kept its title and lost its
+# facilitator, its decisions and all of its action items.
+_HEADING_WITH_DATE_RE = re.compile(r"^\s{0,3}#{1,2}\s+.*\b\d{4}-\d{2}-\d{2}\b")
+
+
 def _is_boundary(line: str) -> bool:
     """Does this line start a new meeting section?
 
     A `###` heading does not: those are the subsections inside one meeting.
+    Neither does a heading that is only prose, whatever level it claims.
     """
     if _MEETING_LINE_RE.match(line):
         return True
-    return bool(_MARKDOWN_HEADING_RE.match(line)) and not line.lstrip().startswith("###")
+    if line.lstrip().startswith("###"):
+        return False
+    return bool(_MARKDOWN_HEADING_RE.match(line)) and bool(_HEADING_WITH_DATE_RE.match(line))
 
 
 # Markdown escaping that a Google Doc adds on the way out. Pasting Markdown into
@@ -65,6 +77,9 @@ def _is_boundary(line: str) -> bool:
 # "unknown". Undo both before anything tries to read a value.
 _MD_ESCAPE_RE = re.compile(r"\\([_*\[\]()#+\-.!`~\\])")
 _MD_LINK_RE = re.compile(r"\[([^\]]+)\]\((?:[^)]*)\)")
+# A heading marker on a body paragraph, including one sitting after a bullet,
+# which is what "* ## Task: ..." is. The bullet is kept; the marker is not.
+_BODY_HEADING_RE = re.compile(r"^(\s*(?:[-*+\u2022\u25cf\u25aa]\s+)?)#{1,6}\s+")
 
 # Labels that own a whole line. A Doc that had these on separate lines exports
 # them joined, because Google Docs treats a soft line break inside a paragraph as
@@ -121,6 +136,11 @@ def normalize_export(text: str) -> str:
 
     out: list[str] = []
     for line in text.splitlines():
+        # Drop a heading marker Docs put on a body paragraph. A real section
+        # heading ("Topics", "Decisions") is still recognised without it, and a
+        # dated meeting heading is matched before this runs.
+        if not _is_boundary(line):
+            line = _BODY_HEADING_RE.sub(r"\1", line)
         out.extend(_unjoin_labels(line, _HEADER_LABELS + _TASK_LABELS))
     return "\n".join(out)
 
@@ -523,7 +543,14 @@ def extract_meeting_markdown(
 
         if not stripped:
             flush_paragraph()
-            flush_task()
+            # A blank line does not close an action item. Google Docs puts one
+            # between every bullet, so `Task:` and the `ID:`/`Owner:`/`Status:`
+            # lines under it arrive separated. Closing the task here made each
+            # of those fields a task of its own: ten action items came back as
+            # sixty. The task closes on the next `Task:`, on a new section, or
+            # at the end of the meeting.
+            if section != "tasks":
+                flush_task()
             continue
 
         # A section heading, written either as `###` or as a bare line.
