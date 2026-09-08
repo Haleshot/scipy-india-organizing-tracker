@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-07T23:33:18+00:00",
+  "generated_at": "2026-09-08T04:40:42+00:00",
   "schema_version": 4,
   "profile": "public",
   "source": {
-    "built_at": "2026-09-07T23:33:13.272876Z",
+    "built_at": "2026-09-08T04:40:38.201586Z",
     "notes_source": "google_drive",
     "extraction_mode": "markdown",
     "person_resolution": "exact"
@@ -151,24 +151,24 @@
       ],
       "facilitator": "Srihari Thyagarajan",
       "attendees": [
-        "Yajat rangnekar",
         "Arjun Verma",
-        "Saachi Kaup",
         "Shiv Katira",
-        "Malayaja Chutani",
+        "Agriya Khetarpal",
+        "Saachi Kaup",
+        "Srihari Thyagarajan",
+        "Yajat rangnekar",
         "Druhan Shah",
         "Muralidharan Murugesan",
-        "Srihari Thyagarajan",
-        "Agriya Khetarpal",
+        "Malayaja Chutani",
         "Abel George Abraham"
       ],
       "workgroups": [
-        "registration-help-desk",
-        "design",
-        "sponsoring",
-        "proposal-reviewing",
         "social-media-communications",
-        "program-committee"
+        "proposal-reviewing",
+        "design",
+        "program-committee",
+        "sponsoring",
+        "registration-help-desk"
       ]
     },
     {
@@ -186,8 +186,8 @@
         "Malayaja Chutani"
       ],
       "workgroups": [
-        "logistics",
         "registration-help-desk",
+        "logistics",
         "social-media-communications"
       ]
     },
@@ -208,8 +208,8 @@
       "workgroups": [
         "program-committee",
         "sponsoring",
-        "registration-help-desk",
-        "logistics"
+        "logistics",
+        "registration-help-desk"
       ]
     },
     {
@@ -227,10 +227,10 @@
         "Agriya Khetarpal"
       ],
       "workgroups": [
-        "website",
         "logistics",
+        "sponsoring",
         "program-committee",
-        "sponsoring"
+        "website"
       ]
     },
     {
@@ -248,8 +248,8 @@
         "Malayaja Chutani"
       ],
       "workgroups": [
-        "registration-help-desk",
-        "sponsoring"
+        "sponsoring",
+        "registration-help-desk"
       ]
     },
     {
@@ -267,9 +267,9 @@
         "Srihari Thyagarajan"
       ],
       "workgroups": [
-        "sponsoring",
-        "logistics",
         "program-committee",
+        "logistics",
+        "sponsoring",
         "registration-help-desk"
       ]
     }
@@ -286,24 +286,24 @@
     {
       "name": "Agriya Khetarpal",
       "workgroups": [
-        "sponsoring",
-        "website"
+        "website",
+        "sponsoring"
       ],
       "meetings": [
         5,
-        6,
-        2,
-        3,
         1,
+        3,
+        2,
+        6,
         4
       ],
       "tasks": [
-        "sponsoring:foss-united-grant:h8fdf862f42",
+        "sponsoring:sponsor-outreach-round-1:h8217c74149",
         "sponsoring:sponsoring-volunteer-out:h9d05eba238",
-        "website:pretalx-instance:h32299a8aae",
+        "sponsoring:foss-united-grant:h8fdf862f42",
         "sponsoring:sponsorship-deck:heb70087595",
         "program-committee:keynote-shortlist:he91092c0de",
-        "sponsoring:sponsor-outreach-round-1:h8217c74149"
+        "website:pretalx-instance:h32299a8aae"
       ]
     },
     {
@@ -329,17 +329,17 @@
         "logistics"
       ],
       "meetings": [
+        5,
         4,
         1,
-        5,
         2,
         6,
         3
       ],
       "tasks": [
         "program-committee:keynote-shortlist:he91092c0de",
-        "logistics:iitm-venue-recon:ha697290a36",
-        "sponsoring:budget-v1:h5497589605"
+        "sponsoring:budget-v1:h5497589605",
+        "logistics:iitm-venue-recon:ha697290a36"
       ]
     },
     {
@@ -381,15 +381,15 @@
         2
       ],
       "tasks": [
-        "logistics:iitm-venue-recon:ha697290a36",
+        "program-committee:keynote-shortlist:he91092c0de",
+        "registration-help-desk:volunteer-call-time:h07e82a931d",
         "registration-help-desk:volunteer-form:hea8a8a2b2e",
         "proposal-reviewing:cfp-reviewing-questions:h514f32e486",
-        "registration-help-desk:volunteer-call-time:h07e82a931d",
-        "registration-help-desk:volunteer-intro-call:h7979644396",
-        "social-media-communications:zulip-workgroup-channels:h1f07218613",
         "social-media-communications:volunteer-zulip-onboardi:h98539e35c4",
         "registration-help-desk:volunteer-shortlist:hf197a302cd",
-        "program-committee:keynote-shortlist:he91092c0de"
+        "logistics:iitm-venue-recon:ha697290a36",
+        "registration-help-desk:volunteer-intro-call:h7979644396",
+        "social-media-communications:zulip-workgroup-channels:h1f07218613"
       ]
     },
     {
@@ -599,8 +599,8 @@
       "meeting_count": 2,
       "workgroup": "logistics",
       "owners": [
-        "Srihari Thyagarajan",
-        "Malayaja Chutani"
+        "Malayaja Chutani",
+        "Srihari Thyagarajan"
       ],
       "created_in": 4,
       "history": [
@@ -626,9 +626,9 @@
       "meeting_count": 2,
       "workgroup": "program-committee",
       "owners": [
+        "Srihari Thyagarajan",
         "Malayaja Chutani",
-        "Agriya Khetarpal",
-        "Srihari Thyagarajan"
+        "Agriya Khetarpal"
       ],
       "created_in": 4,
       "history": [
@@ -1403,17 +1403,7 @@
     "edges": [
       {
         "source": "meeting:1",
-        "target": "workgroup:registration-help-desk",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:1",
-        "target": "workgroup:design",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:1",
-        "target": "workgroup:sponsoring",
+        "target": "workgroup:social-media-communications",
         "kind": "DISCUSSED"
       },
       {
@@ -1423,7 +1413,7 @@
       },
       {
         "source": "meeting:1",
-        "target": "workgroup:social-media-communications",
+        "target": "workgroup:design",
         "kind": "DISCUSSED"
       },
       {
@@ -1432,13 +1422,23 @@
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:6",
-        "target": "workgroup:logistics",
+        "source": "meeting:1",
+        "target": "workgroup:sponsoring",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:1",
+        "target": "workgroup:registration-help-desk",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:6",
         "target": "workgroup:registration-help-desk",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:6",
+        "target": "workgroup:logistics",
         "kind": "DISCUSSED"
       },
       {
@@ -1458,12 +1458,27 @@
       },
       {
         "source": "meeting:5",
-        "target": "workgroup:registration-help-desk",
+        "target": "workgroup:logistics",
         "kind": "DISCUSSED"
       },
       {
         "source": "meeting:5",
+        "target": "workgroup:registration-help-desk",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:4",
         "target": "workgroup:logistics",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:4",
+        "target": "workgroup:sponsoring",
+        "kind": "DISCUSSED"
+      },
+      {
+        "source": "meeting:4",
+        "target": "workgroup:program-committee",
         "kind": "DISCUSSED"
       },
       {
@@ -1472,17 +1487,7 @@
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:4",
-        "target": "workgroup:logistics",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:4",
-        "target": "workgroup:program-committee",
-        "kind": "DISCUSSED"
-      },
-      {
-        "source": "meeting:4",
+        "source": "meeting:3",
         "target": "workgroup:sponsoring",
         "kind": "DISCUSSED"
       },
@@ -1492,13 +1497,8 @@
         "kind": "DISCUSSED"
       },
       {
-        "source": "meeting:3",
-        "target": "workgroup:sponsoring",
-        "kind": "DISCUSSED"
-      },
-      {
         "source": "meeting:2",
-        "target": "workgroup:sponsoring",
+        "target": "workgroup:program-committee",
         "kind": "DISCUSSED"
       },
       {
@@ -1508,7 +1508,7 @@
       },
       {
         "source": "meeting:2",
-        "target": "workgroup:program-committee",
+        "target": "workgroup:sponsoring",
         "kind": "DISCUSSED"
       },
       {
@@ -1523,12 +1523,12 @@
       },
       {
         "source": "person:Agriya Khetarpal",
-        "target": "workgroup:sponsoring",
+        "target": "workgroup:website",
         "kind": "MEMBER_OF"
       },
       {
         "source": "person:Agriya Khetarpal",
-        "target": "workgroup:website",
+        "target": "workgroup:sponsoring",
         "kind": "MEMBER_OF"
       },
       {
@@ -1538,12 +1538,7 @@
       },
       {
         "source": "person:Agriya Khetarpal",
-        "target": "meeting:6",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Agriya Khetarpal",
-        "target": "meeting:2",
+        "target": "meeting:1",
         "kind": "ATTENDED"
       },
       {
@@ -1553,7 +1548,12 @@
       },
       {
         "source": "person:Agriya Khetarpal",
-        "target": "meeting:1",
+        "target": "meeting:2",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Agriya Khetarpal",
+        "target": "meeting:6",
         "kind": "ATTENDED"
       },
       {
@@ -1583,17 +1583,17 @@
       },
       {
         "source": "person:Malayaja Chutani",
+        "target": "meeting:5",
+        "kind": "ATTENDED"
+      },
+      {
+        "source": "person:Malayaja Chutani",
         "target": "meeting:4",
         "kind": "ATTENDED"
       },
       {
         "source": "person:Malayaja Chutani",
         "target": "meeting:1",
-        "kind": "ATTENDED"
-      },
-      {
-        "source": "person:Malayaja Chutani",
-        "target": "meeting:5",
         "kind": "ATTENDED"
       },
       {
@@ -1822,12 +1822,12 @@
         "kind": "BELONGS_TO"
       },
       {
-        "source": "person:Srihari Thyagarajan",
+        "source": "person:Malayaja Chutani",
         "target": "task:logistics:iitm-venue-recon:ha697290a36",
         "kind": "ASSIGNED_TO"
       },
       {
-        "source": "person:Malayaja Chutani",
+        "source": "person:Srihari Thyagarajan",
         "target": "task:logistics:iitm-venue-recon:ha697290a36",
         "kind": "ASSIGNED_TO"
       },
@@ -1847,17 +1847,17 @@
         "kind": "BELONGS_TO"
       },
       {
+        "source": "person:Srihari Thyagarajan",
+        "target": "task:program-committee:keynote-shortlist:he91092c0de",
+        "kind": "ASSIGNED_TO"
+      },
+      {
         "source": "person:Malayaja Chutani",
         "target": "task:program-committee:keynote-shortlist:he91092c0de",
         "kind": "ASSIGNED_TO"
       },
       {
         "source": "person:Agriya Khetarpal",
-        "target": "task:program-committee:keynote-shortlist:he91092c0de",
-        "kind": "ASSIGNED_TO"
-      },
-      {
-        "source": "person:Srihari Thyagarajan",
         "target": "task:program-committee:keynote-shortlist:he91092c0de",
         "kind": "ASSIGNED_TO"
       },
