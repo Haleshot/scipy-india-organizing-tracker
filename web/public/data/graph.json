@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-22T11:57:15+00:00",
+  "generated_at": "2026-10-22T17:14:22+00:00",
   "schema_version": 4,
   "profile": "public",
   "source": {
-    "built_at": "2026-10-22T11:57:10.020111Z",
+    "built_at": "2026-10-22T17:14:17.89503Z",
     "notes_source": "google_drive",
     "extraction_mode": "markdown",
     "person_resolution": "exact"
